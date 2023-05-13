@@ -1,0 +1,8 @@
+
+
+<span>{!! $entry->article !!}</span>
+
+
+
+
+

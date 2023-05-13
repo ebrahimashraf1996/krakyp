@@ -1,0 +1,8 @@
+
+
+<span>{!! $entry->rights !!}</span>
+
+
+
+
+

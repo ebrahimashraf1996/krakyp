@@ -1,0 +1,118 @@
+
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+
+
+
+
+}
+
+@media (max-width: 767px) {
+
+}
+
+@media (max-width: 575px) {
+
+}
+
+
+
+
+
+/* Retina-ize images/icons */
+
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (   min--moz-device-pixel-ratio: 2),
+only screen and (     -o-min-device-pixel-ratio: 2/1),
+only screen and (        min-device-pixel-ratio: 2),
+only screen and (                min-resolution: 192dpi),
+only screen and (                min-resolution: 2dppx) {
+
+
+
+}
+
+
+/*media query start */
+
+/*less than 575px*/
+@media only screen and (max-width:380px)
+{
+    .checkout-page .total-info button.btn-complete-order {
+        width: 100%;
+    }
+    .total-info .card .card-body table tr th.product_th {
+        width: 29%;
+    }
+    .checkout-page .total-info .card .card-body table tr th.quantity_th{
+        width: 3%;
+    }
+    .total-info .card .card-body table tr th.total_th {
+        width: 17%;
+    }
+    .checkout-page .total-info {
+        margin: 30px 10px 0 10px;
+    }
+    .order-completed-page .order-details .card .card-body table tr th span {
+        padding-left: 5px;
+    }
+    .user-address a {padding-right: 1rem !important;
+        padding-left: 4rem !important;}
+
+    .description-list {
+        padding-left: 25px;
+
+    }
+    .more_product_details .tab-pane .description-list {
+        padding-left: 25px;
+
+    }
+    .info-td {
+        text-align: left;
+        padding-left: 40px!important;
+    }
+    .total-info .card .card-body table td span {
+        padding-right: 0;
+    }
+
+    #lang_list {
+        left:-100px;
+        text-align:center;
+    }
+
+}
+
+
+/*less than 575px*/
+@media only screen and (max-width:575px)  and (min-width: 380px)
+{
+
+
+}
+
+/*less than 767px*/
+@media only screen and (max-width:768px) and (min-width:575px)
+{
+
+}
+/*less then 992px and less than 768*/
+@media only screen and (max-width:993px) and (min-width:768px)
+{
+
+}
+
+/*less then1140px and less than 993*/
+@media only screen and (max-width:1140px) and (min-width: 993px)
+{
+
+}
+
+@media only screen and (max-width:1366px) and (min-width: 1141px)
+{
+
+}

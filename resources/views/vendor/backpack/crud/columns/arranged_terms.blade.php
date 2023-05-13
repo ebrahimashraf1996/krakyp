@@ -1,0 +1,8 @@
+
+
+<span>{!! $entry->terms !!}</span>
+
+
+
+
+

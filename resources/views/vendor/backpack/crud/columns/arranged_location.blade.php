@@ -1,0 +1,1 @@
+<span>{!! $entry->location !!}</span>

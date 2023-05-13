@@ -1,0 +1,111 @@
+.sidebar1 {left: -255px;text-align: left;}
+.sidebar1.active { left: 0; }
+.dismiss{right: 10px;}
+.sidebar1 ul li a i { margin-right: 5px; }
+.sidebar1 .dropdown-toggle::after {right: 20px}
+.apply_get {margin-top: 48px;margin-left: 72px;}
+.lang-link { list-style: none; margin-right: -92px}
+.nav_list {float: right}
+.nav-bar-style {float: right;text-align: right;}
+.flag {width: 23px;height: 18px;margin-bottom: 4px;margin-left: 5px;}
+.flag_icon {width: 20px;height: 15px;margin-bottom: 4px;margin-left: 5px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');*/
+/*body {  font-family: 'Ubuntu','Almarai', sans-serif;}*/
+/*.sidebar1 {left: -255px;text-align: left;}*/
+/*.sidebar1.active { left: 0; }*/
+/*.quantity .button.minus{left:0;border-radius:0;overflow:hidden;}*/
+/*.quantity .button.plus {right: 49px;border-radius:0;overflow:hidden;}*/
+/*.dismiss{right: 10px;}*/
+/*.sidebar1 ul li a i { margin-right: 5px; }*/
+/*.sidebar1 .dropdown-toggle::after {right: 20px}*/
+/*.sidebar2 {left: -377px;text-align: left;}*/
+/*.sidebar2.active { left: 0; }*/
+/*.sidebar2 ul li a i { margin-right: 5px; }*/
+/*.sidebar2 .dropdown-toggle::after {right: 20px}*/
+/*.sidebar2 .cont-confirm {direction: rtl}*/
+/*.sidebar2 .cont-confirm .confirm-order{direction: rtl}*/
+/*.logo a {margin-right: 20px}*/
+/*.right-nav {text-align: right}*/
+/*.left-nav {text-align: left}*/
+/*.search-btn {margin-left: -3px;}*/
+/*.carousel_header{direction: ltr}*/
+/*.sec_title {text-align: left;padding-left: 20px}*/
+/*.viewAll {text-align: right}*/
+/*footer {text-align: left}*/
+/*.modal .check-lable {font-size: 15px;float: left;}*/
+/*.modal .forget {float: right; }*/
+/*.contact-us .contact-methods {text-align: left}*/
+/*.form-check .form-check-input {float: left;margin-left: 0;margin-right: 10px;}*/
+/*.form-check {padding: 0}*/
+/*.side_filter {color: #061226; text-align: left; border-right: 1px solid rgba(85, 85, 85, 0.42)}*/
+/*.products-grid {float: right}*/
+/*.search-shop form .btn{border-radius: 0.25rem 0 0 0.25rem;}*/
+/*.cart-page .quantity .button.plus{right: 28px;}*/
+/*.cart-page .quantity .button.minus{left:25px}*/
+/*.coupon .coupon-form .input-group .input-group-append{margin-left:10px!important;}*/
+
+/*.checkout-page .total-info .order-subtotal th {text-align: left}*/
+/*.checkout-page .total-info .card .card-body table tr.order-subtotal th span{padding-left: 31px}*/
+
+/*.checkout-page .total-info .shipping_order th {text-align: left}*/
+/*.checkout-page .total-info .card .card-body table tr.shipping_order th span{padding-left: 31px}*/
+
+/*.checkout-page .total-info .order-total th {text-align: left}*/
+/*.checkout-page .total-info .card .card-body table tr.order-total th span{padding-left: 31px}*/
+/*.order-completed-page .order-details .card .card-body table tr th span{padding-left: 17px}*/
+/*.user-order-details {margin-left: -4px; }*/
+/*.user-ship-pill-details {margin-left: -4px; }*/
+/*.notes {margin-left : 10px}*/
+/*.div_span {margin-left: 15px}*/
+/*.more_product_details  .tab-pane .description-list{padding-left: 50px}*/
+/*.discount_batch span {left: 3px;font-size: 15px;}*/
+/*.wish-list .discount_batch span {left: 7px;}*/
+/*ul.size-list li a {*/
+/*    font-size: 17px;*/
+/*}*/
+/*.product-details .related_products .shop_products .discount_batch span {font-size: 16px; padding-top: 0; left: 5px; top: 3px}*/
+/*.products-grid .shop_products .discount_batch span {font-size: 16px; padding-top: 0; left: 5px; top: 3px}*/
+/*.total-info .card .card-body table{text-align: right;}*/
+/*!*.total-info .card .card-body table td span{padding-right: 30px}*!*/
+/*.name_size {text-align: left;padding-left: 20px}*/
+/*.total-info .card .card-body table tr td span#main_cart_sub {*/
+/*    padding-right: 17px;*/
+/*}*/
+/*.sidebar2 .added_products .delete {right: 5px;float: right;top: 1px}*/
+
+/*!************ Start Side bar Filter *************!*/
+/*.sidebar3 {left: -377px;text-align: left;}*/
+/*.sidebar3.active { left: 0; }*/
+/*.sidebar3 ul li a i { margin-right: 5px; }*/
+/*.sidebar3 .dropdown-toggle::after {right: 20px}*/
+/*.sidebar3 .cont-confirm {direction: rtl}*/
+/*.sidebar3 .cont-confirm .confirm-order{direction: rtl}*/
+/*.sidebar3 .added_products .delete {right: 5px;float: right;top: 1px}*/
+/*!************ End Side bar Filter *************!*/
+
+
+
+
+
