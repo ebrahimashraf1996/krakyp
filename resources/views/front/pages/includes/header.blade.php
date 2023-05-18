@@ -4,12 +4,12 @@
     <nav class="header-nav">
         <div class="header_container container">
             <div class="row upper_nav_new text-center pt-3">
-                <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-2">
+                <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-2 text-right">
                     <a class="navbar-brand " href="{{route('site.home')}}">
                         <img src="{{asset($settings->logo)}}" alt="logo">
                     </a>
                 </div>
-                <div class="col-xxl-6 col-xl-6 col-md-6 col-sm-2 col-2" dir="ltr">
+                <div class="col-xxl-6 col-xl-6 col-md-6 col-sm-2 col-2" dir="ltr" style="margin-top: 13px">
                     <form action="{{route('quick.search')}}" method="get">
                         @csrf
                         <div class="input-group search-input">
@@ -31,7 +31,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-2 text-right">
+                <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-2 text-right" style="margin-top: 13px">
                     @if(backpack_auth()->check())
                         <div class="pt-2 logged_menu_btn">
                             <img src="{{asset('assets/front/images/profile_1.svg')}}" alt="profile-icon">
@@ -80,7 +80,7 @@
                     @endif
 
                 </div>
-                <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-2">
+                <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-2" style="margin-top: 13px">
                     <a href="{{route('add.post')}}" class="btn bold add_post_btn">
                         <span class="plus_new">
                             <i class="fa-solid fa-plus" style="font-size: 27px"></i>

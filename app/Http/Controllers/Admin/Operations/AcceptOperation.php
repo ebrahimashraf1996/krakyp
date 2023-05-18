@@ -61,21 +61,30 @@ trait AcceptOperation
                 $q->where('is_published', '1')->where('is_canceled', '0')->orWhere('is_published', '0')->where('is_canceled', '0');
             }]);
         }])->find($id);
-        $start_date = date("Y-m-d");
-        $end_date = date('Y-m-d', strtotime($start_date. ' + ' . $client_ad->duration .' days'));
-        $client_ad->is_published = 1;
-        $client_ad->is_canceled = 0;
-        $client_ad->reason_id = null;
-        $client_ad->start_date = $start_date;
-        $client_ad->end_date = $end_date;
-        $client_ad->save();
+         if ($client_ad && $client_ad->status == 'free') {
+             $client_ad->is_published = 1;
+             $client_ad->is_canceled = 0;
+             $client_ad->reason_id = null;
+             $client_ad->save();
 
-        $count = $client_ad->userPackage->clientAds->count();
+         } else {
+             $start_date = date("Y-m-d");
+             $end_date = date('Y-m-d', strtotime($start_date. ' + ' . $client_ad->duration .' days'));
+             $client_ad->is_published = 1;
+             $client_ad->is_canceled = 0;
+             $client_ad->reason_id = null;
+             $client_ad->start_date = $start_date;
+             $client_ad->end_date = $end_date;
+             $client_ad->save();
+
+             $count = $client_ad->userPackage->clientAds->count();
 //        return $client_ad->userPackage;
-        if ($count >= $client_ad->userPackage->ads_count) {
-            $client_ad->userPackage->full_ads = 1;
-            $client_ad->userPackage->save();
-        }
+             if ($count >= $client_ad->userPackage->ads_count) {
+                 $client_ad->userPackage->full_ads = 1;
+                 $client_ad->userPackage->save();
+             }
+         }
+
 
 
 

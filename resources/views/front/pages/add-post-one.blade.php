@@ -34,6 +34,7 @@
 @stop
 
 @section('content')
+    <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
     {{--    Start Featured Cats--}}
     <section class="featured-section  text-center">
         <form action="{{route('add.post.one')}}" method="post" id="add-post-form" enctype="multipart/form-data">
@@ -391,7 +392,6 @@
                                                                     </div>
                                                                 </div>
                                                             @endif
-
                                                         @elseif($final_attr->appearance == 'select')
                                                             @if($final_attr->type == 'with_options')
                                                                 <div
@@ -429,7 +429,6 @@
                                                                 </div>
                                                             @endif
                                                         @elseif ($final_attr->type == 'category')
-
                                                             @php
                                                                 //dd($final_attr->id .'-' . $category_with_attr->id);
                                                                     $children_attributes = \Illuminate\Support\Facades\DB::table('attr_cat')->where('cat_id','=', $category_with_attr->id)->where('parent_id', $final_attr->id)->orderBy('lft', 'ASC')->get();
@@ -502,8 +501,7 @@
                                                             </div>
                                                         @elseif($final_attr->appearance == 'from_to')
 
-                                                            <div
-                                                                class="form-group col-xxl-6 col-xl-6 col-md-6 col-sm-6 col-12 my-2">
+                                                            <div class="form-group col-xxl-6 col-xl-6 col-md-6 col-sm-6 col-12 my-2">
                                                                 <label class="step-item hovered mb-2">
                                                                     {{$final_attr->title}}
                                                                 </label>
@@ -1023,6 +1021,27 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="modal fade" id="confirm_phone_modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                             aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header" dir="ltr">
+                                        <h5 class="modal-title" id="exampleModalLabel">تأكيد رقم الهاتف</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <label for="otp_phone" class="label-item mb-2">رمز التأكيد</label>
+                                        <input type="text" class="form-control otp_phone_inp" id="otp_phone" name="otp_phone"
+                                               placeholder="ادخل رمز التأكيد" >
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">إالغاء</button>
+                                        <button type="button" id="confirm_otp_phone" class="btn btn-success">تأكيد الرمز</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Modal -->
 
                         <div class="row">
                             <div class="col-xxl-3 col-xl-3 col-md-3 col-sm-4 col-12 py-2 m-auto text-center">
@@ -1044,27 +1063,15 @@
     {{--    End Featured Cats--}}
 
     <!-- Modal -->
-    <div class="modal fade" id="confirm_phone_modal" tabindex="-1" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header" dir="ltr">
-                    <h5 class="modal-title" id="exampleModalLabel">تأكيد رقم الهاتف</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <label for="otp_phone" class="label-item mb-2">رمز التأكيد</label>
-                    <input type="text" class="form-control otp_phone_inp" id="otp_phone" name="otp_phone"
-                           placeholder="ادخل رمز التأكيد" required>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">إالغاء</button>
-                    <button type="button" id="confirm_otp_phone" class="btn btn-success">تأكيد الرمز</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Modal -->
+
+
+
+    {{--    <section>--}}
+    {{--        <div class="file-loading">--}}
+    {{--            <input id="files_1" name="files" type="file" class="file" data-min-file-count="2" multiple>--}}
+    {{--        </div>--}}
+    {{--    </section>--}}
+
     <div class="modal fade" id="confirm_whatsapp_modal" tabindex="-1" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog">
@@ -1088,15 +1095,7 @@
 
     <input type="hidden" name="" value="" id="phone_confirmed">
     <input type="hidden" name="" value="" id="whats_confirmed">
-
-
-    {{--    <section>--}}
-    {{--        <div class="file-loading">--}}
-    {{--            <input id="files_1" name="files" type="file" class="file" data-min-file-count="2" multiple>--}}
-    {{--        </div>--}}
-    {{--    </section>--}}
-
-
+    <input type="hidden" name="form_data_input" value="" id="form_data_input">
 
 
 @endsection
@@ -2133,7 +2132,9 @@
                     select_errors === 0 &&
                     from_to_errors === 0
                 ) {
-                    data['details'] = post_details;
+                    data['title'] = title.val();
+                    data['price'] = price.val();
+                    data['description'] = description.val();
 
                     data['main_attributes'] = [];
                     data['main_attributes'].push(main_selects_attrs_answers);
@@ -2166,7 +2167,6 @@
             });
 
 
-
             // Collect Images Data
             // Click on Finish Step Three
             finish_step_three.on('click', function () {
@@ -2178,7 +2178,7 @@
                 });
                 let cover_image = $('.covered');
                 // console.log(images_data);
-                if(images_data.length > 0 && images_data.length < 11 && cover_image.length > 0) {
+                if (images_data.length > 0 && images_data.length < 11 && cover_image.length > 0) {
                     data['images'] = images_data;
                     data['cover'] = cover_image.parent().attr('data-source');
 
@@ -2196,19 +2196,6 @@
                     });
                 }
             });
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             // Latest Updates
             custom_select_btn.on('click', function () {
@@ -2309,7 +2296,6 @@
             // Delete Image by sweet alert (Done)
 
 
-
             // Info Contact Details Step 4
             edit_phone_btn.on('click', function () {
                 $(this).css('display', 'none');
@@ -2398,6 +2384,7 @@
                 $(this).css('display', 'none');
                 whatsapp.attr('readonly', false);
                 confirm_cancel_whatsapp.css('display', 'block');
+
             });
             // 3- Cancel With Same whatsapp
             // 4- Cancel With Other whatsapp
@@ -2406,6 +2393,7 @@
                 whatsapp.val(original_whatsapp);
                 confirm_cancel_whatsapp.css('display', 'none');
                 edit_whatsapp_btn.css('display', 'inline-block');
+                whatsapp.attr('readonly', true);
             });
 
 
@@ -2460,7 +2448,6 @@
                 otp_whatsapp.val('');
 
 
-
                 // if False
                 // Swal.fire({
                 //     icon: 'error',
@@ -2476,13 +2463,14 @@
 
 
             // وهو بينهي لو مأكدش رقم التليفون او الوتساب هنقولو انت مأكدتش رقم الهاتف .. تحب تستخدم الرقم الأساسي ؟
-
+            let overlay = $('.overlay');
+            let lds_roller = $('.lds-roller');
             // Submit Form
             post_form.on('submit', function (e) {
                 e.preventDefault();
 
                 if (phone.val() !== '{{backpack_auth()->user()->phone}}' && phone_confirmed.val() !== '1' ||
-                    whatsapp.val() !== '{{backpack_auth()->user()->whats_app}}' && whats_confirmed.val() !== '1' ) {
+                    whatsapp.val() !== '{{backpack_auth()->user()->whats_app}}' && whats_confirmed.val() !== '1') {
 
                     Swal.fire({
                         icon: 'error',
@@ -2497,46 +2485,130 @@
                             data['whats_app'] = 'original';
                             // console.log(data['phone']);
                             // console.log(data['whats_app']);
+
+                            overlay.addClass('active');
+                            lds_roller.addClass('active');
+
+                            let result = saveThePost(data);
+
+                            Swal.fire({
+                                icon: 'success',
+                                text: result,
+                                dangerMode: false,
+                                confirmButtonColor: '#00ff00',
+                                confirmButtonText: 'حسنا',
+                                showCloseButton: true,
+                            });
+                            {{--window.setTimeout(function () {--}}
+                            {{--    window.location.href = "{{route('site.home')}}";--}}
+                            {{--}, 800);--}}
                         }
                     })
 
                 } else if (phone.val() === '{{backpack_auth()->user()->phone}}' &&
-                    whatsapp.val() === '{{backpack_auth()->user()->whats_app}}' ) {
+                    whatsapp.val() === '{{backpack_auth()->user()->whats_app}}') {
                     data['phone'] = 'original';
                     data['whats_app'] = 'original';
+
+                    overlay.addClass('active');
+                    lds_roller.addClass('active');
+
+
+                    let result = saveThePost(data);
+
+                    Swal.fire({
+                        icon: 'success',
+                        text: result,
+                        dangerMode: false,
+                        confirmButtonColor: '#00ff00',
+                        confirmButtonText: 'حسنا',
+                        showCloseButton: true,
+                    });
+                    {{--window.setTimeout(function () {--}}
+                    {{--    window.location.href = "{{route('site.home')}}";--}}
+                    {{--}, 800);--}}
                     // console.log(data['phone']);
                     // console.log(data['whats_app']);
                 } else {
                     data['phone'] = phone.val();
                     data['whats_app'] = whatsapp.val();
-                    // console.log(data['phone']);
-                    // console.log(data['whats_app']);
-                }
 
-                console.log(data);
+                    overlay.addClass('active');
+                    lds_roller.addClass('active');
+
+                    let result = saveThePost(data);
+
+                    Swal.fire({
+                        icon: 'success',
+                        text: result,
+                        dangerMode: false,
+                        confirmButtonColor: '#00ff00',
+                        confirmButtonText: 'حسنا',
+                        showCloseButton: true,
+                    });
+                    {{--window.setTimeout(function () {--}}
+                    {{--    window.location.href = "{{route('site.home')}}";--}}
+                    {{--}, 800);--}}
+
+                }
+                // let form_data_input = $('#form_data_input');
+                //
+                // form_data_input.val(data);
+
 
                 // Send Request Function
-                let result = saveThePost(data);
+
+
+
 
 
             });
 
 
-
-
             // Most Important Function in Website
             function saveThePost(data) {
-                let last_fd = new FormData();
+                $.ajax({
+                    url: "{{route('new.post.add')}}",
+                    data: {
+                        _token: "{{csrf_token()}}",
+                        main_cat_id: data['main_cat_id'],
+                        sub_cat_id: data['sub_cat_id'],
+                        country_id: data['country_id'],
+                        city_id: data['city_id'],
+                        state_id: data['state_id'],
+                        status: data['status'],
+                        pack_id: data['pack_id'],
+                        title: data['title'],
+                        price: data['price'],
+                        description: data['description'],
+                        main_attributes: data['main_attributes'],
+                        other_attributes: data['other_attributes'],
+                        images: data['images'],
+                        cover: data['cover'],
+                        phone: data['phone'],
+                        whats_app: data['whats_app'],
+                    },
+                    type: "POST",
+                    success: function (response) {
+                        console.log(response);
 
-                let CSRF_TOKEN = "{{csrf_token()}}";
+                        if (typeof (response) != 'object') {
+                            response = $.parseJSON(response)
+                        }
+                        console.log(response.data);
+                        if (response.status === 1) {
+                            let slug = response.data['slug'];
+                            let msg = response.msg;
+                            console.log(data);
 
-                last_fd.append('_token', CSRF_TOKEN);
-                last_fd.append('data', data);
+                            return msg;
 
+
+                        }
+                    }
+                });
 
             }
-
-
 
 
             /* ENd New Updates */

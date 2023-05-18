@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Answer;
 use App\Models\Category;
 use App\Models\Setting;
 use Artesaos\SEOTools\Facades\JsonLd;
@@ -110,11 +111,11 @@ class PostsController extends Controller
 
     public function deleteOrganize(Request $request)
     {
-        if(\File::exists(public_path('/organized/'.$request->image_path))){
-            \File::delete(public_path('/organized/'.$request->image_path));
+        if (\File::exists(public_path('/organized/' . $request->image_path))) {
+            \File::delete(public_path('/organized/' . $request->image_path));
             return response()->json(['status' => 1, 'msg' => 'تم مسح الصورة']);
 
-        }else{
+        } else {
             return response()->json(['status' => 0, 'msg' => 'حدث خطأ ما .. برجاء المحاولة مرة اخري']);
         }
 
@@ -226,5 +227,108 @@ class PostsController extends Controller
         }
     }
 
+    public function newAddPost(Request $request)
+    {
+//        return $request;
+        $separator = '-';
+        $string = trim($request->title);
+        $string = mb_strtolower($string, "UTF-8");;
+        $string = preg_replace("/[^a-z0-9_\sءاأإآؤئبتثجحخدذرزسشصضطظعغفقكلمنهويةى]#u/", "", $string);
+        $string = preg_replace("/[\s-]+/", " ", $string);
+        $string = preg_replace("/[\s_]/", $separator, $string);
+        $count = \App\Models\Clientad::where('slug', 'like', '%' . $string . '%')->get()->count();
+        $string = $string . "-" . $count;
 
+        $new_ad = new \App\Models\Clientad();
+
+
+        if ($request->status === 'free') {
+            $new_ad->title = $request->title;
+            $new_ad->slug = $string;
+            $new_ad->description = $request->description;
+            $new_ad->price = $request->price;
+            $new_ad->cover = $request->cover;
+            $new_ad->images = implode(',', $request->images);
+            $new_ad->country_id = $request->country_id;
+            $new_ad->city_id = $request->city_id;
+            $new_ad->state_id = $request->state_id;
+            $new_ad->is_published = 0;
+            $new_ad->status = 'free';
+            $new_ad->start_date = null;
+            $new_ad->end_date = null;
+            $new_ad->serial_num = strtoupper(Str::random(10));
+            $new_ad->user_id = backpack_auth()->user()->id;
+            $new_ad->cat_id = $request->sub_cat_id;
+            $new_ad->maincat_id = $request->main_cat_id;
+            $new_ad->user_package_id = null;
+
+
+        } else if ($request->status === 'paid') {
+            $new_ad->title = $request->title;
+            $new_ad->slug = $string;
+            $new_ad->description = $request->description;
+            $new_ad->price = $request->price;
+            $new_ad->cover = $request->cover;
+            $new_ad->images = implode(',', $request->images);
+            $new_ad->country_id = $request->country_id;
+            $new_ad->city_id = $request->city_id;
+            $new_ad->state_id = $request->state_id;
+            $new_ad->is_published = 0;
+            $new_ad->status = 'paid';
+            $new_ad->serial_num = strtoupper(Str::random(10));
+            $new_ad->user_id = backpack_auth()->user()->id;
+            $new_ad->cat_id = $request->sub_cat_id;
+            $new_ad->maincat_id = $request->main_cat_id;
+
+            $pack = \App\Models\Boughtpackage::with(['clientAds' => function ($q) {
+                $q->where('is_published', '1')->where('is_canceled', '0')->orWhere('is_published', '0')->where('is_canceled', '0');
+            }])->where('user_id', backpack_auth()->user()->id)->find($request->pack_id);
+
+            if ($count < $pack->ads_count) {
+
+                $new_ad->user_package_id = $request->pack_id;
+                $new_ad->duration = $pack->duration;
+                $new_ad->start_date = null;
+                $new_ad->end_date = null;
+            } else {
+                return response()->json(['msg' => 'برجاء اختيار باقة اخري', 'status' => 0, 'data' => $request]);
+            }
+
+
+        }
+        $check = $new_ad->save();
+
+        if ($check) {
+            foreach ($request->main_attributes as $single_array) {
+                foreach ($single_array as $item) {
+                    if ($item[1] != '0') {
+                        $answer = Answer::create([
+                            'client_ad_id' => $new_ad->id,
+                            'attr_id' => $item[0],
+                            'answer_value' => $item[1],
+                        ]);
+                    }
+                }
+            }
+            foreach ($request->other_attributes as $single_array) {
+                foreach ($single_array as $item) {
+                    if ($item[1] != '0') {
+                        $answer = Answer::create([
+                            'client_ad_id' => $new_ad->id,
+                            'attr_id' => $item[0],
+                            'answer_value' => $item[1],
+                        ]);
+                    }
+                }
+            }
+
+            return response()->json(['msg' => 'تم إنشاء الإعلان بنجاح وهو الآن تحت المراجعة', 'status' => 1, 'data' => ['slug' => $new_ad->slug]]);
+        } else {
+            return response()->json(['msg' => 'error', 'status' => 0, 'data' => null]);
+        }
+
+
+//        return $new_ad;
+//        return response()->json(['status' => 1, 'msg' => 'test', 'data' => ['test' => $request->details['title']]]);
+    }
 }

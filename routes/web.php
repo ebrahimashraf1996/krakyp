@@ -251,6 +251,9 @@ Route::group(['namespace' => 'App\Http\Controllers\Front'], function () {
         Route::post('upload-try', 'PostsController@uploadTry')->name('uploadTry');
         Route::post('delete-organized', 'PostsController@deleteOrganize')->name('deleteOrganize');
 
+        Route::post('new-post-add', 'PostsController@newAddPost')->name('new.post.add');
+
+
         Route::get('add-post-one', 'PostsController@addPostStepOne')->name('add.post.one');
         Route::get('add-post-two', 'PostsController@addPostStepTwo')->middleware('PhoneVerified')->name('add.post.two');
         Route::get('otp', 'OtpController@sendOtp')->name('otp.sender');

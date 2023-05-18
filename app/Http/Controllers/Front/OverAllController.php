@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MessageSendRequest;
 use App\Http\Requests\PersonalUpdateRequest;
+use App\Models\AttributeChild;
 use App\Models\Boughtpackage;
 use App\Models\Category;
 use App\Models\Catpackage;
@@ -47,7 +48,8 @@ class OverAllController extends Controller
         return view('front.pages.index', compact('cats', 'locations', 'paid_client_ads', 'free_client_ads', 'banners', 'posts', 'featured_cats'));
     }
 
-    public function quickSearch(Request $request) {
+    public function quickSearch(Request $request)
+    {
         return $request;
     }
 
@@ -300,7 +302,8 @@ class OverAllController extends Controller
         return view('front.pages.buy-package', compact('cats'));
     }
 
-    public function checkPackages(Request $request) {
+    public function checkPackages(Request $request)
+    {
         $id = $request->id;
         $check = Catpackage::where('cat_id', $id)->first();
         if ($check) {
@@ -311,13 +314,148 @@ class OverAllController extends Controller
     }
 
 
-    public function newSearchResult(Request $request) {
-        return $request;
-//        try {
+    public function newSearchResult(Request $request)
+    {
+//        return $request;
+
+        $cat = Category::select('slug', 'id')->find($request->new_sub_cat_id);
+        $cat = Category::where('slug', $cat->slug)->first();
+        SEOMeta::setTitle($cat->title . ' - ' . $this->settings['title']);
+        SEOMeta::setDescription($cat->description);
+        SEOMeta::addMeta('offer:published_time', $cat->created_at->toW3CString(), 'property');
+
+
+        SEOMeta::addMeta('offer:section-title', $cat->title, 'property');
+        SEOMeta::addMeta('offer:section-description', $cat->description, 'property');
+
+
+        $cat->tags;
+        foreach ($cat->tags as $tag) {
+            SEOMeta::addKeyword($tag->title);
+        }
+
+        OpenGraph::setTitle($cat->title . ' - ' . $this->settings['title']);
+        OpenGraph::setDescription($cat->description);
+        OpenGraph::addProperty('type', $cat->title);
+        OpenGraph::addProperty('locale', 'ar-AE');
+        OpenGraph::addProperty('locale:alternate', ['ar-AE']);
+        OpenGraph::setUrl(route('cat.show', $cat->slug));
+        OpenGraph::addImage(asset($cat->image));
+
+        JsonLd::setTitle($cat->title . ' - ' . $this->settings['title']);
+        JsonLd::setDescription($cat->description);
+        JsonLd::setType($cat->title);
+        JsonLd::addImage(asset($cat->image));
+        General::seoContacts();
+
+        $free_client_ads_in_cat = Clientad::query();
+        $free_client_ads_in_cat->where('cat_id', $request->new_sub_cat_id);
+
+        $paid_client_ads_in_cat = Clientad::query();
+        $paid_client_ads_in_cat->where('cat_id', $request->new_sub_cat_id);
+
+        if (!empty($_GET['new_from_'])) {
+//                return 'test';
+            $from_ = intval($_GET['new_from_']);
+//                $to_ = $_GET['to_'];
+
+            $free_client_ads_in_cat->where('price', '>', $from_);
+            $paid_client_ads_in_cat->where('price', '>', $from_);
+        }
+
+        if (!empty($_GET['new_to_'])) {
+//                return 'test';
+            $to_ = intval($_GET['new_to_']);
+            $free_client_ads_in_cat->where('price', '<', $to_);
+            $paid_client_ads_in_cat->where('price', '<', $to_);
+        }
+
+//            if (!empty($_GET['country'])) {
+//                $country_id = $_GET['country'];
+//                $free_client_ads_in_cat->where('country_id', $country_id);
+//                $paid_client_ads_in_cat->where('country_id', $country_id);
+//            }
 //
-//        } catch (\Exception $ex) {
-//            return redirect()->route('site.home')->with(['error' => 'حدث خطأ ما .. برجاء التواصل مع إدارة الموقع']);
-//        }
+//            if (!empty($_GET['city']) && $_GET['city'] != 'all') {
+//                $city_id = $_GET['city'];
+//                $free_client_ads_in_cat->where('city_id', $city_id);
+//                $paid_client_ads_in_cat->where('city_id', $city_id);
+//            }
+//
+//            if (!empty($_GET['state']) && $_GET['state'] != 'all') {
+//                $state_id = $_GET['state'];
+//                $free_client_ads_in_cat->where('state_id', $state_id);
+//                $paid_client_ads_in_cat->where('state_id', $state_id);
+//            }
+
+        if (!empty($_GET['new_sort_by'])) {
+            $ordering = $_GET['new_sort_by'];
+//                return $ordering;
+            switch ($ordering) {
+                case "cr_asc":
+                    $free_client_ads_in_cat->orderBy('created_at', 'asc');
+                    $paid_client_ads_in_cat->orderBy('created_at', 'asc');
+                    break;
+                case "pr_asc":
+                    $free_client_ads_in_cat->orderBy('price', 'asc');
+                    $paid_client_ads_in_cat->orderBy('price', 'asc');
+                    break;
+                case "pr_desc":
+                    $free_client_ads_in_cat->orderBy('price', 'desc');
+                    $paid_client_ads_in_cat->orderBy('price', 'desc');
+                    break;
+                default:
+                    $free_client_ads_in_cat->orderBy('created_at', 'desc');
+                    $paid_client_ads_in_cat->orderBy('created_at', 'desc');
+            }
+        }
+
+        $free_client_ads_in_cat = $free_client_ads_in_cat->free()->selection()->published()->notCanceled()->get();
+        $paid_client_ads_in_cat = $paid_client_ads_in_cat->paid()->notEnd()->published()->notCanceled()->selection()->get();
+
+
+//            return $paid_client_ads_in_cat;
+
+        $cat = Category::where('id', $request->new_sub_cat_id)->select('id', 'slug', 'title', 'parent_id')->first();
+
+        $main_attributes = AttributeChild::with([
+            'attribute' => function ($q) {
+                $q->with(['options' => function ($q) {
+                    $q->orderBy('lft', 'asc');
+                }])
+                    ->select('id', 'title', 'appearance');
+            },
+        ])
+            ->where('cat_id', $cat->id)
+            ->where('main_other', 'main')
+            ->where('parent_id', null)
+            ->orderBy('lft', 'asc')
+            ->get();
+        $other_attributes = AttributeChild::with([
+            'attribute' => function ($q) {
+                $q->with(['options' => function ($q) {
+                    $q->orderBy('lft', 'asc');
+                }])
+                    ->select('id', 'title', 'appearance');
+            },
+        ])
+            ->where('cat_id', $cat->id)
+            ->where('main_other', 'other')
+            ->where('parent_id', null)
+            ->orderBy('lft', 'asc')
+            ->get();
+
+        $min = (!empty($_GET['from_']) ? $_GET['from_'] : '');
+        $max = (!empty($_GET['to_']) ? $_GET['to_'] : '');
+
+        $countries = \App\Models\Location::with(['cities' => function ($q) {
+            $q->with('cities');
+        }])->where('parent_id', null)->get();
+
+
+        return view('front.pages.search_results', compact('free_client_ads_in_cat',
+            'paid_client_ads_in_cat', 'main_attributes', 'other_attributes', 'cat', 'min', 'max', 'countries'));
+
     }
 
     public function search(Request $request)
@@ -468,9 +606,12 @@ class OverAllController extends Controller
                 $city_id = (!empty($_GET['city']) ? $_GET['city'] : '');
 
                 $state_id = (!empty($_GET['state']) ? $_GET['state'] : '');
+                $countries = \App\Models\Location::with(['cities' => function ($q) {
+                    $q->with('cities');
+                }])->where('parent_id', null)->get();
 
                 return view('front.pages.search_results', compact('free_client_ads_in_cat',
-                    'paid_client_ads_in_cat', 'attributes', 'cat', 'min', 'max', 'country_id', 'city_id', 'state_id'));
+                    'paid_client_ads_in_cat', 'attributes', 'cat', 'min', 'max', 'country_id', 'city_id', 'state_id', 'countries'));
 
             } else {
 
@@ -555,8 +696,12 @@ class OverAllController extends Controller
 
                 $state_id = (!empty($_GET['state']) ? $_GET['state'] : 'all');
 
+                $countries = \App\Models\Location::with(['cities' => function ($q) {
+                    $q->with('cities');
+                }])->where('parent_id', null)->get();
+
                 return view('front.pages.search_results', compact('free_client_ads_in_cat',
-                    'paid_client_ads_in_cat', 'attributes', 'cat', 'min', 'max', 'country_id', 'city_id', 'state_id'));
+                    'paid_client_ads_in_cat', 'attributes', 'cat', 'min', 'max', 'country_id', 'city_id', 'state_id', 'countries'));
             }
         } else {
             return redirect(route('site.home'))->with(['success' => 'حدث خطأ ما برجاء المحاولة فيما بعد']);
@@ -604,7 +749,8 @@ class OverAllController extends Controller
         return view('front.pages.packMyAds', compact('paid_client_ads_published', 'paid_client_ads_under_reviewed', 'paid_client_ads_expired', 'count', 'pack'));
     }
 
-    public function showIcons() {
+    public function showIcons()
+    {
         return view('icons.index');
     }
 }
