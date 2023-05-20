@@ -55,6 +55,8 @@ body{ background: #fdfdfd}
 
 
 /*Start Fonts Size*/
+.l_11 {font-size: 11px!important;}
+.l_12 {font-size: 12px!important;}
 .l_13 {font-size: 13px!important;}
 .l_14 {font-size: 14px!important;}
 .l_15 {font-size: 15px!important;}
@@ -79,6 +81,7 @@ body{ background: #fdfdfd}
 /* Start Colors */
 .blue, .blue:hover {color: #001fff}
 .cl-919191 {color: #919191!important;}
+.colored {color: #ee7202}
 /* End Colors */
 
 
@@ -334,7 +337,7 @@ a.cat_link {}
 /* End Pretty Check */
 
 /*Start ads-section*/
-.client_ads_section, .blog_section {padding-top: 102px; min-height: 41vh;}
+.client_ads_section, .blog_section { min-height: 41vh;}
 .client_ads_cat_section {margin-top: 120px;}
 .client_ads_div {margin-top: 3rem !important;}
 /*End ads-section*/
@@ -410,48 +413,29 @@ a.cat_link {}
 .client_ad_cover img {width: 100%}
 .post a {text-decoration: none}
 .post a:hover {text-decoration: none;color: #000;}
-section.client_ads_section .card{transition:0.5s;text-align: right; height: 340px}
+section.client_ads_section .card{transition:0.5s;text-align: right; height: auto}
 div.client_ads_section .card{transition:0.5s;text-align: right;}
 .client_ads_section .card-text{line-height: 27px;font-size: 16px;padding: 5px 13px;}
 .client_ads_section .card-title{transition:1s;cursor:pointer;}
 .client_ads_section .titles {margin: 1rem}
-.client_ads_section .footer_card {margin: 0 1rem}
+.client_ads_section .footer_card {margin: 0 1rem;position: absolute;bottom: 9px;width: 100%}
+.client_ads_section .location_card {margin: 0 1rem}
 /*.client_ads_section .card:hover{transform: scale(1.05);box-shadow: 10px 10px 15px rgba(0,0,0,0.3);}*/
 .client_ads_section .card::before, .card::after {position: absolute;top: 0;right: 0;bottom: 0;left: 0;transform: scale3d(0, 0, 1);transition: transform .3s ease-out 0s;background: rgba(255, 255, 255, 0.1);content: '';pointer-events: none;}
 .client_ads_section .card::before {transform-origin: left top;}
 .client_ads_section .card::after {transform-origin: right bottom;}
 .client_ads_section .card:hover::before, .card:hover::after, .card:focus::before, .card:focus::after {transform: scale3d(1, 1, 1);}
 /*.post {}*/
-.wish_div {
-    cursor: pointer;
-    width: 155px;
-    height: 32px;
-    background: #fff;
-    border: #00000033 1px solid;
-    border-radius: 7px;
-    position: absolute;
-    top: 15px;
-    left: 8px;
-    transition: 200ms all;
-    overflow: hidden;
-}
+.wish_div {cursor: pointer;width: 155px;height: 32px;background: #fff;border: #00000033 1px solid;border-radius: 7px;position: absolute;top: 15px;left: 8px;transition: 200ms all;overflow: hidden;}
 .wish_div.not_hovered_wish {width: 35px!important;}
-.wish_div a {position: absolute;
-    top: 0;
-    left: 0;
-}
+.wish_div a {position: absolute;top: 0;left: 0;}
 .wish_div.done {width: 120px}
 .wish_div span.done {right: -109px}
 /*.wish_div span.done.hovered_span {right: -109px}*/
 /*.wish_div span.hovered_span {right: -146px}*/
 .mark_div {width: 60px;  position: absolute; top: 8px; right: 0px;}
 .wish_div img {width: 26px!important;padding-top: 0;position: absolute;top: 1px;left: 3px;}
-.wish_div span {position: absolute;
-    top: 2px;
-    transition: 1s all;
-    right: -147px;
-    /*display: none;*/
-}
+.wish_div span {position: absolute;top: 2px;transition: 1s all;right: -147px; /*display: none;*/}
 /*.wish_div:hover {  border: #2761ab 1px solid; }*/
 /*.wish_div i:hover { color: #2761ab;  }*/
 .delete_wish {width: 100%}
@@ -826,6 +810,11 @@ ul.size-list li a.unavailable{  cursor: not-allowed;opacity: 50%}
 
 
 /* End New Filer */
+
+/* Start New Home */
+.date_client_ad {
+    position: absolute; bottom: 1px; left:35px}
+/* End New Home */
 
 
 

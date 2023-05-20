@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MessageSendRequest;
 use App\Http\Requests\PersonalUpdateRequest;
+use App\Models\Allvisit;
 use App\Models\AttributeChild;
 use App\Models\Boughtpackage;
 use App\Models\Category;
@@ -27,6 +28,24 @@ class OverAllController extends Controller
     public function __construct()
     {
         $this->settings = $settings = Setting::first();
+        $ip = \General::getUserIP();
+        $ip = "158.201.233.166";
+
+        $data = \Location::get($ip);
+        if ($data !== false) {
+            $check = Allvisit::where('ip_address', $ip)->first();
+            if (!$check) {
+                Allvisit::create([
+                    'ip_address' => $data->ip,
+                    'country' => $data->countryName,
+                    'city' => $data->cityName,
+                    'state' => $data->regionName,
+                ]);
+            } else {
+                $check->counts = $check->counts + 1;
+                $check->save();
+            }
+        }
     }
 
     public function index()
@@ -330,7 +349,6 @@ class OverAllController extends Controller
         $category_attrs = $request->category_attrs;
 
 
-
         $client_ads = Clientad::query();
         $client_ads->with('clientAdAttrsAnswers')->where('cat_id', 10);
 
@@ -347,8 +365,8 @@ class OverAllController extends Controller
 
         // Attrs Filter
         foreach ($attrs as $k => $val) {
-                $client_ads->whereHas('clientAdAttrsAnswers', function ($q) use ($k, $val) {
-                    $q->where('attr_id', $k)->whereIn('answer_value', $val);
+            $client_ads->whereHas('clientAdAttrsAnswers', function ($q) use ($k, $val) {
+                $q->where('attr_id', $k)->whereIn('answer_value', $val);
 
             });
         }
@@ -361,9 +379,6 @@ class OverAllController extends Controller
                 $q->where('attr_id', $k)->whereIn('answer_value', $val);
             });
         }
-
-
-
 
 
         return $ads->get();

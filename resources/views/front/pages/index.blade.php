@@ -49,15 +49,17 @@
                 <form action="{{route('new.search.get')}}" method="get" id="new_search_form">
                     <div class="row" dir="rtl">
                         <div class="form-group col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 py-1" id="new_main_cat">
-                            <select class="form-control" id="new_main_cat_id" name="new_main_cat_id" >
+                            <select class="form-control" id="new_main_cat_id" name="new_main_cat_id">
                                 <option value="">اختر الفئة الرئيسية</option>
                                 @foreach($cats as $item)
                                     <option value="{{$item->id}}">{{$item->title}}</option>
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 py-1" id="new_sub_cat_id_div" disabled="">
-                            <select class="form-control" id="new_sub_cat_id" name="new_sub_cat_id" disabled="" style="width: 100%" >
+                        <div class="form-group col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 py-1"
+                             id="new_sub_cat_id_div" disabled="">
+                            <select class="form-control" id="new_sub_cat_id" name="new_sub_cat_id" disabled=""
+                                    style="width: 100%">
                                 <option value="">اختر الفئة الفرعية</option>
                             </select>
                         </div>
@@ -94,120 +96,120 @@
 
 
 
-{{--    <section style="height: 300px; background:#ddd;">--}}
-{{--        <i class="fa-solid fa-car-burst"></i>--}}
-{{--    </section>--}}
+    {{--    <section style="height: 300px; background:#ddd;">--}}
+    {{--        <i class="fa-solid fa-car-burst"></i>--}}
+    {{--    </section>--}}
 
-{{--    <section class="search-section"--}}
-{{--             style="min-height: 70vh">--}}
-{{--        <div class="container">--}}
-{{--            <div class="row text-center">--}}
-{{--                <div class="col-md-12 col-sm-12 col-12 m-auto mt-3">--}}
-{{--                    <h1 class="bold">--}}
-{{--                        اختر ما تريد من عقارات .. سيارات .. اكسسوارات والمزيد..--}}
-{{--                    </h1>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--            @php--}}
-{{--                $settings = \App\Models\Setting::select('search_bg')->first();--}}
-{{--            @endphp--}}
-{{--            <div class="row">--}}
-{{--                <form action="{{'search.clientAds'}}" method="get" id="search_form">--}}
-{{--                    <div class="col-md-9 col-sm-12 col-11 m-auto bordered search-div"--}}
-{{--                         style="background-image: url('{{asset($settings->search_bg)}}')">--}}
-{{--                        <div class="row " id="country_row">--}}
-{{--                            <div class="form-group col-md-4 " id="country_div">--}}
-{{--                                <label for="country" class="mb-1 bold">المحافظة</label>--}}
-{{--                                <select class="form-control" id="country" name="country">--}}
-{{--                                    <option value="">اختر المحافظة</option>--}}
-{{--                                    @foreach($locations as $item)--}}
-{{--                                        <option value="{{$item->id}}">{{$item->name}}</option>--}}
-{{--                                    @endforeach--}}
-{{--                                </select>--}}
-{{--                            </div>--}}
-{{--                            <div class="form-group col-md-4 col-12" id="city_id_div">--}}
-{{--                                <label for="city_id" class="mb-1 bold">المدينة</label>--}}
-{{--                                <select class="form-control" id="city_id" name="city_id" disabled="">--}}
-{{--                                    <option value="all">الكل</option>--}}
-{{--                                </select>--}}
-{{--                            </div>--}}
-{{--                            <div class="form-group col-md-4 " id="state_id_div">--}}
-{{--                                <label for="state_id" class="mb-1 bold">الحي / المركز</label>--}}
-{{--                                <select class="form-control" id="state_id" name="state_id" disabled="">--}}
-{{--                                    <option value="all">الكل</option>--}}
-{{--                                </select>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="row" id="cats_row">--}}
-{{--                            <div class="form-group col-md-6 " id="main_cat">--}}
-{{--                                <label for="cat_id" class="mb-1 bold">الفئة الرئيسية</label>--}}
-{{--                                <select class="form-control" id="cat_id" name="cat_id">--}}
-{{--                                    <option value="">اختر الفئة الرئيسية</option>--}}
-{{--                                    @foreach($cats as $item)--}}
-{{--                                        <option value="{{$item->id}}">{{$item->title}}</option>--}}
-{{--                                    @endforeach--}}
-{{--                                </select>--}}
-{{--                            </div>--}}
-{{--                            <div class="form-group col-md-6 " id="sub_cat_id_div" disabled="">--}}
-{{--                                <label for="sub_cat_id" class="mb-1 bold">الفئة الفرعية</label>--}}
-{{--                                <select class="form-control" id="sub_cat_id" name="sub_cat_id" disabled="">--}}
-{{--                                    <option value="">اختر الفئة الفرعية</option>--}}
-{{--                                </select>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="row " id="pricing">--}}
-{{--                            <div class="form-group col-md-4 col-6 col-sm-6" id="from_div">--}}
-{{--                                <label for="from_" class="mb-2 bold">أقل سعر--}}
-{{--                                    <span class="text-muted">ج.م </span>--}}
-{{--                                </label>--}}
-{{--                                <input type="number" class="form-control" id="from_" name="from_"--}}
-{{--                                       value="" placeholder="أقل سعر ج.م">--}}
+    {{--    <section class="search-section"--}}
+    {{--             style="min-height: 70vh">--}}
+    {{--        <div class="container">--}}
+    {{--            <div class="row text-center">--}}
+    {{--                <div class="col-md-12 col-sm-12 col-12 m-auto mt-3">--}}
+    {{--                    <h1 class="bold">--}}
+    {{--                        اختر ما تريد من عقارات .. سيارات .. اكسسوارات والمزيد..--}}
+    {{--                    </h1>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--            @php--}}
+    {{--                $settings = \App\Models\Setting::select('search_bg')->first();--}}
+    {{--            @endphp--}}
+    {{--            <div class="row">--}}
+    {{--                <form action="{{'search.clientAds'}}" method="get" id="search_form">--}}
+    {{--                    <div class="col-md-9 col-sm-12 col-11 m-auto bordered search-div"--}}
+    {{--                         style="background-image: url('{{asset($settings->search_bg)}}')">--}}
+    {{--                        <div class="row " id="country_row">--}}
+    {{--                            <div class="form-group col-md-4 " id="country_div">--}}
+    {{--                                <label for="country" class="mb-1 bold">المحافظة</label>--}}
+    {{--                                <select class="form-control" id="country" name="country">--}}
+    {{--                                    <option value="">اختر المحافظة</option>--}}
+    {{--                                    @foreach($locations as $item)--}}
+    {{--                                        <option value="{{$item->id}}">{{$item->name}}</option>--}}
+    {{--                                    @endforeach--}}
+    {{--                                </select>--}}
+    {{--                            </div>--}}
+    {{--                            <div class="form-group col-md-4 col-12" id="city_id_div">--}}
+    {{--                                <label for="city_id" class="mb-1 bold">المدينة</label>--}}
+    {{--                                <select class="form-control" id="city_id" name="city_id" disabled="">--}}
+    {{--                                    <option value="all">الكل</option>--}}
+    {{--                                </select>--}}
+    {{--                            </div>--}}
+    {{--                            <div class="form-group col-md-4 " id="state_id_div">--}}
+    {{--                                <label for="state_id" class="mb-1 bold">الحي / المركز</label>--}}
+    {{--                                <select class="form-control" id="state_id" name="state_id" disabled="">--}}
+    {{--                                    <option value="all">الكل</option>--}}
+    {{--                                </select>--}}
+    {{--                            </div>--}}
+    {{--                        </div>--}}
+    {{--                        <div class="row" id="cats_row">--}}
+    {{--                            <div class="form-group col-md-6 " id="main_cat">--}}
+    {{--                                <label for="cat_id" class="mb-1 bold">الفئة الرئيسية</label>--}}
+    {{--                                <select class="form-control" id="cat_id" name="cat_id">--}}
+    {{--                                    <option value="">اختر الفئة الرئيسية</option>--}}
+    {{--                                    @foreach($cats as $item)--}}
+    {{--                                        <option value="{{$item->id}}">{{$item->title}}</option>--}}
+    {{--                                    @endforeach--}}
+    {{--                                </select>--}}
+    {{--                            </div>--}}
+    {{--                            <div class="form-group col-md-6 " id="sub_cat_id_div" disabled="">--}}
+    {{--                                <label for="sub_cat_id" class="mb-1 bold">الفئة الفرعية</label>--}}
+    {{--                                <select class="form-control" id="sub_cat_id" name="sub_cat_id" disabled="">--}}
+    {{--                                    <option value="">اختر الفئة الفرعية</option>--}}
+    {{--                                </select>--}}
+    {{--                            </div>--}}
+    {{--                        </div>--}}
+    {{--                        <div class="row " id="pricing">--}}
+    {{--                            <div class="form-group col-md-4 col-6 col-sm-6" id="from_div">--}}
+    {{--                                <label for="from_" class="mb-2 bold">أقل سعر--}}
+    {{--                                    <span class="text-muted">ج.م </span>--}}
+    {{--                                </label>--}}
+    {{--                                <input type="number" class="form-control" id="from_" name="from_"--}}
+    {{--                                       value="" placeholder="أقل سعر ج.م">--}}
 
-{{--                            </div>--}}
-{{--                            <div class="form-group col-md-4 col-6 col-sm-6" id="to_div">--}}
-{{--                                <label for="to_" class="mb-2 bold">أعلي سعر--}}
-{{--                                    <span class="text-muted">ج.م </span>--}}
-{{--                                </label>--}}
-{{--                                <input type="number" class="form-control" id="to_" name="to_"--}}
-{{--                                       value="" placeholder="أعلي سعر ج.م">--}}
-{{--                            </div>--}}
+    {{--                            </div>--}}
+    {{--                            <div class="form-group col-md-4 col-6 col-sm-6" id="to_div">--}}
+    {{--                                <label for="to_" class="mb-2 bold">أعلي سعر--}}
+    {{--                                    <span class="text-muted">ج.م </span>--}}
+    {{--                                </label>--}}
+    {{--                                <input type="number" class="form-control" id="to_" name="to_"--}}
+    {{--                                       value="" placeholder="أعلي سعر ج.م">--}}
+    {{--                            </div>--}}
 
-{{--                            <div class="form-group col-md-4 col-12 col-sm-12" id="sort_div">--}}
-{{--                                <label for="sort_by" class="mb-2 bold">رتب حسب</label>--}}
-{{--                                <select class="form-control" id="sort_by" name="sort_by">--}}
-{{--                                    <option value="cr_desc">من الأحدث إلي الأقدم</option>--}}
-{{--                                    <option value="cr_asc">من الأقدم إلي الأحدث</option>--}}
-{{--                                    <option value="pr_asc">من الأقل سعر إلي الأعلي سعر</option>--}}
-{{--                                    <option value="pr_desc">من الأعلي سعر إلي الأقل سعر</option>--}}
-{{--                                </select>--}}
-{{--                            </div>--}}
-{{--                            <div class="col-md-12 col-12 col-sm-12">--}}
-{{--                                <div class="col-md-3 adv_opt_btn_div">--}}
-{{--                                    <a href="javascript:void(0);" class="bold blue l_17" id="adv_opt_btn">بحث متقدم--}}
-{{--                                        >></a>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="row text-center" id="adv_opts">--}}
+    {{--                            <div class="form-group col-md-4 col-12 col-sm-12" id="sort_div">--}}
+    {{--                                <label for="sort_by" class="mb-2 bold">رتب حسب</label>--}}
+    {{--                                <select class="form-control" id="sort_by" name="sort_by">--}}
+    {{--                                    <option value="cr_desc">من الأحدث إلي الأقدم</option>--}}
+    {{--                                    <option value="cr_asc">من الأقدم إلي الأحدث</option>--}}
+    {{--                                    <option value="pr_asc">من الأقل سعر إلي الأعلي سعر</option>--}}
+    {{--                                    <option value="pr_desc">من الأعلي سعر إلي الأقل سعر</option>--}}
+    {{--                                </select>--}}
+    {{--                            </div>--}}
+    {{--                            <div class="col-md-12 col-12 col-sm-12">--}}
+    {{--                                <div class="col-md-3 adv_opt_btn_div">--}}
+    {{--                                    <a href="javascript:void(0);" class="bold blue l_17" id="adv_opt_btn">بحث متقدم--}}
+    {{--                                        >></a>--}}
+    {{--                                </div>--}}
+    {{--                            </div>--}}
+    {{--                        </div>--}}
+    {{--                        <div class="row text-center" id="adv_opts">--}}
 
-{{--                        </div>--}}
+    {{--                        </div>--}}
 
 
-{{--                    </div>--}}
-{{--                    <div class="col-md-9 col-sm-12 col-11 m-auto ">--}}
-{{--                        <div class="row" style="text-align: right">--}}
-{{--                            <div class="col-md-12 text-center" style="margin-bottom: -36px">--}}
-{{--                                <div class="col-md-4 m-auto col-12 col-sm-12">--}}
-{{--                                    <button class="btn search_btn" id="search_btn">عرض نتائج البحث</button>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </form>--}}
+    {{--                    </div>--}}
+    {{--                    <div class="col-md-9 col-sm-12 col-11 m-auto ">--}}
+    {{--                        <div class="row" style="text-align: right">--}}
+    {{--                            <div class="col-md-12 text-center" style="margin-bottom: -36px">--}}
+    {{--                                <div class="col-md-4 m-auto col-12 col-sm-12">--}}
+    {{--                                    <button class="btn search_btn" id="search_btn">عرض نتائج البحث</button>--}}
+    {{--                                </div>--}}
+    {{--                            </div>--}}
+    {{--                        </div>--}}
+    {{--                    </div>--}}
+    {{--                </form>--}}
 
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </section>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--    </section>--}}
     {{--    End Search Section--}}
 
 
@@ -223,7 +225,8 @@
                     </div>
                     @foreach($featured_cats as $item)
 
-                        <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-5 col-sm-5 m-auto cat_div" data-bs-target="1">
+                        <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-5 col-sm-5 m-auto cat_div"
+                             data-bs-target="1">
                             <a href="{{$item->parent_id == null ? route('mainCat.show', $item->slug) : route('cat.show', $item->slug)}}"
                                class="cat_link">
                                 <div class="cat_img ">
@@ -239,7 +242,8 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-5 col-sm-5 m-auto cat_div" data-bs-target="1">
+                        <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-5 col-sm-5 m-auto cat_div"
+                             data-bs-target="1">
                             <a href="{{$item->parent_id == null ? route('mainCat.show', $item->slug) : route('cat.show', $item->slug)}}"
                                class="cat_link">
                                 <div class="cat_img ">
@@ -266,7 +270,7 @@
 
     @if(isset($paid_client_ads) && $paid_client_ads->count() > 0 || isset($free_client_ads) && $free_client_ads->count() > 0 )
         {{--    Start Ads--}}
-        <section class="client_ads_section text-center">
+        <section class="client_ads_section mt-5 text-center">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
@@ -279,7 +283,8 @@
                             @foreach($paid_client_ads as $key => $item)
                                 <div class="col-md-3 col-6 col-sm-6 post  my-2">
                                     {{--                            {{route('client_ad.show', $item->slug)}}--}}
-                                    <div class="card card-block pb-3" style="border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;">
+                                    <div class="card card-block pb-3"
+                                         style="border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;">
                                         @php
                                             $images =explode(',',$item->images);
                                              //dd($photo);
@@ -289,13 +294,16 @@
                                                  width="100%">
                                         </div>
                                         @if(backpack_auth()->check())
-                                            <div class="wish_div not_hovered_wish {{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}}" data-target="{{$item->id}} " dir="ltr">
+                                            <div
+                                                class="wish_div not_hovered_wish {{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}}"
+                                                data-target="{{$item->id}} " dir="ltr">
                                                 <a href="javascript:void(0)" class="wish-btn"
                                                    data-bs-target="{{$item->slug}}">
                                                     <img
                                                         src="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? asset('assets/front/images/hearted.png') : asset('assets/front/images/heart.png')}}"
                                                         alt="wish-icon">
-                                                    <span class="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}}">
+                                                    <span
+                                                        class="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}}">
                                                         {{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'تم الإضافة' : 'أضف لقائمة الرغبات'}}</span>
 
                                                 </a>
@@ -314,23 +322,30 @@
                                                 <img src="{{asset('organized/'. $item->cover)}}"
                                                      alt="{{$item->slug}}">
                                             </div>
-                                            <div class="footer_card text-muted pt-2">
+                                            <div class="location_card text-muted pt-2">
                                                 <i class="fa fa-location-dot l_13" style="margin-left: 3px"></i>
-                                                <i class="fa-sharp fa-solid fa-clock-rotate-left l_13" style="margin-left: 3px"></i>
                                                 <small>{{$item->country->name}},</small>
                                                 <small>{{$item->city->name}}</small>
                                                 {{--                                            - <small>{{$item->state->name}}</small>--}}
                                             </div>
 
                                             <div class="titles bold">
-                                                <h5 class="card-title  bold">{{$item->title}}</h5>
-                                                <span
-                                                    class="card-title card-price  bold price">{{$item->price}} ج.م</span>
+                                                <h5 class="card-title mb-3 bold">{{$item->title}}</h5>
+                                                <span style="font-weight: normal">السعر: </span>
+                                                <span class="card-title  bold price colored">{{number_format($item->price, 0)}}</span>
+                                                <span> ج.م</span>
                                             </div>
                                         </a>
 
-                                        <div class="footer_card text-muted">
-                                            <small>عدد المشاهدات : {{$item->viewNum->count()}}</small>
+                                        <div class="footer_card">
+                                            <div class="text-muted position-relative">
+                                                <small>عدد المشاهدات : {{$item->viewNum->count()}}</small>
+                                                <small class="date_client_ad">
+                                                    <i class="fa-sharp fa-solid fa-clock-rotate-left l_11"
+                                                       style="margin-left: 3px"></i>
+                                                    <span>{{Carbon\Carbon::parse($item->created_at)->diffForHumans()}}</span>
+                                                </small>
+                                            </div>
                                         </div>
 
                                     </div>
@@ -367,18 +382,29 @@
                                                 <img src="{{asset('organized/'. $item->cover)}}"
                                                      alt="{{$item->slug}}">
                                             </div>
+                                            <div class="location_card text-muted pt-2">
+                                                <i class="fa fa-location-dot l_13" style="margin-left: 3px"></i>
+                                                <small>{{$item->country->name}},</small>
+                                                <small>{{$item->city->name}}</small>
+                                                {{--                                            - <small>{{$item->state->name}}</small>--}}
+                                            </div>
                                             <div class="titles bold">
-                                                <h5 class="card-title  bold">{{$item->title}}</h5>
-                                                <span class="card-title  bold price">{{$item->price}} ج.م</span>
+                                                <h5 class="card-title mb-3 bold">{{$item->title}}</h5>
+                                                <span style="font-weight: normal">السعر: </span>
+                                                <span class="card-title  bold price colored">{{number_format($item->price, 0)}}</span>
+                                                <span> ج.م</span>
                                             </div>
                                         </a>
-                                        <div class="footer_card text-muted">
-                                            <small>{{$item->country->name}}</small> -
-                                            <small>{{$item->city->name}}</small>
-{{--                                            - <small>{{$item->state->name}}</small>--}}
-                                        </div>
-                                        <div class="footer_card text-muted">
-                                            <small>عدد المشاهدات : {{$item->viewNum->count()}}</small>
+
+                                        <div class="footer_card">
+                                            <div class="text-muted position-relative">
+                                                <small>عدد المشاهدات : {{$item->viewNum->count()}}</small>
+                                                <small class="date_client_ad">
+                                                    <i class="fa-sharp fa-solid fa-clock-rotate-left l_11"
+                                                       style="margin-left: 3px"></i>
+                                                    <span>{{Carbon\Carbon::parse($item->created_at)->diffForHumans()}}</span>
+                                                </small>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -545,6 +571,8 @@
         $(document).ready(function () {
 
 
+            /* Start New js */
+
             const lang = $('#lang').val();
 
 
@@ -614,7 +642,7 @@
                 let new_to_ = $('#new_to_');
                 let new_sort_by = $('#new_sort_by');
 
-                if(new_main_cat_id.length && new_main_cat_id.val() === '' ||
+                if (new_main_cat_id.length && new_main_cat_id.val() === '' ||
                     new_sub_cat_id.length && new_sub_cat_id.val() === '' ||
                     new_from_.length && new_from_.val() === '' ||
                     new_to_.length && new_to_.val() === '' ||
@@ -637,21 +665,16 @@
             });
 
 
+            let client_ad_post = $('section.client_ads_section .card');
 
+            let maxHeight = Math.max.apply(null, client_ad_post.map(function () {
+                return $(this).height();
+            }).get());
 
+            // alert(maxHeight);
+            client_ad_post.height(maxHeight);
 
-
-
-
-
-
-
-
-
-
-
-
-
+            /* End New Js */
 
 
             /* Start Card For post_ad */
@@ -896,318 +919,315 @@
             $('#cat_id').select2();
 
 
+                {{--let cat = $('select#cat_id');--}}
+                {{--let cats_row = $('#cats_row');--}}
+                {{--cat.change(function () {--}}
+                {{--    let cat_id = cat.val();--}}
+                {{--    // alert(cat_id);--}}
+
+                {{--    if (cat_id !== "") {--}}
+                {{--        $("#adv_opts").slideUp(500);--}}
+                {{--        $('#atts_div').remove();--}}
+                {{--        $('#sub_cat_id_div').remove();--}}
+
+                {{--        $.ajax({--}}
+                {{--            url: "/get-child-cat/" + cat_id,--}}
+                {{--            data: {--}}
+                {{--                _token: "{{csrf_token()}}",--}}
+                {{--                id: cat_id,--}}
+                {{--            },--}}
+                {{--            type: "POST",--}}
+                {{--            success: function (response) {--}}
+                {{--                if (typeof (response) != 'object') {--}}
+                {{--                    response = $.parseJSON(response)--}}
+                {{--                }--}}
+                {{--                console.log(response.data);--}}
+                {{--                let html_option = "";--}}
+                {{--                let html_select = "<li data-value='' data-display=\"اختر الفئة الفرعية\" class=\"option \">اختر الفئة الفرعية</li>";--}}
+
+                {{--                if (response.status === 1) {--}}
+                {{--                    let data = response.data;--}}
+                {{--                    data.forEach(myFunction);--}}
+
+                {{--                    function myFunction(item, index) {--}}
+                {{--                        html_option += "<option value='" + data[index]['id'] + "'>" + data[index]['title'][lang] + "</option>";--}}
+                {{--                        html_select += " <li data-value='" + data[index]['id'] + "' class=\"option\">" + data[index]['title'][lang] + "</li>";--}}
+                {{--                    }--}}
+
+                {{--                    // console.log(data[0]);--}}
+                {{--                    console.log(html_option);--}}
+
+                {{--                    cats_row.append(--}}
+                {{--                        "<div class=\"form-group col-md-6  m-auto  \" id='sub_cat_id_div'>\n" +--}}
+                {{--                        " <label for=\"sub_cat_id\" class=\"mb-1 bold\">الفئة الفرعية</label>\n" +--}}
+                {{--                        "    <select class=\"form-control select2-hidden-accessible\" id=\"sub_cat_id\" name=\"sub_cat_id\" data-select2-id=\"select2-data-sub_cat_id\" tabindex=\"-1\" aria-hidden=\"true\" style=\"display: none;\">\n" +--}}
+                {{--                        " <option value=''>اختر الفئة الفرعية</option>" +--}}
+                {{--                        html_option +--}}
+                {{--                        " </select>" +--}}
+                {{--                        " </div>"--}}
+                {{--                    );--}}
+
+                {{--                    $('#sub_cat_id').select2();--}}
+                {{--                    $('#sub_cat_id_div').find('span.select2').css('width', '100%');--}}
+
+                {{--                }--}}
+                {{--                let sub_cat = $('#sub_cat_id');--}}
+                {{--                sub_cat.on("select2:select", function () {--}}
+                {{--                    let sub_cat_id = $(this).val();--}}
+                {{--                    $("#adv_opts").slideUp(500);--}}
+                {{--                    $('#atts_div').remove();--}}
+                {{--                    $('#sub_cat_id_inp').val(sub_cat_id);--}}
+
+                {{--                    $.ajax({--}}
+                {{--                        url: "/get-cat-attrs/" + sub_cat_id,--}}
+                {{--                        data: {--}}
+                {{--                            _token: "{{csrf_token()}}",--}}
+                {{--                            id: sub_cat_id,--}}
+                {{--                        },--}}
+                {{--                        type: "POST",--}}
+                {{--                        success: function (response) {--}}
+                {{--                            if (typeof (response) != 'object') {--}}
+                {{--                                response = $.parseJSON(response)--}}
+                {{--                            }--}}
+                {{--                            // console.log(response.data['attributes'][0]['options']);--}}
+                {{--                            let attrs = response.data['attributes'];--}}
+                {{--                            // alert(attrs.length);--}}
+                {{--                            let text_attr = '';--}}
+                {{--                            let check_attr = '';--}}
+                {{--                            let attr = '';--}}
+
+                {{--                            for (let i = 0; i < attrs.length; i++) {--}}
+                {{--                                if (attrs[i]['type'] === 'select') {--}}
+                {{--                                    let opts = attrs[i]['options'];--}}
+                {{--                                    let select_opts = '';--}}
+                {{--                                    let select_opts_nice = '';--}}
+                {{--                                    for (let x = 0; x < opts.length; x++) {--}}
+                {{--                                        // console.log(opts[i]['val'][lang]);--}}
+                {{--                                        select_opts += "<option value='" + opts[x]['id'] + "'>" + opts[x]['val'][lang] + "</option>";--}}
+                {{--                                        select_opts_nice += "<li value='" + opts[x]['id'] + "' class=\"option\" data-value='" + opts[x]['id'] + "'  data-target='" + attrs[i]['id'] + "'>" + opts[x]['val'][lang] + "</li>";--}}
+                {{--                                    }--}}
+
+                {{--                                    attr +=--}}
+                {{--                                        "<div class=\"form-group col-md-3 col-12 mt-3 mb-3 attr_single\" id=\"attr_single_" + i + "\">\n" +--}}
+                {{--                                        // "  <label style=\"font-weight: bold\" for=\"attr_" + attrs[i]['id'] + "\" class=\"mb-2\"> " + attrs[i]['title'][lang] + "\n" +--}}
+                {{--                                        // "  </label>\n" +--}}
+                {{--                                        " <select class=\"inp_select\" data-target='" + attrs[i]['id'] + "' id=\"attr_" + i + "\" name=\"attr_" + attrs[i]['id'] + "\" required=\"\" style=\"display: none;\">\n" +--}}
+                {{--                                        "  <option value=\"\">اختر " + attrs[i]['title'][lang] + "</option>\n" +--}}
+                {{--                                        select_opts +--}}
+                {{--                                        "  </select>\n" +--}}
+                {{--                                        "  <div class=\"nice-select\" tabindex=\"0\"><span class=\"current\">اختر " + attrs[i]['title'][lang] + "</span>\n" +--}}
+                {{--                                        "  <ul class=\"list attr_select_list\">\n" +--}}
+                {{--                                        "  <li data-value=\"\" class=\"option selected focus \" data-target='attr_" + attrs[i]['id'] + "'>اختر " + attrs[i]['title'][lang] + "</li>\n" +--}}
+                {{--                                        select_opts_nice +--}}
+                {{--                                        "  </ul>\n" +--}}
+                {{--                                        "</div>\n" +--}}
+                {{--                                        "  </div>" +--}}
+                {{--                                        "<input type=\"hidden\" id='input_select_last_" + attrs[i]['id'] + "' name=\"attr_" + attrs[i]['id'] + "\" value=\"\">";--}}
+
+                {{--                                    // console.log(select_opts);--}}
+                {{--                                } else {--}}
+                {{--                                    attr +=--}}
+                {{--                                        "<div class='pretty p-rotate p-svg p-curve col-md-3 col-sm-6 col-12 mt-3 mb-3 attr_single' style='text-align:right; padding-right:20px;' " +--}}
+                {{--                                        "   id='attr_single_" + i + "'>" +--}}
+                {{--                                        "   <input type='checkbox' id='attr_" + i + "' value='0' data-target='" + attrs[i]['id'] + "' name='attr_" + attrs[i]['id'] + "'" +--}}
+                {{--                                        "  class='inp_check'>" +--}}
+                {{--                                        "  <div class='state p-success'>" +--}}
+                {{--                                        "   <!-- svg path -->" +--}}
+                {{--                                        "    <svg class='svg svg-icon' viewBox='0 0 20 20'>" +--}}
+                {{--                                        "   <path" +--}}
+                {{--                                        "   d='M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z'" +--}}
+                {{--                                        "  style='stroke: white;fill:white;'></path>" +--}}
+                {{--                                        "  </svg>" +--}}
+                {{--                                        "  <label style='font-weight: bold'>" + attrs[i]['title'][lang] + "</label>" +--}}
+                {{--                                        " </div>" +--}}
+                {{--                                        "  </div>";--}}
+
+                {{--                                }--}}
+
+                {{--                            }--}}
 
 
+                {{--                            $('#adv_opts').append(--}}
+                {{--                                "<div class=\"row pt-3 m-auto\" id=\"atts_div\">" +--}}
+                {{--                                attr +--}}
+                {{--                                "</div>"--}}
+                {{--                            );--}}
 
-            {{--let cat = $('select#cat_id');--}}
-            {{--let cats_row = $('#cats_row');--}}
-            {{--cat.change(function () {--}}
-            {{--    let cat_id = cat.val();--}}
-            {{--    // alert(cat_id);--}}
+                {{--                            // $('.inp_select').niceSelect();--}}
+                {{--                            // $('.attr_select').select2();--}}
+                {{--                            // $('.attr_single_div span.select2').css('width', '100%');--}}
+                {{--                            $('.attr_select_list li.option').on('click', function () {--}}
 
-            {{--    if (cat_id !== "") {--}}
-            {{--        $("#adv_opts").slideUp(500);--}}
-            {{--        $('#atts_div').remove();--}}
-            {{--        $('#sub_cat_id_div').remove();--}}
-
-            {{--        $.ajax({--}}
-            {{--            url: "/get-child-cat/" + cat_id,--}}
-            {{--            data: {--}}
-            {{--                _token: "{{csrf_token()}}",--}}
-            {{--                id: cat_id,--}}
-            {{--            },--}}
-            {{--            type: "POST",--}}
-            {{--            success: function (response) {--}}
-            {{--                if (typeof (response) != 'object') {--}}
-            {{--                    response = $.parseJSON(response)--}}
-            {{--                }--}}
-            {{--                console.log(response.data);--}}
-            {{--                let html_option = "";--}}
-            {{--                let html_select = "<li data-value='' data-display=\"اختر الفئة الفرعية\" class=\"option \">اختر الفئة الفرعية</li>";--}}
-
-            {{--                if (response.status === 1) {--}}
-            {{--                    let data = response.data;--}}
-            {{--                    data.forEach(myFunction);--}}
-
-            {{--                    function myFunction(item, index) {--}}
-            {{--                        html_option += "<option value='" + data[index]['id'] + "'>" + data[index]['title'][lang] + "</option>";--}}
-            {{--                        html_select += " <li data-value='" + data[index]['id'] + "' class=\"option\">" + data[index]['title'][lang] + "</li>";--}}
-            {{--                    }--}}
-
-            {{--                    // console.log(data[0]);--}}
-            {{--                    console.log(html_option);--}}
-
-            {{--                    cats_row.append(--}}
-            {{--                        "<div class=\"form-group col-md-6  m-auto  \" id='sub_cat_id_div'>\n" +--}}
-            {{--                        " <label for=\"sub_cat_id\" class=\"mb-1 bold\">الفئة الفرعية</label>\n" +--}}
-            {{--                        "    <select class=\"form-control select2-hidden-accessible\" id=\"sub_cat_id\" name=\"sub_cat_id\" data-select2-id=\"select2-data-sub_cat_id\" tabindex=\"-1\" aria-hidden=\"true\" style=\"display: none;\">\n" +--}}
-            {{--                        " <option value=''>اختر الفئة الفرعية</option>" +--}}
-            {{--                        html_option +--}}
-            {{--                        " </select>" +--}}
-            {{--                        " </div>"--}}
-            {{--                    );--}}
-
-            {{--                    $('#sub_cat_id').select2();--}}
-            {{--                    $('#sub_cat_id_div').find('span.select2').css('width', '100%');--}}
-
-            {{--                }--}}
-            {{--                let sub_cat = $('#sub_cat_id');--}}
-            {{--                sub_cat.on("select2:select", function () {--}}
-            {{--                    let sub_cat_id = $(this).val();--}}
-            {{--                    $("#adv_opts").slideUp(500);--}}
-            {{--                    $('#atts_div').remove();--}}
-            {{--                    $('#sub_cat_id_inp').val(sub_cat_id);--}}
-
-            {{--                    $.ajax({--}}
-            {{--                        url: "/get-cat-attrs/" + sub_cat_id,--}}
-            {{--                        data: {--}}
-            {{--                            _token: "{{csrf_token()}}",--}}
-            {{--                            id: sub_cat_id,--}}
-            {{--                        },--}}
-            {{--                        type: "POST",--}}
-            {{--                        success: function (response) {--}}
-            {{--                            if (typeof (response) != 'object') {--}}
-            {{--                                response = $.parseJSON(response)--}}
-            {{--                            }--}}
-            {{--                            // console.log(response.data['attributes'][0]['options']);--}}
-            {{--                            let attrs = response.data['attributes'];--}}
-            {{--                            // alert(attrs.length);--}}
-            {{--                            let text_attr = '';--}}
-            {{--                            let check_attr = '';--}}
-            {{--                            let attr = '';--}}
-
-            {{--                            for (let i = 0; i < attrs.length; i++) {--}}
-            {{--                                if (attrs[i]['type'] === 'select') {--}}
-            {{--                                    let opts = attrs[i]['options'];--}}
-            {{--                                    let select_opts = '';--}}
-            {{--                                    let select_opts_nice = '';--}}
-            {{--                                    for (let x = 0; x < opts.length; x++) {--}}
-            {{--                                        // console.log(opts[i]['val'][lang]);--}}
-            {{--                                        select_opts += "<option value='" + opts[x]['id'] + "'>" + opts[x]['val'][lang] + "</option>";--}}
-            {{--                                        select_opts_nice += "<li value='" + opts[x]['id'] + "' class=\"option\" data-value='" + opts[x]['id'] + "'  data-target='" + attrs[i]['id'] + "'>" + opts[x]['val'][lang] + "</li>";--}}
-            {{--                                    }--}}
-
-            {{--                                    attr +=--}}
-            {{--                                        "<div class=\"form-group col-md-3 col-12 mt-3 mb-3 attr_single\" id=\"attr_single_" + i + "\">\n" +--}}
-            {{--                                        // "  <label style=\"font-weight: bold\" for=\"attr_" + attrs[i]['id'] + "\" class=\"mb-2\"> " + attrs[i]['title'][lang] + "\n" +--}}
-            {{--                                        // "  </label>\n" +--}}
-            {{--                                        " <select class=\"inp_select\" data-target='" + attrs[i]['id'] + "' id=\"attr_" + i + "\" name=\"attr_" + attrs[i]['id'] + "\" required=\"\" style=\"display: none;\">\n" +--}}
-            {{--                                        "  <option value=\"\">اختر " + attrs[i]['title'][lang] + "</option>\n" +--}}
-            {{--                                        select_opts +--}}
-            {{--                                        "  </select>\n" +--}}
-            {{--                                        "  <div class=\"nice-select\" tabindex=\"0\"><span class=\"current\">اختر " + attrs[i]['title'][lang] + "</span>\n" +--}}
-            {{--                                        "  <ul class=\"list attr_select_list\">\n" +--}}
-            {{--                                        "  <li data-value=\"\" class=\"option selected focus \" data-target='attr_" + attrs[i]['id'] + "'>اختر " + attrs[i]['title'][lang] + "</li>\n" +--}}
-            {{--                                        select_opts_nice +--}}
-            {{--                                        "  </ul>\n" +--}}
-            {{--                                        "</div>\n" +--}}
-            {{--                                        "  </div>" +--}}
-            {{--                                        "<input type=\"hidden\" id='input_select_last_" + attrs[i]['id'] + "' name=\"attr_" + attrs[i]['id'] + "\" value=\"\">";--}}
-
-            {{--                                    // console.log(select_opts);--}}
-            {{--                                } else {--}}
-            {{--                                    attr +=--}}
-            {{--                                        "<div class='pretty p-rotate p-svg p-curve col-md-3 col-sm-6 col-12 mt-3 mb-3 attr_single' style='text-align:right; padding-right:20px;' " +--}}
-            {{--                                        "   id='attr_single_" + i + "'>" +--}}
-            {{--                                        "   <input type='checkbox' id='attr_" + i + "' value='0' data-target='" + attrs[i]['id'] + "' name='attr_" + attrs[i]['id'] + "'" +--}}
-            {{--                                        "  class='inp_check'>" +--}}
-            {{--                                        "  <div class='state p-success'>" +--}}
-            {{--                                        "   <!-- svg path -->" +--}}
-            {{--                                        "    <svg class='svg svg-icon' viewBox='0 0 20 20'>" +--}}
-            {{--                                        "   <path" +--}}
-            {{--                                        "   d='M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z'" +--}}
-            {{--                                        "  style='stroke: white;fill:white;'></path>" +--}}
-            {{--                                        "  </svg>" +--}}
-            {{--                                        "  <label style='font-weight: bold'>" + attrs[i]['title'][lang] + "</label>" +--}}
-            {{--                                        " </div>" +--}}
-            {{--                                        "  </div>";--}}
-
-            {{--                                }--}}
-
-            {{--                            }--}}
+                {{--                                var target = $(this).data('target');--}}
+                {{--                                var value = $(this).attr('value');--}}
+                {{--                                $('#input_select_last_' + target).val(value)--}}
+                {{--                                // alert(value);--}}
 
 
-            {{--                            $('#adv_opts').append(--}}
-            {{--                                "<div class=\"row pt-3 m-auto\" id=\"atts_div\">" +--}}
-            {{--                                attr +--}}
-            {{--                                "</div>"--}}
-            {{--                            );--}}
+                {{--                                //model.niceSelect('destroy').niceSelect();--}}
+                {{--                                // model.niceSelect('update');--}}
+                {{--                            });--}}
 
-            {{--                            // $('.inp_select').niceSelect();--}}
-            {{--                            // $('.attr_select').select2();--}}
-            {{--                            // $('.attr_single_div span.select2').css('width', '100%');--}}
-            {{--                            $('.attr_select_list li.option').on('click', function () {--}}
+                {{--                            // $('.select_attr').niceSelect();--}}
 
-            {{--                                var target = $(this).data('target');--}}
-            {{--                                var value = $(this).attr('value');--}}
-            {{--                                $('#input_select_last_' + target).val(value)--}}
-            {{--                                // alert(value);--}}
+                {{--                            $('.inp_check').on('click', function () {--}}
+                {{--                                // alert('test0');--}}
+                {{--                                let check_val = $(this);--}}
+                {{--                                if (check_val.val() === '0') {--}}
+                {{--                                    check_val.val(1);--}}
+                {{--                                } else {--}}
+                {{--                                    check_val.val(0);--}}
+                {{--                                }--}}
+                {{--                            });--}}
 
-
-            {{--                                //model.niceSelect('destroy').niceSelect();--}}
-            {{--                                // model.niceSelect('update');--}}
-            {{--                            });--}}
-
-            {{--                            // $('.select_attr').niceSelect();--}}
-
-            {{--                            $('.inp_check').on('click', function () {--}}
-            {{--                                // alert('test0');--}}
-            {{--                                let check_val = $(this);--}}
-            {{--                                if (check_val.val() === '0') {--}}
-            {{--                                    check_val.val(1);--}}
-            {{--                                } else {--}}
-            {{--                                    check_val.val(0);--}}
-            {{--                                }--}}
-            {{--                            });--}}
-
-            {{--                        }--}}
-            {{--                    });--}}
+                {{--                        }--}}
+                {{--                    });--}}
 
 
-            {{--                });--}}
-            {{--            }--}}
+                {{--                });--}}
+                {{--            }--}}
 
-            {{--        });--}}
-            {{--    } else {--}}
-            {{--        $('#sub_cat_id').val('all').trigger('change');--}}
-            {{--        $('#sub_cat_id').prop('disabled', true);--}}
-            {{--        // $('#sub_cat_id_div').attr('disabled', true);--}}
-            {{--        // $('#sub_cat_id_div').find('.nice-select').addClass('disabled');--}}
-            {{--    }--}}
-            {{--});--}}
-
-
-            {{--let country = $('select#country');--}}
-            {{--let country_row = $('#country_row');--}}
-            {{--country.on("select2:select", function (e) {--}}
-            {{--    let country_id = $(this).val();--}}
-            {{--    // alert(country_id);--}}
-            {{--    if (country_id !== "") {--}}
-            {{--        $('#city_id_div').remove();--}}
-            {{--        $('#state_id').prop('disabled', true);--}}
-            {{--        $('#state_id').val("all").change();--}}
-            {{--        // $("div.id_100 select").val("val2").change();--}}
-
-            {{--        $.ajax({--}}
-            {{--            url: "/get-child-city/" + country_id,--}}
-            {{--            data: {--}}
-            {{--                _token: "{{csrf_token()}}",--}}
-            {{--                id: country_id,--}}
-            {{--            },--}}
-            {{--            type: "POST",--}}
-            {{--            success: function (response) {--}}
-            {{--                if (typeof (response) != 'object') {--}}
-            {{--                    response = $.parseJSON(response)--}}
-            {{--                }--}}
-            {{--                console.log(response.data);--}}
-            {{--                let html_option = "";--}}
-            {{--                let html_select = "<li data-value='all' data-display=\"الكل\" class=\"option \">الكل</li>";--}}
-
-            {{--                if (response.status === 1) {--}}
-            {{--                    let data = response.data;--}}
-            {{--                    data.forEach(myFunction);--}}
-
-            {{--                    function myFunction(item, index) {--}}
-            {{--                        html_option += "<option value='" + data[index]['id'] + "'>" + data[index]['name'] + "</option>";--}}
-            {{--                        html_select += " <li data-value='" + data[index]['id'] + "' class=\"option\">" + data[index]['name'] + "</li>";--}}
-            {{--                    }--}}
-
-            {{--                    // console.log(data[0]);--}}
-            {{--                    console.log(html_option);--}}
-
-            {{--                    // country_row.append(--}}
-            {{--                    //     "<div class=\"form-group col-md-4 \" id='city_id_div'>\n" +--}}
-            {{--                    //     " <label for=\"city_id\" class=\"mb-2 bold\">المدينة</label>\n" +--}}
-            {{--                    //     " <select class=\"form-control select2-hidden-accessible\" id=\"city_id\" name=\"city_id\" data-select2-id=\"select2-data-city_id\" tabindex=\"-1\" aria-hidden=\"true\" style=\"display: none;\">\n" +--}}
-            {{--                    //     " <option value='all'>الكل</option>" +--}}
-            {{--                    //     html_option +--}}
-            {{--                    //     " </select>" +--}}
-            {{--                    //     " </div>"--}}
-            {{--                    // );--}}
-
-            {{--                    $("<div class=\"form-group col-md-4 \" id='city_id_div'>\n" +--}}
-            {{--                        " <label for=\"city_id\" class=\"mb-1 bold\">المدينة</label>\n" +--}}
-            {{--                        " <select class=\"form-control select2-hidden-accessible\" id=\"city_id\" name=\"city_id\" data-select2-id=\"select2-data-city_id\" tabindex=\"-1\" aria-hidden=\"true\" style=\"display: none;\">\n" +--}}
-            {{--                        " <option value='all'>الكل</option>" +--}}
-            {{--                        html_option +--}}
-            {{--                        " </select>" +--}}
-            {{--                        " </div>").insertAfter('#country_div');--}}
-
-            {{--                    $('#city_id').select2();--}}
-            {{--                    $('#city_id_div').find('span.select2').css('width', '100%');--}}
-
-            {{--                    let city_id = $('select#city_id');--}}
-            {{--                    city_id.on("select2:select", function (e) {--}}
-            {{--                        let city_id = $(this).val();--}}
-            {{--                        // alert(city_id);--}}
-            {{--                        if (city_id !== "all") {--}}
-            {{--                            $('#state_id_div').remove();--}}
-            {{--                            $.ajax({--}}
-            {{--                                url: "/get-child-state/" + city_id,--}}
-            {{--                                data: {--}}
-            {{--                                    _token: "{{csrf_token()}}",--}}
-            {{--                                    id: city_id,--}}
-            {{--                                },--}}
-            {{--                                type: "POST",--}}
-            {{--                                success: function (response) {--}}
-            {{--                                    if (typeof (response) != 'object') {--}}
-            {{--                                        response = $.parseJSON(response)--}}
-            {{--                                    }--}}
-            {{--                                    console.log(response.data);--}}
-            {{--                                    let html_option = "";--}}
-            {{--                                    let html_select = "<li data-value='all' data-display=\"الكل\" class=\"option \">الكل</li>";--}}
-
-            {{--                                    if (response.status === 1) {--}}
-            {{--                                        let data = response.data;--}}
-            {{--                                        data.forEach(myFunction);--}}
-
-            {{--                                        function myFunction(item, index) {--}}
-            {{--                                            html_option += "<option value='" + data[index]['id'] + "'>" + data[index]['name'] + "</option>";--}}
-            {{--                                            html_select += " <li data-value='" + data[index]['id'] + "' class=\"option\">" + data[index]['name'] + "</li>";--}}
-            {{--                                        }--}}
-
-            {{--                                        // console.log(data[0]);--}}
-            {{--                                        console.log(html_option);--}}
-
-            {{--                                        country_row.append(--}}
-            {{--                                            "<div class=\"form-group col-md-4 \" id='state_id_div'>\n" +--}}
-            {{--                                            " <label for=\"state_id\" class=\"mb-1 bold\">الحي / المركز</label>\n" +--}}
-            {{--                                            " <select class=\"form-control select2-hidden-accessible\" id=\"state_id\" name=\"state_id\" data-select2-id=\"select2-data-state_id\" tabindex=\"-1\" aria-hidden=\"true\" style=\"display: none;\">\n" +--}}
-            {{--                                            " <option value='all'>الكل</option>" +--}}
-            {{--                                            html_option +--}}
-            {{--                                            " </select>" +--}}
-            {{--                                            " </div>"--}}
-            {{--                                        );--}}
-            {{--                                        $('#state_id').select2();--}}
-            {{--                                        $('#state_id_div').find('span.select2').css('width', '100%');--}}
-            {{--                                    }--}}
-            {{--                                }--}}
-            {{--                            });--}}
-            {{--                        } else {--}}
-            {{--                            $('#state_id').prop('disabled', true);--}}
-            {{--                            $('#state_id').val('all').trigger('change');--}}
-
-            {{--                        }--}}
-
-            {{--                    });--}}
-
-            {{--                } else {--}}
-
-            {{--                }--}}
-            {{--            }--}}
-            {{--        });--}}
+                {{--        });--}}
+                {{--    } else {--}}
+                {{--        $('#sub_cat_id').val('all').trigger('change');--}}
+                {{--        $('#sub_cat_id').prop('disabled', true);--}}
+                {{--        // $('#sub_cat_id_div').attr('disabled', true);--}}
+                {{--        // $('#sub_cat_id_div').find('.nice-select').addClass('disabled');--}}
+                {{--    }--}}
+                {{--});--}}
 
 
-            {{--    } else {--}}
+                {{--let country = $('select#country');--}}
+                {{--let country_row = $('#country_row');--}}
+                {{--country.on("select2:select", function (e) {--}}
+                {{--    let country_id = $(this).val();--}}
+                {{--    // alert(country_id);--}}
+                {{--    if (country_id !== "") {--}}
+                {{--        $('#city_id_div').remove();--}}
+                {{--        $('#state_id').prop('disabled', true);--}}
+                {{--        $('#state_id').val("all").change();--}}
+                {{--        // $("div.id_100 select").val("val2").change();--}}
 
-            {{--        $('#state_id').val('all').trigger('change');--}}
-            {{--        $('#city_id').val('all').trigger('change');--}}
-            {{--        $('#city_id').prop('disabled', true);--}}
-            {{--        $('#state_id').prop('disabled', true);--}}
+                {{--        $.ajax({--}}
+                {{--            url: "/get-child-city/" + country_id,--}}
+                {{--            data: {--}}
+                {{--                _token: "{{csrf_token()}}",--}}
+                {{--                id: country_id,--}}
+                {{--            },--}}
+                {{--            type: "POST",--}}
+                {{--            success: function (response) {--}}
+                {{--                if (typeof (response) != 'object') {--}}
+                {{--                    response = $.parseJSON(response)--}}
+                {{--                }--}}
+                {{--                console.log(response.data);--}}
+                {{--                let html_option = "";--}}
+                {{--                let html_select = "<li data-value='all' data-display=\"الكل\" class=\"option \">الكل</li>";--}}
 
-            {{--    }--}}
+                {{--                if (response.status === 1) {--}}
+                {{--                    let data = response.data;--}}
+                {{--                    data.forEach(myFunction);--}}
 
-            {{--});--}}
+                {{--                    function myFunction(item, index) {--}}
+                {{--                        html_option += "<option value='" + data[index]['id'] + "'>" + data[index]['name'] + "</option>";--}}
+                {{--                        html_select += " <li data-value='" + data[index]['id'] + "' class=\"option\">" + data[index]['name'] + "</li>";--}}
+                {{--                    }--}}
+
+                {{--                    // console.log(data[0]);--}}
+                {{--                    console.log(html_option);--}}
+
+                {{--                    // country_row.append(--}}
+                {{--                    //     "<div class=\"form-group col-md-4 \" id='city_id_div'>\n" +--}}
+                {{--                    //     " <label for=\"city_id\" class=\"mb-2 bold\">المدينة</label>\n" +--}}
+                {{--                    //     " <select class=\"form-control select2-hidden-accessible\" id=\"city_id\" name=\"city_id\" data-select2-id=\"select2-data-city_id\" tabindex=\"-1\" aria-hidden=\"true\" style=\"display: none;\">\n" +--}}
+                {{--                    //     " <option value='all'>الكل</option>" +--}}
+                {{--                    //     html_option +--}}
+                {{--                    //     " </select>" +--}}
+                {{--                    //     " </div>"--}}
+                {{--                    // );--}}
+
+                {{--                    $("<div class=\"form-group col-md-4 \" id='city_id_div'>\n" +--}}
+                {{--                        " <label for=\"city_id\" class=\"mb-1 bold\">المدينة</label>\n" +--}}
+                {{--                        " <select class=\"form-control select2-hidden-accessible\" id=\"city_id\" name=\"city_id\" data-select2-id=\"select2-data-city_id\" tabindex=\"-1\" aria-hidden=\"true\" style=\"display: none;\">\n" +--}}
+                {{--                        " <option value='all'>الكل</option>" +--}}
+                {{--                        html_option +--}}
+                {{--                        " </select>" +--}}
+                {{--                        " </div>").insertAfter('#country_div');--}}
+
+                {{--                    $('#city_id').select2();--}}
+                {{--                    $('#city_id_div').find('span.select2').css('width', '100%');--}}
+
+                {{--                    let city_id = $('select#city_id');--}}
+                {{--                    city_id.on("select2:select", function (e) {--}}
+                {{--                        let city_id = $(this).val();--}}
+                {{--                        // alert(city_id);--}}
+                {{--                        if (city_id !== "all") {--}}
+                {{--                            $('#state_id_div').remove();--}}
+                {{--                            $.ajax({--}}
+                {{--                                url: "/get-child-state/" + city_id,--}}
+                {{--                                data: {--}}
+                {{--                                    _token: "{{csrf_token()}}",--}}
+                {{--                                    id: city_id,--}}
+                {{--                                },--}}
+                {{--                                type: "POST",--}}
+                {{--                                success: function (response) {--}}
+                {{--                                    if (typeof (response) != 'object') {--}}
+                {{--                                        response = $.parseJSON(response)--}}
+                {{--                                    }--}}
+                {{--                                    console.log(response.data);--}}
+                {{--                                    let html_option = "";--}}
+                {{--                                    let html_select = "<li data-value='all' data-display=\"الكل\" class=\"option \">الكل</li>";--}}
+
+                {{--                                    if (response.status === 1) {--}}
+                {{--                                        let data = response.data;--}}
+                {{--                                        data.forEach(myFunction);--}}
+
+                {{--                                        function myFunction(item, index) {--}}
+                {{--                                            html_option += "<option value='" + data[index]['id'] + "'>" + data[index]['name'] + "</option>";--}}
+                {{--                                            html_select += " <li data-value='" + data[index]['id'] + "' class=\"option\">" + data[index]['name'] + "</li>";--}}
+                {{--                                        }--}}
+
+                {{--                                        // console.log(data[0]);--}}
+                {{--                                        console.log(html_option);--}}
+
+                {{--                                        country_row.append(--}}
+                {{--                                            "<div class=\"form-group col-md-4 \" id='state_id_div'>\n" +--}}
+                {{--                                            " <label for=\"state_id\" class=\"mb-1 bold\">الحي / المركز</label>\n" +--}}
+                {{--                                            " <select class=\"form-control select2-hidden-accessible\" id=\"state_id\" name=\"state_id\" data-select2-id=\"select2-data-state_id\" tabindex=\"-1\" aria-hidden=\"true\" style=\"display: none;\">\n" +--}}
+                {{--                                            " <option value='all'>الكل</option>" +--}}
+                {{--                                            html_option +--}}
+                {{--                                            " </select>" +--}}
+                {{--                                            " </div>"--}}
+                {{--                                        );--}}
+                {{--                                        $('#state_id').select2();--}}
+                {{--                                        $('#state_id_div').find('span.select2').css('width', '100%');--}}
+                {{--                                    }--}}
+                {{--                                }--}}
+                {{--                            });--}}
+                {{--                        } else {--}}
+                {{--                            $('#state_id').prop('disabled', true);--}}
+                {{--                            $('#state_id').val('all').trigger('change');--}}
+
+                {{--                        }--}}
+
+                {{--                    });--}}
+
+                {{--                } else {--}}
+
+                {{--                }--}}
+                {{--            }--}}
+                {{--        });--}}
+
+
+                {{--    } else {--}}
+
+                {{--        $('#state_id').val('all').trigger('change');--}}
+                {{--        $('#city_id').val('all').trigger('change');--}}
+                {{--        $('#city_id').prop('disabled', true);--}}
+                {{--        $('#state_id').prop('disabled', true);--}}
+
+                {{--    }--}}
+
+                {{--});--}}
 
 
             let card = $('.post');
