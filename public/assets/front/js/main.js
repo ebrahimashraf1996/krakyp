@@ -13,6 +13,14 @@ let option = {
 $(document).ready(function () {
 
 
+    let wish_div = $('.wish_div');
+    wish_div.hover(function () {
+        $(this).removeClass('not_hovered_wish');
+    }, function () {
+        $(this).addClass('not_hovered_wish');
+
+    });
+
 
     let custom_overlay = $('.custom_overlay');
     let custom_list_checks_row = $('.custom_list_checks_row');
@@ -218,38 +226,38 @@ $(document).ready(function () {
 
     let cats_section = $('.cats_section');
     let login_form = $('.login-form');
-    if ($(window).width() < 1000) {
-        cats_section.removeClass('row');
-        login_form.removeClass('row');
-        $('#otherServices').slideUp();
-        $('.sub_cats_menu').slideUp();
-
-        $('.services_sidebar_2_btn').on('click', function () {
-            let anch = $(this).find('a');
-            if (anch.hasClass('bold')) {
-                anch.removeClass('bold');
-            } else {
-                anch.addClass('bold');
-            }
-            $('#otherServices').slideToggle();
-        });
-
-        let main_cat = $('.main_cat');
-        main_cat.on('click', function () {
-            // alert('test')
-            let anch = $(this).find('a');
-            if (anch.hasClass('bold')) {
-                anch.removeClass('bold');
-            } else {
-                anch.addClass('bold');
-            }
-            let sub_menu = $(this).find('.sub_cats_menu');
-            sub_menu.slideToggle();
-        });
-
-    } else {
-        cats_section.addClass('row');
-    }
+    // if ($(window).width() < 1000) {
+    //     cats_section.removeClass('row');
+    //     login_form.removeClass('row');
+    //     $('#otherServices').slideUp();
+    //     $('.sub_cats_menu').slideUp();
+    //
+    //     $('.services_sidebar_2_btn').on('click', function () {
+    //         let anch = $(this).find('a');
+    //         if (anch.hasClass('bold')) {
+    //             anch.removeClass('bold');
+    //         } else {
+    //             anch.addClass('bold');
+    //         }
+    //         $('#otherServices').slideToggle();
+    //     });
+    //
+    //     let main_cat = $('.main_cat');
+    //     main_cat.on('click', function () {
+    //         // alert('test')
+    //         let anch = $(this).find('a');
+    //         if (anch.hasClass('bold')) {
+    //             anch.removeClass('bold');
+    //         } else {
+    //             anch.addClass('bold');
+    //         }
+    //         let sub_menu = $(this).find('.sub_cats_menu');
+    //         sub_menu.slideToggle();
+    //     });
+    //
+    // } else {
+    //     cats_section.addClass('row');
+    // }
 
 
 });

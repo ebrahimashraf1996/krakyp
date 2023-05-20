@@ -203,11 +203,21 @@ Route::group(['namespace' => 'App\Http\Controllers\Front'], function () {
 
     Route::get('search-results', 'OverAllController@search')->name('search.results');
     Route::get('get-search-results', 'OverAllController@newSearchResult')->name('new.search.get');
+    Route::get('get-test-results', 'OverAllController@newTestResult')->name('new.test.get');
 
 
     Route::get('privacy-policy', 'OverAllController@privacy')->name('privacy.policy');
     Route::get('terms', 'OverAllController@terms')->name('terms');
     Route::get('seller-posts/{serial}', 'ClientAdsController@sellerAds')->name('seller.ads');
+
+
+//    Route::get('upd_adses', function () {
+//       $ads = \App\Models\Clientad::first();
+////       foreach ($ads as $ad) {
+//        $ads->cover = "product-1.png";
+//        $ads->save();
+////       }
+//    });
 
 
     /* End Done */

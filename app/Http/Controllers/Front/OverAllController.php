@@ -20,6 +20,7 @@ use Artesaos\SEOTools\Facades\SEOMeta;
 use General;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use function Vonage\Voice\get;
 
 class OverAllController extends Controller
 {
@@ -314,6 +315,63 @@ class OverAllController extends Controller
     }
 
 
+    public function newTestResult(Request $request)
+    {
+
+//        return $request;
+        $main_cat_id = $request->main_cat_id;
+        $sub_cat_id = $request->sub_cat_id;
+        $country_ids = $request->country_ids;
+        $city_ids = $request->city_ids;
+        $new_from_ = intval($request->new_from_);
+        $new_to_ = intval($request->new_to_);
+        $attrs = $request->attrs;
+        $from_to_attrs = $request->from_to;
+        $category_attrs = $request->category_attrs;
+
+
+
+        $client_ads = Clientad::query();
+        $client_ads->with('clientAdAttrsAnswers')->where('cat_id', 10);
+
+        // Price Filter
+        $between = [$new_from_, $new_to_];
+        $client_ads->whereBetween('price', [$new_from_, $new_to_]);
+
+        // Country Filter
+        $client_ads->whereIn('country_id', $country_ids);
+        // City Filter
+        $client_ads->orWhereIn('city_id', $city_ids);
+
+//        return $client_ads = $client_ads->get();
+
+        // Attrs Filter
+        foreach ($attrs as $k => $val) {
+                $client_ads->whereHas('clientAdAttrsAnswers', function ($q) use ($k, $val) {
+                    $q->where('attr_id', $k)->whereIn('answer_value', $val);
+
+            });
+        }
+        return $client_ads->get();
+
+
+        // Attrs Filter
+        foreach ($attrs as $k => $val) {
+            $client_ads->whereHas('clientAdAttrsAnswers', function ($q) use ($k, $val) {
+                $q->where('attr_id', $k)->whereIn('answer_value', $val);
+            });
+        }
+
+
+
+
+
+        return $ads->get();
+//        $client_ads =
+
+
+    }
+
     public function newSearchResult(Request $request)
     {
 //        return $request;
@@ -423,7 +481,7 @@ class OverAllController extends Controller
                 $q->with(['options' => function ($q) {
                     $q->orderBy('lft', 'asc');
                 }])
-                    ->select('id', 'title', 'appearance');
+                    ->select('id', 'title', 'appearance', 'unit');
             },
         ])
             ->where('cat_id', $cat->id)
@@ -436,7 +494,7 @@ class OverAllController extends Controller
                 $q->with(['options' => function ($q) {
                     $q->orderBy('lft', 'asc');
                 }])
-                    ->select('id', 'title', 'appearance');
+                    ->select('id', 'title', 'appearance', 'unit');
             },
         ])
             ->where('cat_id', $cat->id)

@@ -121,23 +121,23 @@ class ClientadCrudController extends CrudController
         CRUD::setValidation(ClientadRequest::class);
 
         CRUD::field('title');
-        CRUD::field('slug');
-        CRUD::field('description');
-        CRUD::field('price');
-        // CRUD::field('cover');
-        CRUD::field('images');
-        CRUD::field('country_id');
-        CRUD::field('city_id');
-        CRUD::field('state_id');
-        CRUD::field('is_published');
-        CRUD::field('status');
-        CRUD::field('start_date');
-        CRUD::field('end_date');
-        CRUD::field('user_id');
-        CRUD::field('cat_id');
-        CRUD::field('user_package_id');
-        CRUD::field('serial_num');
-        CRUD::field('is_canceled');
+//        CRUD::field('slug');
+//        CRUD::field('description');
+//        CRUD::field('price');
+//        // CRUD::field('cover');
+//        CRUD::field('images');
+//        CRUD::field('country_id');
+//        CRUD::field('city_id');
+//        CRUD::field('state_id');
+//        CRUD::field('is_published');
+//        CRUD::field('status');
+//        CRUD::field('start_date');
+//        CRUD::field('end_date');
+//        CRUD::field('user_id');
+//        CRUD::field('cat_id');
+//        CRUD::field('user_package_id');
+//        CRUD::field('serial_num');
+//        CRUD::field('is_canceled');
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

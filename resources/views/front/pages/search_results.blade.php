@@ -26,7 +26,7 @@
 
         // JavaScript code
         function search_animal() {
-            let input = document.getElementById('searchbar').value
+            let input = document.getElementById('searchbar').value;
             input = input.toLowerCase();
             let x = document.getElementsByClassName('locations');
 
@@ -81,7 +81,7 @@
             main_toggle_item.change(function () {
                 if (this.checked) {
                     let subs = $(this).parent().parent().find('.sub_from_main input');
-                    subs.prop('checked', true);
+                    subs.prop('checked', false);
                 } else {
                     let subs = $(this).parent().parent().find('.sub_from_main input');
                     subs.prop('checked', false);
@@ -107,6 +107,10 @@
                 custom_select_btns_radio.removeClass('selected');
                 $(this).addClass('selected');
             });
+
+            let filter_header = $(".filter_header");
+            let filter_section = $('.filter_section');
+            filter_header.width(filter_section.width());
         });
     </script>
 @stop
@@ -116,22 +120,23 @@
 
 <section class="header_container container">
     <div class="row">
-        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xm-12 col-12 py-3 text-center"
+        <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xm-12 col-12 py-0 text-center filter_section"
              style="background: #fff">
-            <div class="row mb-2">
+            <form action="{{route('new.test.get')}}" class="pb-3">
+            <div class="row filter_header">
                 <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xm-12 col-12 text-right">
                     <span style="color: #565b6e;font-weight: bold;">بحث مفصل</span>
                 </div>
                 <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7 col-sm-7 col-xm-12 col-12 text-left">
-                    <span style="color: #426ddd;font-weight: bold;" id="reset_adv">
-                        <i class="fa fa-redo px-2"></i>
-                        إعادة الضبط
-                    </span>
+                    <button type="submit" style="color: #426ddd;font-weight: bold;" id="reset_adv" data-url="">
+                        <i class="fa fa-redo pl-2"></i>
+                        تحديث
+                    </button>
                 </div>
             </div>
-            <div class="row">
+            <div class="row pt-5">
                 <div
-                    class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xm-12 col-12 text-right p-0 main_item_filter position-relative"
+                    class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xm-12 col-12 text-right p-0 main_item_filter position-relative "
                     id="client_ad_place">
                     <div class="main_head py-3 pe-3" data-target="subs_for_location">
                         <h4 class="bold l_17 d-inline-block">مكان تواجد الإعلان</h4>
@@ -140,7 +145,7 @@
                         <i class="fa fa-chevron-down d-none"></i>
                     </span>
                     </div>
-                    <div class="sub_menu subs_for_location px-2 mt-3">
+                    <div class="sub_menu subs_for_location pl-2 mt-3">
                         <input id="searchbar" onkeyup="search_animal()" type="text"
                                name="search" placeholder="بحث بإسم المحافظة او المنطقة" class="form-control mb-2">
 
@@ -148,7 +153,7 @@
                         <ul id="list" class="row"
                             style="padding-left: 0!important;max-height: 200px; overflow-y: scroll">
                             @foreach($countries as $country)
-                                <li class="locations col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 custom_check_filter mx-0 px-2 position-relative">
+                                <li class="locations col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 custom_check_filter mx-0 pl-2 position-relative">
                                     {{--                                                                    {{dd($children_attributes)}}--}}
                                     <div class='pretty p-rotate p-svg p-curve main_toggle_item'
                                          style='text-align:right; padding-right:20px;'>
@@ -215,12 +220,12 @@
                         <i class="fa fa-chevron-down d-none"></i>
                         </span>
                     </div>
-                    <div class="sub_menu subs_for_price px-2 mt-3">
+                    <div class="sub_menu subs_for_price pl-2 mt-3">
                         <div class="row">
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 text-right new_from_">
                                 <div class="input-group mb-3" dir="ltr">
                                     <span class="input-group-text bound " id="new_from_label">جنيه</span>
-                                    <input type="text" class="form-control text-right" name="new_from_"
+                                    <input type="number" class="form-control text-right" name="new_from_"
                                            style="border-left: none"
                                            value="{{isset($_GET['new_from_']) && $_GET['new_from_'] != null ? $_GET['new_from_'] : ''}}"
                                            placeholder="السعر من" aria-label="السعر من"
@@ -230,7 +235,7 @@
                             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 text-right new_to_">
                                 <div class="input-group mb-3" dir="ltr">
                                     <span class="input-group-text bound " id="new_to_label">جنيه</span>
-                                    <input type="text" class="form-control text-right" name="new_to_"
+                                    <input type="number" class="form-control text-right" name="new_to_"
                                            style="border-left: none"
                                            value="{{isset($_GET['new_to_']) && $_GET['new_to_'] != null ? $_GET['new_to_'] : ''}}"
                                            placeholder="السعر إلي" aria-label="السعر إلي"
@@ -258,12 +263,12 @@
                                         <i class="fa fa-chevron-down d-none"></i>
                                     </span>
                                 </div>
-                                <div class="sub_menu subs_for_{{$main_item->id}} px-2 mb-3">
+                                <div class="sub_menu subs_for_{{$main_item->id}} pl-2 mb-3">
 
                                     <ul class="row"
                                         style="padding-left: 0!important;max-height: 200px; overflow-y: scroll">
                                         @foreach($main_item->attribute->options as $option)
-                                            <li class=" col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 custom_check_filter mx-0 px-2 position-relative">
+                                            <li class=" col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 custom_check_filter mx-0 pl-2 position-relative">
                                                 {{--                                                                    {{dd($children_attributes)}}--}}
                                                 <div class='pretty p-rotate p-svg p-curve main_toggle_item'
                                                      style='text-align:right; padding-right:20px;'>
@@ -301,12 +306,12 @@
                                         <i class="fa fa-chevron-down d-none"></i>
                                     </span>
                                 </div>
-                                <div class="sub_menu subs_for_{{$main_item->id}} px-2 mb-3">
+                                <div class="sub_menu subs_for_{{$main_item->id}} pl-2 mb-3">
 
                                     <ul class="row"
                                         style="padding-left: 0!important;max-height: 200px; overflow-y: scroll">
 
-                                            <li class=" col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 custom_check_filter mx-0 px-2 position-relative">
+                                            <li class=" col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 custom_check_filter mx-0 pl-2 position-relative">
                                                 {{--                                                                    {{dd($children_attributes)}}--}}
                                                 <div class='pretty p-rotate p-svg p-curve main_toggle_item'
                                                      style='text-align:right; padding-right:20px;'>
@@ -327,7 +332,7 @@
                                                     </div>
                                                 </div>
                                             </li>
-                                            <li class=" col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 custom_check_filter mx-0 px-2 position-relative">
+                                            <li class=" col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 custom_check_filter mx-0 pl-2 position-relative">
                                                 {{--                                                                    {{dd($children_attributes)}}--}}
                                                 <div class='pretty p-rotate p-svg p-curve main_toggle_item'
                                                      style='text-align:right; padding-right:20px;'>
@@ -366,7 +371,7 @@
                                         <i class="fa fa-chevron-down d-none"></i>
                                     </span>
                                 </div>
-                                <div class="sub_menu subs_for_{{$main_item->id}} px-2 mb-3">
+                                <div class="sub_menu subs_for_{{$main_item->id}} pl-2 mb-3">
 
                                     <div class="row custom_btn_rows"
                                         style="padding-left: 0!important;max-height: 200px; overflow-y: scroll">
@@ -398,7 +403,7 @@
                                         <i class="fa fa-chevron-down d-none"></i>
                                     </span>
                                 </div>
-                                <div class="sub_menu subs_for_{{$main_item->id}} px-2 mb-3">
+                                <div class="sub_menu subs_for_{{$main_item->id}} pl-2 mb-3">
 
                                     <div class="row custom_btn_rows"
                                          style="padding-left: 0!important;max-height: 200px; overflow-y: scroll">
@@ -407,7 +412,7 @@
                                                 <label
                                                     for="opt_{{$main_item->id}}_yes"
                                                     class="btn my-2 custom_select_btn">نعم</label>
-                                                <input type="radio"
+                                                <input type="checkbox"
                                                        name="attrs[{{$main_item->attribute->id}}][]"
                                                        id="opt_{{$main_item->id}}_yes"
                                                        value="1"
@@ -418,7 +423,7 @@
                                                 <label
                                                     for="opt_{{$main_item->id}}_no"
                                                     class="btn my-2 custom_select_btn">لا</label>
-                                                <input type="check"
+                                                <input type="checkbox"
                                                        name="attrs[{{$main_item->attribute->id}}][]"
                                                        id="opt_{{$main_item->id}}_no"
                                                        value="0"
@@ -443,21 +448,21 @@
                                         <i class="fa fa-chevron-down d-none"></i>
                                     </span>
                             </div>
-                            <div class="sub_menu subs_for_{{$main_item->id}} px-2 mb-3">
+                            <div class="sub_menu subs_for_{{$main_item->id}} pl-2 mb-3">
                                 @php
                                     $children = \App\Models\AttributeChild::with(['attribute' => function ($q) {$q->with(['options' => function ($q) {$q->orderBy('lft', 'asc');}])->select('id', 'title');},])->where('cat_id','=', $_GET['new_sub_cat_id'])->where('parent_id', $main_item->attribute->id)->orderBy('lft', 'ASC')->get();
                                 @endphp
                                 <ul class="row"
                                     style="padding-left: 0!important;max-height: 200px; overflow-y: scroll">
                                     @foreach($children as $child_attr)
-                                        <li class="locations col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 custom_check_filter mx-0 px-2 position-relative">
+                                        <li class="locations col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 custom_check_filter mx-0 pl-2 position-relative">
                                             {{--                                                                    {{dd($children_attributes)}}--}}
                                             <div class='pretty p-rotate p-svg p-curve main_toggle_item'
                                                  style='text-align:right; padding-right:20px;'>
                                                 <input type='checkbox'
-                                                       name="country_ids[]"
+                                                       name="category_attrs[]"
                                                        class='inp_check'
-                                                       value="{{$child_attr->id}}">
+                                                       value="{{$child_attr->attribute->id}}">
                                                 <div class='state p-warning'>
                                                     <!-- svg path -->
                                                     <svg class='svg svg-icon'
@@ -488,13 +493,23 @@
                                     <i class="fa fa-chevron-down d-none"></i>
                                 </span>
                             </div>
-                            <div class="sub_menu subs_for_{{$main_item->id}} px-2 mb-3">
+                            <div class="sub_menu subs_for_{{$main_item->id}} pl-2 mb-3">
                                 <div class="row my-2">
-                                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 text-right new_from_">
-                                        <input type="number" class="form-control" placeholder="من" name="attrs[from_to][{{$main_item->attribute->id}}][from]">
+                                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 text-right ">
+                                        <div class="input-group mb-3" dir="ltr">
+                                            <span class="input-group-text bound " id="new_from_{{$main_item->attribute->unit}}">{{$main_item->attribute->unit}}</span>
+                                            <input type="number" class="form-control text-right" name="from_to[{{$main_item->attribute->id}}][from]"
+                                                   style="border-left: none" value="" placeholder="من" aria-label="من"
+                                                   aria-describedby="new_{{$main_item->attribute->unit}}">
+                                        </div>
                                     </div>
                                     <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 text-right new_from_">
-                                        <input type="number" class="form-control" placeholder="إلي" name="attrs[from_to][{{$main_item->attribute->id}}][to]">
+                                        <div class="input-group mb-3" dir="ltr">
+                                            <span class="input-group-text bound " id="new_to_{{$main_item->attribute->unit}}">{{$main_item->attribute->unit}}</span>
+                                            <input type="number" class="form-control text-right" name="from_to[{{$main_item->attribute->id}}][to]"
+                                                   style="border-left: none" value="" placeholder="إلي" aria-label="إلي"
+                                                   aria-describedby="new_{{$main_item->attribute->unit}}">
+                                        </div>
                                     </div>
                                 </div>
 
@@ -519,12 +534,12 @@
                                         <i class="fa fa-chevron-down d-none"></i>
                                     </span>
                                 </div>
-                                <div class="sub_menu subs_for_{{$other_item->id}} px-2 mb-3">
+                                <div class="sub_menu subs_for_{{$other_item->id}} pl-2 mb-3">
 
                                     <ul class="row"
                                         style="padding-left: 0!important;max-height: 200px; overflow-y: scroll">
                                         @foreach($other_item->attribute->options as $option)
-                                            <li class=" col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 custom_check_filter mx-0 px-2 position-relative">
+                                            <li class=" col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 custom_check_filter mx-0 pl-2 position-relative">
                                                 {{--                                                                    {{dd($children_attributes)}}--}}
                                                 <div class='pretty p-rotate p-svg p-curve main_toggle_item'
                                                      style='text-align:right; padding-right:20px;'>
@@ -562,12 +577,12 @@
                                         <i class="fa fa-chevron-down d-none"></i>
                                     </span>
                                 </div>
-                                <div class="sub_menu subs_for_{{$other_item->id}} px-2 mb-3">
+                                <div class="sub_menu subs_for_{{$other_item->id}} pl-2 mb-3">
 
                                     <ul class="row"
                                         style="padding-left: 0!important;max-height: 200px; overflow-y: scroll">
 
-                                        <li class=" col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 custom_check_filter mx-0 px-2 position-relative">
+                                        <li class=" col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 custom_check_filter mx-0 pl-2 position-relative">
                                             {{--                                                                    {{dd($children_attributes)}}--}}
                                             <div class='pretty p-rotate p-svg p-curve main_toggle_item'
                                                  style='text-align:right; padding-right:20px;'>
@@ -588,7 +603,7 @@
                                                 </div>
                                             </div>
                                         </li>
-                                        <li class=" col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 custom_check_filter mx-0 px-2 position-relative">
+                                        <li class=" col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 custom_check_filter mx-0 pl-2 position-relative">
                                             {{--                                                                    {{dd($children_attributes)}}--}}
                                             <div class='pretty p-rotate p-svg p-curve main_toggle_item'
                                                  style='text-align:right; padding-right:20px;'>
@@ -627,7 +642,7 @@
                                         <i class="fa fa-chevron-down d-none"></i>
                                     </span>
                                 </div>
-                                <div class="sub_menu subs_for_{{$other_item->id}} px-2 mb-3">
+                                <div class="sub_menu subs_for_{{$other_item->id}} pl-2 mb-3">
 
                                     <div class="row custom_btn_rows"
                                          style="padding-left: 0!important;max-height: 200px; overflow-y: scroll">
@@ -659,7 +674,7 @@
                                         <i class="fa fa-chevron-down d-none"></i>
                                     </span>
                                 </div>
-                                <div class="sub_menu subs_for_{{$other_item->id}} px-2 mb-3">
+                                <div class="sub_menu subs_for_{{$other_item->id}} pl-2 mb-3">
 
                                     <div class="row custom_btn_rows"
                                          style="padding-left: 0!important;max-height: 200px; overflow-y: scroll">
@@ -668,7 +683,7 @@
                                             <label
                                                 for="opt_{{$other_item->id}}_yes"
                                                 class="btn my-2 custom_select_btn">نعم</label>
-                                            <input type="radio"
+                                            <input type="checkbox"
                                                    name="attrs[{{$other_item->attribute->id}}][]"
                                                    id="opt_{{$other_item->id}}_yes"
                                                    value="1"
@@ -679,7 +694,7 @@
                                             <label
                                                 for="opt_{{$other_item->id}}_no"
                                                 class="btn my-2 custom_select_btn">لا</label>
-                                            <input type="check"
+                                            <input type="checkbox"
                                                    name="attrs[{{$other_item->attribute->id}}][]"
                                                    id="opt_{{$other_item->id}}_no"
                                                    value="0"
@@ -703,21 +718,21 @@
                                         <i class="fa fa-chevron-down d-none"></i>
                                     </span>
                             </div>
-                            <div class="sub_menu subs_for_{{$other_item->id}} px-2 mb-3">
+                            <div class="sub_menu subs_for_{{$other_item->id}} pl-2 mb-3">
                                 @php
                                     $children = \App\Models\AttributeChild::with(['attribute' => function ($q) {$q->with(['options' => function ($q) {$q->orderBy('lft', 'asc');}])->select('id', 'title');},])->where('cat_id','=', $_GET['new_sub_cat_id'])->where('parent_id', $other_item->attribute->id)->orderBy('lft', 'ASC')->get();
                                 @endphp
                                 <ul class="row"
                                     style="padding-left: 0!important;max-height: 200px; overflow-y: scroll">
                                     @foreach($children as $child_attr)
-                                        <li class="locations col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 custom_check_filter mx-0 px-2 position-relative">
+                                        <li class="locations col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 custom_check_filter mx-0 pl-2 position-relative">
                                             {{--                                                                    {{dd($children_attributes)}}--}}
                                             <div class='pretty p-rotate p-svg p-curve main_toggle_item'
                                                  style='text-align:right; padding-right:20px;'>
                                                 <input type='checkbox'
-                                                       name="country_ids[]"
+                                                       name="category_attrs[]"
                                                        class='inp_check'
-                                                       value="{{$child_attr->id}}">
+                                                       value="{{$child_attr->attribute->id}}">
                                                 <div class='state p-warning'>
                                                     <!-- svg path -->
                                                     <svg class='svg svg-icon'
@@ -748,21 +763,34 @@
                                     <i class="fa fa-chevron-down d-none"></i>
                                 </span>
                             </div>
-                            <div class="sub_menu subs_for_{{$other_item->id}} px-2 mb-3">
+                            <div class="sub_menu subs_for_{{$other_item->id}} pl-2 mb-3">
                                 <div class="row my-2">
-                                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 text-right new_from_">
-                                        <input type="number" class="form-control" placeholder="من" name="attrs[from_to][{{$other_item->attribute->id}}][from]">
+                                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 text-right ">
+                                        <div class="input-group mb-3" dir="ltr">
+                                            <span class="input-group-text bound " id="new_from_{{$other_item->attribute->unit}}">{{$other_item->attribute->unit}}</span>
+                                            <input type="number" class="form-control text-right" name="from_to[{{$other_item->attribute->id}}][from]"
+                                                   style="border-left: none" value="" placeholder="من" aria-label="من"
+                                                   aria-describedby="new_{{$other_item->attribute->unit}}">
+                                        </div>
                                     </div>
                                     <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 text-right new_from_">
-                                        <input type="number" class="form-control" placeholder="إلي" name="attrs[from_to][{{$other_item->attribute->id}}][to]">
+                                        <div class="input-group mb-3" dir="ltr">
+                                            <span class="input-group-text bound " id="new_to_{{$other_item->attribute->unit}}">{{$other_item->attribute->unit}}</span>
+                                            <input type="number" class="form-control text-right" name="from_to[{{$other_item->attribute->id}}][to]"
+                                                   style="border-left: none" value="" placeholder="إلي" aria-label="إلي"
+                                                   aria-describedby="new_{{$other_item->attribute->unit}}">
+                                        </div>
                                     </div>
                                 </div>
 
                             </div>
+
+
                         </div>
                     </div>
                 @endif
             @endforeach
+            </form>
         </div>
         <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xm-12 col-12"></div>
     </div>

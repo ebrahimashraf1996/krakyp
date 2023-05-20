@@ -69,7 +69,7 @@
 @include('front.pages.includes.header')
 
 <!-- Content -->
-<main  style="background-image: url('{{asset($settings->general_bg)}}'); background-size: cover" class="p-b-50">
+<main  style="background-image: url('{{asset($settings->general_bg)}}'); background-size: cover">
 
 
     {{--@include('front.pages.includes.alerts.ajax-notify')--}}

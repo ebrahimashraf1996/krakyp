@@ -7,7 +7,7 @@
         <div class="row pt-4">
             <div class="col-md-9 col-10 col-sm-10  m-auto">
                 <div class="col-md-1 col-sm-6 col-6 m-auto py-4 text-center">
-                    <img src="{{asset($settings->logo)}}" alt="logo"  class="m-auto footer_logo">
+                    <img src="{{asset('assets/front/images/footer-logo.png')}}" alt="logo"  class="m-auto footer_logo">
                 </div>
             </div>
         </div>

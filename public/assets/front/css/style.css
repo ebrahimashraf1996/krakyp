@@ -121,6 +121,9 @@ body{ background: #fdfdfd}
 /* Star scroll bar */
 /* width */
 ::-webkit-scrollbar {width: 5px;}
+.filter_section::-webkit-scrollbar {width: 3px;}
+
+
 /* Track */
 ::-webkit-scrollbar-track {box-shadow: inset 0 0 5px #bfbfbf;border-radius: 10px;}
 /* Handle */
@@ -179,7 +182,7 @@ body{ background: #fdfdfd}
 .lower_nav_new_menu .nav_menu_item:hover {border-left: 1px solid #f2f4f7;border-right: 1px solid #f2f4f7;color: #426ddd;font-weight: bold}
 .lower_nav_new_menu .nav_menu_item.hovered {border-left: 1px solid #f2f4f7!important;border-right: 1px solid #f2f4f7!important;color: #426ddd!important;font-weight: bold!important;}
 .lower_nav_new_menu .cat_menu_btn {cursor: pointer;}
-.lower_nav_new #cat_new_menu {position: absolute;top: 54px;background: #fff;box-shadow: 0 1px 6px #c5c1c13d;z-index: 100;border-radius: 3px;}
+.lower_nav_new #cat_new_menu {position: absolute;top: 54px;background: #fff;box-shadow: 0 1px 6px #c5c1c13d;z-index: 1000;border-radius: 3px;}
 .sub_menu_item {position: relative;}
 .cat_icon {font-size:27px; color:#426dddb8;position: absolute;top: -11px;}
 .sub_cat_title {padding: 20px 39px 20px 0;}
@@ -309,7 +312,7 @@ body{ background: #fdfdfd}
 .cats_section .cat_div {margin-top: 34px!important;}
 .cat_div {border: #d6d7d9 solid 1px; border-radius: 5px;}
 a.cat_link {}
-.cat_img {position: relative;top: -55px;background: #fdfdfd;width: 70%;margin: auto;}
+.cat_img {position: relative;top: -55px;background: #fff;width: 70%;margin: auto;}
 .cat_img img { width: 60%}
 .cat_title {    margin-top: -34px;}
 .cat_arrow {position: relative;bottom: -23px;width: 58%;margin: auto;background: #fdfdfd; }
@@ -403,11 +406,11 @@ a.cat_link {}
 /* Start Ads Home Section */
 .client_ads_section .wish_div img {width: 100%;}
 .client_ads_section .mark_div img {width: 100%;}
-.client_ad_cover {width: 100%;text-align: center;background: #000;}
-.client_ad_cover img {height: 160px;}
+.client_ad_cover {width: 100%;height:200px;text-align: center;background: #ef681d21;overflow: hidden;border-top-right-radius: 5px;border-top-left-radius: 5px;}
+.client_ad_cover img {width: 100%}
 .post a {text-decoration: none}
 .post a:hover {text-decoration: none;color: #000;}
-section.client_ads_section .card{transition:0.5s;text-align: right; height: 358px}
+section.client_ads_section .card{transition:0.5s;text-align: right; height: 340px}
 div.client_ads_section .card{transition:0.5s;text-align: right;}
 .client_ads_section .card-text{line-height: 27px;font-size: 16px;padding: 5px 13px;}
 .client_ads_section .card-title{transition:1s;cursor:pointer;}
@@ -419,9 +422,36 @@ div.client_ads_section .card{transition:0.5s;text-align: right;}
 .client_ads_section .card::after {transform-origin: right bottom;}
 .client_ads_section .card:hover::before, .card:hover::after, .card:focus::before, .card:focus::after {transform: scale3d(1, 1, 1);}
 /*.post {}*/
-.wish_div {cursor: pointer; display: none; width: 35px; height: 32px; background: #fff;border: black 2px solid; border-radius: 7px; position: absolute; top: 15px; left: 18px;}
+.wish_div {
+    cursor: pointer;
+    width: 155px;
+    height: 32px;
+    background: #fff;
+    border: #00000033 1px solid;
+    border-radius: 7px;
+    position: absolute;
+    top: 15px;
+    left: 8px;
+    transition: 200ms all;
+    overflow: hidden;
+}
+.wish_div.not_hovered_wish {width: 35px!important;}
+.wish_div a {position: absolute;
+    top: 0;
+    left: 0;
+}
+.wish_div.done {width: 120px}
+.wish_div span.done {right: -109px}
+/*.wish_div span.done.hovered_span {right: -109px}*/
+/*.wish_div span.hovered_span {right: -146px}*/
 .mark_div {width: 60px;  position: absolute; top: 8px; right: 0px;}
-.wish_div img {width: 26px!important;padding-top: 0;padding-right: 5px;}
+.wish_div img {width: 26px!important;padding-top: 0;position: absolute;top: 1px;left: 3px;}
+.wish_div span {position: absolute;
+    top: 2px;
+    transition: 1s all;
+    right: -147px;
+    /*display: none;*/
+}
 /*.wish_div:hover {  border: #2761ab 1px solid; }*/
 /*.wish_div i:hover { color: #2761ab;  }*/
 .delete_wish {width: 100%}
@@ -789,6 +819,11 @@ ul.size-list li a.unavailable{  cursor: not-allowed;opacity: 50%}
 .main_item_filter:hover > .main_head {background-color: #e9ecef}
 .sub_menu .custom_select_btn {padding: 5px 0!important; font-size: 14px}
 .sub_menu .custom_select_btn_radio {padding: 5px 0!important; font-size: 14px}
+.filter_section {height: 81vh;overflow-y: scroll;direction: ltr}
+.filter_section .row {direction: rtl;margin-left: -7px;margin-right: -5px;}
+.filter_header {margin: 0!important;position: fixed;width: 242px;background: #fff;z-index: 1000;padding: 13px 0;border-bottom: 1px solid #dddddd94;}
+
+
 
 /* End New Filer */
 
