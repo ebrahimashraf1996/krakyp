@@ -198,6 +198,56 @@
 <script>
     $(document).ready(function() {
         $('select').niceSelect();
+
+        let wish_div = $('.wish_div');
+        wish_div.on('click', function () {
+            let wished = $(this);
+            let id = $(this).attr('data-target');
+            let img = $(this).find('.wish-btn img');
+            let span = $(this).find('.wish-btn span');
+            // alert(id);
+            $.ajax({
+                url: "{{route('add.to.wish')}}",
+                data: {
+                    _token: "{{csrf_token()}}",
+                    id: id,
+                },
+                type: 'POST',
+                success: function (response) {
+                    if (typeof (response) != 'object') {
+                        response = $.parseJSON()
+                    }
+                    console.log(response);
+                    let status = response.status;
+                    if (status === 1) {
+                        Swal.fire({
+                            icon: 'success',
+                            text: response.msg,
+                            dangerMode: false,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'حسنا',
+                            showCloseButton: true,
+                        });
+                        img.attr('src', '{{asset('assets/front/images/hearted.png')}}');
+                        span.text('تم الإضافة');
+                        span.addClass('done');
+                        wished.addClass('done');
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            text: response.msg,
+                            dangerMode: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'حسنا',
+                            showCloseButton: true,
+                        });
+                    }
+                }
+            })
+        });
+
     });
 </script>
 

@@ -336,60 +336,133 @@ class OverAllController extends Controller
 
     public function newTestResult(Request $request)
     {
-
 //        return $request;
-        $main_cat_id = $request->main_cat_id;
-        $sub_cat_id = $request->sub_cat_id;
-        $country_ids = $request->country_ids;
-        $city_ids = $request->city_ids;
-        $new_from_ = intval($request->new_from_);
-        $new_to_ = intval($request->new_to_);
-        $attrs = $request->attrs;
-        $from_to_attrs = $request->from_to;
-        $category_attrs = $request->category_attrs;
+        $main_cat_id = $request->has('new_main_cat_id') && $request->new_main_cat_id != null ? $request->new_main_cat_id : $request->request->remove('new_main_cat_id');
+        $sub_cat_id = $request->has('new_sub_cat_id') && $request->new_sub_cat_id != null ? $request->new_sub_cat_id : $request->request->remove('new_sub_cat_id');
+        $country_id = $request->has('new_country_id') && $request->new_country_id != null ? $request->new_country_id : $request->request->remove('new_country_id');
+        $city_id = $request->has('new_city_id') && $request->new_city_id != null ? $request->new_city_id : $request->request->remove('new_city_id');
+        $new_from_ = $request->has('new_from_') && $request->new_from_ != null ? $request->new_from_ : $request->request->remove('new_from_');
+        $new_to_ = $request->has('new_to_') && $request->new_to_ != null ? $request->new_to_ : $request->request->remove('new_to_');
+        $attrs =  $request->has('attrs') ? $request->attrs : null;
+        $attrs_yes_no =  $request->has('attrs_yes_no') ? $request->attrs_yes_no : null;
+        $from_to_attrs =  $request->has('from_to') ? $request->from_to : null;
 
 
-        $client_ads = Clientad::query();
-        $client_ads->with('clientAdAttrsAnswers')->where('cat_id', 10);
+
+        $free_client_ads_in_cat = Clientad::query();
+        $free_client_ads_in_cat->where('cat_id', 10);
+
+        $paid_client_ads_in_cat = Clientad::query();
+        $paid_client_ads_in_cat->where('cat_id', 10);
+
+
 
         // Price Filter
-        $between = [$new_from_, $new_to_];
-        $client_ads->whereBetween('price', [$new_from_, $new_to_]);
+        if ($new_from_ != '' && $new_to_ != '') {
+            $free_client_ads_in_cat->whereBetween('price', [$new_from_, $new_to_]);
+            $paid_client_ads_in_cat->whereBetween('price', [$new_from_, $new_to_]);
+        }
+
 
         // Country Filter
-        $client_ads->whereIn('country_id', $country_ids);
+        if (isset($country_id) && $country_id != '') {
+            $free_client_ads_in_cat->where('country_id', $country_id);
+            $paid_client_ads_in_cat->where('country_id', $country_id);
+        }
+
         // City Filter
-        $client_ads->orWhereIn('city_id', $city_ids);
-
-//        return $client_ads = $client_ads->get();
-
-        // Attrs Filter
-        foreach ($attrs as $k => $val) {
-            $client_ads->whereHas('clientAdAttrsAnswers', function ($q) use ($k, $val) {
-                $q->where('attr_id', $k)->whereIn('answer_value', $val);
-
-            });
-        }
-        return $client_ads->get();
-
-
-        // Attrs Filter
-        foreach ($attrs as $k => $val) {
-            $client_ads->whereHas('clientAdAttrsAnswers', function ($q) use ($k, $val) {
-                $q->where('attr_id', $k)->whereIn('answer_value', $val);
-            });
+        if (isset($city_id) && $city_id != '') {
+            if ($city_id != 'all') {
+                $free_client_ads_in_cat->where('city_id', $city_id);
+                $paid_client_ads_in_cat->where('city_id', $city_id);
+            }
         }
 
+        // Attrs Filter
+        if ($attrs != null && count($attrs) > 0) {
+            foreach ($attrs as $k => $val) {
 
-        return $ads->get();
-//        $client_ads =
+                $free_client_ads_in_cat->whereHas('clientAdAttrsAnswers', function ($q) use ($k, $val) {
+                    $q->select('id', 'client_ad_id', 'attr_id', 'answer_value')->where('attr_id', $k)->whereIn('answer_value', $val);
+                });
 
+                $paid_client_ads_in_cat->whereHas('clientAdAttrsAnswers', function ($q) use ($k, $val) {
+                    $q->select('id', 'client_ad_id', 'attr_id', 'answer_value')->where('attr_id', $k)->whereIn('answer_value', $val);
+                });
+            }
+        }
+
+
+        // Yes No Filter
+        if ($attrs_yes_no != null && count($attrs_yes_no) > 0) {
+            $attrs_yes_no = array_filter($attrs_yes_no);
+            $attrs_yes_no =array_keys($attrs_yes_no);
+
+            $free_client_ads_in_cat->whereHas('clientAdAttrsAnswers', function ($q) use ($attrs_yes_no) {
+                $q->select('id', 'client_ad_id', 'attr_id', 'answer_value')->whereIn('attr_id', $attrs_yes_no);
+            });
+
+            $paid_client_ads_in_cat->whereHas('clientAdAttrsAnswers', function ($q) use ($attrs_yes_no) {
+                $q->select('id', 'client_ad_id', 'attr_id', 'answer_value')->whereIn('attr_id', $attrs_yes_no);
+            });
+        }
+
+        // From To Filter
+        if ($from_to_attrs != null && count($from_to_attrs) > 0) {
+            foreach ($from_to_attrs as $k => $val) {
+                if ($val['from'] != null && $val['to'] != null) {
+                    $from_val = intval($val['from']);
+                    $to_val = intval($val['to']);
+
+                    $free_client_ads_in_cat->whereHas('clientAdAttrsAnswers', function ($q) use ($k, $val, $from_val, $to_val) {
+                        $q->select('id', 'client_ad_id', 'attr_id', 'answer_value')->where('attr_id', $k)->whereBetween('answer_value', [$from_val, $to_val]);
+                    });
+
+                    $paid_client_ads_in_cat->whereHas('clientAdAttrsAnswers', function ($q) use ($k, $val, $from_val, $to_val) {
+                        $q->select('id', 'client_ad_id', 'attr_id', 'answer_value')->where('attr_id', $k)->whereBetween('answer_value', [$from_val, $to_val]);
+                    });
+                }
+            }
+        }
+
+        // Sorting
+        if (!empty($_GET['new_sort_by'])) {
+            $ordering = $_GET['new_sort_by'];
+            switch ($ordering) {
+                case "cr_asc":
+                    $free_client_ads_in_cat->orderBy('created_at', 'asc');
+                    $paid_client_ads_in_cat->orderBy('created_at', 'asc');
+                    break;
+                case "pr_asc":
+                    $free_client_ads_in_cat->orderBy('price', 'asc');
+                    $paid_client_ads_in_cat->orderBy('price', 'asc');
+                    break;
+                case "pr_desc":
+                    $free_client_ads_in_cat->orderBy('price', 'desc');
+                    $paid_client_ads_in_cat->orderBy('price', 'desc');
+                    break;
+                default:
+                    $free_client_ads_in_cat->orderBy('created_at', 'desc');
+                    $paid_client_ads_in_cat->orderBy('created_at', 'desc');
+            }
+        }
+
+
+        $free_client_ads_in_cat = $free_client_ads_in_cat->free()->selection()->published()->notCanceled()->get();
+        $paid_client_ads_in_cat = $paid_client_ads_in_cat->paid()->notEnd()->published()->notCanceled()->selection()->get();
+
+
+//        return $paid_client_ads_in_cat;
 
     }
 
     public function newSearchResult(Request $request)
     {
 //        return $request;
+
+
+
+
 
         $cat = Category::select('slug', 'id')->find($request->new_sub_cat_id);
         $cat = Category::where('slug', $cat->slug)->first();
@@ -421,49 +494,98 @@ class OverAllController extends Controller
         JsonLd::addImage(asset($cat->image));
         General::seoContacts();
 
+
+
+        $main_cat_id = $request->has('new_main_cat_id') && $request->new_main_cat_id != null ? $request->new_main_cat_id : $request->request->remove('new_main_cat_id');
+        $sub_cat_id = $request->has('new_sub_cat_id') && $request->new_sub_cat_id != null ? $request->new_sub_cat_id : $request->request->remove('new_sub_cat_id');
+        $country_id = $request->has('new_country_id') && $request->new_country_id != null ? $request->new_country_id : $request->request->remove('new_country_id');
+        $city_id = $request->has('new_city_id') && $request->new_city_id != null ? $request->new_city_id : $request->request->remove('new_city_id');
+        $new_from_ = $request->has('new_from_') && $request->new_from_ != null ? $request->new_from_ : $request->request->remove('new_from_');
+        $new_to_ = $request->has('new_to_') && $request->new_to_ != null ? $request->new_to_ : $request->request->remove('new_to_');
+        $attrs =  $request->has('attrs') ? $request->attrs : null;
+        $attrs_yes_no =  $request->has('attrs_yes_no') ? $request->attrs_yes_no : null;
+        $from_to_attrs =  $request->has('from_to') ? $request->from_to : null;
+
+
         $free_client_ads_in_cat = Clientad::query();
-        $free_client_ads_in_cat->where('cat_id', $request->new_sub_cat_id);
+        $free_client_ads_in_cat->where('cat_id', $sub_cat_id);
 
         $paid_client_ads_in_cat = Clientad::query();
-        $paid_client_ads_in_cat->where('cat_id', $request->new_sub_cat_id);
+        $paid_client_ads_in_cat->where('cat_id', $sub_cat_id);
 
-        if (!empty($_GET['new_from_'])) {
-//                return 'test';
-            $from_ = intval($_GET['new_from_']);
-//                $to_ = $_GET['to_'];
 
-            $free_client_ads_in_cat->where('price', '>', $from_);
-            $paid_client_ads_in_cat->where('price', '>', $from_);
+
+        // Price Filter
+        if ($new_from_ != '' && $new_to_ != '') {
+            $free_client_ads_in_cat->whereBetween('price', [$new_from_, $new_to_]);
+            $paid_client_ads_in_cat->whereBetween('price', [$new_from_, $new_to_]);
         }
 
-        if (!empty($_GET['new_to_'])) {
-//                return 'test';
-            $to_ = intval($_GET['new_to_']);
-            $free_client_ads_in_cat->where('price', '<', $to_);
-            $paid_client_ads_in_cat->where('price', '<', $to_);
+
+        // Country Filter
+        if (isset($country_id) && $country_id != '') {
+            $free_client_ads_in_cat->where('country_id', $country_id);
+            $paid_client_ads_in_cat->where('country_id', $country_id);
         }
 
-//            if (!empty($_GET['country'])) {
-//                $country_id = $_GET['country'];
-//                $free_client_ads_in_cat->where('country_id', $country_id);
-//                $paid_client_ads_in_cat->where('country_id', $country_id);
-//            }
-//
-//            if (!empty($_GET['city']) && $_GET['city'] != 'all') {
-//                $city_id = $_GET['city'];
-//                $free_client_ads_in_cat->where('city_id', $city_id);
-//                $paid_client_ads_in_cat->where('city_id', $city_id);
-//            }
-//
-//            if (!empty($_GET['state']) && $_GET['state'] != 'all') {
-//                $state_id = $_GET['state'];
-//                $free_client_ads_in_cat->where('state_id', $state_id);
-//                $paid_client_ads_in_cat->where('state_id', $state_id);
-//            }
+        // City Filter
+        if (isset($city_id) && $city_id != '') {
+            if ($city_id != 'all') {
+                $free_client_ads_in_cat->where('city_id', $city_id);
+                $paid_client_ads_in_cat->where('city_id', $city_id);
+            }
+        }
 
+        // Attrs Filter
+        if ($attrs != null && count($attrs) > 0) {
+            foreach ($attrs as $k => $val) {
+
+                $free_client_ads_in_cat->whereHas('clientAdAttrsAnswers', function ($q) use ($k, $val) {
+                    $q->select('id', 'client_ad_id', 'attr_id', 'answer_value')->where('attr_id', $k)->whereIn('answer_value', $val);
+                });
+
+                $paid_client_ads_in_cat->whereHas('clientAdAttrsAnswers', function ($q) use ($k, $val) {
+                    $q->select('id', 'client_ad_id', 'attr_id', 'answer_value')->where('attr_id', $k)->whereIn('answer_value', $val);
+                });
+            }
+        }
+
+
+        // Yes No Filter
+        if ($attrs_yes_no != null && count($attrs_yes_no) > 0) {
+            $attrs_yes_no = array_filter($attrs_yes_no);
+            $attrs_yes_no =array_keys($attrs_yes_no);
+
+            $free_client_ads_in_cat->whereHas('clientAdAttrsAnswers', function ($q) use ($attrs_yes_no) {
+                $q->select('id', 'client_ad_id', 'attr_id', 'answer_value')->whereIn('attr_id', $attrs_yes_no);
+            });
+
+            $paid_client_ads_in_cat->whereHas('clientAdAttrsAnswers', function ($q) use ($attrs_yes_no) {
+                $q->select('id', 'client_ad_id', 'attr_id', 'answer_value')->whereIn('attr_id', $attrs_yes_no);
+            });
+        }
+
+        // From To Filter
+        if ($from_to_attrs != null && count($from_to_attrs) > 0) {
+            foreach ($from_to_attrs as $k => $val) {
+                if ($val['from'] != null && $val['to'] != null) {
+                    $from_val = intval($val['from']);
+                    $to_val = intval($val['to']);
+
+                    $free_client_ads_in_cat->whereHas('clientAdAttrsAnswers', function ($q) use ($k, $val, $from_val, $to_val) {
+                        $q->select('id', 'client_ad_id', 'attr_id', 'answer_value')->where('attr_id', $k)->whereBetween('answer_value', [$from_val, $to_val]);
+                    });
+
+                    $paid_client_ads_in_cat->whereHas('clientAdAttrsAnswers', function ($q) use ($k, $val, $from_val, $to_val) {
+                        $q->select('id', 'client_ad_id', 'attr_id', 'answer_value')->where('attr_id', $k)->whereBetween('answer_value', [$from_val, $to_val]);
+                    });
+                }
+            }
+        }
+
+        // Sorting
         if (!empty($_GET['new_sort_by'])) {
             $ordering = $_GET['new_sort_by'];
-//                return $ordering;
             switch ($ordering) {
                 case "cr_asc":
                     $free_client_ads_in_cat->orderBy('created_at', 'asc');
@@ -483,11 +605,14 @@ class OverAllController extends Controller
             }
         }
 
+
         $free_client_ads_in_cat = $free_client_ads_in_cat->free()->selection()->published()->notCanceled()->get();
         $paid_client_ads_in_cat = $paid_client_ads_in_cat->paid()->notEnd()->published()->notCanceled()->selection()->get();
 
 
-//            return $paid_client_ads_in_cat;
+
+
+
 
         $cat = Category::where('id', $request->new_sub_cat_id)->select('id', 'slug', 'title', 'parent_id')->first();
 
@@ -504,19 +629,19 @@ class OverAllController extends Controller
             ->where('parent_id', null)
             ->orderBy('lft', 'asc')
             ->get();
-        $other_attributes = AttributeChild::with([
-            'attribute' => function ($q) {
-                $q->with(['options' => function ($q) {
-                    $q->orderBy('lft', 'asc');
-                }])
-                    ->select('id', 'title', 'appearance', 'unit');
-            },
-        ])
-            ->where('cat_id', $cat->id)
-            ->where('main_other', 'other')
-            ->where('parent_id', null)
-            ->orderBy('lft', 'asc')
-            ->get();
+//        $other_attributes = AttributeChild::with([
+//            'attribute' => function ($q) {
+//                $q->with(['options' => function ($q) {
+//                    $q->orderBy('lft', 'asc');
+//                }])
+//                    ->select('id', 'title', 'appearance', 'unit');
+//            },
+//        ])
+//            ->where('cat_id', $cat->id)
+//            ->where('main_other', 'other')
+//            ->where('parent_id', null)
+//            ->orderBy('lft', 'asc')
+//            ->get();
 
         $min = (!empty($_GET['from_']) ? $_GET['from_'] : '');
         $max = (!empty($_GET['to_']) ? $_GET['to_'] : '');
@@ -527,7 +652,7 @@ class OverAllController extends Controller
 
 
         return view('front.pages.search_results', compact('free_client_ads_in_cat',
-            'paid_client_ads_in_cat', 'main_attributes', 'other_attributes', 'cat', 'min', 'max', 'countries'));
+            'paid_client_ads_in_cat', 'main_attributes', 'cat', 'min', 'max', 'countries'));
 
     }
 

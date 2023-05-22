@@ -155,6 +155,7 @@ body{ background: #fdfdfd}
 
 /* Start New Header */
 .header_container {max-width: 1063px}
+.search_container {max-width: 1163px}
 .header-nav {z-index: 1200;border-bottom: 1px solid #7d7d7d47}
 /*.upper_nav_new {height: 100px}*/
 .logo {width: 111px;}
@@ -182,7 +183,7 @@ body{ background: #fdfdfd}
 .lower_nav_new_menu li {display: inline-block}
 .lower_nav_new_menu .nav_menu_item {padding: 16px 13px; font-size: 15px}
 .lower_nav_new {height: 54px;position: relative;}
-.lower_nav_new_menu .nav_menu_item:hover {border-left: 1px solid #f2f4f7;border-right: 1px solid #f2f4f7;color: #426ddd;font-weight: bold}
+.lower_nav_new_menu .nav_menu_item:hover {border-left: 1px solid #f2f4f7!important;border-right: 1px solid #f2f4f7!important;color: #426ddd!important;font-weight: bold!important;}
 .lower_nav_new_menu .nav_menu_item.hovered {border-left: 1px solid #f2f4f7!important;border-right: 1px solid #f2f4f7!important;color: #426ddd!important;font-weight: bold!important;}
 .lower_nav_new_menu .cat_menu_btn {cursor: pointer;}
 .lower_nav_new #cat_new_menu {position: absolute;top: 54px;background: #fff;box-shadow: 0 1px 6px #c5c1c13d;z-index: 1000;border-radius: 3px;}
@@ -409,7 +410,7 @@ a.cat_link {}
 /* Start Ads Home Section */
 .client_ads_section .wish_div img {width: 100%;}
 .client_ads_section .mark_div img {width: 100%;}
-.client_ad_cover {width: 100%;height:200px;text-align: center;background: #ef681d21;overflow: hidden;border-top-right-radius: 5px;border-top-left-radius: 5px;}
+.client_ad_cover {width: 100%;max-height:200px;text-align: center;background: #ef681d21;overflow: hidden;border-top-right-radius: 5px;border-top-left-radius: 5px;}
 .client_ad_cover img {width: 100%}
 .post a {text-decoration: none}
 .post a:hover {text-decoration: none;color: #000;}
@@ -805,7 +806,7 @@ ul.size-list li a.unavailable{  cursor: not-allowed;opacity: 50%}
 .sub_menu .custom_select_btn_radio {padding: 5px 0!important; font-size: 14px}
 .filter_section {height: 81vh;overflow-y: scroll;direction: ltr}
 .filter_section .row {direction: rtl;margin-left: -7px;margin-right: -5px;}
-.filter_header {margin: 0!important;position: fixed;width: 242px;background: #fff;z-index: 1000;padding: 13px 0;border-bottom: 1px solid #dddddd94;}
+.filter_header {margin: 0 0 0 -12px!important;position: absolute;background: #fff;z-index: 1000;padding: 13px 0;border-bottom: 1px solid #dddddd94;}
 
 
 
