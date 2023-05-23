@@ -49,7 +49,7 @@
 
     /* Start Nav Bar */
     .pc_nav {display: none}
-    .mob_nav {display: block;height: 60px;padding: 0!important;}
+    /*.mob_nav {display: block;height: 60px;padding: 0!important;}*/
     /* End Nav Bar */
 
     /* Start Side bar */
@@ -328,7 +328,7 @@
 
     /* Start Nav Bar */
     .pc_nav {display: none}
-    .mob_nav {display: block;height: 60px;padding: 0!important;}
+    /*.mob_nav {display: block;height: 60px;padding: 0!important;}*/
     /* End Nav Bar */
 
     /* Start Side bar */
@@ -613,7 +613,7 @@ section.client_ads_section .card {height: 285px;}
     .client_ads_section .container {max-width:804px!important;}
     .news_paper .card {width: clamp(10rem, calc(16rem + 2vw), 22rem);}
     #search_btn_div {width:35%;}
-    
+
  /* Start Over All */
     h3 {font-size: 1.5rem;}
     /* End Over All */
@@ -1164,3 +1164,144 @@ only screen and (                min-resolution: 2dppx) {
 {
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+
+
+}
+
+@media (max-width: 767px) {
+
+}
+
+@media (max-width: 575px) {
+
+.header-nav {display: none}
+.mob_nav {display:block;background: #fff}
+
+.btn_plus_ad{padding: 0;width: 30px;height: 30px;font-size: 34px;color: #fff;background-color: rgb(255, 149, 0);border: 1px solid rgb(255, 149, 0);border-radius: 50%!important;}  }
+.btn_plus_ad span {position: absolute;top:-13px;left: 5px}
+
+
+
+/* Retina-ize images/icons */
+
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (   min--moz-device-pixel-ratio: 2),
+only screen and (     -o-min-device-pixel-ratio: 2/1),
+only screen and (        min-device-pixel-ratio: 2),
+only screen and (                min-resolution: 192dpi),
+only screen and (                min-resolution: 2dppx) {
+
+
+
+}
+
+
+/*media query start */
+
+/*less than 380px*/
+@media only screen and (max-width:380px)
+{
+
+}
+
+
+/*less than 575px*/
+@media only screen and (max-width:575px)  and (min-width: 380px)
+{
+
+}
+
+/*More Than 575 & less than 767px*/
+@media only screen and (max-width:768px) and (min-width:575px)
+{
+
+}
+/*less then 992px and more than 768*/
+@media only screen and (max-width:993px) and (min-width:768px)
+{
+
+
+}
+
+/*less then1140px and less than 993*/
+@media only screen and (max-width:1140px) and (min-width: 993px)
+{
+
+}
+
+@media only screen and (max-width:1366px) and (min-width: 1141px)
+{
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

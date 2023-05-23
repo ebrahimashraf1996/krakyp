@@ -1,7 +1,7 @@
 <div class="overlay"></div>
 
 <header>
-    <nav class="header-nav">
+    <nav class="header-nav" >
         <div class="header_container container">
             <div class="row upper_nav_new text-center pt-3">
                 <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-2 text-right">
@@ -342,34 +342,21 @@
             </div>
         </div>
     </nav>
-    <nav class="mob_nav" style="background-image: url('{{asset('assets/front/images/nav-bg.png')}}')">
-        <div class="row p-0 m-0">
-            <div class="col-sm-6 col-7" style=" height: 60px">
-                @if(backpack_auth()->check())
-                    <div style="margin: 10px 7px;">
-                        <a class="side_bar_contact_div" href="javascript:void(0);">
-                            <img class="flag" src="{{asset(backpack_auth()->user()->image)}}" alt="user-photo">
-                        </a>
-                    </div>
-                @else
-                    <div class="bold" style="margin: 14px 0">
-                        <a class="l_14" href="{{url('register')}}">
-                            حساب جديد ؟
-                        </a> /
-                        <a class="l_14" href="{{url('login')}}">
-                            تسجيل الدخول
-                        </a>
-                    </div>
-                @endif
-            </div>
-            <div class="col-sm-6 col-5 " style=" height: 60px; text-align: left; padding-left: 22px; margin-top:6px;">
-
+    <nav class="mob_nav">
+        <div class="row py-3 m-0">
+            <div class="col-sm-4 col-4">
                 <a class="logo_mobile" href="{{route('site.home')}}">
-                    <img src="{{asset($settings->logo)}}" alt="logo" style="width: 47px">
+                    <img src="{{asset($settings->logo)}}" alt="logo" style="width: 79px">
                 </a>
-                <a href="javascript:void(0);">
-                    <img src="{{asset('assets/front/images/side-bar-btn.png')}}" alt="side-bar-btn"
-                         class="side-bar-btn" style="width: 47px;">
+            </div>
+            <div class="col-sm-4 col-4">
+                <a href="#" class="input-group " dir="ltr">
+                    <div class="btn_plus_ad position-relative">
+                        <span class="plus_text">
+                            +
+                        </span>
+                    </div>
+                    <span class="form-control">أضف إعلان</span>
                 </a>
             </div>
         </div>

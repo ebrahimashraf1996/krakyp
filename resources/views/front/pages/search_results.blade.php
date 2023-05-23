@@ -16,13 +16,13 @@
         .sub_menu {
             display: none
         }
+        .header-nav {position: fixed; top:0;background: #fff; width: 100%}
 
     </style>
 @stop
 @section('script')
 
     <script>
-
 
         // JavaScript code
         function search_animal() {
@@ -40,6 +40,8 @@
         }
 
         $(document).ready(function () {
+
+
 
             let client_ad_post = $('section.client_ads_section .card');
 
@@ -211,7 +213,13 @@
 
             let filter_header = $(".filter_header");
             let filter_section = $('.filter_section');
+            let header_nav = $('.header-nav');
+            let client_ads_cols = $('.client_ads_cols');
             filter_header.width(filter_section.width() + 19);
+            filter_section.css('top', header_nav.height());
+            client_ads_cols.css('margin-top', (header_nav.height() - 30));
+
+
         });
     </script>
 @stop
@@ -259,7 +267,7 @@
                                         <select class="form-control" id="new_country_id" name="new_country_id" style="width: 100%">
                                             <option value="">اختر المكان</option>
                                             @foreach($locations as $item)
-                                                <option value="{{$item->id}}">{{$item->name}}</option>
+                                                <option value="{{$item->id}}" {{isset($_GET['new_country_id']) &&  $_GET['new_country_id'] == $item->id ? 'selected' : ''}}>{{$item->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -267,9 +275,19 @@
                                     <div class="form-group col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 py-2"
                                          id="new_city_id_div"
                                          disabled="">
-                                        <select class="form-control" id="new_city_id" name="new_city_id" disabled=""
+                                        <select class="form-control" id="new_city_id" name="new_city_id" {{!empty($_GET['new_country_id']) ? '' : 'disabled'}}
                                                 style="width: 100%">
-                                            <option value="">اختر المدينة</option>
+                                            @if(!empty($_GET['new_country_id']))
+                                                @php
+                                                    $cities = \App\Models\Location::select('id', 'name', 'parent_id')->where('parent_id', $_GET['new_country_id'])->get();
+                                                @endphp
+                                                    <option value="all">الكل</option>
+                                                @foreach($cities as $city)
+                                                    <option value="{{$city->id}}" {{!empty($_GET['new_city_id']) &&  $_GET['new_city_id'] == $city->id ? 'selected' : ''}}>{{$city->name}}</option>
+                                                @endforeach
+                                            @else
+                                                <option value="all">الكل</option>
+                                            @endif
                                         </select>
                                     </div>
                                 </div>
@@ -390,9 +408,9 @@
                                         <div class="main_head py-3 pe-3" data-target="subs_for_{{$main_item->id}}">
                                             <h4 class="bold l_17 d-inline-block">{{$main_item->attribute->title}}</h4>
                                             <span class="toggle_icons">
-                                        <i class="fa fa-chevron-left"></i>
-                                        <i class="fa fa-chevron-down d-none"></i>
-                                    </span>
+                                                <i class="fa fa-chevron-left"></i>
+                                                <i class="fa fa-chevron-down d-none"></i>
+                                             </span>
                                         </div>
                                         <div class="sub_menu subs_for_{{$main_item->id}} pl-2 mb-3">
 
@@ -406,7 +424,9 @@
                                                             <input type='checkbox'
                                                                    name="attrs[{{$main_item->attribute->id}}][]"
                                                                    class='inp_check'
-                                                                   value="{{$option->id}}">
+                                                                   value="{{$option->id}}"
+                                                            {{!empty($_GET['attrs'][$main_item->attribute->id]) && in_array($option->id, $_GET['attrs'][$main_item->attribute->id]) ? 'checked' : ''}}
+                                                            >
                                                             <div class='state p-warning'>
                                                                 <!-- svg path -->
                                                                 <svg class='svg svg-icon'
@@ -449,7 +469,9 @@
                                                         <input type='radio' id="{{$main_item->attribute->id}}_1"
                                                                name="attrs_yes_no[{{$main_item->attribute->id}}]"
                                                                class='inp_check'
-                                                               value="1">
+                                                               value="1"
+                                                            {{!empty($_GET['attrs_yes_no'][$main_item->attribute->id]) && $_GET['attrs_yes_no'][$main_item->attribute->id] == 1 ? 'checked' : ''}}
+                                                        >
                                                         <div class='state p-warning'>
                                                             <!-- svg path -->
                                                             <svg class='svg svg-icon'
@@ -471,7 +493,10 @@
                                                         <input type='radio' id="{{$main_item->attribute->id}}_0"
                                                                name="attrs_yes_no[{{$main_item->attribute->id}}]"
                                                                class='inp_check'
-                                                               value="0">
+                                                               value="0"
+                                                            {{!empty($_GET['attrs_yes_no'][$main_item->attribute->id]) && $_GET['attrs_yes_no'][$main_item->attribute->id] == 0 ? 'checked' : ''}}
+
+                                                        >
                                                         <div class='state p-warning'>
                                                             <!-- svg path -->
                                                             <svg class='svg svg-icon'
@@ -513,12 +538,15 @@
                                                         class="col-xxl-4 col-xl-4 col-md-4 col-sm-4 col-4 ">
                                                         <label
                                                             for="opt_{{$option->id}}"
-                                                            class="btn my-2 custom_select_btn">{{$option->val}}</label>
+                                                            class="btn my-2 custom_select_btn
+{{!empty($_GET['attrs'][$main_item->attribute->id]) && in_array($option->id, $_GET['attrs'][$main_item->attribute->id]) ? 'selected' : ''}}">{{$option->val}}</label>
                                                         <input type="checkbox"
                                                                name="attrs[{{$main_item->attribute->id}}][]"
                                                                id="opt_{{$option->id}}"
                                                                value="{{$option->id}}"
-                                                               class="d-none main_btn_answer">
+                                                               class="d-none main_btn_answer"
+                                                            {{!empty($_GET['attrs'][$main_item->attribute->id]) && in_array($option->id, $_GET['attrs'][$main_item->attribute->id]) ? 'checked' : ''}}
+                                                        >
 
                                                     </div>
                                                 @endforeach
@@ -530,38 +558,46 @@
                                 <div class="row">
                                     <div
                                         class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xm-12 col-12 text-right p-0 main_item_filter position-relative">
-                                        <div class="main_head py-3 pe-3" data-target="subs_for_{{$main_item->id}}">
+                                        <div class="main_head py-3 pe-3" data-target="subs_for_{{$main_item->attribute->id}}">
                                             <h4 class="bold l_17 d-inline-block">{{$main_item->attribute->title}}</h4>
                                             <span class="toggle_icons">
                                         <i class="fa fa-chevron-left"></i>
                                         <i class="fa fa-chevron-down d-none"></i>
                                     </span>
                                         </div>
-                                        <div class="sub_menu subs_for_{{$main_item->id}} pl-2 mb-3">
+                                        <div class="sub_menu subs_for_{{$main_item->attribute->id}} pl-2 mb-3">
 
                                             <div class="row custom_btn_rows"
                                                  style="padding-left: 0!important;max-height: 200px; overflow-y: scroll">
 
                                                 <div class="col-xxl-6 col-xl-6 col-md-6 col-sm-6 col-6 ">
                                                     <label
-                                                        for="opt_{{$main_item->id}}_yes"
-                                                        class="btn my-2 custom_select_btn_radio">نعم</label>
+                                                        for="opt_{{$main_item->attribute->id}}_yes"
+                                                        class="btn my-2 custom_select_btn_radio
+                                                        {{isset($_GET['attrs_yes_no'][$main_item->attribute->id]) && $_GET['attrs_yes_no'][$main_item->attribute->id] == '1' ? 'selected' : ''}}
+
+">نعم</label>
                                                     <input type="radio"
                                                            name="attrs_yes_no[{{$main_item->attribute->id}}]"
-                                                           id="opt_{{$main_item->id}}_yes"
+                                                           id="opt_{{$main_item->attribute->id}}_yes"
                                                            value="1"
-                                                           class="d-none main_btn_answer">
+                                                           class="d-none main_btn_answer"
+                                                        {{isset($_GET['attrs_yes_no'][$main_item->attribute->id]) && $_GET['attrs_yes_no'][$main_item->attribute->id] == '1' ? 'checked' : ''}}
+                                                    >
 
                                                 </div>
                                                 <div class="col-xxl-6 col-xl-6 col-md-6 col-sm-6 col-6 ">
                                                     <label
-                                                        for="opt_{{$main_item->id}}_no"
-                                                        class="btn my-2 custom_select_btn_radio">لا</label>
+                                                        for="opt_{{$main_item->attribute->id}}_no"
+                                                        class="btn my-2 custom_select_btn_radio
+                                                        {{isset($_GET['attrs_yes_no'][$main_item->attribute->id]) && $_GET['attrs_yes_no'][$main_item->attribute->id] == '0' ? 'selected' : ''}}">لا</label>
                                                     <input type="radio"
                                                            name="attrs_yes_no[{{$main_item->attribute->id}}]"
-                                                           id="opt_{{$main_item->id}}_no"
-                                                           value=""
-                                                           class="d-none main_btn_answer">
+                                                           id="opt_{{$main_item->attribute->id}}_no"
+                                                           value="0"
+                                                           class="d-none main_btn_answer"
+                                                        {{isset($_GET['attrs_yes_no'][$main_item->attribute->id]) && $_GET['attrs_yes_no'][$main_item->attribute->id] == '0' ? 'checked' : ''}}
+                                                    >
 
                                                 </div>
 
@@ -596,7 +632,9 @@
                                                         <input type='checkbox'
                                                                name="attrs_yes_no[{{$child_attr->attribute->id}}]"
                                                                class='inp_check'
-                                                               value="1">
+                                                               value="1"
+                                                        {{isset($_GET['attrs_yes_no'][$child_attr->attribute->id]) && $_GET['attrs_yes_no'][$child_attr->attribute->id] == 1 ? 'checked' : ''}}
+                                                        >
                                                         <div class='state p-warning'>
                                                             <!-- svg path -->
                                                             <svg class='svg svg-icon'
@@ -636,7 +674,11 @@
                                                           id="new_from_{{$main_item->attribute->unit}}">{{$main_item->attribute->unit}}</span>
                                                     <input type="number" class="form-control text-right"
                                                            name="from_to[{{$main_item->attribute->id}}][from]"
-                                                           style="border-left: none" value="" placeholder="من"
+                                                           style="border-left: none"
+                                                           value="{{isset($_GET['from_to'][$main_item->attribute->id]['from']) ? $_GET['from_to'][$main_item->attribute->id]['from']  : ''}}"
+
+
+                                                           placeholder="من"
                                                            aria-label="من"
                                                            aria-describedby="new_{{$main_item->attribute->unit}}">
                                                 </div>
@@ -648,7 +690,7 @@
                                                           id="new_to_{{$main_item->attribute->unit}}">{{$main_item->attribute->unit}}</span>
                                                     <input type="number" class="form-control text-right"
                                                            name="from_to[{{$main_item->attribute->id}}][to]"
-                                                           style="border-left: none" value="" placeholder="إلي"
+                                                           style="border-left: none" value="{{isset($_GET['from_to'][$main_item->attribute->id]['to']) ? $_GET['from_to'][$main_item->attribute->id]['to']  : ''}}" placeholder="إلي"
                                                            aria-label="إلي"
                                                            aria-describedby="new_{{$main_item->attribute->unit}}">
                                                 </div>
@@ -662,6 +704,7 @@
                     @endforeach
                     {{--            {{dd($other_attributes)}}--}}
                     @endif
+
 {{--                    @foreach($other_attributes as $other_item)--}}
 {{--                        @if($other_item->attribute->appearance == 'select')--}}
 {{--                            @if($other_item->type_of == 'with_options')--}}
@@ -945,7 +988,7 @@
 {{--                    @endforeach--}}
                 </form>
             </div>
-            <div class="col-xxl-9 col-xl-9 col-lg-9 col-md-9 col-sm-9 col-xm-12 col-12">
+            <div class="col-xxl-9 col-xl-9 col-lg-9 col-md-9 col-sm-9 col-xm-12 col-12 client_ads_cols ">
                 @if(isset($paid_client_ads_in_cat) && $paid_client_ads_in_cat->count() > 0 || isset($free_client_ads_in_cat) && $free_client_ads_in_cat->count() > 0 )
                     {{--    Start Ads--}}
                     <section class="client_ads_section mt-1 text-center">
@@ -1079,11 +1122,11 @@
                                             </div>
                                         @endforeach
                                     </div>
-                                    <div class="row mt-4">
-                                        <div class="col-md-3 col-12 col-sm-12 m-auto">
-                                            <button class="btn" id="see_more">اظهر المزيد</button>
-                                        </div>
-                                    </div>
+{{--                                    <div class="row mt-4">--}}
+{{--                                        <div class="col-md-3 col-12 col-sm-12 m-auto">--}}
+{{--                                            <button class="btn" id="see_more">اظهر المزيد</button>--}}
+{{--                                        </div>--}}
+{{--                                    </div>--}}
                                 </div>
                             </div>
                         </div>
