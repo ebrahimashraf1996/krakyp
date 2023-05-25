@@ -2324,7 +2324,7 @@
                     // 1- Confirm With Same Phone -> Swal Fire رقم الهاتف لم يتغير
 
                     Swal.fire({
-                        icon: 'success',
+                        icon: 'error',
                         text: "رقم الهاتف لم يتغير",
                         dangerMode: true,
                         confirmButtonColor: '#3085d6',
@@ -2495,7 +2495,7 @@
                                 icon: 'success',
                                 text: result,
                                 dangerMode: false,
-                                confirmButtonColor: '#00ff00',
+                                confirmButtonColor: '#3085d6',
                                 confirmButtonText: 'حسنا',
                                 showCloseButton: true,
                             });
@@ -2520,7 +2520,7 @@
                         icon: 'success',
                         text: result,
                         dangerMode: false,
-                        confirmButtonColor: '#00ff00',
+                        confirmButtonColor: '#3085d6',
                         confirmButtonText: 'حسنا',
                         showCloseButton: true,
                     });
@@ -2542,8 +2542,8 @@
                         icon: 'success',
                         text: result,
                         dangerMode: false,
-                        confirmButtonColor: '#00ff00',
-                        confirmButtonText: 'حسنا',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'عودة',
                         showCloseButton: true,
                     });
                     {{--window.setTimeout(function () {--}}

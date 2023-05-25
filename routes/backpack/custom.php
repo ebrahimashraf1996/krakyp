@@ -37,8 +37,8 @@ Route::group([
     Route::crud('test-cat', 'TestCategoryCrudController');
     Route::crud('reordering-attribute', 'ReorderingAttributeCrudController');
 //    Route::get('attribute-reordering', 'ReorderingAttributeCrudController@saveReorder')->name('attribute.reordering');
+    Route::crud('mobilebanner', 'MobilebannerCrudController');
 }); // this should be the absolute last line of this file
-
 
 
 

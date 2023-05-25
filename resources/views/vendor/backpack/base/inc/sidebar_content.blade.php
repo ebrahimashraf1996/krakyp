@@ -24,11 +24,21 @@
     </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="{{ backpack_url('elfinder') }}"><i class="nav-icon la la-files-o"></i> <span>{{ trans('backpack::crud.file_manager') }}</span></a></li>
+<li class="nav-item nav-dropdown">
+    <a class="nav-link nav-dropdown-toggle" href="#"><i class="nav-icon la la-lg la-calendar-check-o"></i>صور البانر</a>
+    <ul class="nav-dropdown-items">
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('banner') }}'><i class='nav-icon la la-desktop'></i>صور الشاشات الكبيرة</a></li>
+        <li class='nav-item'><a class='nav-link' href='{{ backpack_url('mobilebanner') }}'><i class='nav-icon la la-mobile'></i> صور الموبايل</a></li>
+    </ul>
+</li>
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('tag') }}'><i class='nav-icon la la-tag'></i> الكلمات المفتاحية</a></li>
-<li class='nav-item'><a class='nav-link' href='{{ backpack_url('banner') }}'><i class='nav-icon la la-calendar-check-o'></i> صور البانر</a></li>
+
+
+
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('setting') }}'><i class='nav-icon la la-cog'></i> الإعدادات</a></li>
 
 <li class='nav-item'><a class='nav-link' href='{{ backpack_url('reason') }}'><i class='nav-icon la la-eye-slash'></i> أسباب الرفض</a></li>
+
 
 
 

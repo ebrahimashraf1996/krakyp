@@ -20,14 +20,14 @@
     /* Start client_ads_section */
     .client_ads_section {margin-top: 40px;}
     .client_ads_div {margin-top: 1.5rem !important;}
-    .client_ad_cover img {height: 77px;}
-    .client_ads_section .titles {margin: 1rem 0.5rem 0.5rem 0.5rem;}
+    /*.client_ad_cover img {height: 77px;}*/
+    /*.client_ads_section .titles {margin: 1rem 0.5rem 0.5rem 0.5rem;}*/
     #client_ads_cont .card-title {font-size: .8rem;line-height: 1.5;}
     #client_ads_cont .card-price {font-size: 1rem;}
     .client_ads_section .footer_card {margin: 0 0.3rem;}
     .client_ads_section .footer_card small{font-size: 71%}
-    section.client_ads_section .card {height: 300px;}
-    .client_ad_cover {overflow: hidden; width: 100%; }
+    /*section.client_ads_section .card {height: 300px;}*/
+    /*.client_ad_cover {overflow: hidden; width: 100%; }*/
     /* End client_ads_section */
 
 
@@ -49,7 +49,6 @@
 
     /* Start Nav Bar */
     .pc_nav {display: none}
-    /*.mob_nav {display: block;height: 60px;padding: 0!important;}*/
     /* End Nav Bar */
 
     /* Start Side bar */
@@ -87,7 +86,7 @@
 
     /* Start Featured */
     .cat_img img {width: 55%}
-    div.cats_section {overflow: auto;white-space: nowrap;height: 230px;}
+    /*div.cats_section {overflow: auto;white-space: nowrap;height: 230px;}*/
     .cat_div {display: inline-block;text-align: center;}
     .cat_arrow div.i_bg {height: 44px;width: 44px}
     .cat_title {margin-top: -26px}
@@ -104,7 +103,7 @@
     .single_ad_section {padding-top: 38px}
     .client_ad_image_item {width: auto !important;height: 180px !important;}
     .attributes {padding-right: .5rem;padding-left: .5rem;}
-    .related_products .client_ad_cover img {height: 83px}
+    /*.related_products .client_ad_cover img {height: 83px}*/
     .related_products .card  {height: 287px;}
     .side_part {margin-top: 0}
     .whats-icon {width: 16px}
@@ -120,7 +119,7 @@
     .client_ads_cat_section {padding-top: 14px!important;margin-top:0;}
     .filters_active {right: 0}
     .filter_btn_sec {display: block}
-    .client_ads_cat_section .client_ad_cover img {height: 95px}
+    /*.client_ads_cat_section .client_ad_cover img {height: 95px}*/
 
     /* End Category Show */
 
@@ -181,7 +180,7 @@
     .social {margin-top: 5px!important;}
     .team_under_head {width: 90%;margin: auto}
     .section_our_solution {margin-top: 0!important;}
-    .post {margin:20px auto auto}
+    /*.post {margin:20px auto auto}*/
     .post a {text-decoration: none}
     .post a:hover {text-decoration: none;color: #000;}
     footer section div.row {margin: 0 10px!important;}
@@ -222,7 +221,7 @@
     .pc_logo {display: none}
     .projects_section .card {margin: 0 20px}
     /*.sidebar1 {width: 361px}*/
-    nav.lower-nav {height: 130px; background-size: 100% 100%;background-image: url("../images/mobile_header.png")}
+    /*nav.lower-nav {height: 130px; background-size: 100% 100%;background-image: url("../images/mobile_header.png")}*/
 
     .out-pages-header h5 {padding: 101px 58px}
     .sidebar2 {display: block}
@@ -289,25 +288,25 @@
     .nav-tabs a.nav-link.active , .nav-tabs .nav-item.show a.nav-link {font-size: 16px;padding: 10px 3px;border-top: 3px solid #000 !important;border-left: 3px solid #000 !important;border-right: 3px solid #000 !important;}
     .nav-tabs a.nav-link , .nav-tabs .nav-item.show a.nav-link {font-size: 14px;padding: 10px 3px;text-align: center}
     .nav-steps-wrapper li {width: 50%}
-    .special_cats_h {margin-bottom: 44px;}
+    /*.special_cats_h {margin-bottom: 44px;}*/
     .search_btn {margin-top: -50px}
     .cats_section {min-height: 299px;}
     .wish_div {top: 8px; left: 8px; display: block}
 }
 
 @media (min-width: 350px) and (max-width: 400px) {
-    .client_ad_cover img {height: 77px;}
-    section.client_ads_section .card {height: 300px;}
+    /*.client_ad_cover img {height: 77px;}*/
+    /*section.client_ads_section .card {height: 300px;}*/
 }
 @media (min-width: 400px) and (max-width: 450px) {
-    .client_ad_cover img {height: 92px;}
-    section.client_ads_section .card {height: 300px;}
+    /*.client_ad_cover img {height: 92px;}*/
+    /*section.client_ads_section .card {height: 300px;}*/
 }
 
 @media (min-width: 450px) and (max-width: 500px) {
-    .client_ad_cover img {height: 109px;}
-    section.client_ads_section .card {height: 314px;}
-    .client_ads_cat_section .client_ad_cover img {height: 116px!important;}
+    /*.client_ad_cover img {height: 109px;}*/
+    /*section.client_ads_section .card {height: 314px;}*/
+    /*.client_ads_cat_section .client_ad_cover img {height: 116px!important;}*/
 }
 
 @media (min-width: 500px) and (max-width: 800px) {
@@ -328,7 +327,6 @@
 
     /* Start Nav Bar */
     .pc_nav {display: none}
-    /*.mob_nav {display: block;height: 60px;padding: 0!important;}*/
     /* End Nav Bar */
 
     /* Start Side bar */
@@ -366,7 +364,7 @@
 
     /* Start Featured */
     .cat_img img {width: 55%}
-    div.cats_section {overflow: auto;white-space: nowrap;height: 230px;}
+    /*div.cats_section {overflow: auto;white-space: nowrap;height: 230px;}*/
     .cat_div {display: inline-block;text-align: center;}
     .cat_arrow div.i_bg {height: 44px;width: 44px}
     .cat_title {margin-top: -26px}
@@ -377,13 +375,13 @@
     /* Start client_ads_section */
     .client_ads_section {margin-top: 40px;}
     .client_ads_div {margin-top: 1.5rem !important;}
-    .client_ad_cover img {height: 95px;}
-    .client_ads_section .titles {margin: 1rem 0.5rem 0.5rem 0.5rem;}
+    /*.client_ad_cover img {height: 95px;}*/
+    /*.client_ads_section .titles {margin: 1rem 0.5rem 0.5rem 0.5rem;}*/
     #client_ads_cont .card-title {font-size: .8rem;line-height: 1.5;}
     #client_ads_cont .card-price {font-size: 1rem;}
     .client_ads_section .footer_card {margin: 0 0.3rem;}
     .client_ads_section .footer_card small{font-size: 71%}
-    section.client_ads_section .card {height: 269px;}
+    /*section.client_ads_section .card {height: 269px;}*/
 
     /* End client_ads_section */
 
@@ -394,7 +392,7 @@
     .single_ad_section {padding-top: 38px}
     .client_ad_image_item {width: auto !important;height: 180px !important;}
     .attributes {padding-right: .5rem;padding-left: .5rem;}
-    .related_products .client_ad_cover img {height: 83px}
+    /*.related_products .client_ad_cover img {height: 83px}*/
     .related_products .card  {height: 287px;}
     .side_part {margin-top: 0}
     .whats-icon {width: 16px}
@@ -411,7 +409,7 @@
 
     .filters_active {right: 0}
     .filter_btn_sec {display: block}
-    .client_ads_cat_section .client_ad_cover img {height: 95px}
+    /*.client_ads_cat_section .client_ad_cover img {height: 95px}*/
 
     /* End Category Show */
 
@@ -472,7 +470,7 @@
     .social {margin-top: 5px!important;}
     .team_under_head {width: 90%;margin: auto}
     .section_our_solution {margin-top: 0!important;}
-    .post {margin:20px auto auto}
+    /*.post {margin:20px auto auto}*/
     .post a {text-decoration: none}
     .post a:hover {text-decoration: none;color: #000;}
     footer section div.row {margin: 0 10px!important;}
@@ -513,7 +511,7 @@
     .pc_logo {display: none}
     .projects_section .card {margin: 0 20px}
     .sidebar1 {width: 361px}
-    nav.lower-nav {height: 130px; background-size: 100% 100%;background-image: url("../images/mobile_header.png")}
+    /*nav.lower-nav {height: 130px; background-size: 100% 100%;background-image: url("../images/mobile_header.png")}*/
 
     .out-pages-header h5 {padding: 101px 58px}
     .sidebar2 {display: block}
@@ -580,7 +578,7 @@
     .nav-tabs a.nav-link.active , .nav-tabs .nav-item.show a.nav-link {font-size: 16px;padding: 10px 3px;border-top: 3px solid #000 !important;border-left: 3px solid #000 !important;border-right: 3px solid #000 !important;}
     .nav-tabs a.nav-link , .nav-tabs .nav-item.show a.nav-link {font-size: 14px;padding: 10px 3px;text-align: center}
     .nav-steps-wrapper li {width: 50%}
-    .special_cats_h {margin-bottom: 44px;}
+    /*.special_cats_h {margin-bottom: 44px;}*/
     .search_btn {margin-top: -50px}
     .cats_section {min-height: 299px;}
     .wish_div {top: 8px; left: 8px; display: block}
@@ -589,20 +587,20 @@
 
 
 @media (min-width: 536px) and (max-width: 768px) {
-        .client_ad_cover img {height: 129px;}
-section.client_ads_section .card {height: 285px;}
+        /*.client_ad_cover img {height: 129px;}*/
+/*section.client_ads_section .card {height: 285px;}*/
 .news_paper .card{width: clamp(18rem, calc(13rem + 2vw), 17rem);}
-.client_ads_cat_section .client_ad_cover img {
-    height: 119px!important;
-}
+/*.client_ads_cat_section .client_ad_cover img {*/
+/*    height: 119px!important;*/
+/*}*/
     .contact-us .container {    max-width: 700px;}
 
 }
 
 @media (min-width: 768px) and (max-width: 800px) {
 
-    section.client_ads_section .card{height: 300px;}
-    .client_ad_cover img {height: 81px;}
+    /*section.client_ads_section .card{height: 300px;}*/
+    /*.client_ad_cover img {height: 81px;}*/
 }
 @media (min-width: 800px) and (max-width: 1000px) {
     .contact-us .container {max-width: 778px;}
@@ -632,7 +630,6 @@ section.client_ads_section .card {height: 285px;}
 
     /* Start Nav Bar */
     .pc_nav {display: none}
-    .mob_nav {display: block;height: 60px;padding: 0!important;}
     /* End Nav Bar */
 
     /* Start Side bar */
@@ -670,7 +667,7 @@ section.client_ads_section .card {height: 285px;}
 
     /* Start Featured */
     .cat_img img {width: 55%}
-    div.cats_section {overflow: auto;white-space: nowrap;height: 230px;}
+    /*div.cats_section {overflow: auto;white-space: nowrap;height: 230px;}*/
     .cat_div {display: inline-block;text-align: center;}
     .cat_arrow div.i_bg {height: 44px;width: 44px}
     .cat_title {margin-top: -26px}
@@ -681,13 +678,13 @@ section.client_ads_section .card {height: 285px;}
     /* Start client_ads_section */
     .client_ads_section {margin-top: 40px;}
     .client_ads_div {margin-top: 1.5rem !important;}
-    .client_ad_cover img {height: 92px;}
-    .client_ads_section .titles {margin: 1rem 0.5rem 0.5rem 0.5rem;}
+    /*.client_ad_cover img {height: 92px;}*/
+    /*.client_ads_section .titles {margin: 1rem 0.5rem 0.5rem 0.5rem;}*/
     #client_ads_cont .card-title {font-size: .8rem;line-height: 1.5;}
     #client_ads_cont .card-price {font-size: 1rem;}
     .client_ads_section .footer_card {margin: 0 0.3rem;}
     .client_ads_section .footer_card small{font-size: 71%}
-    section.client_ads_section .card {height: 305px;}
+    /*section.client_ads_section .card {height: 305px;}*/
 
     /* End client_ads_section */
 
@@ -698,7 +695,7 @@ section.client_ads_section .card {height: 285px;}
     .single_ad_section {padding-top: 38px}
     .client_ad_image_item {width: auto !important;height: 180px !important;}
     .attributes {padding-right: .5rem;padding-left: .5rem;}
-    .related_products .client_ad_cover img {height: 83px}
+    /*.related_products .client_ad_cover img {height: 83px}*/
     .related_products .card  {height: 287px;}
     .side_part {margin-top: 0}
     .whats-icon {width: 16px}
@@ -714,7 +711,7 @@ section.client_ads_section .card {height: 285px;}
     .client_ads_cat_section {padding-top: 14px!important;margin-top:0;}
     .filters_active {right: 0}
     .filter_btn_sec {display: block}
-    .client_ads_cat_section .client_ad_cover img {height: 127px}
+    /*.client_ads_cat_section .client_ad_cover img {height: 127px}*/
 
     /* End Category Show */
 
@@ -778,7 +775,7 @@ section.client_ads_section .card {height: 285px;}
     .social {margin-top: 5px!important;}
     .team_under_head {width: 90%;margin: auto}
     .section_our_solution {margin-top: 0!important;}
-    .post {margin:20px auto auto}
+    /*.post {margin:20px auto auto}*/
     .post a {text-decoration: none}
     .post a:hover {text-decoration: none;color: #000;}
     footer section div.row {margin: 0 10px!important;}
@@ -819,7 +816,7 @@ section.client_ads_section .card {height: 285px;}
     .pc_logo {display: none}
     .projects_section .card {margin: 0 20px}
     .sidebar1 {width: 361px}
-    nav.lower-nav {height: 130px; background-size: 100% 100%;background-image: url("../images/mobile_header.png")}
+    /*nav.lower-nav {height: 130px; background-size: 100% 100%;background-image: url("../images/mobile_header.png")}*/
 
     .out-pages-header h5 {padding: 101px 58px}
     .sidebar2 {display: block}
@@ -886,7 +883,7 @@ section.client_ads_section .card {height: 285px;}
     .nav-tabs a.nav-link.active , .nav-tabs .nav-item.show a.nav-link {font-size: 16px;padding: 10px 3px;border-top: 3px solid #000 !important;border-left: 3px solid #000 !important;border-right: 3px solid #000 !important;}
     .nav-tabs a.nav-link , .nav-tabs .nav-item.show a.nav-link {font-size: 14px;padding: 10px 3px;text-align: center}
     .nav-steps-wrapper li {width: 50%}
-    .special_cats_h {margin-bottom: 44px;}
+    /*.special_cats_h {margin-bottom: 44px;}*/
     .search_btn {margin-top: -50px}
     .cats_section {min-height: 299px;}
     .wish_div {top: 8px; left: 8px; display: block}
@@ -896,7 +893,7 @@ section.client_ads_section .card {height: 285px;}
 
 
 @media (min-width: 1000px) and (max-width: 1100px) {
-.client_ad_cover img {height: 112px;}
+/*.client_ad_cover img {height: 112px;}*/
 }
 
 @media  (max-width: 1000px) {
@@ -906,12 +903,12 @@ section.client_ads_section .card {height: 285px;}
 
 @media (min-width: 1100px) and (max-width: 1200px) {
 .client_ads_section .container {max-width: 1100px;}
-.client_ad_cover img {height: 131px;}
+/*.client_ad_cover img {height: 131px;}*/
 }
 
 
 @media (min-width: 1200px) and (max-width: 1400px) {
-.client_ad_cover img {height:136px;}
+/*.client_ad_cover img {height:136px;}*/
 
 }
 
@@ -1034,7 +1031,7 @@ only screen and (                min-resolution: 2dppx) {
     .social {margin-top: 5px!important;}
     .team_under_head {width: 90%;margin: auto}
     .section_our_solution {margin-top: 0!important;}
-    .post {margin:20px auto auto}
+    /*.post {margin:20px auto auto}*/
     .post a {text-decoration: none}
     .post a:hover {text-decoration: none;color: #000;}
     footer section div.row {margin: 0 10px!important;}
@@ -1076,7 +1073,7 @@ only screen and (                min-resolution: 2dppx) {
     .pc_logo {display: none}
     .projects_section .card {margin: 0 20px}
     /*.sidebar1 {width: 361px}*/
-    nav.lower-nav {height: 130px; background-size: 100% 100%;background-image: url("../images/mobile_header.png")}
+    /*nav.lower-nav {height: 130px; background-size: 100% 100%;background-image: url("../images/mobile_header.png")}*/
 
     .out-pages-header h5 {padding: 101px 58px}
     .sidebar2 {display: block}
@@ -1216,8 +1213,41 @@ only screen and (                min-resolution: 2dppx) {
 .header-nav {display: none}
 .mob_nav {display:block;background: #fff}
 
-.btn_plus_ad{padding: 0;width: 30px;height: 30px;font-size: 34px;color: #fff;background-color: rgb(255, 149, 0);border: 1px solid rgb(255, 149, 0);border-radius: 50%!important;}  }
-.btn_plus_ad span {position: absolute;top:-13px;left: 5px}
+
+.btn_plus_ad {width: 100%;border: 1px solid rgb(255, 149, 0);padding: 5px;border-radius: 20px;}
+.btn_plus_ad div.plus_icon{padding: 0;width: 27px;height: 27px;font-size: 32px;color: #fff;background-color: rgb(255, 149, 0);border: 1px solid rgb(255, 149, 0);border-radius: 50%!important;}
+.btn_plus_ad span.plus_text {position: absolute;top: 9.5px;right: 12px;color: rgb(255, 149, 0);font-size: 12px;}
+.btn_plus_ad .plus_plus {position: absolute;top: -15px;left: 5px;}
+#menu_ic {background: #edf0f8;border-radius: 2px;}
+#banners_section {display: none}
+#banners_section_mobile {display: block}
+.new_banners .new_search_box {display: none;}
+
+#new_search_form {border-radius: 0.4rem;padding: 2rem 1.5rem;}
+#get_result_btn {font-size:14px }
+#new_adv_search {font-size:14px }
+.new_search_box_mobile {border-radius: 0.4rem;padding: 2rem 1.5rem;box-shadow: 0 5px 10px 0 #0000001f; display: block}
+.get_result_btn, .new_adv_search {font-size: 13px;font-weight: bold;padding: 8px 0;}
+#featured_categories_carousel.owl-carousel .owl-nav button.owl-prev {display: block!important;}
+#featured_categories_carousel.owl-carousel .owl-nav button.owl-next {display: block!important;right: 0!important;}
+#featured_categories_carousel.owl-carousel .owl-nav button.owl-prev i {font-size: 38px!important;}
+#featured_categories_carousel.owl-carousel .owl-nav button.owl-next i {font-size: 38px!important;}
+.cats_section .cat_div {min-height: 127px!important;}
+.post {padding-right: 0.25rem !important;padding-left: 0.25rem !important;}
+.client_ads_section .location_card {margin: 0 6px}
+.client_ads_section .titles {margin: 8px 5px 17px 5px!important;}
+#client_ads_cont .card-title {margin-bottom: 5px!important;}
+.date_client_ad {left: 13px!important;}
+
+
+
+
+
+
+
+
+
+}
 
 
 

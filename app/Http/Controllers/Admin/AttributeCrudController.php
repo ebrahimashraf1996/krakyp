@@ -205,6 +205,15 @@ class AttributeCrudController extends CrudController
                 'type' => 'custom_options_js'
             ],
 
+            [   // Enum Status
+                'name' => 'unit',
+                'label' => 'وحدة القياس',
+                'type' => 'text',
+                'attributes' => [
+                    'id' => 'unit'
+                ]
+            ],
+
 
             [   // Table
                 'name' => 'options[]',
@@ -214,6 +223,9 @@ class AttributeCrudController extends CrudController
                 'columns' => [
                     'title' => 'المحتوي',
                     'image' => 'الصورة',
+                ],
+                'attributes' => [
+                    'id' => 'options_update'
                 ],
 
                 'max' => 100, // maximum rows allowed in the table

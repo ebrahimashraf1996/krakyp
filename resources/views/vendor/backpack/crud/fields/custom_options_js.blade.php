@@ -34,6 +34,7 @@
                 let option_buttons = $('#appearance option[value="buttons"]');
                 let option_checkbox = $('#appearance option[value="check_box"]');
                 let option_from_to = $('#appearance option[value="from_to"]');
+                let unit = $('#unit input');
 
                 if (current_val === 'with_options') {
                     options.parent().removeClass('d-none');

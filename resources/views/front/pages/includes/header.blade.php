@@ -1,7 +1,7 @@
 <div class="overlay"></div>
 
 <header>
-    <nav class="header-nav" >
+    <nav class="header-nav">
         <div class="header_container container">
             <div class="row upper_nav_new text-center pt-3">
                 <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-2 text-right">
@@ -42,7 +42,7 @@
                                         class="bold">{{backpack_auth()->user()->name}}</span></li>
                                 <li class="menu_item">
                                     <a href="{{route('personal.edit')}}" class="dropdown-item">
-{{--                                        <img src="{{asset('assets/front/images/profile-icon.webp')}}" alt="icon" class="profile_edit">--}}
+                                        {{--                                        <img src="{{asset('assets/front/images/profile-icon.webp')}}" alt="icon" class="profile_edit">--}}
 
                                         <i class="fa-solid fa-square-pen"></i>
                                         &nbsp;&nbsp; تعديل الملف
@@ -92,39 +92,46 @@
                 <div class="col-xxl-12 col-xl-12 col-md-12col-sm-12 col-12">
                     <ul class="lower_nav_new_menu">
                         <li>
-                            <a href="{{route('site.home')}}" class="nav_menu_item {{Route::currentRouteName() === 'site.home' ? 'hovered' : '' }}">
+                            <a href="{{route('site.home')}}"
+                               class="nav_menu_item {{Route::currentRouteName() === 'site.home' ? 'hovered' : '' }}">
                                 <span>
                                     الرئيسية
                                 </span>
                             </a>
                         </li>
                         <li>
-                            <span class="cat_menu_btn nav_menu_item {{Route::currentRouteName() === 'cat.show' ? 'hovered' : '' }}">
+                            <span
+                                class="cat_menu_btn nav_menu_item {{Route::currentRouteName() === 'cat.show' ? 'hovered' : '' }}">
                                 الأقسام
                             </span>
                         </li>
                         <li>
-                            <a href="{{route('buy-package')}}" class="nav_menu_item {{Route::currentRouteName() === 'buy-package' ? 'hovered' : '' }}">
+                            <a href="{{route('buy-package')}}"
+                               class="nav_menu_item {{Route::currentRouteName() === 'buy-package' ? 'hovered' : '' }}">
                                 <span>شراء باقات</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{route('add.post')}}" class="nav_menu_item {{Route::currentRouteName() === 'add.post' ? 'hovered' : '' }}">
+                            <a href="{{route('add.post')}}"
+                               class="nav_menu_item {{Route::currentRouteName() === 'add.post' ? 'hovered' : '' }}">
                                 <span>أعلن الآن</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{route('articles.index')}}" class="nav_menu_item {{Route::currentRouteName() === 'articles.index' || Route::currentRouteName() === 'articles.show' ? 'hovered' : '' }}">
+                            <a href="{{route('articles.index')}}"
+                               class="nav_menu_item {{Route::currentRouteName() === 'articles.index' || Route::currentRouteName() === 'articles.show' ? 'hovered' : '' }}">
                                 <span>المقالات</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{route('contact.us')}}" class="nav_menu_item {{Route::currentRouteName() === 'contact.us' ? 'hovered' : '' }}">
+                            <a href="{{route('contact.us')}}"
+                               class="nav_menu_item {{Route::currentRouteName() === 'contact.us' ? 'hovered' : '' }}">
                                 <span>تواصل معنا</span>
                             </a>
                         </li>
                         <li>
-                            <a href="{{route('about.us')}}" class="nav_menu_item {{Route::currentRouteName() === 'about.us' ? 'hovered' : '' }}">
+                            <a href="{{route('about.us')}}"
+                               class="nav_menu_item {{Route::currentRouteName() === 'about.us' ? 'hovered' : '' }}">
                                 <span>من نحن</span>
                             </a>
                         </li>
@@ -258,7 +265,7 @@
                                     </i>
                                 </a>
                                 @php
-                                    $cats = \App\Models\Category::active()->main()->select('id', 'title', 'slug', 'parent_id')->get();
+                                    $cats = \App\Models\Category::active()->main()->select('id', 'title','image', 'slug','cat_icon', 'parent_id')->get();
                                 @endphp
                                 <ul class="dropdown-menu services-menu" aria-labelledby="navbarDropdown">
                                     @foreach($cats as $item)
@@ -349,69 +356,300 @@
                     <img src="{{asset($settings->logo)}}" alt="logo" style="width: 79px">
                 </a>
             </div>
-            <div class="col-sm-4 col-4">
-                <a href="#" class="input-group " dir="ltr">
+            <div class="col-sm-4 col-4 p-r-1 p-l-1">
+                <a href="{{route('add.post')}}" class="input-group " dir="ltr">
                     <div class="btn_plus_ad position-relative">
-                        <span class="plus_text">
-                            +
-                        </span>
+                        <span class="plus_text bold">أضف إعلان</span>
+
+                        <div class="plus_icon">
+                            <div class="position-relative">
+                                <span class="plus_plus">+</span>
+                            </div>
+                        </div>
                     </div>
-                    <span class="form-control">أضف إعلان</span>
+                </a>
+            </div>
+            <div class="col-sm-4 col-4 text-left p-t-7">
+                <a href="javascript:void(0);" class="m-l-16" data-bs-toggle="modal" data-bs-target="#search_model">
+                    <img src="{{asset('assets/front/images/search-normal-mobile.png')}}" alt="search-icon"
+                         style="width: 24px">
+                </a>
+                <a href="javascript:void(0);" class="m-r-5 p-r-6 p-l-6 p-t-5 p-b-7" id="menu_ic">
+                    <img src="{{asset('assets/front/images/menu_ic.svg')}}" alt="menu_ic">
                 </a>
             </div>
         </div>
     </nav>
-    <nav class="sidebar1">
-        <div class="side_bar_contact_div_dismiss">
-            <div class="side_bar_contact_cover_btn_dismiss">
-                <div class="spans_container_dismiss">
-                    <img src="{{asset('assets/front/images/dismiss.png')}}" alt="dismiss" style="width: 25px">
+    <div class="modal fade" id="search_model">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <div class="modal-body">
+                    <div class=" col-sm-12 col-12 new_search_box_mobile"
+                         style="height: 300px;background: #fff">
+                        <form action="{{route('new.search.get')}}" method="get" id="new_search_form_mob">
+                            <div class="row" dir="rtl">
+                                <div class="form-group col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 py-1"
+                                     id="new_main_cat_mob">
+                                    <select class="form-control" id="new_main_cat_id_mob" name="new_main_cat_id"
+                                            style="width: 100%">
+                                        <option value="">اختر الفئة الرئيسية</option>
+                                        @foreach($cats as $item)
+                                            <option value="{{$item->id}}">{{$item->title}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 py-1"
+                                     id="new_sub_cat_id_div_mob" disabled="">
+                                    <select class="form-control" id="new_sub_cat_id_mob" name="new_sub_cat_id"
+                                            disabled=""
+                                            style="width: 100%">
+                                        <option value="">اختر الفئة الفرعية</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-xxl-6 col-xl-6 col-md-6 col-6 col-sm-6 py-1"
+                                     id="new_from_div_mob">
+                                    <input type="number" class="form-control" id="new_from__mob" name="new_from_"
+                                           value="" placeholder="أقل سعر ج.م" required>
+                                </div>
+                                <div class="form-group col-xxl-6 col-xl-6 col-md-6 col-6 col-sm-6 py-1"
+                                     id="new_to_div_mob">
+                                    <input type="number" class="form-control" id="new_to__mob" name="new_to_"
+                                           value="" placeholder="أعلي سعر ج.م" required>
+                                </div>
+                                <div class="form-group col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 py-1"
+                                     id="new_sort_div_mob">
+                                    <select class="form-control" id="new_sort_by_mob" name="new_sort_by">
+                                        <option value="cr_desc">من الأحدث إلي الأقدم</option>
+                                        <option value="cr_asc">من الأقدم إلي الأحدث</option>
+                                        <option value="pr_asc">من الأقل سعر إلي الأعلي سعر</option>
+                                        <option value="pr_desc">من الأعلي سعر إلي الأقل سعر</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-xxl-6 col-xl-6 col-md-6 col-6 col-sm-6 py-1"
+                                     id="get_result_btn_div_mob">
+                                    <button type="submit" class="btn get_result_btn w-100" id="get_result_btn_mob"><i
+                                            class="fa-solid fa-magnifying-glass"></i> &nbsp;اظهر النتائج
+                                    </button>
+                                </div>
+                                <div class="form-group col-xxl-6 col-xl-6 col-md-6 col-6 col-sm-6 py-1"
+                                     id="get_adv_result_btn_div_mob">
+                                    <a class="btn w-100 new_adv_search" href="javascript:void(0);"
+                                       id="new_adv_search_mob"><i
+                                            class="fa-solid fa-gears"></i> &nbsp;بحث متقدم</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
             </div>
         </div>
-        <!-- close sidebar menu -->
+    </div>
 
 
-        <div class="logo">
-            <a href="{{route('site.home')}}">
-                <img src="{{asset($settings->logo)}}" style="margin-bottom: 10px;width: 100px;" alt="">
-            </a>
+    <nav class="sidebar1">
+        <div class="row mt-3" style="border-bottom: 1px solid #ddd">
+            <div class="col-sm-6 col-6 text-right" style="padding-right: 21px; padding-top: 10px;">
+                <h3 style="color: #2a4ead; font-size: 18px!important;" class="bold">القائمة</h3>
+            </div>
+            <div class="col-sm-6 col-6 text-left">
+                <button class="btn" id="close_all"
+                        style="color: #2a4ead; background: #f4f5fe!important;width: 58%;padding: 6px 0!important;">
+                    <i class="fa-solid fa-xmark " style="font-size: 15px;padding: 0 6px!important; "></i>
+                    <span>إغلاق</span>
+                </button>
+            </div>
         </div>
         @if(backpack_auth()->check())
 
-            <div class="side_bar_touch">
-                <ul id="lang_list">
-                    <li class="menu_span"> أهلا وسهلا</li>
-                    <li class="menu_span"><span class="bold">{{backpack_auth()->user()->name}}</span></li>
-                    @if(backpack_auth()->check())
-                        <li><a href="{{route('personal.edit')}}" class="dropdown-item l_18"><i
-                                    class="fa-solid fa-square-pen"></i>&nbsp;&nbsp; تعديل الملف
-                                الشخصي</a></li>
-                    @endif
-                    <li><a href="{{route('user.posts')}}" class="dropdown-item l_18"><i
-                                class="fa-solid fa-paste"></i>&nbsp;&nbsp; إعلاناتي</a></li>
-                    <li><a href="{{route('packages.bills')}}" class="dropdown-item l_18"><i
-                                class="fa-solid fa-money-check-dollar"></i>&nbsp;&nbsp; باقاتي
-                        </a></li>
-                    <li><a href="{{route('cart.index')}}" class="dropdown-item l_18"><i
-                                class="fa-solid fa-cart-shopping"></i>&nbsp;&nbsp; السلة</a></li>
-                    <li><a href="{{route('wish.list')}}" class="dropdown-item l_18"><i
-                                class="fa-solid fa-heart"></i>&nbsp;&nbsp; قائمة المفضلة</a>
-                    </li>
-                    <li><a href="{{route('buy-package')}}" class="dropdown-item l_18"><i
-                                class="fa-solid fa-credit-card"></i>&nbsp;&nbsp; شراء باقات</a></li>
-                    {{--                    <li><a href="#" class="dropdown-item l_18"><i--}}
-                    {{--                                class="fa-solid fa-circle-question"></i>&nbsp;&nbsp; المساعدة</a>--}}
-                    {{--                    </li>--}}
-                    {{--                    <li><a href="#" class="dropdown-item l_18"><i class="fa-solid fa-gear"></i>&nbsp;&nbsp;--}}
-                    {{--                            الإعدادات</a></li>--}}
-                    <li><a href="{{url('logout')}}" class="dropdown-item l_18"><i
-                                class="fa-solid fa-right-from-bracket"></i>&nbsp;&nbsp; تسجيل الخروج</a>
-                    </li>
-                </ul>
+            <div class="row mt-3" style="border-bottom: 1px solid #ddd">
+                <div class="col-sm-12 col-12 text-right" style="padding-right: 21px; padding-top: 10px;">
+                    <h3 style="color: #2a4ead; font-size: 15px!important;" class="bold d-inline-block">
+                        مرحباً, {{backpack_auth()->user()->name}}</h3>
+                    <a href="{{route('personal.edit')}}" class="btn mx-2"
+                       style="color: #000; background: #fff!important;width: 88px;padding: 4px 0 7px 0!important; border: 1px solid #000; border-radius: 30px">
+                        <i class="fa-solid fa-user " style="font-size: 13px;padding: 0 6px!important; "></i>
+                        <span>حسابي</span>
+                    </a>
+                </div>
+                <div class="col-sm-12 col-12 text-right" style="padding-right: 21px; padding-top: 10px;">
+                    <div class="row mt-2 mb-2">
+                        <div class="col-3 col-sm-3 text-center">
+                            <a href="{{route('user.posts')}}">
+                                <div class="user_icons m-auto">
+                                    <img src="{{asset('assets/front/images/clipboard-text.svg')}}" alt="clip">
+                                </div>
+                                <div class="mt-2">
+                                    <span class="user_span">إعلاناتي</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-3 col-sm-3 text-center">
+                            <a href="{{route('packages.bills')}}">
+                                <div class="user_icons m-auto">
+                                    <img src="{{asset('assets/front/images/award.svg')}}" alt="clip">
+                                </div>
+                                <div class="mt-2">
+                                    <span class="user_span">باقاتي</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-3 col-sm-3 text-center">
+                            <a href="{{route('cart.index')}}">
+                                <div class="user_icons m-auto">
+                                    <img src="{{asset('assets/front/images/cart.svg')}}" alt="clip">
+                                </div>
+                                <div class="mt-2">
+                                    <span class="user_span">السلة</span>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-3 col-sm-3 text-center">
+                            <a href="{{route('wish.list')}}">
+                                <div class="user_icons m-auto">
+                                    <img src="{{asset('assets/front/images/heart.svg')}}" alt="clip">
+                                </div>
+                                <div class="mt-2">
+                                    <span class="user_span">المفضلة</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        @else
+            <div class="row mt-3" style="border-bottom: 1px solid #ddd">
+                <div class="col-sm-12 col-12 text-right" style="padding-right: 21px; padding-top: 10px;">
+                    <a href="{{url('login')}}" class="btn" style="padding: 4px 0 7px 0!important; ">
+                        <img src="{{asset('assets/front/images/user.svg')}}" class=" m-l-10" alt="user-login">
+                        <h3 style="color: #2a4ead; font-size: 15px!important;" class="bold d-inline-block">
+                            تسجيل الدخول / حساب جديد
+                        </h3>
+
+                    </a>
+                </div>
             </div>
 
         @endif
+
+
+        <div class="row mt-3">
+            <div class="col-sm-12 col-12 text-right side_nav_item position-relative"
+                 style="padding-right: 21px; padding-top: 10px;">
+                <a href="{{route('site.home')}}" class="d-inline-block w-100 side_nav_all_cats"
+                   style="padding: 4px 0 7px 0!important; ">
+                    <img src="{{asset('assets/front/images/home-.svg')}}" class=" m-l-8 " alt="user-login">
+                    <h3 style="color: #2a4ead; font-size: 15px!important;" class="bold d-inline-block">
+                        الصفحة الرئيسية
+                    </h3>
+                </a>
+            </div>
+            <div class="col-sm-12 col-12 text-right side_nav_item position-relative"
+                 style="padding-right: 21px; padding-top: 10px;">
+                <a href="javascript:void(0);" class="d-inline-block w-100 side_nav_all_cats"
+                   style="padding: 4px 0 7px 0!important; ">
+                    <img src="{{asset('assets/front/images/cats-.svg')}}" class=" m-l-10 " alt="user-login">
+                    <h3 style="color: #2a4ead; font-size: 15px!important;" class="bold d-inline-block">
+                        جميع الأقسام
+                    </h3>
+                    <i class="fa-solid fa-chevron-left" style="color: #2a4ead;display: inline-block"></i>
+                    <i class="fa-solid fa-chevron-down " style="color: #2a4ead; display:none;"></i>
+                </a>
+                <ul class="sub_menu">
+                    @foreach($cats as $cat)
+                        <li class="sub_menu_item position-relative">
+                            <a href="javascript:void(0)" class="w-100 d-inline-block" style="padding: 5px 0">
+                                <img src="{{asset($cat->image)}}" alt="cat-cover" class="m-l-10">
+                                <h3 style="color: #2a4ead; font-size: 14px!important;" class="bold d-inline-block">
+                                    {{$cat->title}}
+                                </h3>
+                                <i class="fa-solid fa-chevron-left" style="color: #2a4ead;"></i>
+                                <i class="fa-solid fa-chevron-down " style="color: #2a4ead; display:none;"></i>
+                            </a>
+                            <ul class="sub_sub_menu">
+                                @foreach($cat->subCategories as $item)
+                                    <li class="sub_sub_item">
+                                        <a href="{{route('cat.show', $item->slug)}}" class="">
+                                            <img src="{{asset($item->image)}}" alt="cat-cover" class="m-l-10">
+                                            <h3 style="color: #fd7e14; font-size: 14px!important;"
+                                                class="bold d-inline-block">
+                                                {{$item->title}}
+                                            </h3>
+                                        </a>
+                                    </li>
+                                @endforeach
+
+                            </ul>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+            <div class="col-sm-12 col-12 text-right side_nav_item position-relative"
+                 style="padding-right: 21px; padding-top: 10px;">
+                <a href="{{route('site.home')}}" class="d-inline-block w-100 side_nav_all_cats"
+                   style="padding: 4px 0 7px 0!important; ">
+                    <img src="{{asset('assets/front/images/buy.svg')}}" class=" m-l-8 " alt="user-login">
+                    <h3 style="color: #2a4ead; font-size: 15px!important;" class="bold d-inline-block">
+                        شراء باقات
+                    </h3>
+                </a>
+            </div>
+            <div class="col-sm-12 col-12 text-right side_nav_item position-relative"
+                 style="padding-right: 21px; padding-top: 10px;">
+                <a href="{{route('site.home')}}" class="d-inline-block w-100 side_nav_all_cats"
+                   style="padding: 4px 0 7px 0!important; ">
+                    <img src="{{asset('assets/front/images/blog.svg')}}" class=" m-l-8 " alt="user-login">
+                    <h3 style="color: #2a4ead; font-size: 15px!important;" class="bold d-inline-block">
+                        آخر الأخبار
+                    </h3>
+                </a>
+            </div>
+            <div class="col-sm-12 col-12 text-right side_nav_item position-relative"
+                 style="padding-right: 21px; padding-top: 10px;">
+                <a href="{{route('site.home')}}" class="d-inline-block w-100 side_nav_all_cats"
+                   style="padding: 4px 0 7px 0!important; ">
+                    <img src="{{asset('assets/front/images/phone.svg')}}" class=" m-l-8 " alt="user-login">
+                    <h3 style="color: #2a4ead; font-size: 15px!important;" class="bold d-inline-block">
+                        تواصل معنا
+                    </h3>
+                </a>
+            </div>
+            <div class="col-sm-12 col-12 text-right side_nav_item position-relative"
+                 style="padding-right: 21px; padding-top: 10px;">
+                <a href="{{route('site.home')}}" class="d-inline-block w-100 side_nav_all_cats"
+                   style="padding: 4px 0 7px 0!important; ">
+                    <img src="{{asset('assets/front/images/us.svg')}}" class=" m-l-8 " alt="user-login">
+                    <h3 style="color: #2a4ead; font-size: 15px!important;" class="bold d-inline-block">
+                        من نحن
+                    </h3>
+                </a>
+            </div>
+            <div class="col-sm-12 col-12 text-center side_nav_item position-relative" style="padding-top: 10px;">
+                <a href="{{route('add.post')}}" class="w-100 btn"
+                   style="padding: 4px 0 7px 0!important; color: #fff;background: #fd7e14;">
+                    <h3 style=" font-size: 15px!important;" class="bold d-inline-block">
+                        + أعلن الآن
+                    </h3>
+                </a>
+            </div>
+            @if(backpack_auth()->check())
+                <div class="col-sm-12 col-12 text-center side_nav_item position-relative" style="padding-top: 10px;">
+                    <a href="{{url('logout')}}" class="d-inline-block w-100 side_nav_all_cats"
+                       style="padding: 4px 0 7px 0!important; ">
+                        <img src="{{asset('assets/front/images/logout.svg')}}" class=" m-l-8 " alt="user-login">
+                        <h3 style="color: #0b2050; font-size: 15px!important;" class="bold d-inline-block">
+                            تسجيل الخروج
+                        </h3>
+                    </a>
+                </div>
+            @endif
+
+
+        </div>
     </nav>
     <nav class="sidebar2">
         <div class="side_bar_2_contact_div_dismiss">

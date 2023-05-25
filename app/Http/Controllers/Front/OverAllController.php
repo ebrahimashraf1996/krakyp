@@ -60,12 +60,13 @@ class OverAllController extends Controller
             $q->select('id', 'title');
         }])->active()->select('id', 'title', 'summary', 'image', 'slug', 'created_at', 'blogcategory_id')->featured()->get();
         $banners = \App\Models\Banner::select('image_alt', 'image', 'url', 'status')->orderBy('lft', 'asc')->active()->get();
+        $banners_mobile = \App\Models\MobileBanner::select('image_alt', 'image', 'url', 'status')->orderBy('lft', 'asc')->active()->get();
         $cats = \App\Models\Category::where('parent_id', null)->get();
         $locations = \App\Models\Location::where('parent_id', null)->get();
         $paid_client_ads = \App\Models\Clientad::wiCountry()->wiCity()->wiState()->owner()->paid()->notEnd()->selection()->published()->get();
         $free_client_ads = \App\Models\Clientad::wiCountry()->wiCity()->wiState()->owner()->free()->selection()->published()->get();
         $featured_cats = \App\Models\Category::where('is_featured', 'Featured')->select('id', 'title', 'slug', 'image', 'parent_id')->get();
-        return view('front.pages.index', compact('cats', 'locations', 'paid_client_ads', 'free_client_ads', 'banners', 'posts', 'featured_cats'));
+        return view('front.pages.index', compact('cats', 'locations', 'paid_client_ads', 'free_client_ads', 'banners', 'banners_mobile', 'posts', 'featured_cats'));
     }
 
     public function quickSearch(Request $request)

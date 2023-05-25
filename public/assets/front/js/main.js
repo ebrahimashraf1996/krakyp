@@ -127,7 +127,14 @@ $(document).ready(function () {
     });
 
 
-    $('.side_bar_contact_div').on('click', function (e) {
+    $('#close_all').on('click', function () {
+        $('.sidebar1').removeClass('active');
+        $('.overlay').removeClass('active');
+
+    });
+
+
+    $('#menu_ic').on('click', function (e) {
         e.preventDefault();
         $('.sidebar1').addClass('active');
         $('.overlay').addClass('active');
@@ -201,6 +208,84 @@ $(document).ready(function () {
             }
         }
     });
+
+    $('#banners_section_mobile').owlCarousel({
+        // animateOut: 'fadeOut',
+        // animateIn: 'fadeIn',
+        items: 1,
+        // onInitialize: add_remove(),
+        autoplayHoverPause: true,
+        margin: 20,
+        smartSpeed: 250,
+        nav: true,
+        dots: true,
+        loop: true,
+        mouseDrag: true,
+        responsiveClass: true,
+        navText: ["<i style='font-size: 49px;color:#fff' class='fa-solid fa-chevron-left'></i>", "<i style='font-size: 49px;color:#fff' class='fa-solid fa-chevron-right'></i>"],
+        autoplay: true,
+        responsive: {
+            0: {
+                items: 1,
+                nav: true
+            },
+            480: {
+                items: 1,
+                nav: true
+            },
+            767: {
+                items: 1,
+                nav: true
+            },
+            992: {
+                items: 1,
+                nav: true
+            },
+            1200: {
+                items: 1,
+                nav: true
+            }
+        }
+    });
+
+    $('#featured_categories_carousel').owlCarousel({
+        items: 1,
+        // onInitialize: add_remove(),
+        autoplayHoverPause: false,
+        margin: 20,
+        smartSpeed: 250,
+        nav: true,
+        dots: true,
+        loop: true,
+        mouseDrag: true,
+        responsiveClass: true,
+        navText: ["<i style='font-size: 49px;color:#ee7202' class='fa-solid fa-chevron-left'></i>", "<i style='font-size: 49px;color:#ee7202' class='fa-solid fa-chevron-right'></i>"],
+        autoplay: false,
+        responsive: {
+            0: {
+                items: 2,
+                nav: false
+            },
+            480: {
+                items: 2,
+                nav: false
+            },
+            767: {
+                items: 3,
+                nav: true
+            },
+            992: {
+                items: 4,
+                nav: true
+            },
+            1200: {
+                items: 5,
+                nav: true
+            }
+        }
+    });
+
+
     /* End Banner */
 
 
@@ -208,7 +293,7 @@ $(document).ready(function () {
     let featured_cat = $('.cat_div');
     featured_cat.hover(function () {
         $(this).find('i').css('color', '#fff');
-        $(this).find('.i_bg').css('background', '#f87b54');
+        $(this).find('.i_bg').css('background', '#ee7202');
     }, function () {
         $(this).find('i').css('color', '#000');
         $(this).find('.i_bg').css('background', '#ddecf7');
@@ -262,5 +347,36 @@ $(document).ready(function () {
     //     cats_section.addClass('row');
     // }
 
+    let side_nav_all_cats = $('.side_nav_all_cats ');
+    side_nav_all_cats.on('click', function () {
+        let target_ul = $(this).parent().find('.sub_menu');
+        target_ul.slideToggle();
+        let left_chevron = $(this).find('.fa-solid.fa-chevron-left');
+        let down_chevron = $(this).find('.fa-solid.fa-chevron-down');
 
+        if (left_chevron.css('display') === 'none') {
+            left_chevron.css('display', 'inline-block');
+            down_chevron.css('display', 'none');
+        }else {
+            down_chevron.css('display', 'inline-block');
+            left_chevron.css('display','none');
+        }
+
+    });
+
+    let sub_menu_item = $(".sub_menu_item a");
+    sub_menu_item.on('click', function () {
+        let sub_target = $(this).parent().find('.sub_sub_menu');
+        sub_target.slideToggle();
+        let left_chevron = $(this).find('.fa-solid.fa-chevron-left');
+        let down_chevron = $(this).find('.fa-solid.fa-chevron-down');
+
+        if (left_chevron.css('display') === 'none') {
+            left_chevron.css('display', 'inline-block');
+            down_chevron.css('display', 'none');
+        }else {
+            down_chevron.css('display', 'inline-block');
+            left_chevron.css('display','none');
+        }
+    });
 });

@@ -322,7 +322,7 @@ class PostsController extends Controller
                 }
             }
 
-            return response()->json(['msg' => 'تم إنشاء الإعلان بنجاح وهو الآن تحت المراجعة', 'status' => 1, 'data' => ['slug' => $new_ad->slug]]);
+            return response()->json(['msg' => 'الإعلان قيد المراجعة', 'status' => 1, 'data' => ['slug' => $new_ad->slug]]);
         } else {
             return response()->json(['msg' => 'error', 'status' => 0, 'data' => null]);
         }
