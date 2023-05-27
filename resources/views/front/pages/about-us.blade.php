@@ -8,15 +8,41 @@
 @stop
 
 @section('content')
+    <div class="row mb-3 px-0 mx-0 serial_routes_row" style="background:#f0f1f7;" >
+        <div class="container" dir="rtl" style="max-width: 1044px;">
+            <div class="row">
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-9 pl-3 py-2 serial_route">
+                    <a href="{{route('site.home')}}" class="bold">الصفحة الرئيسية</a>
+                    <div class="d-inline-block position-relative" style="width: 25px">
+                        <i style="position: absolute;top: -15px;right: 3px;"
+                           class="fa-solid fa-chevron-left mt-1  px-1 ">
+                        </i>
+                    </div>
+
+                    <span class="bold">من نحن</span>
+
+
+                </div>
+
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-3 py-2 text-left back">
+                    <a href="{{ url()->previous() }}"
+                       class="bold">العودة</a>
+                    <div class="d-inline-block position-relative" style="width: 25px"><i
+                            style="position: absolute;top: -15px;right: 3px;"
+                            class="fa-solid fa-chevron-left mt-1  px-1 "></i></div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
 
     <section class="text-center">
-        <div class="container blog_section">
+        <div class="container text-center" style="min-height: 40vh">
 
-            <div class="" style="text-align: right">
+            <div class="card description" style="text-align: right; max-width: 1050px; margin: auto">
                 @if(isset($about_us))
-                    <div class="serial">
-                        <h4 class="bold pt-3 pb-4 p-r-26">نبذة عنا...</h4>
-                    </div>
+
                     <div class="post" >
                         {!! $about_us->description !!}
                     </div>

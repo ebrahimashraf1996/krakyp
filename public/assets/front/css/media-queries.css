@@ -389,7 +389,7 @@
     .serial_url {padding-right: 14px}
     .client_ad_title {padding-right: 14px}
     .client_ad_title h4 {font-size: 20px}
-    .single_ad_section {padding-top: 38px}
+    /*.single_ad_section {padding-top: 38px}*/
     .client_ad_image_item {width: auto !important;height: 180px !important;}
     .attributes {padding-right: .5rem;padding-left: .5rem;}
     /*.related_products .client_ad_cover img {height: 83px}*/
@@ -1238,9 +1238,10 @@ only screen and (                min-resolution: 2dppx) {
 .client_ads_section .titles {margin: 8px 5px 17px 5px!important;}
 #client_ads_cont .card-title {margin-bottom: 5px!important;}
 .date_client_ad {left: 13px!important;}
-
-
-
+.payments {padding: 5px}
+.pill-form {width: 100%}
+.pill-form-inputs {padding: 0 10px}
+.description {padding: 30px 5px }
 
 
 

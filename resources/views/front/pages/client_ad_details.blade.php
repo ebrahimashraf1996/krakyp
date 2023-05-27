@@ -27,13 +27,9 @@
             padding-top:0!important;
         }
 
-        /*.carousel-item img {*/
-        /*    width: 100%*/
-        /*}*/
-        /*.client_ad_image_item {height: 100%}*/
-        /*.banners-client_ads_images_cont {max-height: 68vh;}*/
         .client_ad_image {
-            background: #ddd
+            background: #00127c;
+            border-radius: 5px;
         }
 
         .client_ad_image_item {
@@ -41,22 +37,61 @@
             height: 426px !important;
         }
 
-        .wish_div img {
-            width: 26px !important;
-            padding-top: 4px !important;
-            padding-right: 5px;
-        }
         .related_products .client_ad_cover img {
             height: 136px;
         }
-        
+
         .bordered{box-shadow: 1px 1px 5px #c5c1c1;border: none!important;}
     </style>
 @stop
 
 @section('content')
+
+
+
+    <div class="row mb-3 px-0 mx-0 serial_routes_row" style="background:#f0f1f7;" >
+        <div class="container" dir="rtl" style="max-width: 1044px;">
+            <div class="row">
+                <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-10 col-12 pl-3 py-2 serial_route">
+                    <a href="{{route('site.home')}}" class="bold">الصفحة الرئيسية</a>
+                    <div class="d-inline-block position-relative" style="width: 25px">
+                        <i style="position: absolute;top: -15px;right: 3px;"
+                           class="fa-solid fa-chevron-left mt-1  px-1 ">
+                        </i>
+                    </div>
+                    <a href="{{route('mainCat.show', $client_ad->cat->mainCategory->slug)}}" class="bold">{{$client_ad->cat->mainCategory->title}}</a>
+                    <div class="d-inline-block position-relative" style="width: 25px">
+                        <i style="position: absolute;top: -15px;right: 3px;"
+                           class="fa-solid fa-chevron-left mt-1  px-1 ">
+                        </i>
+                    </div>
+                    <a href="{{route('cat.show',  $client_ad->cat->slug)}}" class="bold">{{$client_ad->cat->title}}</a>
+                    <div class="d-inline-block position-relative" style="width: 25px">
+                        <i style="position: absolute;top: -15px;right: 3px;"
+                           class="fa-solid fa-chevron-left mt-1  px-1 ">
+                        </i>
+                    </div>
+
+                    <span class="bold">{{$client_ad->title}}</span>
+
+
+                </div>
+
+                <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12 py-2 text-left back">
+                    <a href="{{ url()->previous() }}"
+                       class="bold">العودة</a>
+                    <div class="d-inline-block position-relative" style="width: 25px"><i
+                            style="position: absolute;top: -15px;right: 3px;"
+                            class="fa-solid fa-chevron-left mt-1  px-1 "></i></div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
     <section class="single_ad_section product-details ">
-        <div class="container">
+        <div class="container" style="max-width: 1044px">
             @if(isset($client_ad))
                 <div class="row">
                     @php
@@ -65,63 +100,25 @@
                     @endphp
 
 
-                    <div class="col-md-8 col-12 col-sm-12 product-gallery-pc ">
+                    <div class="col-md-9 col-lg-9 col-12 col-sm-12 product-gallery-pc ">
                         <div class="row">
-                            <div class="col-sm-12 col-12 col-sm-12 serial_url text-muted l_14">
-
-                                <a href="#" class="cl-919191  l_14">{{$client_ad->cat->mainCategory->title}}</a> -
-
-                                <a href="#" class="cl-919191 l_14">{{$client_ad->cat->title}} </a> -
-                                <span class="l_14">{{$client_ad->title}}</span>
-                            </div>
 
                             <div class="col-sm-12 col-12 client_ad_title col-sm-12">
                                 <h4 class="bold pt-3 pb-4 ">{{$client_ad->title}}</h4>
                             </div>
 
                             <div class="col-md-12 col-12 col-sm-12">
-                                {{--                                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">--}}
-                                {{--                                    <div class="carousel-inner">--}}
-                                {{--                                        @foreach($photo as $key => $item)--}}
-                                {{--                                            <div class="carousel-item {{$key == 0 ? 'active' : ''}}">--}}
-                                {{--                                                <img src="{{asset('images/dropped/'.$item)}}" class="d-block w-100" alt="{{$client_ad->slug}}">--}}
-                                {{--                                            </div>--}}
-                                {{--                                        @endforeach--}}
-                                {{--                                    </div>--}}
-                                {{--                                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">--}}
-                                {{--                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>--}}
-                                {{--                                        <span class="visually-hidden">Previous</span>--}}
-                                {{--                                    </button>--}}
-                                {{--                                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">--}}
-                                {{--                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>--}}
-                                {{--                                        <span class="visually-hidden">Next</span>--}}
-                                {{--                                    </button>--}}
-                                {{--                                </div>--}}
-
-                                <section class="banners-client_ads_images_cont container" dir="ltr">
+                                <section class="banners-client_ads_images_cont" dir="ltr">
                                     <div class="owl-carousel owl-theme" id="client_ads_images_section" dir="ltr">
                                         @foreach($photo as $key => $item)
                                             <div class="item client_ad_image">
-                                                <img src="{{asset('images/dropped/'.$item)}}"
+                                                <img src="{{asset('organized/'.$item)}}"
                                                      class="client_ad_image_item m-auto"
                                                      alt="{{$client_ad->slug}}">
                                             </div>
                                         @endforeach
                                     </div>
                                 </section>
-
-
-                                {{--                                <section class="slider">--}}
-                                {{--                                    <div id="slider" class="flexslider">--}}
-                                {{--                                        <ul class="slides">--}}
-                                {{--                                            @foreach($photo as $key => $item)--}}
-                                {{--                                                <li class="gallery_item">--}}
-                                {{--                                                    <img src="{{asset('images/dropped/'.$item)}}" alt="{{$client_ad->slug}}" height="100%">--}}
-                                {{--                                                </li>--}}
-                                {{--                                            @endforeach--}}
-                                {{--                                        </ul>--}}
-                                {{--                                    </div>--}}
-                                {{--                                </section>--}}
                             </div>
                             <div class="col-md-12 col-12 col-sm-12">
                                 <div class="m-3 bordered row details"  style="    padding-bottom: 15px">
@@ -199,38 +196,48 @@
 
 {{--{{dd($item->id)}}--}}
                     </div>
-                    <div class="col-md-4 col-12 col-sm-12 side_part">
-                        <div class="bordered m-3 p-4 contact_section">
-                            <div class="internal_wish" data-target="{{$client_ad->id}}">
-                                @if(backpack_auth()->check())
+                    <div class="col-md-3 col-lg-3 col-12 col-sm-12 side_part">
+                        <div class="bordered mt-3 p-3 contact_section">
+                            @if(backpack_auth()->check())
+                                <div
+                                    class="wish_div not_hovered_wish {{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}}"
+                                    data-target="{{$item->id}} " dir="ltr">
+                                    <a href="javascript:void(0)" class="wish-btn"
+                                       data-bs-target="{{$item->slug}}">
+                                        <img
+                                            src="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? asset('assets/front/images/hearted.png') : asset('assets/front/images/heart.png')}}"
+                                            alt="wish-icon">
+                                        <span
+                                            class="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}}">
+                                                        {{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'تم الإضافة' : 'أضف لقائمة الرغبات'}}</span>
 
-                                <a href="javascript:void(0)" class="wish-btn"
-                                   data-bs-target="{{$item->slug}}">
-                                    <img src="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$client_ad->id)->first() ? asset('assets/front/images/hearted.png') : asset('assets/front/images/heart.png')}}"
-                                        alt="wish-icon">
-                                        
-                                </a>
-                                @else 
-                                        <a href="{{url('login')}}" class="wish-btn">
-                                            <img src="{{asset('assets/front/images/heart.png')}}"
-                                                 alt="wish-icon">
-                                        </a>
-                                @endif
-                            </div>
+                                    </a>
+                                </div>
+                            @else
+                                <div id="wish_div not_hovered_wish" class="wish_div product_{{$item->id}}">
+                                    <a href="{{url('login')}}">
+                                        <img src="{{asset('assets/front/images/heart.png')}}"
+                                             alt="wish-icon">
+                                    </a>
+                                </div>
+                            @endif
                             <div class="price">
-                                <h4 class="bold">{{number_format($client_ad->price, 0)}} ج.م</h4>
+                                <h4 class="bold l_22">{{number_format($client_ad->price, 0)}} <span class="colored">ج.م</span></h4>
                             </div>
                             <div class=" mt-2">
-                                <span class="text-muted l_14">{{$client_ad->country->name}} - {{$client_ad->city->name}} - {{$client_ad->state->name}}</span>
+                                <span class="text-muted l_13"><span class="bold">{{$client_ad->country->name}} - {{$client_ad->city->name}}</span>
+{{--                                    - {{$client_ad->state->name}}--}}
+                                </span>
                             </div>
-                            <div class=" mt-2">
-                                <span
-                                    class="text-muted l_14">{{Carbon\Carbon::parse($client_ad->created_at)->diffForHumans()}}</span>
+                            <div class=" mt-2 text-left">
+                                <i class="fa-sharp fa-solid fa-clock-rotate-left l_11"
+                                   style="margin-left: 3px"></i>
+                                <span class="text-muted l_12">{{Carbon\Carbon::parse($client_ad->created_at)->diffForHumans()}}</span>
                             </div>
                         </div>
-                        <div class="bordered m-3  pt-4 mt-3 contact_section">
+                        <div class="bordered mt-3  pt-4 contact_section">
 
-                            <div class="seller px-4">
+                            <div class="seller px-3">
                                 <div class="d-inline-block user_photo">
                                     <img class="flag" src="{{asset($client_ad->user->image)}}" alt="user_photo"> &nbsp;&nbsp;&nbsp;
 
@@ -245,15 +252,15 @@
                                 <div class="row">
                                     <div class="col-md-6 col-6 col-sm-6" style="padding-left: 0;border-radius: 0">
                                         <a class="btn whats_btn" target="_blank" href="{{$client_ad->user->whats_app != null ? 'https://wa.me/'. $client_ad->user->whats_app : ''}}">
-                                            <span class="bold">إرسال واتساب</span> &nbsp;&nbsp;
-                                            <img src="{{asset('assets/front/images/whats.png')}}" alt="whats-icon"
+                                            <span class="bold l_14">واتساب</span>&nbsp;
+                                            <img src="{{asset('assets/front/images/whats.png')}}" alt="whats-icon" style="width: 17px"
                                                   class="whats-icon">
                                         </a>
                                     </div>
                                     <div class="col-md-6 col-6 col-sm-6" style="padding-right: 0;">
                                         <a class="btn call_btn" href="tel:{{$client_ad->user->phone}}">
-                                            <span class="bold">اتصل الآن</span> &nbsp;&nbsp;
-                                            <img src="{{asset('assets/front/images/phone.png')}}" alt="tel-icon"
+                                            <span class="bold l_14">اتصال</span> &nbsp;
+                                            <img src="{{asset('assets/front/images/phone.png')}}" alt="tel-icon" style="width: 17px"
                                                   class="tel-icon">
                                         </a>
                                     </div>
@@ -261,7 +268,7 @@
 
                             </div>
                         </div>
-                        <div class="bordered p-3  instructions_section">
+                        <div class="bordered p-3 mt-3 instructions_section">
 
                             <div class="instructions_head">
                                 <span class="bold">ارشادات التعامل مع البائع </span>
@@ -779,109 +786,6 @@
     <script>
         $(document).ready(function () {
 
-            let card = $('.post');
-            card.hover(function () {
-                let wish_div = $(this).find('.wish_div').css('display', 'block');
-            }, function () {
-                let wish_div = $(this).find('.wish_div').css('display', 'none');
-            });
-
-            let wish_div = $('.wish_div');
-            wish_div.on('click', function () {
-                let id = $(this).attr('data-target');
-                let img = $(this).find('.wish-btn img');
-                // alert(id);
-                $.ajax({
-                    url: "{{route('add.to.wish')}}",
-                    data: {
-                        _token: "{{csrf_token()}}",
-                        id: id,
-                    },
-                    type: 'POST',
-                    success: function (response) {
-                        if (typeof (response) != 'object') {
-                            response = $.parseJSON()
-                        }
-                        console.log(response);
-                        let status = response.status;
-                        if (status === 1) {
-                            Swal.fire({
-                                icon: 'success',
-                                text: response.msg,
-                                dangerMode: false,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
-                                confirmButtonText: 'حسنا',
-                                showCloseButton: true,
-                            });
-                            img.attr('src', '{{asset('assets/front/images/hearted.png')}}');
-                        } else {
-                            Swal.fire({
-                                icon: 'error',
-                                text: response.msg,
-                                dangerMode: true,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
-                                confirmButtonText: 'حسنا',
-                                showCloseButton: true,
-                            });
-                        }
-                    }
-                })
-            });
-            let internal_wish = $('.internal_wish');
-            internal_wish.on('click', function () {
-                let id = $(this).attr('data-target');
-                let img = $(this).find('.wish-btn img');
-                // alert(id);
-                $.ajax({
-                    url: "{{route('add.to.wish')}}",
-                    data: {
-                        _token: "{{csrf_token()}}",
-                        id: id,
-                    },
-                    type: 'POST',
-                    success: function (response) {
-                        if (typeof (response) != 'object') {
-                            response = $.parseJSON()
-                        }
-                        console.log(response);
-                        let status = response.status;
-                        if (status === 1) {
-                            Swal.fire({
-                                icon: 'success',
-                                text: response.msg,
-                                dangerMode: false,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
-                                confirmButtonText: 'حسنا',
-                                showCloseButton: true,
-                            });
-                            img.attr('src', '{{asset('assets/front/images/hearted.png')}}');
-                        } else {
-                            Swal.fire({
-                                icon: 'error',
-                                text: response.msg,
-                                dangerMode: true,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
-                                confirmButtonText: 'حسنا',
-                                showCloseButton: true,
-                            });
-                        }
-                    }
-                })
-            });
-
-
-            //
-            // let text_area = $('.description_text').val();
-            // alert(text_area);
-            //
-            // text_area = text_area.replace("\n", "<br>");
-            // alert(text_area);
-
-
             $('#slider').flexslider({
                 animation: "slide",
                 controlNav: false,
@@ -944,7 +848,7 @@
                     }
                 }
 
-            })
+            });
 
         });
 

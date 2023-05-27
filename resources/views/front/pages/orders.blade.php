@@ -3,7 +3,7 @@
 @section('styles')
     <style>
         .featured-section {
-            margin-top: 137px
+            /*margin-top: 137px*/
         }
 
         textarea.description_text {
@@ -46,14 +46,45 @@
 
 @section('content')
 
+    <div class="row mb-3 px-0 mx-0 serial_routes_row" style="background:#f0f1f7;" >
+        <div class="container" dir="rtl" style="max-width: 1044px;">
+            <div class="row">
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-9 pl-3 py-2 serial_route">
+                    <a href="{{route('site.home')}}" class="bold">الصفحة الرئيسية</a>
+                    <div class="d-inline-block position-relative" style="width: 25px">
+                        <i style="position: absolute;top: -15px;right: 3px;"
+                           class="fa-solid fa-chevron-left mt-1  px-1 ">
+                        </i>
+                    </div>
+                    <span class="bold">حسابي</span>
+                    <div class="d-inline-block position-relative" style="width: 25px">
+                        <i style="position: absolute;top: -15px;right: 3px;"
+                           class="fa-solid fa-chevron-left mt-1  px-1 ">
+                        </i>
+                    </div>
 
+                    <span>باقاتي</span>
+                </div>
+
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-3 py-2 text-left back">
+                    <a href="{{ url()->previous() }}"
+                       class="bold">العودة</a>
+                    <div class="d-inline-block position-relative" style="width: 25px"><i
+                            style="position: absolute;top: -15px;right: 3px;"
+                            class="fa-solid fa-chevron-left mt-1  px-1 "></i></div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
 
     {{--    Start Featured Cats--}}
-    <section class="featured-section text-center">
-        <div class="container">
-            <div class="row my-4">
+    <section class="featured-section pb-5 text-right">
+        <div class="container" style="max-width: 1044px">
+            <div class="row py-4">
                 <div class="col-md-12 col-sm-12">
-                    <h3 class="bold">باقاتي </h3>
+                    <h3 class="bold">باقاتي ...</h3>
                 </div>
             </div>
             @if(isset($packs) && $packs->count() > 0)

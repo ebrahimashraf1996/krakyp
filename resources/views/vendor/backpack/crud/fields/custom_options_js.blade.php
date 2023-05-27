@@ -34,11 +34,12 @@
                 let option_buttons = $('#appearance option[value="buttons"]');
                 let option_checkbox = $('#appearance option[value="check_box"]');
                 let option_from_to = $('#appearance option[value="from_to"]');
-                let unit = $('#unit input');
+                let unit = $('#unit');
 
                 if (current_val === 'with_options') {
                     options.parent().removeClass('d-none');
-                    appearance.val('buttons').change();
+                    unit.parent().addClass('d-none');
+                    // appearance.val('buttons').change();
 
                     option_select.css('display', 'block');
                     option_buttons.css('display', 'block');
@@ -46,17 +47,20 @@
                     option_checkbox.css('display', 'none');
                     option_from_to.css('display', 'none');
                 } else if(current_val === 'yes_no') {
-                    appearance.val('select').change();
+                    // appearance.val('select').change();
+                    unit.parent().addClass('d-none');
+                    options.parent().addClass('d-none');
 
                     option_checkbox.css('display', 'block');
                     option_buttons.css('display', 'block');
                     option_select.css('display', 'block');
 
                     option_from_to.css('display', 'none');
-                    options.parent().addClass('d-none');
                 } else if(current_val === 'with_no_answers') {
                     options.parent().addClass('d-none');
-                    appearance.val('buttons').change();
+                    unit.parent().removeClass('d-none');
+
+                    // appearance.val('buttons').change();
 
                     option_checkbox.css('display', 'block');
                     option_from_to.css('display', 'block');
@@ -82,6 +86,8 @@
                     let type_of_val = $(this).val();
                     if(type_of_val === 'with_options') {
                         options.parent().removeClass('d-none');
+                        unit.parent().addClass('d-none');
+
                         appearance.val('select').change();
 
                         option_select.css('display', 'block');
@@ -91,25 +97,33 @@
                         option_from_to.css('display', 'none');
 
                     } else if (type_of_val === 'yes_no') {
+                        appearance.parent().removeClass('d-none');
                         appearance.val('select').change();
+                        options.parent().addClass('d-none');
+                        unit.parent().addClass('d-none');
 
                         option_checkbox.css('display', 'block');
                         option_buttons.css('display', 'block');
                         option_select.css('display', 'block');
 
                         option_from_to.css('display', 'none');
+                    }  else if(type_of_val === 'with_no_answers') {
                         options.parent().addClass('d-none');
-                    }  else if(current_val === 'with_no_answers') {
-                        options.parent().addClass('d-none');
-                        appearance.val('buttons').change();
+                        unit.parent().removeClass('d-none');
 
-                        option_checkbox.css('display', 'block');
-                        option_from_to.css('display', 'block');
+                        appearance.val('from_to').change();
+                        appearance.parent().addClass('d-none');
+
+
+                        option_checkbox.css('display', 'none');
+                        option_from_to.css('display', 'none');
 
                         option_select.css('display', 'none');
                         option_buttons.css('display', 'none');
                     } else {
                         options.parent().addClass('d-none');
+                        unit.parent().addClass('d-none');
+
                         appearance.val('').change();
                         appearance.parent().addClass('d-none');
 

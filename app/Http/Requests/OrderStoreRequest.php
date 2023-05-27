@@ -24,13 +24,12 @@ class OrderStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => 'string|required',
-            'last_name' => 'string|required',
-            'payment' => 'string|required',
-            'country' => 'string|required',
-            'city' => 'string|required',
-            'state' => 'string|required',
-            'address' => 'string|required',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'payment' => 'required',
+            'country' => 'required',
+            'city' => 'required',
+            'address' => 'required',
             'phone' => 'numeric|required',
             'email' => 'sometimes',
             'address_2' => 'sometimes',
@@ -41,7 +40,8 @@ class OrderStoreRequest extends FormRequest
     public function messages()
     {
         return [
-
+            'required' => 'هذا الحقل إلزامي',
+            'numeric' => 'رقم هاتف غير صحيح',
         ];
     }
 }

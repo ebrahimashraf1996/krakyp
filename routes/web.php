@@ -178,7 +178,13 @@ Route::post('get-user-packages', function (Illuminate\Http\Request $request) {
 
     return response()->json(['status' => 1, 'msg' => 'باكدجات العميل', 'data' => $packs]);
 });
-
+Route::get('fidshfh', function () {
+    $attributes = Attribute::get();
+    foreach ($attributes as $item) {
+        $item->attr_icon = 'uploads/attributes-icons/seats-number.svg';
+        $item->save();
+    }
+});
 
 
 
@@ -193,6 +199,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Front'], function () {
     Route::get('client-ad/{slug}', 'ClientAdsController@show')->name('client_ad.show');
     Route::get('cat/{slug}', 'CategoriesController@show')->name('cat.show');
     Route::get('mainCat/{slug}', 'CategoriesController@mainShow')->name('mainCat.show');
+    Route::get('from-main-to-sub', 'CategoriesController@fromMainToSub')->name('from.main.to.sub');
     Route::get('articles', 'BlogController@index')->name('articles.index');
     Route::get('articles/{slug}', 'BlogController@show')->name('articles.show');
     Route::get('/', 'OverAllController@index')->name('site.home');
@@ -275,7 +282,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Front'], function () {
         Route::get('buy-package', 'OverAllController@buyPackage')->name('buy-package');
 
         Route::get('my_packages', 'OverAllController@packsBills')->name('packages.bills');
-        Route::get('pack_ads/{id}', 'OverAllController@packMyAds')->name('pack.myAds');
+        Route::get('pack-ads/{id}', 'OverAllController@packMyAds')->name('pack.myAds');
 
         Route::get('wish-list', 'WishesController@index')->name('wish.list');
         Route::get('delete-wish', 'WishesController@delete')->name('wish.delete');

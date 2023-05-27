@@ -84,13 +84,18 @@ class AttributeCrudController extends CrudController
             ],
             [
                 'name' => 'appearance',
-                'label' => 'شكل الخاصية في الفلتر',
+                'label' => 'شكل الخاصية ',
             ],
 
-            [
-                'name' => 'status',
-                'label' => 'الحالة',
+            [   // Text Title
+                'name' => 'attr_icon',
+                'label' => "صورة الخاصية",
+                'type' => 'image',
             ],
+//            [
+//                'name' => 'status',
+//                'label' => 'الحالة',
+//            ],
         ]);
 
 
@@ -113,6 +118,12 @@ class AttributeCrudController extends CrudController
 //                'name' => 'sub_title', // The db column name
 //                'label' => 'عنوان آخر', // Table column heading
 //            ],
+
+            [   // Text Title
+                'name' => 'attr_icon',
+                'label' => "صورة الخاصية",
+                'type' => 'image',
+            ],
             [
                 'name' => 'type',
                 'label' => 'النوع',
@@ -166,6 +177,11 @@ class AttributeCrudController extends CrudController
                 'attributes' => [
                     'placeholder' => 'مثال : مساحة العقار - نوع السيارة ...',
                 ],
+            ],
+            [   // Text Title
+                'name' => 'attr_icon',
+                'label' => "صورة الخاصية",
+                'type' => 'browse',
             ],
 //            [   // Text Title
 //                'name' => 'sub_title',
@@ -307,6 +323,12 @@ class AttributeCrudController extends CrudController
                 'attributes' => [
                     'placeholder' => 'مثال : مساحة العقار - نوع السيارة ...',
                 ],
+            ],
+
+            [   // Text Title
+                'name' => 'attr_icon',
+                'label' => "صورة الخاصية",
+                'type' => 'browse',
             ],
 
             [   // Enum Status

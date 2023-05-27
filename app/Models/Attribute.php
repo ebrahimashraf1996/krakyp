@@ -14,7 +14,7 @@ class Attribute extends Model
 
     protected $table = 'attributes';
 
-    public $fillable = ['title', 'sub_title', 'status','type', 'type_of', 'appearance','start', 'end', 'unit'];
+    public $fillable = ['title', 'sub_title', 'attr_icon', 'status','type', 'type_of', 'appearance','start', 'end', 'unit'];
 
     public $translatable = ['title'];
 

@@ -242,6 +242,9 @@
 
 
                 <div class="owl-carousel owl-theme" id="featured_categories_carousel" dir="ltr">
+                    @for($i=0; $i<3; $i++)
+
+
                     @foreach($featured_cats as $item)
 
                         <div class="m-auto cat_div" style=""
@@ -261,43 +264,9 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="m-auto cat_div" style=""
-                             data-bs-target="1">
-                            <a href="{{$item->parent_id == null ? route('mainCat.show', $item->slug) : route('cat.show', $item->slug)}}"
-                               class="cat_link">
-                                <div class="cat_img ">
-                                    <img src="{{asset($item->image)}}" alt="cat_alt">
-                                </div>
-                                <div class="cat_title">
-                                    <h5 class="bold">{{$item->title}}</h5>
-                                </div>
-                                <div class="cat_arrow">
-                                    <div class="i_bg">
-                                        <i class="fa-solid fa-arrow-right"></i>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="m-auto cat_div" style=""
-                             data-bs-target="1">
-                            <a href="{{$item->parent_id == null ? route('mainCat.show', $item->slug) : route('cat.show', $item->slug)}}"
-                               class="cat_link">
-                                <div class="cat_img ">
-                                    <img src="{{asset($item->image)}}" alt="cat_alt">
-                                </div>
-                                <div class="cat_title">
-                                    <h5 class="bold">{{$item->title}}</h5>
-                                </div>
-                                <div class="cat_arrow">
-                                    <div class="i_bg">
-                                        <i class="fa-solid fa-arrow-right"></i>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
 
                     @endforeach
-
+                    @endfor
                 </div>
                 </div>
 

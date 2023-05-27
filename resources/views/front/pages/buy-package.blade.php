@@ -2,7 +2,7 @@
 
 @section('styles')
     <style>
-        .featured-section{padding-top: 91px}
+        /*.featured-section{padding-top: 91px}*/
 
     </style>
 @stop
@@ -10,17 +10,45 @@
 @section('content')
 
 
+    <div class="row mb-3 px-0 mx-0 serial_routes_row" style="background:#f0f1f7;" >
+        <div class="container" dir="rtl" style="max-width: 1044px;">
+            <div class="row">
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-9 pl-3 py-2 serial_route">
+                    <a href="{{route('site.home')}}" class="bold">الصفحة الرئيسية</a>
+                    <div class="d-inline-block position-relative" style="width: 25px">
+                        <i style="position: absolute;top: -15px;right: 3px;"
+                           class="fa-solid fa-chevron-left mt-1  px-1 ">
+                        </i>
+                    </div>
+
+                    <span class="bold">إظهار الباقات المتاحة</span>
+
+
+                </div>
+
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-3 py-2 text-left back">
+                    <a href="{{ url()->previous() }}"
+                       class="bold">العودة</a>
+                    <div class="d-inline-block position-relative" style="width: 25px"><i
+                            style="position: absolute;top: -15px;right: 3px;"
+                            class="fa-solid fa-chevron-left mt-1  px-1 "></i></div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
 
     {{--    Start Featured Cats--}}
     <section class="featured-section text-center">
         <div class="container">
             <div class="row my-4">
                 <div class="col-md-12 col-sm-12">
-                    <h3 class="bold">شراء باقة</h3>
+                    <h3 class="bold">إظهار الباقات المتاحة</h3>
                 </div>
             </div>
             <div class="row add-post-form-row">
-                <form class="col-md-11 col-sm-11 col-11 add-post-form m-auto" method="POST" action="{{route('packages.show')}}" style="min-height: 315px;">
+                <form class="col-md-11 col-sm-11 col-11 add-post-form show_packages_from m-auto mb-5" method="POST" action="{{route('packages.show')}}" style="min-height: 231px;">
                     @csrf
                     <div class="row p-4" id="cats_row">
                         <div class="form-group col-md-5 ">

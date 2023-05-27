@@ -14,7 +14,7 @@ class AddColumnToAttributesTable extends Migration
     public function up()
     {
         Schema::table('attributes', function (Blueprint $table) {
-            $table->string('unit')->nullable()->after('type');
+            $table->string('attr_icon')->nullable();
         });
     }
 

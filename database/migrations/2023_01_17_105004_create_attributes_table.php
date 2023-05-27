@@ -23,6 +23,8 @@ class CreateAttributesTable extends Migration
             $table->bigInteger('start')->nullable();
             $table->bigInteger('end')->nullable();
             $table->string('sub_title')->nullable();
+            $table->string('unit')->nullable()->after('type');
+
             $table->enum('featured', ['yes', 'no'])->default('no');
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->integer('lft')->default(0);

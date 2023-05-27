@@ -9,20 +9,42 @@
 @stop
 
 @section('content')
-    <div style="max-width:1550px;margin:auto;">
-            <div class="col-md-12 col-12 col-sm-12 p-r-41  l_17 blog_div" style="">
-                <a class="text-muted" href="{{route('site.home')}}"><span>الصفحة الرئيسية</span></a> -
-                <span>المدونة</span>
+    <div class="row mb-3 px-0 mx-0 serial_routes_row" style="background:#f0f1f7;" >
+        <div class="container" dir="rtl" style="max-width: 1044px;">
+            <div class="row">
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-9 pl-3 py-2 serial_route">
+                    <a href="{{route('site.home')}}" class="bold">الصفحة الرئيسية</a>
+                    <div class="d-inline-block position-relative" style="width: 25px">
+                        <i style="position: absolute;top: -15px;right: 3px;"
+                           class="fa-solid fa-chevron-left mt-1  px-1 ">
+                        </i>
+                    </div>
+
+                    <span class="bold">المدونة</span>
+
+
+                </div>
+
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-3 py-2 text-left back">
+                    <a href="{{ url()->previous() }}"
+                       class="bold">العودة</a>
+                    <div class="d-inline-block position-relative" style="width: 25px"><i
+                            style="position: absolute;top: -15px;right: 3px;"
+                            class="fa-solid fa-chevron-left mt-1  px-1 "></i></div>
+
+                </div>
             </div>
+
+        </div>
     </div>
 
-    <section class="text-center">
-        <div class="container blog_section">
-            <div class="news_paper ">
+    <section class="text-center  mt-0 pb-5">
+        <div class="container card py-5" style="max-width: 1150px">
+            <div class="news_paper row">
                 @if(isset($posts) && $posts->count() > 0)
 
                     @foreach($posts as $key => $item)
-                        <div class="card">
+                        <div class="card col-lg-3 col-md-3 col-sm-6 col-12 px-0">
                             <a href="{{route('articles.show', $item->slug)}}">
                                 <div class="card__header">
                                     @php

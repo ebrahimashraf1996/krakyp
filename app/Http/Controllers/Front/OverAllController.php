@@ -467,21 +467,21 @@ class OverAllController extends Controller
 
         $cat = Category::select('slug', 'id')->find($request->new_sub_cat_id);
         $cat = Category::where('slug', $cat->slug)->first();
-        SEOMeta::setTitle($cat->title . ' - ' . $this->settings['title']);
+        SEOMeta::setTitle('نتائج البحث' . ' - ' . $this->settings['title']);
         SEOMeta::setDescription($cat->description);
         SEOMeta::addMeta('offer:published_time', $cat->created_at->toW3CString(), 'property');
 
 
-        SEOMeta::addMeta('offer:section-title', $cat->title, 'property');
+        SEOMeta::addMeta('offer:section-title', 'نتائج البحث', 'property');
         SEOMeta::addMeta('offer:section-description', $cat->description, 'property');
 
 
-        $cat->tags;
+//        $cat->tags;
         foreach ($cat->tags as $tag) {
             SEOMeta::addKeyword($tag->title);
         }
 
-        OpenGraph::setTitle($cat->title . ' - ' . $this->settings['title']);
+        OpenGraph::setTitle('نتائج البحث' . ' - ' . $this->settings['title']);
         OpenGraph::setDescription($cat->description);
         OpenGraph::addProperty('type', $cat->title);
         OpenGraph::addProperty('locale', 'ar-AE');
@@ -943,9 +943,15 @@ class OverAllController extends Controller
 
         $count = $paid_client_ads_published->count() + $paid_client_ads_under_reviewed->count() +
             $paid_client_ads_expired->count();
-        $pack = Boughtpackage::find($id);
+        $pack = Boughtpackage::where('user_id', backpack_auth()->user()->id)->find($id);
+//        return $pack;
+        if ($pack) {
+            return view('front.pages.packMyAds', compact('paid_client_ads_published', 'paid_client_ads_under_reviewed', 'paid_client_ads_expired', 'count', 'pack'));
+
+        } else {
+            return redirect(route('site.home'))->with(['error' => 'حدث خطأ ما .. برجاء المحاولة فيما بعد']);
+        }
 //            return $count;
-        return view('front.pages.packMyAds', compact('paid_client_ads_published', 'paid_client_ads_under_reviewed', 'paid_client_ads_expired', 'count', 'pack'));
     }
 
     public function showIcons()

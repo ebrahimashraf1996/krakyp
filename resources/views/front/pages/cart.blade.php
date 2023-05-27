@@ -3,7 +3,7 @@
 @section('styles')
     <style>
         .featured-section {
-            margin-top: 137px
+            /*margin-top: 137px*/
         }
 
         .empty_cart {
@@ -13,19 +13,48 @@
         .empty_cart h4 {
             margin: auto
         }
+        .items_list th {vertical-align:baseline;}
     </style>
 @stop
 
 @section('content')
 
 
+    <div class="row mb-3 px-0 mx-0 serial_routes_row" style="background:#f0f1f7;" >
+        <div class="container" dir="rtl" style="max-width: 1044px;">
+            <div class="row">
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-9 pl-3 py-2 serial_route">
+                    <a href="{{route('site.home')}}" class="bold">الصفحة الرئيسية</a>
+                    <div class="d-inline-block position-relative" style="width: 25px">
+                        <i style="position: absolute;top: -15px;right: 3px;"
+                           class="fa-solid fa-chevron-left mt-1  px-1 ">
+                        </i>
+                    </div>
+
+                    <span class="bold">سلة الشراء</span>
+
+
+                </div>
+
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-3 py-2 text-left back">
+                    <a href="{{ url()->previous() }}"
+                       class="bold">العودة</a>
+                    <div class="d-inline-block position-relative" style="width: 25px"><i
+                            style="position: absolute;top: -15px;right: 3px;"
+                            class="fa-solid fa-chevron-left mt-1  px-1 "></i></div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
 
     {{--    Start Featured Cats--}}
     <section class="featured-section text-center">
         <div class="container">
-            <div class="row my-4">
+            <div class="row py-4">
                 <div class="col-md-12 col-sm-12 ">
-                    <h3 class="bold">سلة المشتريات</h3>
+                    <h3 class="bold">سلة الشراء</h3>
                 </div>
             </div>
             <div class="cart-table">
@@ -33,15 +62,43 @@
 
                     <table class="table table-hover mb-0 ">
                         <tbody class="table-light">
+                        <tr>
+                            <th>
+                                <span class="bold">
+                                    الفئة
+                                </span>
+                            </th>
+                            <th>
+                                <span class="bold">
+                                    اسم الباقة
+                                </span>
+                            </th>
+                            <th>
+                                <span class="bold">
+                                    السعر
+                                </span>
+                            </th>
+                            <th>
+                                <span class="bold">
+                                    اجراءات
+                                </span>
+                            </th>
+                        </tr>
                         @foreach($cart_items as $k => $item)
 
-                            <tr id="tr_{{$item->id}}">
-                                <th style="text-align: right">
-                                    {{$item->userPack->category->title}} &nbsp;&nbsp; - &nbsp;&nbsp;
-                                    {{$item->userPack->title}}
+                            <tr id="tr_{{$item->id}}" class="items_list">
+                                <th style="text-align: center">
+                                    <span>
+                                    {{$item->userPack->category->title}}
+                                    </span>
                                 </th>
-                                <th style="text-align: left">
-                                    <span>{{$item->userPack->price}} جنيه</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <th style="text-align: center">
+                                    <span>
+                                    {{$item->userPack->title}}
+                                    </span>
+                                </th>
+                                <th style="text-align: center">
+                                    <span>{{$item->userPack->price}} جنيه</span>
 
                                 </th>
                                 <th>
@@ -54,11 +111,11 @@
 
                         @endforeach
                         <tr class="items_list">
-                            <th style="text-align: right">
+                            <th style="text-align: center" colspan="2">
                                 الإجمالي
                             </th>
-                            <th style="text-align: left">
-                                <span class="total_cart">{{General::totalCartPrice()}}</span><span>جنيه</span>
+                            <th style="text-align: center">
+                                <span class="total_cart">{{General::totalCartPrice()}} جنيه</span>
                             </th>
                             <th></th>
 
@@ -68,7 +125,7 @@
 
                 @endif
 
-                <div class="row empty_cart  {{$cart_items->count() > 0 ? 'd-none' : ''}}">
+                <div class="row empty_cart card {{$cart_items->count() > 0 ? 'd-none' : ''}}">
                     <h4 class="">السلة فارغة ..</h4>
                 </div>
                 <div class="row buy_some {{$cart_items->count() > 0 ? 'd-none' : ''}}">
@@ -86,21 +143,21 @@
                     </div>
                 </div>
                 <div class="row mt-4 pay_method ">
-                    <div class="col-md-10 m-auto ">
+                    <div class="col-md-8 col-lg-8 col-12 m-auto card payments">
                         <div class="row">
-                            <div class="col-md-4 payment_method">
+                            <div class="col-md-3 col-lg-3 col-6 payment_method">
                                 <a href="{{route('checkout', encrypt('vcash'))}}">
                                     <img src="{{asset('assets/front/images/v-cash.png')}}" alt="payment-image"
                                          style="width: 100%">
                                 </a>
                             </div>
-                            <div class="col-md-4 payment_method">
+                            <div class="col-md-3 col-lg-3 col-6 payment_method">
                                 <a href="{{route('checkout', encrypt('paypal'))}}">
                                     <img src="{{asset('assets/front/images/paypal.png')}}" alt="payment-image"
                                          style="width: 100%">
                                 </a>
                             </div>
-                            <div class="col-md-4 payment_method">
+                            <div class="col-md-3 col-lg-3 col-6 payment_method">
                                 <a href="{{route('checkout', encrypt('visa'))}}">
                                     <img src="{{asset('assets/front/images/v-m.png')}}" alt="payment-image"
                                          style="width: 100%">
