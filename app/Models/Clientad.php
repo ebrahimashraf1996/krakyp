@@ -118,7 +118,7 @@ class Clientad extends Model
         $q->where('user_id', backpack_auth()->user()->id);
     }
     public function scopeSelection($q) {
-        $q->select('id', 'title', 'description', 'slug', 'price', 'images','cover', 'is_published', 'status','end_date', 'cat_id', 'user_id', 'country_id', 'city_id', 'state_id', 'created_at', 'is_canceled', 'reason_id', 'serial_num', 'user_package_id');
+        $q->select('id', 'title', 'description', 'slug', 'price', 'images','cover', 'is_published', 'status','end_date', 'cat_id', 'maincat_id', 'user_id', 'country_id', 'city_id', 'state_id', 'created_at', 'is_canceled', 'reason_id', 'serial_num', 'user_package_id');
     }
     public function scopeUserPack($q, $id) {
         $q->where('user_package_id', $id);

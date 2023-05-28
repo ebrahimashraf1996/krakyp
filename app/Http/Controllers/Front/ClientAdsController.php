@@ -26,6 +26,7 @@ class ClientAdsController extends Controller
     {
         $check = Clientad::select('id', 'slug', 'status', 'is_published', 'is_canceled', 'reason_id')->slug($slug)->first();
         if ($check->is_published == 1 && $check->is_canceled == 0) {
+
             if ($check->status == 'free') {
                 $client_ad = Clientad::with(['cat' => function ($q) {
                     $q->with(['mainCategory' => function ($q) {
@@ -37,11 +38,15 @@ class ClientAdsController extends Controller
                     $q->with(['mainCategory' => function ($q) {
                         $q->select('id', 'title', 'slug', 'status');
                     }])->select('title', 'slug', 'id', 'status', 'parent_id')->active();
-                }])->selection()->published()->owner()->notEnd()->wiAttrAnswers()->wiCountry()->wiCity()->wiState()->slug($slug)->first();
+                }])->selection()->published()->owner()->wiAttrAnswers()->wiCountry()->wiCity()->wiState()->slug($slug)->first();
+                if ($client_ad->end_date < date("Y-m-d")) {
+                    return redirect(route('site.home'))->with(['error' => 'هذا الإعلان منتهي الصلاحية ']);
+                }
             }
 
-            \General::singleClientAd($slug);
 
+            \General::singleClientAd($slug);
+//return $client_ad;
             $related_paid_client_ads = \App\Models\Clientad::wiCountry()->wiCity()->wiState()->owner()->paid()->notEnd()->selection()
                 ->published()->where('cat_id', $client_ad->cat_id)->where('id', '!=', $client_ad->id)->get();
             $related_free_client_ads = \App\Models\Clientad::wiCountry()->wiCity()->wiState()->owner()->free()->selection()->

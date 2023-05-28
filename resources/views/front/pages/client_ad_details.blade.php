@@ -24,7 +24,7 @@
 
         .client_ads_section {
             margin-top: 0 !important;
-            padding-top:0!important;
+            padding-top: 0 !important;
         }
 
         .client_ad_image {
@@ -36,20 +36,24 @@
             width: auto !important;
             height: 426px !important;
         }
+        .client_ad_cover {max-height: 140px!important;}
 
-        .related_products .client_ad_cover img {
-            height: 136px;
+        .bordered {
+            box-shadow: 1px 1px 5px #c5c1c1;
+            border: none !important;
         }
+        #related_products.owl-carousel .owl-nav button.owl-prev {left: -5%;}
+        #related_products.owl-carousel .owl-nav button.owl-next {right: -2%;}
+        #related_products.owl-carousel .owl-nav button.owl-prev, #related_products.owl-carousel .owl-nav button.owl-next {top: 26%}
 
-        .bordered{box-shadow: 1px 1px 5px #c5c1c1;border: none!important;}
+        h5.card-title {font-size: 14px}
+
     </style>
 @stop
 
 @section('content')
 
-
-
-    <div class="row mb-3 px-0 mx-0 serial_routes_row" style="background:#f0f1f7;" >
+    <div class="row mb-3 px-0 mx-0 serial_routes_row" style="background:#f0f1f7;">
         <div class="container" dir="rtl" style="max-width: 1044px;">
             <div class="row">
                 <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-10 col-12 pl-3 py-2 serial_route">
@@ -59,7 +63,8 @@
                            class="fa-solid fa-chevron-left mt-1  px-1 ">
                         </i>
                     </div>
-                    <a href="{{route('mainCat.show', $client_ad->cat->mainCategory->slug)}}" class="bold">{{$client_ad->cat->mainCategory->title}}</a>
+                    <a href="{{route('mainCat.show', $client_ad->cat->mainCategory->slug)}}"
+                       class="bold">{{$client_ad->cat->mainCategory->title}}</a>
                     <div class="d-inline-block position-relative" style="width: 25px">
                         <i style="position: absolute;top: -15px;right: 3px;"
                            class="fa-solid fa-chevron-left mt-1  px-1 ">
@@ -121,71 +126,186 @@
                                 </section>
                             </div>
                             <div class="col-md-12 col-12 col-sm-12">
-                                <div class="m-3 bordered row details"  style="    padding-bottom: 15px">
-                                    <div class="col-md-12 col-12 col-sm-12 mt-3 p-b-7 bold">
-                                        التفاصيل :
-                                    </div>
-                                    <div class="col-md-6 col-12 col-sm-6 attributes  py-1">
-                                        <div class="bold details_div">السعر:</div>
-
-                                        <div class="details_div_answer">{{number_format($client_ad->price, 0)}}ج.م
-                                        </div>
-
+                                <div class="mt-2 p-3 bordered row details"
+                                     style="background: #fff;padding-bottom: 15px">
+                                    <div class="col-md-12 col-12 col-sm-12 px-0 mt-1 p-b-7 bold">
+                                        مواصفات الإعلان :
                                     </div>
                                     {{--                                    @foreach()--}}
                                     {{--                                    {{dd($client_ad->clientAdAttrsAnswers->count())}}--}}
                                     @if($client_ad->clientAdAttrsAnswers->count() > 0)
-                                        @foreach($client_ad->clientAdAttrsAnswers as $item)
+                                        {{--                                        {{dd($client_ad->clientAdAttrsAnswers->where('attr.type_of' , 'main'))}}--}}
+                                        @foreach($client_ad->clientAdAttrsAnswers->where('attr.type_of' , 'main') as $item)
 
-                                                @if($item->answer_type == 'select')
-                                                <div class="col-md-6 col-12 col-sm-6 attributes py-1">
-
-                                                <div class="bold details_div">{{$item->attr->title}} :</div>
-                                                @php
-                                                    $answer = \App\Models\Option::find($item->answer_value);
-                                                @endphp
-                                                    <div class="details_div_answer">{{$answer->val}}</div>
-                                                </div>
-                                                @else
-                                                    @if($client_ad->answer_value == '1')
-                                                    <div class="col-md-6 col-12 col-sm-6 attributes py-1">
-
-                                                    <div class="bold details_div">{{$item->attr->title}} :</div>
-
-                                                        <div class="details_div_answer"> متوفر</div>
+                                            @if($item->attr->type == 'with_options')
+                                                <div class="col-md-6 col-lg-6 col-12 col-sm-6 px-0 py-1 attr_col"
+                                                     style="border-bottom: 1px solid #ddd">
+                                                    <div class="row mx-0 px-2">
+                                                        <div
+                                                            class="col-lg-6 col-md-6 col-12 col-sm-6 px-0 text-right py-1">
+                                                            @if($item->attr->attr_icon != null)
+                                                                <img src="{{asset($item->attr->attr_icon)}}" alt="icon"
+                                                                     class="m-l-8 m-r-8">
+                                                            @endif
+                                                            {{$item->attr->title}} :
+                                                        </div>
+                                                        @php
+                                                            $answer = \App\Models\Option::find($item->answer_value);
+                                                        @endphp
+                                                        <div
+                                                            class="bold col-lg-6 col-md-6 col-12 col-sm-6 px-0 text-left py-1">
+                                                            {{$answer->val}}
+                                                            @if($answer->image !== null)
+                                                                <img
+                                                                    src="{{asset('uploads/options/' . $answer->image)}}"
+                                                                    class="m-r-16" style="width: 41px" alt="image">
+                                                            @endif
+                                                        </div>
                                                     </div>
-                                                    @endif
+                                                </div>
+                                            @elseif($item->attr->type == 'yes_no')
+                                                @if($item->answer_value == '1')
+                                                    <div class="col-md-6 col-lg-6 col-12 col-sm-6 px-0 py-1 attr_col"
+                                                         style="border-bottom: 1px solid #ddd">
+                                                        <div class="row mx-0 px-2">
+                                                            <div
+                                                                class="col-lg-8 col-md-8 col-8 col-sm-6 px-0 text-right py-1">
+                                                                @if($item->attr->attr_icon != null)
+                                                                    <img src="{{asset($item->attr->attr_icon)}}"
+                                                                         alt="icon" class="m-l-8 m-r-8">
+                                                                @endif
+                                                                {{$item->attr->title}} :
+                                                            </div>
+                                                            <div class="bold col-lg-4 col-md-4 col-4 col-sm-6 px-0 text-left py-1">
+                                                                متوفر
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 @endif
-
+                                            @elseif($item->attr->type == 'with_no_answers')
+                                                <div class="col-md-6 col-lg-6 col-12 col-sm-6 px-0 py-1 attr_col"
+                                                     style="border-bottom: 1px solid #ddd">
+                                                    <div class="row mx-0 px-2">
+                                                        <div
+                                                            class="col-lg-6 col-md-6 col-12 col-sm-6 px-0 text-right py-1">
+                                                            @if($item->attr->attr_icon != null)
+                                                                <img src="{{asset($item->attr->attr_icon)}}"
+                                                                     alt="icon" class="m-l-8 m-r-8">
+                                                            @endif
+                                                            {{$item->attr->title}} :
+                                                        </div>
+                                                        <div class="bold col-lg-6 col-md-6 col-12 col-sm-6 px-0 text-left py-1">
+                                                            {{number_format($item->answer_value, 0)}} &nbsp;<span style="font-weight: normal;" class=" colored"> {{$item->attr->unit}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
                                         @endforeach
+                                        <div class="see_other_attrs_div col-lg-12 col-md-12 mt-3 col-sm-12 col-12">
+                                            <div class="row mx-0 px-2">
+                                                <div class="col-lg-5 col-md-5 col-sm-6 col-12 m-auto text-center">
+                                                    <button class="btn btn-primary w-100 other_details_btn" data-bs-target="#other_attrs_details" data-bs-toggle="modal">المواصفات تفصيلياً</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="other_attrs_details" tabindex="-1" aria-labelledby="other_attrs_details" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-scrollable" style="max-width: 1044px!important;">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title bold" id="exampleModalLabel" style="color: #426ddd">المواصفات تفصيلياً</h5>
+                                                        <button type="button" data-bs-dismiss="modal" class="bold d-flex justify-content-center" style="background: #f4f5fe!important; color: rgb(255, 149, 0); padding: 10px 15px">
+                                                            <i class="fa-solid fa-xmark " style="font-size: 15px;padding: 0 6px!important; "></i>
+                                                            <span style="font-weight: normal">إغلاق</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body pt-0">
+                                                        <div class="row">
+                                                        @foreach($client_ad->clientAdAttrsAnswers->where('attr.type_of' , 'other') as $item)
+
+                                                            @if($item->attr->type == 'with_options')
+                                                                <div class="col-md-6 col-lg-6 col-12 col-sm-6 px-2 py-1 attr_col"
+                                                                     style="border-bottom: 1px solid #ddd">
+                                                                    <div class="row mx-0 px-2">
+                                                                        <div
+                                                                            class="col-lg-6 col-md-6 col-12 col-sm-6 px-2 text-right py-1">
+                                                                            @if($item->attr->attr_icon != null)
+                                                                                <img src="{{asset($item->attr->attr_icon)}}" alt="icon"
+                                                                                     class="m-l-8 m-r-8">
+                                                                            @endif
+                                                                            {{$item->attr->title}} :
+                                                                        </div>
+                                                                        @php
+                                                                            $answer = \App\Models\Option::find($item->answer_value);
+                                                                        @endphp
+                                                                        <div
+                                                                            class="bold col-lg-6 col-md-6 col-12 col-sm-6 px-2 text-left py-1">
+                                                                            {{$answer->val}}
+                                                                            @if($answer->image !== null)
+                                                                                <img
+                                                                                    src="{{asset('uploads/options/' . $answer->image)}}"
+                                                                                    class="m-r-16" style="width: 41px" alt="image">
+                                                                            @endif
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            @elseif($item->attr->type == 'yes_no')
+                                                                @if($item->answer_value == '1')
+                                                                    <div class="col-md-6 col-lg-6 col-12 col-sm-6 px-2 py-1 attr_col"
+                                                                         style="border-bottom: 1px solid #ddd">
+                                                                        <div class="row mx-0 px-2">
+                                                                            <div
+                                                                                class="col-lg-8 col-md-8 col-8 col-sm-6 px-2 text-right py-1">
+                                                                                @if($item->attr->attr_icon != null)
+                                                                                    <img src="{{asset($item->attr->attr_icon)}}"
+                                                                                         alt="icon" class="m-l-8 m-r-8">
+                                                                                @endif
+                                                                                {{$item->attr->title}} :
+                                                                            </div>
+                                                                            <div class="bold col-lg-4 col-md-4 col-4 col-sm-6 px-2 text-left py-1">
+                                                                                متوفر
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                @endif
+                                                            @elseif($item->attr->type == 'with_no_answers')
+                                                                <div class="col-md-6 col-lg-6 col-12 col-sm-6 px-2 py-1 attr_col"
+                                                                     style="border-bottom: 1px solid #ddd">
+                                                                    <div class="row mx-0 px-2">
+                                                                        <div
+                                                                            class="col-lg-6 col-md-6 col-12 col-sm-6 px-2 text-right py-1">
+                                                                            @if($item->attr->attr_icon != null)
+                                                                                <img src="{{asset($item->attr->attr_icon)}}"
+                                                                                     alt="icon" class="m-l-8 m-r-8">
+                                                                            @endif
+                                                                            {{$item->attr->title}} :
+                                                                        </div>
+                                                                        <div class="bold col-lg-6 col-md-6 col-12 col-sm-6 px-2 text-left py-1">
+                                                                            {{number_format($item->answer_value, 0)}} &nbsp;<span style="font-weight: normal;" class=" colored"> {{$item->attr->unit}}</span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            @endif
+                                                        @endforeach
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
                                     @endif
-                                    <div class="col-md-6 col-12 col-sm-6 attributes  py-1">
-                                        <div class="bold details_div">المحافظة:</div>
 
-                                        <div class="details_div_answer">{{$client_ad->country->name}} </div>
-
-                                    </div>
-                                    <div class="col-md-6 col-12 col-sm-6 attributes  py-1">
-                                        <div class="bold details_div">المدينة:</div>
-
-                                        <div class="details_div_answer">{{$client_ad->city->name}} </div>
-
-                                    </div>
-                                    <div class="col-md-6 col-12 col-sm-6 attributes  py-1">
-                                        <div class="bold details_div">الحي / المركز:</div>
-
-                                        <div class="details_div_answer">{{$client_ad->state->name}} </div>
-
-                                    </div>
 
                                 </div>
                             </div>
                             <div class="col-md-12 col-12 col-sm-12">
-                                <div class="m-3 bordered row details">
-                                    <div class="col-md-12 col-12 col-sm-12 mt-3 p-b-7 bold">
+                                <div class="mt-2 p-3 bordered row details" style="background: #fff">
+                                    <div class="col-md-12 col-12 col-sm-12 mt-1 p-b-7 bold">
                                         الوصف :
                                     </div>
-                                    <div class="col-md-12 col-12 col-sm-12 mt-3 p-b-7 bold">
+                                    <div class="col-md-12 col-12 col-sm-12 mt-0 p-b-7 bold">
                                         <p class="description_text"
                                            style="width: 100%;">{!! $client_ad->description !!}</p>
                                     </div>
@@ -194,45 +314,48 @@
 
                         </div>
 
-{{--{{dd($item->id)}}--}}
+                        {{--{{dd($item->id)}}--}}
                     </div>
                     <div class="col-md-3 col-lg-3 col-12 col-sm-12 side_part">
                         <div class="bordered mt-3 p-3 contact_section">
                             @if(backpack_auth()->check())
                                 <div
-                                    class="wish_div not_hovered_wish {{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}}"
-                                    data-target="{{$item->id}} " dir="ltr">
+                                    class="wish_div {{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}} not_hovered_wish"
+                                    data-target="{{$item->id}} ">
                                     <a href="javascript:void(0)" class="wish-btn"
                                        data-bs-target="{{$item->slug}}">
                                         <img
                                             src="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? asset('assets/front/images/hearted.png') : asset('assets/front/images/heart.png')}}"
                                             alt="wish-icon">
                                         <span
-                                            class="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}}">
-                                                        {{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'تم الإضافة' : 'أضف لقائمة الرغبات'}}</span>
-
+                                            class="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}}">{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'تم الإضافة' : 'أضف لقائمة الرغبات'}}</span>
                                     </a>
                                 </div>
                             @else
-                                <div id="wish_div not_hovered_wish" class="wish_div product_{{$item->id}}">
+                                <div class="wish_div not_hovered_wish" data-target="{{$item->id}} ">
                                     <a href="{{url('login')}}">
                                         <img src="{{asset('assets/front/images/heart.png')}}"
                                              alt="wish-icon">
+                                        <span>أضف لقائمة الرغبات</span>
+
                                     </a>
                                 </div>
                             @endif
                             <div class="price">
-                                <h4 class="bold l_22">{{number_format($client_ad->price, 0)}} <span class="colored">ج.م</span></h4>
+                                <h4 class="bold l_22">{{number_format($client_ad->price, 0)}} <span
+                                        class="colored">ج.م</span></h4>
                             </div>
                             <div class=" mt-2">
-                                <span class="text-muted l_13"><span class="bold">{{$client_ad->country->name}} - {{$client_ad->city->name}}</span>
+                                <span class="text-muted l_13"><span
+                                        class="bold">{{$client_ad->country->name}} - {{$client_ad->city->name}}</span>
 {{--                                    - {{$client_ad->state->name}}--}}
                                 </span>
                             </div>
                             <div class=" mt-2 text-left">
                                 <i class="fa-sharp fa-solid fa-clock-rotate-left l_11"
                                    style="margin-left: 3px"></i>
-                                <span class="text-muted l_12">{{Carbon\Carbon::parse($client_ad->created_at)->diffForHumans()}}</span>
+                                <span
+                                    class="text-muted l_12">{{Carbon\Carbon::parse($client_ad->created_at)->diffForHumans()}}</span>
                             </div>
                         </div>
                         <div class="bordered mt-3  pt-4 contact_section">
@@ -240,28 +363,31 @@
                             <div class="seller px-3">
                                 <div class="d-inline-block user_photo">
                                     <img class="flag" src="{{asset($client_ad->user->image)}}" alt="user_photo"> &nbsp;&nbsp;&nbsp;
-
                                 </div>
                                 <div class="d-inline-block">
                                     <h5 class="bold ">{{$client_ad->user->name}}</h5>
-                                    <a href="{{route('seller.ads', $client_ad->user->serial_num)}}" class="text-muted">المزيد من الإعلانات</a>
-
+                                    <a href="{{route('seller.ads', $client_ad->user->serial_num)}}" class="text-muted">
+                                        المزيد من الإعلانات
+                                    </a>
                                 </div>
                             </div>
                             <div class=" mt-4">
                                 <div class="row">
                                     <div class="col-md-6 col-6 col-sm-6" style="padding-left: 0;border-radius: 0">
-                                        <a class="btn whats_btn" target="_blank" href="{{$client_ad->user->whats_app != null ? 'https://wa.me/'. $client_ad->user->whats_app : ''}}">
+                                        <a class="btn whats_btn" target="_blank"
+                                           href="{{$client_ad->user->whats_app != null ? 'https://wa.me/'. $client_ad->user->whats_app : ''}}">
                                             <span class="bold l_14">واتساب</span>&nbsp;
-                                            <img src="{{asset('assets/front/images/whats.png')}}" alt="whats-icon" style="width: 17px"
-                                                  class="whats-icon">
+                                            <img src="{{asset('assets/front/images/whats.png')}}" alt="whats-icon"
+                                                 style="width: 17px"
+                                                 class="whats-icon">
                                         </a>
                                     </div>
                                     <div class="col-md-6 col-6 col-sm-6" style="padding-right: 0;">
                                         <a class="btn call_btn" href="tel:{{$client_ad->user->phone}}">
                                             <span class="bold l_14">اتصال</span> &nbsp;
-                                            <img src="{{asset('assets/front/images/phone.png')}}" alt="tel-icon" style="width: 17px"
-                                                  class="tel-icon">
+                                            <img src="{{asset('assets/front/images/phone.png')}}" alt="tel-icon"
+                                                 style="width: 17px"
+                                                 class="tel-icon">
                                         </a>
                                     </div>
                                 </div>
@@ -273,7 +399,7 @@
                             <div class="instructions_head">
                                 <span class="bold">ارشادات التعامل مع البائع </span>
                             </div>
-                            <div class="instructions_info mt-2 text-muted l_16">
+                            <div class="instructions_info mt-2 text-muted bold l_13">
                                 <p>- قابل البايع في مكان عام زي المترو أو المولات </p>
                                 <p>- خد حد معاك وانت رايح تقابل اي حد</p>
                                 <p>- عاين المنتج كويس قبل ما تشتري وتأكد ان سعره مناسب</p>
@@ -283,16 +409,21 @@
                             </div>
 
                         </div>
-                        <div>
-                            <div style="width: 49%;text-align: right" class="p-r-10 d-inline-block"><a href="{{route('contact.us').'?client_ad_serial='. $client_ad->serial_num}}" class="text-muted l_15">أبلغ عن الإعلان</a></div>
-                            <div style="width: 49%; text-align: left"  class="p-l-10 d-inline-block"><a href="{{route('contact.us').'?seller_serial='. $client_ad->user->serial_num}}" class="text-muted l_15">أبلغ عن المعلن</a></div>
+                        <div class="mt-1">
+                            <div style="width: 49%;text-align: right" class="p-r-10 d-inline-block">
+                                <a href="{{route('contact.us').'?client_ad_serial='. $client_ad->serial_num}}"
+                                    class="bold text-muted l_14">أبلغ عن الإعلان</a></div>
+                            <div style="width: 49%; text-align: left" class="p-l-10 d-inline-block"><a
+                                    href="{{route('contact.us').'?seller_serial='. $client_ad->user->serial_num}}"
+                                    class="bold text-muted l_14">أبلغ عن المعلن</a></div>
                         </div>
 
                     </div>
-                    <div class="col-md-8 col-12 col-sm-12">
+
+                    <div class="col-md-12 col-lg-12 col-12 col-sm-12">
                         <div class="row">
                             <div class="col-md-12 col-12 col-sm-12">
-                                <div class="m-3 bordered row related_products">
+                                <div class="mt-3 p-3 bordered row related_products" style="background: #fff">
                                     <div class="col-md-12 col-12 col-sm-12 mt-3 p-b-7 bold">
                                         إعلانات ذات صلة :
                                     </div>
@@ -302,281 +433,73 @@
                                             <div class="item">
                                                 <div class="post" dir="rtl">
                                                     {{--                            {{route('client_ad.show', $item->slug)}}--}}
-                                                    <div class="card card-block pb-3">
+                                                    <div class="card card-block pb-3"
+                                                         style="border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;height: auto">
                                                         @php
                                                             $images =explode(',',$item->images);
                                                              //dd($photo);
                                                         @endphp
+                                                        <div class="mark_div">
+                                                            <img src="{{asset('assets/front/images/mark.png')}}" alt="special offer"
+                                                                 width="100%">
+                                                        </div>
                                                         @if(backpack_auth()->check())
-                                                            <div class="wish_div" data-target="{{$item->id}} ">
+                                                            <div class="wish_div {{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}} not_hovered_wish" data-target="{{$item->id}} ">
                                                                 <a href="javascript:void(0)" class="wish-btn"
                                                                    data-bs-target="{{$item->slug}}">
                                                                     <img
                                                                         src="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? asset('assets/front/images/hearted.png') : asset('assets/front/images/heart.png')}}"
                                                                         alt="wish-icon">
+                                                                    <span class="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}}">{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'تم الإضافة' : 'أضف لقائمة الرغبات'}}</span>
                                                                 </a>
                                                             </div>
                                                         @else
-                                                            <div class="wish_div" data-target="{{$item->id}} ">
+                                                            <div class="wish_div not_hovered_wish" data-target="{{$item->id}} ">
                                                                 <a href="{{url('login')}}">
-                                                                    <img
-                                                                        src="{{asset('assets/front/images/heart.png')}}"
-                                                                        alt="wish-icon">
+                                                                    <img src="{{asset('assets/front/images/heart.png')}}"
+                                                                         alt="wish-icon">
+                                                                    <span>أضف لقائمة الرغبات</span>
+
                                                                 </a>
                                                             </div>
                                                         @endif
+
                                                         <a href="{{route('client_ad.show', $item->slug)}}">
                                                             <div class="client_ad_cover">
-                                                                <img class="m-auto" style="width: auto!important;" src="{{asset('images/dropped/'. $images[0])}}"
+                                                                <img src="{{asset('organized/'. $item->cover)}}"
                                                                      alt="{{$item->slug}}">
+                                                            </div>
+                                                            <div class="location_card text-muted pt-2">
+                                                                <i class="fa fa-location-dot l_13" style="margin-left: 3px"></i>
+                                                                <small>{{$item->country->name}},</small>
+                                                                <small>{{$item->city->name}}</small>
+                                                                {{--                                            - <small>{{$item->state->name}}</small>--}}
                                                             </div>
 
                                                             <div class="titles bold">
-                                                                <h5 class="card-title  bold">{{$item->title}}</h5>
-                                                                <span class="card-title  bold price">{{$item->price}} ج.م</span>
+                                                                <h5 class="card-title mb-3 bold">{{$item->title}}</h5>
+                                                                <span style="font-weight: normal">السعر: </span>
+                                                                <span class="card-title  bold price colored">{{number_format($item->price, 0)}}</span>
+                                                                <span> ج.م</span>
                                                             </div>
                                                         </a>
-                                                        <div class="footer_card text-muted">
-                                                            <small>{{$item->country->name}}</small> -
-                                                            <small>{{$item->city->name}}</small> -
-                                                            <small>{{$item->state->name}}</small>
+
+                                                        <div class="footer_card">
+                                                            <div class="text-muted position-relative">
+                                                                <small>عدد المشاهدات : {{$item->viewNum->count()}}</small>
+                                                                <small class="date_client_ad">
+                                                                    <i class="fa-sharp fa-solid fa-clock-rotate-left l_11"
+                                                                       style="margin-left: 3px"></i>
+                                                                    <span>{{Carbon\Carbon::parse($item->created_at)->diffForHumans()}}</span>
+                                                                </small>
+                                                            </div>
                                                         </div>
+
                                                     </div>
                                                 </div>
 
                                             </div>
 
-                                            <div class="item">
-                                                <div class="post" dir="rtl">
-                                                    {{--                            {{route('client_ad.show', $item->slug)}}--}}
-                                                    <div class="card card-block pb-3">
-                                                        @php
-                                                            $images =explode(',',$item->images);
-                                                             //dd($photo);
-                                                        @endphp
-                                                        @if(backpack_auth()->check())
-                                                            <div class="wish_div" data-target="{{$item->id}} ">
-                                                                <a href="javascript:void(0)" class="wish-btn"
-                                                                   data-bs-target="{{$item->slug}}">
-                                                                    <img
-                                                                        src="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? asset('assets/front/images/hearted.png') : asset('assets/front/images/heart.png')}}"
-                                                                        alt="wish-icon">
-                                                                </a>
-                                                            </div>
-                                                        @else
-                                                            <div class="wish_div" data-target="{{$item->id}} ">
-                                                                <a href="{{url('login')}}">
-                                                                    <img
-                                                                        src="{{asset('assets/front/images/heart.png')}}"
-                                                                        alt="wish-icon">
-                                                                </a>
-                                                            </div>
-                                                        @endif
-                                                        <a href="{{route('client_ad.show', $item->slug)}}">
-                                                            <div class="client_ad_cover">
-                                                                <img class="m-auto" style="width: auto!important;" src="{{asset('images/dropped/'. $images[0])}}"
-                                                                     alt="{{$item->slug}}">
-                                                            </div>
-
-                                                            <div class="titles bold">
-                                                                <h5 class="card-title  bold">{{$item->title}}</h5>
-                                                                <span class="card-title  bold price">{{$item->price}} ج.م</span>
-                                                            </div>
-                                                        </a>
-                                                        <div class="footer_card text-muted">
-                                                            <small>{{$item->country->name}}</small> -
-                                                            <small>{{$item->city->name}}</small> -
-                                                            <small>{{$item->state->name}}</small>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                            <div class="item">
-                                                <div class="post" dir="rtl">
-                                                    {{--                            {{route('client_ad.show', $item->slug)}}--}}
-                                                    <div class="card card-block pb-3">
-                                                        @php
-                                                            $images =explode(',',$item->images);
-                                                             //dd($photo);
-                                                        @endphp
-                                                        @if(backpack_auth()->check())
-                                                            <div class="wish_div" data-target="{{$item->id}} ">
-                                                                <a href="javascript:void(0)" class="wish-btn"
-                                                                   data-bs-target="{{$item->slug}}">
-                                                                    <img
-                                                                        src="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? asset('assets/front/images/hearted.png') : asset('assets/front/images/heart.png')}}"
-                                                                        alt="wish-icon">
-                                                                </a>
-                                                            </div>
-                                                        @else
-                                                            <div class="wish_div" data-target="{{$item->id}} ">
-                                                                <a href="{{url('login')}}">
-                                                                    <img
-                                                                        src="{{asset('assets/front/images/heart.png')}}"
-                                                                        alt="wish-icon">
-                                                                </a>
-                                                            </div>
-                                                        @endif
-                                                        <a href="{{route('client_ad.show', $item->slug)}}">
-                                                            <div class="client_ad_cover">
-                                                                <img class="m-auto" style="width: auto!important;" src="{{asset('images/dropped/'. $images[0])}}"
-                                                                     alt="{{$item->slug}}">
-                                                            </div>
-
-                                                            <div class="titles bold">
-                                                                <h5 class="card-title  bold">{{$item->title}}</h5>
-                                                                <span class="card-title  bold price">{{$item->price}} ج.م</span>
-                                                            </div>
-                                                        </a>
-                                                        <div class="footer_card text-muted">
-                                                            <small>{{$item->country->name}}</small> -
-                                                            <small>{{$item->city->name}}</small> -
-                                                            <small>{{$item->state->name}}</small>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div class="item">
-                                                <div class="post" dir="rtl">
-                                                    {{--                            {{route('client_ad.show', $item->slug)}}--}}
-                                                    <div class="card card-block pb-3">
-                                                        @php
-                                                            $images =explode(',',$item->images);
-                                                             //dd($photo);
-                                                        @endphp
-                                                        @if(backpack_auth()->check())
-                                                            <div class="wish_div" data-target="{{$item->id}} ">
-                                                                <a href="javascript:void(0)" class="wish-btn"
-                                                                   data-bs-target="{{$item->slug}}">
-                                                                    <img
-                                                                        src="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? asset('assets/front/images/hearted.png') : asset('assets/front/images/heart.png')}}"
-                                                                        alt="wish-icon">
-                                                                </a>
-                                                            </div>
-                                                        @else
-                                                            <div class="wish_div" data-target="{{$item->id}} ">
-                                                                <a href="{{url('login')}}">
-                                                                    <img
-                                                                        src="{{asset('assets/front/images/heart.png')}}"
-                                                                        alt="wish-icon">
-                                                                </a>
-                                                            </div>
-                                                        @endif
-                                                        <a href="{{route('client_ad.show', $item->slug)}}">
-                                                            <div class="client_ad_cover">
-                                                                <img class="m-auto" style="width: auto!important;" src="{{asset('images/dropped/'. $images[0])}}"
-                                                                     alt="{{$item->slug}}">
-                                                            </div>
-
-                                                            <div class="titles bold">
-                                                                <h5 class="card-title  bold">{{$item->title}}</h5>
-                                                                <span class="card-title  bold price">{{$item->price}} ج.م</span>
-                                                            </div>
-                                                        </a>
-                                                        <div class="footer_card text-muted">
-                                                            <small>{{$item->country->name}}</small> -
-                                                            <small>{{$item->city->name}}</small> -
-                                                            <small>{{$item->state->name}}</small>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div class="item">
-                                                <div class="post" dir="rtl">
-                                                    {{--                            {{route('client_ad.show', $item->slug)}}--}}
-                                                    <div class="card card-block pb-3">
-                                                        @php
-                                                            $images =explode(',',$item->images);
-                                                             //dd($photo);
-                                                        @endphp
-                                                        @if(backpack_auth()->check())
-                                                            <div class="wish_div" data-target="{{$item->id}} ">
-                                                                <a href="javascript:void(0)" class="wish-btn"
-                                                                   data-bs-target="{{$item->slug}}">
-                                                                    <img
-                                                                        src="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? asset('assets/front/images/hearted.png') : asset('assets/front/images/heart.png')}}"
-                                                                        alt="wish-icon">
-                                                                </a>
-                                                            </div>
-                                                        @else
-                                                            <div class="wish_div" data-target="{{$item->id}} ">
-                                                                <a href="{{url('login')}}">
-                                                                    <img
-                                                                        src="{{asset('assets/front/images/heart.png')}}"
-                                                                        alt="wish-icon">
-                                                                </a>
-                                                            </div>
-                                                        @endif
-                                                        <a href="{{route('client_ad.show', $item->slug)}}">
-                                                            <div class="client_ad_cover">
-                                                                <img class="m-auto" style="width: auto!important;" src="{{asset('images/dropped/'. $images[0])}}"
-                                                                     alt="{{$item->slug}}">
-                                                            </div>
-
-                                                            <div class="titles bold">
-                                                                <h5 class="card-title  bold">{{$item->title}}</h5>
-                                                                <span class="card-title  bold price">{{$item->price}} ج.م</span>
-                                                            </div>
-                                                        </a>
-                                                        <div class="footer_card text-muted">
-                                                            <small>{{$item->country->name}}</small> -
-                                                            <small>{{$item->city->name}}</small> -
-                                                            <small>{{$item->state->name}}</small>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                            <div class="item">
-                                                <div class="post" dir="rtl">
-                                                    {{--                            {{route('client_ad.show', $item->slug)}}--}}
-                                                    <div class="card card-block pb-3">
-                                                        @php
-                                                            $images =explode(',',$item->images);
-                                                             //dd($photo);
-                                                        @endphp
-                                                        @if(backpack_auth()->check())
-                                                            <div class="wish_div" data-target="{{$item->id}} ">
-                                                                <a href="javascript:void(0)" class="wish-btn"
-                                                                   data-bs-target="{{$item->slug}}">
-                                                                    <img
-                                                                        src="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? asset('assets/front/images/hearted.png') : asset('assets/front/images/heart.png')}}"
-                                                                        alt="wish-icon">
-                                                                </a>
-                                                            </div>
-                                                        @else
-                                                            <div class="wish_div" data-target="{{$item->id}} ">
-                                                                <a href="{{url('login')}}">
-                                                                    <img
-                                                                        src="{{asset('assets/front/images/heart.png')}}"
-                                                                        alt="wish-icon">
-                                                                </a>
-                                                            </div>
-                                                        @endif
-                                                        <a href="{{route('client_ad.show', $item->slug)}}">
-                                                            <div class="client_ad_cover">
-                                                                <img class="m-auto" style="width: auto!important;" src="{{asset('images/dropped/'. $images[0])}}"
-                                                                     alt="{{$item->slug}}">
-                                                            </div>
-
-                                                            <div class="titles bold">
-                                                                <h5 class="card-title  bold">{{$item->title}}</h5>
-                                                                <span class="card-title  bold price">{{$item->price}} ج.م</span>
-                                                            </div>
-                                                        </a>
-                                                        <div class="footer_card text-muted">
-                                                            <small>{{$item->country->name}}</small> -
-                                                            <small>{{$item->city->name}}</small> -
-                                                            <small>{{$item->state->name}}</small>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
                                         @endforeach
                                         @foreach($related_free_client_ads as $item)
                                             <div class="item">
@@ -588,180 +511,58 @@
                                                              //dd($photo);
                                                         @endphp
                                                         @if(backpack_auth()->check())
-                                                            <div class="wish_div" data-target="{{$item->id}} ">
+                                                            <div class="wish_div {{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}} not_hovered_wish" data-target="{{$item->id}} ">
                                                                 <a href="javascript:void(0)" class="wish-btn"
                                                                    data-bs-target="{{$item->slug}}">
                                                                     <img
                                                                         src="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? asset('assets/front/images/hearted.png') : asset('assets/front/images/heart.png')}}"
                                                                         alt="wish-icon">
+                                                                    <span class="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}}">{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'تم الإضافة' : 'أضف لقائمة الرغبات'}}</span>
                                                                 </a>
                                                             </div>
                                                         @else
-                                                            <div class="wish_div" data-target="{{$item->id}} ">
+                                                            <div class="wish_div not_hovered_wish" data-target="{{$item->id}} ">
                                                                 <a href="{{url('login')}}">
-                                                                    <img
-                                                                        src="{{asset('assets/front/images/heart.png')}}"
-                                                                        alt="wish-icon">
+                                                                    <img src="{{asset('assets/front/images/heart.png')}}"
+                                                                         alt="wish-icon">
+                                                                    <span>أضف لقائمة الرغبات</span>
+
                                                                 </a>
                                                             </div>
                                                         @endif
                                                         <a href="{{route('client_ad.show', $item->slug)}}">
                                                             <div class="client_ad_cover">
-                                                                <img class="m-auto" style="width: auto!important;" src="{{asset('images/dropped/'. $images[0])}}"
+                                                                <img src="{{asset('organized/'. $item->cover)}}"
                                                                      alt="{{$item->slug}}">
                                                             </div>
-
+                                                            <div class="location_card text-muted pt-2">
+                                                                <i class="fa fa-location-dot l_13" style="margin-left: 3px"></i>
+                                                                <small>{{$item->country->name}},</small>
+                                                                <small>{{$item->city->name}}</small>
+                                                                {{--                                            - <small>{{$item->state->name}}</small>--}}
+                                                            </div>
                                                             <div class="titles bold">
-                                                                <h5 class="card-title  bold">{{$item->title}}</h5>
-                                                                <span class="card-title  bold price">{{$item->price}} ج.م</span>
+                                                                <h5 class="card-title mb-3 bold">{{$item->title}}</h5>
+                                                                <span style="font-weight: normal">السعر: </span>
+                                                                <span class="card-title  bold price colored">{{number_format($item->price, 0)}}</span>
+                                                                <span> ج.م</span>
                                                             </div>
                                                         </a>
-                                                        <div class="footer_card text-muted">
-                                                            <small>{{$item->country->name}}</small> -
-                                                            <small>{{$item->city->name}}</small> -
-                                                            <small>{{$item->state->name}}</small>
+
+                                                        <div class="footer_card">
+                                                            <div class="text-muted position-relative">
+                                                                <small>عدد المشاهدات : {{$item->viewNum->count()}}</small>
+                                                                <small class="date_client_ad">
+                                                                    <i class="fa-sharp fa-solid fa-clock-rotate-left l_11"
+                                                                       style="margin-left: 3px"></i>
+                                                                    <span>{{Carbon\Carbon::parse($item->created_at)->diffForHumans()}}</span>
+                                                                </small>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <div class="item">
-                                                <div class="post" dir="rtl">
-                                                    {{--                            {{route('client_ad.show', $item->slug)}}--}}
-                                                    <div class="card card-block pb-3">
-                                                        @php
-                                                            $images =explode(',',$item->images);
-                                                             //dd($photo);
-                                                        @endphp
-                                                        @if(backpack_auth()->check())
-                                                            <div class="wish_div" data-target="{{$item->id}} ">
-                                                                <a href="javascript:void(0)" class="wish-btn"
-                                                                   data-bs-target="{{$item->slug}}">
-                                                                    <img
-                                                                        src="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? asset('assets/front/images/hearted.png') : asset('assets/front/images/heart.png')}}"
-                                                                        alt="wish-icon">
-                                                                </a>
-                                                            </div>
-                                                        @else
-                                                            <div class="wish_div" data-target="{{$item->id}} ">
-                                                                <a href="{{url('login')}}">
-                                                                    <img
-                                                                        src="{{asset('assets/front/images/heart.png')}}"
-                                                                        alt="wish-icon">
-                                                                </a>
-                                                            </div>
-                                                        @endif
-                                                        <a href="{{route('client_ad.show', $item->slug)}}">
-                                                            <div class="client_ad_cover">
-                                                                <img class="m-auto" style="width: auto!important;" src="{{asset('images/dropped/'. $images[0])}}"
-                                                                     alt="{{$item->slug}}">
-                                                            </div>
-
-                                                            <div class="titles bold">
-                                                                <h5 class="card-title  bold">{{$item->title}}</h5>
-                                                                <span class="card-title  bold price">{{$item->price}} ج.م</span>
-                                                            </div>
-                                                        </a>
-                                                        <div class="footer_card text-muted">
-                                                            <small>{{$item->country->name}}</small> -
-                                                            <small>{{$item->city->name}}</small> -
-                                                            <small>{{$item->state->name}}</small>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="item">
-                                                <div class="post" dir="rtl">
-                                                    {{--                            {{route('client_ad.show', $item->slug)}}--}}
-                                                    <div class="card card-block pb-3">
-                                                        @php
-                                                            $images =explode(',',$item->images);
-                                                             //dd($photo);
-                                                        @endphp
-                                                        @if(backpack_auth()->check())
-                                                            <div class="wish_div" data-target="{{$item->id}} ">
-                                                                <a href="javascript:void(0)" class="wish-btn"
-                                                                   data-bs-target="{{$item->slug}}">
-                                                                    <img
-                                                                        src="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? asset('assets/front/images/hearted.png') : asset('assets/front/images/heart.png')}}"
-                                                                        alt="wish-icon">
-                                                                </a>
-                                                            </div>
-                                                        @else
-                                                            <div class="wish_div" data-target="{{$item->id}} ">
-                                                                <a href="{{url('login')}}">
-                                                                    <img
-                                                                        src="{{asset('assets/front/images/heart.png')}}"
-                                                                        alt="wish-icon">
-                                                                </a>
-                                                            </div>
-                                                        @endif
-                                                        <a href="{{route('client_ad.show', $item->slug)}}">
-                                                            <div class="client_ad_cover">
-                                                                <img class="m-auto" style="width: auto!important;" src="{{asset('images/dropped/'. $images[0])}}"
-                                                                     alt="{{$item->slug}}">
-                                                            </div>
-
-                                                            <div class="titles bold">
-                                                                <h5 class="card-title  bold">{{$item->title}}</h5>
-                                                                <span class="card-title  bold price">{{$item->price}} ج.م</span>
-                                                            </div>
-                                                        </a>
-                                                        <div class="footer_card text-muted">
-                                                            <small>{{$item->country->name}}</small> -
-                                                            <small>{{$item->city->name}}</small> -
-                                                            <small>{{$item->state->name}}</small>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="item">
-                                                <div class="post" dir="rtl">
-                                                    {{--                            {{route('client_ad.show', $item->slug)}}--}}
-                                                    <div class="card card-block pb-3">
-                                                        @php
-                                                            $images =explode(',',$item->images);
-                                                             //dd($photo);
-                                                        @endphp
-                                                        @if(backpack_auth()->check())
-                                                            <div class="wish_div" data-target="{{$item->id}} ">
-                                                                <a href="javascript:void(0)" class="wish-btn"
-                                                                   data-bs-target="{{$item->slug}}">
-                                                                    <img
-                                                                        src="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? asset('assets/front/images/hearted.png') : asset('assets/front/images/heart.png')}}"
-                                                                        alt="wish-icon">
-                                                                </a>
-                                                            </div>
-                                                        @else
-                                                            <div class="wish_div" data-target="{{$item->id}} ">
-                                                                <a href="{{url('login')}}">
-                                                                    <img
-                                                                        src="{{asset('assets/front/images/heart.png')}}"
-                                                                        alt="wish-icon">
-                                                                </a>
-                                                            </div>
-                                                        @endif
-                                                        <a href="{{route('client_ad.show', $item->slug)}}">
-                                                            <div class="client_ad_cover">
-                                                                <img class="m-auto" style="width: auto!important;" src="{{asset('images/dropped/'. $images[0])}}"
-                                                                     alt="{{$item->slug}}">
-                                                            </div>
-
-                                                            <div class="titles bold">
-                                                                <h5 class="card-title  bold">{{$item->title}}</h5>
-                                                                <span class="card-title  bold price">{{$item->price}} ج.م</span>
-                                                            </div>
-                                                        </a>
-                                                        <div class="footer_card text-muted">
-                                                            <small>{{$item->country->name}}</small> -
-                                                            <small>{{$item->city->name}}</small> -
-                                                            <small>{{$item->state->name}}</small>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
 
                                         @endforeach
                                     </div>
@@ -819,9 +620,10 @@
                 margin: 10,
                 loop: true,
                 // autoWidth: true,
-                items: 3,
-                navs: false,
-                dots: false,
+                items: 4,
+                navs: true,
+                navText: ["<i style='font-size: 38px;color:#ee7202' class='fa-solid fa-chevron-left'></i>", "<i style='font-size: 38px;color:#ee7202' class='fa-solid fa-chevron-right'></i>"],
+                dots: true,
                 autoplay: true,
                 autoplayTimeout: 3500,
                 autoplayHoverPause: true,
@@ -835,20 +637,28 @@
                         nav: false
                     },
                     767: {
-                        items: 2,
+                        items: 3,
                         nav: false
                     },
                     992: {
-                        items: 3,
-                        nav: false
+                        items: 4,
+                        nav: true
                     },
                     1200: {
-                        items: 3,
-                        nav: false
+                        items: 4,
+                        nav: true
                     }
                 }
 
             });
+
+            let client_ad_post = $('div.client_ads_section .card');
+            let maxHeight = Math.max.apply(null, client_ad_post.map(function () {
+                return $(this).height();
+            }).get());
+
+            // alert(maxHeight);
+            client_ad_post.height(maxHeight);
 
         });
 

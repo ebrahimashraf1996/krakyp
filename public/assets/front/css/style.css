@@ -857,4 +857,7 @@ ul.size-list li a.unavailable{  cursor: not-allowed;opacity: 50%}
 .short_delete_btn {cursor: pointer;width: 35px;height: 38px;background: #fff;border: #00000033 1px solid;border-radius: 7px;position: absolute;top: 6px;left: 6px;transition: 200ms all;overflow: hidden;}
 .short_delete_btn a {position: absolute;top: 0;left: 0;}
 .short_delete_btn img {width: 21px!important;padding-top: 0;position: absolute;top: 8px;left: 6px;}
-
+.attr_col:hover {background: #f2eeee}
+.attr_col {font-size: 13px}
+.other_details_btn {background: #fff;color: #426ddd;font-weight: bold;border: 2px solid;}
+.other_details_btn:focus {box-shadow: none!important;}

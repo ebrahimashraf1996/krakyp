@@ -2516,18 +2516,46 @@
                             lds_roller.addClass('active');
 
                             let result = saveThePost(data);
+                            if(result === '') {
+                                Swal.fire({
+                                    icon: 'error',
+                                    text: 'حدث خطأ ما برجاء المحاولة مرة أخري',
+                                    dangerMode: true,
+                                    confirmButtonColor: '#d33',
+                                    confirmButtonText: 'حسنا',
+                                    showCloseButton: true,
+                                });
+                                window.setTimeout(function () {
+                                    window.location.href = "{{route('site.home')}}";
+                                }, 1500);
+                            } else {
+                                if (response.status === 1) {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        text: result.msg,
+                                        dangerMode: false,
+                                        confirmButtonColor: '#3085d6',
+                                        confirmButtonText: 'حسنا',
+                                        showCloseButton: true,
+                                    });
+                                    window.setTimeout(function () {
+                                        window.location.href = "{{route('site.home')}}";
+                                    }, 1500);
+                                } else {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        text: 'حدث خطأ ما برجاء المحاولة مرة أخري',
+                                        dangerMode: true,
+                                        confirmButtonColor: '#d33',
+                                        confirmButtonText: 'حسنا',
+                                        showCloseButton: true,
+                                    });
+                                    window.setTimeout(function () {
+                                        window.location.href = "{{route('site.home')}}";
+                                    }, 1500);
+                                }
+                            }
 
-                            Swal.fire({
-                                icon: 'success',
-                                text: result,
-                                dangerMode: false,
-                                confirmButtonColor: '#3085d6',
-                                confirmButtonText: 'حسنا',
-                                showCloseButton: true,
-                            });
-                            window.setTimeout(function () {
-                                window.location.href = "{{route('site.home')}}";
-                            }, 800);
                         }
                     })
 
@@ -2542,17 +2570,45 @@
 
                     let result = saveThePost(data);
 
-                    Swal.fire({
-                        icon: 'success',
-                        text: result,
-                        dangerMode: false,
-                        confirmButtonColor: '#3085d6',
-                        confirmButtonText: 'حسنا',
-                        showCloseButton: true,
-                    });
-                    window.setTimeout(function () {
-                        window.location.href = "{{route('site.home')}}";
-                    }, 800);
+                    if(result === '') {
+                        Swal.fire({
+                            icon: 'error',
+                            text: 'حدث خطأ ما برجاء المحاولة مرة أخري',
+                            dangerMode: true,
+                            confirmButtonColor: '#d33',
+                            confirmButtonText: 'حسنا',
+                            showCloseButton: true,
+                        });
+                        window.setTimeout(function () {
+                            window.location.href = "{{route('site.home')}}";
+                        }, 1500);
+                    } else {
+                        if (response.status === 1) {
+                            Swal.fire({
+                                icon: 'success',
+                                text: result.msg,
+                                dangerMode: false,
+                                confirmButtonColor: '#3085d6',
+                                confirmButtonText: 'حسنا',
+                                showCloseButton: true,
+                            });
+                            window.setTimeout(function () {
+                                window.location.href = "{{route('site.home')}}";
+                            }, 1500);
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                text: 'حدث خطأ ما برجاء المحاولة مرة أخري',
+                                dangerMode: true,
+                                confirmButtonColor: '#d33',
+                                confirmButtonText: 'حسنا',
+                                showCloseButton: true,
+                            });
+                            window.setTimeout(function () {
+                                window.location.href = "{{route('site.home')}}";
+                            }, 1500);
+                        }
+                    }
                     // console.log(data['phone']);
                     // console.log(data['whats_app']);
                 } else {
@@ -2563,18 +2619,45 @@
                     lds_roller.addClass('active');
 
                     let result = saveThePost(data);
-
-                    Swal.fire({
-                        icon: 'success',
-                        text: result,
-                        dangerMode: false,
-                        confirmButtonColor: '#3085d6',
-                        confirmButtonText: 'عودة',
-                        showCloseButton: true,
-                    });
-                    window.setTimeout(function () {
-                        window.location.href = "{{route('site.home')}}";
-                    }, 800);
+                    if(result === '') {
+                        Swal.fire({
+                            icon: 'error',
+                            text: 'حدث خطأ ما برجاء المحاولة مرة أخري',
+                            dangerMode: true,
+                            confirmButtonColor: '#d33',
+                            confirmButtonText: 'حسنا',
+                            showCloseButton: true,
+                        });
+                        window.setTimeout(function () {
+                            window.location.href = "{{route('site.home')}}";
+                        }, 1500);
+                    } else {
+                        if (response.status === 1) {
+                            Swal.fire({
+                                icon: 'success',
+                                text: result.msg,
+                                dangerMode: false,
+                                confirmButtonColor: '#3085d6',
+                                confirmButtonText: 'حسنا',
+                                showCloseButton: true,
+                            });
+                            window.setTimeout(function () {
+                                window.location.href = "{{route('site.home')}}";
+                            }, 1500);
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                text: 'حدث خطأ ما برجاء المحاولة مرة أخري',
+                                dangerMode: true,
+                                confirmButtonColor: '#d33',
+                                confirmButtonText: 'حسنا',
+                                showCloseButton: true,
+                            });
+                            window.setTimeout(function () {
+                                window.location.href = "{{route('site.home')}}";
+                            }, 1500);
+                        }
+                    }
 
                 }
                 // let form_data_input = $('#form_data_input');
@@ -2622,15 +2705,16 @@
                             response = $.parseJSON(response)
                         }
                         console.log(response.data);
-                        if (response.status === 1) {
-                            let slug = response.data['slug'];
-                            let msg = response.msg;
-                            console.log(data);
-
-                            return msg;
-
-
-                        }
+                        return response;
+                        // if (response.status === 1) {
+                        //     // let slug = response.data['slug'];
+                        //     // let msg = response.msg;
+                        //     // console.log(data);
+                        //
+                        //     return 1;
+                        // } else {
+                        //
+                        // }
                     }
                 });
 

@@ -98,10 +98,10 @@
 
     /* Start Single Client Ad Page */
     .serial_url {padding-right: 14px}
-    .client_ad_title {padding-right: 14px}
-    .client_ad_title h4 {font-size: 20px}
-    .single_ad_section {padding-top: 38px}
-    .client_ad_image_item {width: auto !important;height: 180px !important;}
+    /*.client_ad_title {padding-right: 14px}*/
+    /*.client_ad_title h4 {font-size: 20px}*/
+    /*.single_ad_section {padding-top: 38px}*/
+    /*.client_ad_image_item {width: auto !important;height: 180px !important;}*/
     .attributes {padding-right: .5rem;padding-left: .5rem;}
     /*.related_products .client_ad_cover img {height: 83px}*/
     .related_products .card  {height: 287px;}
@@ -387,10 +387,10 @@
 
     /* Start Single Client Ad Page */
     .serial_url {padding-right: 14px}
-    .client_ad_title {padding-right: 14px}
-    .client_ad_title h4 {font-size: 20px}
+    /*.client_ad_title {padding-right: 14px}*/
+    /*.client_ad_title h4 {font-size: 20px}*/
     /*.single_ad_section {padding-top: 38px}*/
-    .client_ad_image_item {width: auto !important;height: 180px !important;}
+    /*.client_ad_image_item {width: auto !important;height: 180px !important;}*/
     .attributes {padding-right: .5rem;padding-left: .5rem;}
     /*.related_products .client_ad_cover img {height: 83px}*/
     .related_products .card  {height: 287px;}
@@ -690,10 +690,10 @@
 
     /* Start Single Client Ad Page */
     .serial_url {padding-right: 14px}
-    .client_ad_title {padding-right: 14px}
-    .client_ad_title h4 {font-size: 20px}
-    .single_ad_section {padding-top: 38px}
-    .client_ad_image_item {width: auto !important;height: 180px !important;}
+    /*.client_ad_title {padding-right: 14px}*/
+    /*.client_ad_title h4 {font-size: 20px}*/
+    /*.single_ad_section {padding-top: 38px}*/
+    /*.client_ad_image_item {width: auto !important;height: 180px !important;}*/
     .attributes {padding-right: .5rem;padding-left: .5rem;}
     /*.related_products .client_ad_cover img {height: 83px}*/
     .related_products .card  {height: 287px;}
@@ -1242,6 +1242,12 @@ only screen and (                min-resolution: 2dppx) {
 .pill-form {width: 100%}
 .pill-form-inputs {padding: 0 10px}
 .description {padding: 30px 5px }
+.serial_routes_row a {font-size: 12px}
+.serial_routes_row {font-size: 12px}
+.client_ad_title {padding-top: 0!important;}
+.client_ad_title h4 {font-size: 17px!important;}
+.client_ad_image {overflow: hidden}
+.client_ad_image_item {width: auto !important;height:auto!important;max-height: 180px !important; overflow: hidden}
 
 
 
