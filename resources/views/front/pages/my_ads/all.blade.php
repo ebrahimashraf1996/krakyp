@@ -14,16 +14,31 @@
         /*    height: 160px;*/
         /*}*/
 
-        .user-side-bar a {color: #062964}
-        .user-side-bar li.active  a{color: #fff}
-        .user-side-bar li.list-group-item a{padding: .75rem 2rem}
-        .list-group-item.active {background-color: #062964;border-color: #062964; font-weight: bold}
+        .user-side-bar a {
+            color: #062964
+        }
+
+        .user-side-bar li.active a {
+            color: #fff
+        }
+
+        .user-side-bar li.list-group-item a {
+            padding: .75rem 2rem
+        }
+
+        .list-group-item.active {
+            background-color: #062964;
+            border-color: #062964;
+            font-weight: bold
+        }
+
         .success_div {
             width: 60px;
             position: absolute;
             top: 8px;
             left: 0;
         }
+
         .rejected_div {
             width: 35px;
             position: absolute;
@@ -36,293 +51,515 @@
 @section('content')
     {{--{{dd($_GET['attrs']['6-1'])}}--}}
 
-
-    {{--    Start Ads--}}
-    @if($count > 0)
-    <section class="client_ads_section text-center">
-        <div class="container">
-            <div class="row mt-5">
-                <div class="col-md-3 mt-1 p-3">
-                    <div class="bordered" style="text-align: center">
-                        <div class="user-side-bar">
-                            <ul class="list-group">
-                                <li class="list-group-item {{Route::currentRouteName() == 'user.posts' ? 'active' : ''}}"><a href="{{route('user.posts')}}">الكل</a></li>
-                                <li class="list-group-item {{Route::currentRouteName() == 'user.posts.published' ? 'active' : ''}}"><a href="{{route('user.posts.published')}}">الإعلانات المنشورة</a></li>
-                                <li class="list-group-item {{Route::currentRouteName() == 'user.posts.under' ? 'active' : ''}}"><a href="{{route('user.posts.under')}}">الإعلانات تحت المراجعة</a></li>
-                                <li class="list-group-item {{Route::currentRouteName() == 'user.posts.expired' ? 'active' : ''}}"><a href="{{route('user.posts.expired')}}">الإعلانات المنتهية</a></li>
-                                <li class="list-group-item {{Route::currentRouteName() == 'user.posts.canceled' ? 'active' : ''}}"><a href="{{route('user.posts.canceled')}}">الإعلانات المرفوضة</a></li>
-                            </ul>
-                        </div>
+    <div class="row mb-3 px-0 mx-0 serial_routes_row" style="background:#f0f1f7;">
+        <div class="container" dir="rtl" style="max-width: 1044px;">
+            <div class="row">
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-9 pl-3 py-2 serial_route">
+                    <a href="{{route('site.home')}}" class="bold">الصفحة الرئيسية</a>
+                    <div class="d-inline-block position-relative" style="width: 25px">
+                        <i style="position: absolute;top: -15px;right: 3px;"
+                           class="fa-solid fa-chevron-left mt-1  px-1 ">
+                        </i>
                     </div>
+                    <span class="bold">حسابي</span>
+
+
+                    <div class="d-inline-block position-relative" style="width: 25px">
+                        <i style="position: absolute;top: -15px;right: 3px;"
+                           class="fa-solid fa-chevron-left mt-1  px-1 ">
+                        </i>
+                    </div>
+                    <span class="bold">{{__('messages.' . Route::currentRouteName())}}</span>
+
+
                 </div>
 
-                <div class="col-md-9 col-12 col-sm-12 mt-3">
-                    <div class="row" id="client_ads_cont">
-                        @if(isset($paid_client_ads_published) && $paid_client_ads_published->count() > 0)
-                            @foreach($paid_client_ads_published as $key => $item)
-                                <div class="col-md-4 col-6 col-sm-6 post  my-2">
-                                    {{--                            {{route('client_ad.show', $item->slug)}}--}}
-                                    <div class="card card-block pb-3">
-                                        @php
-                                            $images =explode(',',$item->images);
-                                             //dd($photo);
-                                        @endphp
-                                        <div class="mark_div">
-                                            <img src="{{asset('assets/front/images/mark.png')}}" alt="special offer"
-                                                 width="100%">
-                                        </div>
-                                        <div class="success_div">
-                                            <img src="{{asset('assets/front/images/success.png')}}" alt="special offer"
-                                                 width="100%">
-                                        </div>
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-3 py-2 text-left back">
+                    <a href="{{ url()->previous() }}"
+                       class="bold">العودة</a>
+                    <div class="d-inline-block position-relative" style="width: 25px"><i
+                            style="position: absolute;top: -15px;right: 3px;"
+                            class="fa-solid fa-chevron-left mt-1  px-1 "></i></div>
 
-                                        <a href="{{route('client_ad.show', $item->slug)}}">
-                                            <div class="client_ad_cover">
-                                                <img src="{{asset('images/dropped/'. $images[0])}}"
-                                                     alt="{{$item->slug}}">
-                                            </div>
-
-                                            <div class="titles bold">
-                                                <h5 class="card-title  bold">{{$item->title}}</h5>
-                                                <span class="card-title  bold price">{{$item->price}} ج.م</span>
-                                            </div>
-                                        </a>
-                                        <div class="footer_card text-muted">
-                                            <small>{{$item->country->name}}</small> -
-                                            <small>{{$item->city->name}}</small> - <small>{{$item->state->name}}</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        @endif {{-- Done --}}
-
-                        @if(isset($paid_client_ads_under_reviewed) && $paid_client_ads_under_reviewed->count() > 0)
-                            @foreach($paid_client_ads_under_reviewed as $key => $item)
-                                <div class="col-md-4 col-6 col-sm-6 post  my-2">
-                                    {{--                            {{route('client_ad.show', $item->slug)}}--}}
-                                    <div class="card card-block pb-3">
-                                        @php
-                                            $images =explode(',',$item->images);
-                                             //dd($photo);
-                                        @endphp
-                                        <div class="mark_div">
-                                            <img src="{{asset('assets/front/images/mark.png')}}" alt="special offer"
-                                                 width="100%">
-                                        </div>
-
-                                        <a href="{{route('client_ad.show', $item->slug)}}">
-                                            <div class="client_ad_cover">
-                                                <img src="{{asset('images/dropped/'. $images[0])}}"
-                                                     alt="{{$item->slug}}">
-                                            </div>
-
-                                            <div class="titles bold">
-                                                <h5 class="card-title  bold">{{$item->title}}</h5>
-                                                <span class="card-title  bold price">{{$item->price}} ج.م</span>
-                                            </div>
-                                        </a>
-                                        <div class="footer_card text-muted">
-                                            <small>{{$item->country->name}}</small> -
-                                            <small>{{$item->city->name}}</small> - <small>{{$item->state->name}}</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        @endif
-                        @if(isset($paid_client_ads_expired) && $paid_client_ads_expired->count() > 0)
-                            @foreach($paid_client_ads_expired as $key => $item)
-                                <div class="col-md-4 col-6 col-sm-6 post  my-2">
-                                    {{--                            {{route('client_ad.show', $item->slug)}}--}}
-                                    <div class="card card-block pb-3">
-                                        @php
-                                            $images =explode(',',$item->images);
-                                             //dd($photo);
-                                        @endphp
-                                        <div class="mark_div">
-                                            <img src="{{asset('assets/front/images/mark.png')}}" alt="special offer"
-                                                 width="100%">
-                                        </div>
-
-                                        <a href="{{route('client_ad.show', $item->slug)}}">
-                                            <div class="client_ad_cover">
-                                                <img src="{{asset('images/dropped/'. $images[0])}}"
-                                                     alt="{{$item->slug}}">
-                                            </div>
-
-                                            <div class="titles bold">
-                                                <h5 class="card-title  bold">{{$item->title}}</h5>
-                                                <span class="card-title  bold price">{{$item->price}} ج.م</span>
-                                            </div>
-                                        </a>
-                                        <div class="footer_card text-muted">
-                                            <small>{{$item->country->name}}</small> -
-                                            <small>{{$item->city->name}}</small> - <small>{{$item->state->name}}</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        @endif
-
-
-
-
-                        @if(isset($paid_client_ads_canceled) && $paid_client_ads_canceled->count() > 0)
-                            @foreach($paid_client_ads_canceled as $key => $item)
-                                <div class="col-md-4 col-6 col-sm-6 post  my-2">
-                                    {{--                            {{route('client_ad.show', $item->slug)}}--}}
-                                    <div class="card card-block pb-3" style="height: 336px;">
-                                        @php
-                                            $images =explode(',',$item->images);
-                                             //dd($photo);
-                                        @endphp
-                                        <div class="mark_div">
-                                            <img src="{{asset('assets/front/images/mark.png')}}" alt="special offer"
-                                                 width="100%">
-                                        </div>
-                                        <div class="rejected_div">
-                                            <img src="{{asset('assets/front/images/rejected.png')}}" alt="special offer"
-                                                 width="100%">
-                                        </div>
-                                        <a href="{{route('client_ad.show', $item->slug)}}">
-                                            <div class="client_ad_cover">
-                                                <img src="{{asset('images/dropped/'. $images[0])}}"
-                                                     alt="{{$item->slug}}">
-                                            </div>
-
-                                            <div class="titles bold">
-                                                <h5 class="card-title  bold">{{$item->title}}</h5>
-                                                <span class="card-title  bold price">{{$item->price}} ج.م</span>
-                                            </div>
-                                        </a>
-                                        <div class="footer_card text-muted">
-                                            <small>{{$item->country->name}}</small> -
-                                            <small>{{$item->city->name}}</small> - <small>{{$item->state->name}}</small>
-                                        </div>
-                                        <div class="reason_div w-100">
-                                            <span class="btn btn-danger w-100">{{isset($item->reason) ? $item->reason->reason_val : ''}}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        @endif {{-- Done --}}
-
-
-
-
-
-
-
-                        @if(isset($free_client_ads_published) && $free_client_ads_published->count() > 0)
-
-                            @foreach($free_client_ads_published as $key => $item)
-                                <div class="col-md-4 col-6 col-sm-6 post my-2">
-                                    {{--                            {{route('client_ad.show', $item->slug)}}--}}
-                                    <div class="card card-block pb-3">
-                                        @php
-                                            $images =explode(',',$item->images);
-                                             //dd($photo);
-                                        @endphp
-                                        <div class="success_div">
-                                            <img src="{{asset('assets/front/images/success.png')}}" alt="special offer"
-                                                 width="100%">
-                                        </div>
-                                        <a href="{{route('client_ad.show', $item->slug)}}">
-                                            <div class="client_ad_cover">
-                                                <img src="{{asset('images/dropped/'. $images[0])}}"
-                                                     alt="{{$item->slug}}">
-                                            </div>
-                                            <div class="titles bold">
-                                                <h5 class="card-title  bold">{{$item->title}}</h5>
-                                                <span class="card-title  bold price">{{$item->price}} ج.م</span>
-                                            </div>
-                                        </a>
-                                        <div class="footer_card text-muted">
-                                            <small>{{$item->country->name}}</small> -
-                                            <small>{{$item->city->name}}</small> - <small>{{$item->state->name}}</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        @endif
-
-
-                        @if(isset($free_client_ads_under_reviewed) && $free_client_ads_under_reviewed->count() > 0)
-
-                            @foreach($free_client_ads_under_reviewed as $key => $item)
-                                <div class="col-md-4 col-6 col-sm-6 post my-2">
-                                    {{--                            {{route('client_ad.show', $item->slug)}}--}}
-                                    <div class="card card-block pb-3">
-                                        @php
-                                            $images =explode(',',$item->images);
-                                             //dd($photo);
-                                        @endphp
-
-                                        <a href="{{route('client_ad.show', $item->slug)}}">
-                                            <div class="client_ad_cover">
-                                                <img src="{{asset('images/dropped/'. $images[0])}}"
-                                                     alt="{{$item->slug}}">
-                                            </div>
-                                            <div class="titles bold">
-                                                <h5 class="card-title  bold">{{$item->title}}</h5>
-                                                <span class="card-title  bold price">{{$item->price}} ج.م</span>
-                                            </div>
-                                        </a>
-                                        <div class="footer_card text-muted">
-                                            <small>{{$item->country->name}}</small> -
-                                            <small>{{$item->city->name}}</small> - <small>{{$item->state->name}}</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        @endif
-                        @if(isset($free_client_ads_canceled) && $free_client_ads_canceled->count() > 0)
-
-                            @foreach($free_client_ads_canceled as $key => $item)
-                                <div class="col-md-4 col-6 col-sm-6 post my-2">
-                                    {{--                            {{route('client_ad.show', $item->slug)}}--}}
-                                    <div class="card card-block my_post_card pb-3"  style="height: 336px;">
-                                        @php
-                                            $images =explode(',',$item->images);
-                                             //dd($photo);
-                                        @endphp
-                                        <div class="rejected_div">
-                                            <img src="{{asset('assets/front/images/rejected.png')}}" alt="special offer"
-                                                 width="100%">
-                                        </div>
-                                        <a href="{{route('client_ad.show', $item->slug)}}">
-                                            <div class="client_ad_cover">
-                                                <img src="{{asset('images/dropped/'. $images[0])}}"
-                                                     alt="{{$item->slug}}">
-                                            </div>
-                                            <div class="titles bold">
-                                                <h5 class="card-title  bold">{{$item->title}}</h5>
-                                                <span class="card-title  bold price">{{$item->price}} ج.م</span>
-                                            </div>
-                                        </a>
-                                        <div class="footer_card text-muted">
-                                            <small>{{$item->country->name}}</small> -
-                                            <small>{{$item->city->name}}</small> - <small>{{$item->state->name}}</small>
-                                        </div>
-                                        <div class="reason_div w-100">
-                                            <span class="btn btn-danger w-100">{{isset($item->reason) ? $item->reason->reason_val : ''}}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        @endif
-
-                    </div>
-                    @if($count > 6)
-                        <div class="row mt-4">
-                            <div class="col-md-3 col-12 col-sm-12 m-auto">
-                                <button class="btn" id="see_more">اظهر المزيد</button>
-                            </div>
-                        </div>
-                    @endif
                 </div>
             </div>
+
         </div>
-    </section>
+    </div>
+    {{--    Start Ads--}}
+    @if($count > 0)
+        <section class="client_ads_section text-center">
+            <div class="container" style="max-width: 1044px">
+                <div class="row pt-1">
+                    <div class="col-md-3 mt-1 p-3">
+                        <div class="bordered" style="text-align: center">
+                            <div class="user-side-bar">
+                                <ul class="list-group">
+                                    <li class="list-group-item {{Route::currentRouteName() == 'user.posts.all' ? 'active' : ''}}">
+                                        <a href="{{route('user.posts.all')}}">الكل</a></li>
+                                    <li class="list-group-item {{Route::currentRouteName() == 'user.posts.published' ? 'active' : ''}}">
+                                        <a href="{{route('user.posts.published')}}">الإعلانات المنشورة</a></li>
+                                    <li class="list-group-item {{Route::currentRouteName() == 'user.posts.under' ? 'active' : ''}}">
+                                        <a href="{{route('user.posts.under')}}">الإعلانات تحت المراجعة</a></li>
+                                    <li class="list-group-item {{Route::currentRouteName() == 'user.posts.expired' ? 'active' : ''}}">
+                                        <a href="{{route('user.posts.expired')}}">الإعلانات المنتهية</a></li>
+                                    <li class="list-group-item {{Route::currentRouteName() == 'user.posts.canceled' ? 'active' : ''}}">
+                                        <a href="{{route('user.posts.canceled')}}">الإعلانات المرفوضة</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-9 col-12 col-sm-12 mt-3 posts_collector">
+                        <div class="row" id="client_ads_cont">
+                            @if(isset($paid_client_ads_published) && $paid_client_ads_published->count() > 0)
+                                @foreach($paid_client_ads_published as $key => $item)
+                                    <div class="col-md-4 col-lg-4 col-6 col-sm-6 post  my-2">
+                                        {{--                            {{route('client_ad.show', $item->slug)}}--}}
+                                        <div class="card card-block pb-3"
+                                             style="border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;">
+                                            @php
+                                                $images =explode(',',$item->images);
+                                                 //dd($photo);
+                                            @endphp
+                                            <div class="mark_div">
+                                                <img src="{{asset('assets/front/images/mark.png')}}" alt="special offer"
+                                                     width="100%">
+                                            </div>
+                                            <div class="success_div">
+                                                <img src="{{asset('assets/front/images/success.png')}}"
+                                                     alt="special offer"
+                                                     width="100%">
+                                            </div>
+                                            {{--                                            @if(backpack_auth()->check())--}}
+                                            {{--                                                <div--}}
+                                            {{--                                                    class="wish_div {{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}} not_hovered_wish"--}}
+                                            {{--                                                    data-target="{{$item->id}} ">--}}
+                                            {{--                                                    <a href="javascript:void(0)" class="wish-btn"--}}
+                                            {{--                                                       data-bs-target="{{$item->slug}}">--}}
+                                            {{--                                                        <img--}}
+                                            {{--                                                            src="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? asset('assets/front/images/hearted.png') : asset('assets/front/images/heart.png')}}"--}}
+                                            {{--                                                            alt="wish-icon">--}}
+                                            {{--                                                        <span--}}
+                                            {{--                                                            class="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}}">{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'تم الإضافة' : 'أضف لقائمة الرغبات'}}</span>--}}
+                                            {{--                                                    </a>--}}
+                                            {{--                                                </div>--}}
+                                            {{--                                            @else--}}
+                                            {{--                                                <div class="wish_div not_hovered_wish" data-target="{{$item->id}} ">--}}
+                                            {{--                                                    <a href="{{url('login')}}">--}}
+                                            {{--                                                        <img src="{{asset('assets/front/images/heart.png')}}"--}}
+                                            {{--                                                             alt="wish-icon">--}}
+                                            {{--                                                        <span>أضف لقائمة الرغبات</span>--}}
+
+                                            {{--                                                    </a>--}}
+                                            {{--                                                </div>--}}
+                                            {{--                                            @endif--}}
+
+                                            <a href="{{route('client_ad.show', $item->slug)}}">
+                                                <div class="client_ad_cover">
+                                                    <img src="{{asset('organized/'. $item->cover)}}"
+                                                         alt="{{$item->slug}}">
+                                                </div>
+                                                <div class="location_card text-muted pt-2">
+                                                    <i class="fa fa-location-dot l_13" style="margin-left: 3px"></i>
+                                                    <small>{{$item->country->name}},</small>
+                                                    <small>{{$item->city->name}}</small>
+                                                    {{--                                            - <small>{{$item->state->name}}</small>--}}
+                                                </div>
+
+                                                <div class="titles bold">
+                                                    <h5 class="card-title mb-3 bold">{{$item->title}}</h5>
+                                                    <span style="font-weight: normal">السعر: </span>
+                                                    <span
+                                                        class="card-title  bold price colored">{{number_format($item->price, 0)}}</span>
+                                                    <span> ج.م</span>
+                                                </div>
+                                            </a>
+
+                                            <div class="footer_card">
+                                                <div class="text-muted position-relative">
+                                                    <small>عدد المشاهدات : {{$item->viewNum->count()}}</small>
+                                                    <small class="date_client_ad">
+                                                        <i class="fa-sharp fa-solid fa-clock-rotate-left l_11"
+                                                           style="margin-left: 3px"></i>
+                                                        <span>{{Carbon\Carbon::parse($item->created_at)->diffForHumans()}}</span>
+                                                    </small>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @endif {{-- Done --}}
+
+                            @if(isset($paid_client_ads_under_reviewed) && $paid_client_ads_under_reviewed->count() > 0)
+                                @foreach($paid_client_ads_under_reviewed as $key => $item)
+                                    <div class="col-md-4 col-lg-4 col-6 col-sm-6 post  my-2">
+                                        {{--                            {{route('client_ad.show', $item->slug)}}--}}
+                                        <div class="card card-block pb-3"
+                                             style="border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;">
+                                            @php
+                                                $images =explode(',',$item->images);
+                                                 //dd($photo);
+                                            @endphp
+                                            <div class="mark_div">
+                                                <img src="{{asset('assets/front/images/mark.png')}}" alt="special offer"
+                                                     width="100%">
+                                            </div>
+                                            <div class="success_div">
+                                                <img src="{{asset('assets/front/images/under.png')}}"
+                                                     alt="special offer"
+                                                     width="100%">
+                                            </div>
+                                            {{--                                            @if(backpack_auth()->check())--}}
+                                            {{--                                                <div--}}
+                                            {{--                                                    class="wish_div {{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}} not_hovered_wish"--}}
+                                            {{--                                                    data-target="{{$item->id}} ">--}}
+                                            {{--                                                    <a href="javascript:void(0)" class="wish-btn"--}}
+                                            {{--                                                       data-bs-target="{{$item->slug}}">--}}
+                                            {{--                                                        <img--}}
+                                            {{--                                                            src="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? asset('assets/front/images/hearted.png') : asset('assets/front/images/heart.png')}}"--}}
+                                            {{--                                                            alt="wish-icon">--}}
+                                            {{--                                                        <span--}}
+                                            {{--                                                            class="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}}">{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'تم الإضافة' : 'أضف لقائمة الرغبات'}}</span>--}}
+                                            {{--                                                    </a>--}}
+                                            {{--                                                </div>--}}
+                                            {{--                                            @else--}}
+                                            {{--                                                <div class="wish_div not_hovered_wish" data-target="{{$item->id}} ">--}}
+                                            {{--                                                    <a href="{{url('login')}}">--}}
+                                            {{--                                                        <img src="{{asset('assets/front/images/heart.png')}}"--}}
+                                            {{--                                                             alt="wish-icon">--}}
+                                            {{--                                                        <span>أضف لقائمة الرغبات</span>--}}
+
+                                            {{--                                                    </a>--}}
+                                            {{--                                                </div>--}}
+                                            {{--                                            @endif--}}
+
+                                            <a href="{{route('client_ad.show', $item->slug)}}">
+                                                <div class="client_ad_cover">
+                                                    <img src="{{asset('organized/'. $item->cover)}}"
+                                                         alt="{{$item->slug}}">
+                                                </div>
+                                                <div class="location_card text-muted pt-2">
+                                                    <i class="fa fa-location-dot l_13" style="margin-left: 3px"></i>
+                                                    <small>{{$item->country->name}},</small>
+                                                    <small>{{$item->city->name}}</small>
+                                                    {{--                                            - <small>{{$item->state->name}}</small>--}}
+                                                </div>
+
+                                                <div class="titles bold">
+                                                    <h5 class="card-title mb-3 bold">{{$item->title}}</h5>
+                                                    <span style="font-weight: normal">السعر: </span>
+                                                    <span
+                                                        class="card-title  bold price colored">{{number_format($item->price, 0)}}</span>
+                                                    <span> ج.م</span>
+                                                </div>
+                                            </a>
+
+                                            <div class="footer_card">
+                                                <div class="text-muted position-relative">
+                                                    <small>عدد المشاهدات : {{$item->viewNum->count()}}</small>
+                                                    <small class="date_client_ad">
+                                                        <i class="fa-sharp fa-solid fa-clock-rotate-left l_11"
+                                                           style="margin-left: 3px"></i>
+                                                        <span>{{Carbon\Carbon::parse($item->created_at)->diffForHumans()}}</span>
+                                                    </small>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                @endforeach
+                            @endif
+                            @if(isset($paid_client_ads_expired) && $paid_client_ads_expired->count() > 0)
+                                @foreach($paid_client_ads_expired as $key => $item)
+                                    <div class="col-md-4 col-lg-4 col-6 col-sm-6 post  my-2">
+                                        {{--                            {{route('client_ad.show', $item->slug)}}--}}
+                                        <div class="card card-block pb-3"
+                                             style="border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;">
+                                            @php
+                                                $images =explode(',',$item->images);
+                                                 //dd($photo);
+                                            @endphp
+                                            <div class="mark_div">
+                                                <img src="{{asset('assets/front/images/mark.png')}}" alt="special offer"
+                                                     width="100%">
+                                            </div>
+                                            <div class="success_div">
+                                                <img src="{{asset('assets/front/images/expired-1.png')}}"
+                                                     alt="special offer"
+                                                     width="100%">
+                                            </div>
+
+
+                                            <a href="{{route('client_ad.show', $item->slug)}}">
+                                                <div class="client_ad_cover">
+                                                    <img src="{{asset('organized/'. $item->cover)}}"
+                                                         alt="{{$item->slug}}">
+                                                </div>
+                                                <div class="location_card text-muted pt-2">
+                                                    <i class="fa fa-location-dot l_13" style="margin-left: 3px"></i>
+                                                    <small>{{$item->country->name}},</small>
+                                                    <small>{{$item->city->name}}</small>
+                                                    {{--                                            - <small>{{$item->state->name}}</small>--}}
+                                                </div>
+
+                                                <div class="titles bold">
+                                                    <h5 class="card-title mb-3 bold">{{$item->title}}</h5>
+                                                    <span style="font-weight: normal">السعر: </span>
+                                                    <span
+                                                        class="card-title  bold price colored">{{number_format($item->price, 0)}}</span>
+                                                    <span> ج.م</span>
+                                                </div>
+                                            </a>
+
+                                            <div class="footer_card">
+                                                <div class="text-muted position-relative">
+                                                    <small>عدد المشاهدات : {{$item->viewNum->count()}}</small>
+                                                    <small class="date_client_ad">
+                                                        <i class="fa-sharp fa-solid fa-clock-rotate-left l_11"
+                                                           style="margin-left: 3px"></i>
+                                                        <span>{{Carbon\Carbon::parse($item->created_at)->diffForHumans()}}</span>
+                                                    </small>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                @endforeach
+                            @endif
+
+
+
+
+                            @if(isset($paid_client_ads_canceled) && $paid_client_ads_canceled->count() > 0)
+                                @foreach($paid_client_ads_canceled as $key => $item)
+                                    <div class="col-md-4 col-lg-4 col-6 col-sm-6 post  my-2">
+                                        {{--                            {{route('client_ad.show', $item->slug)}}--}}
+                                        <div class="card card-block pb-3"
+                                             style="border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;">
+                                            @php
+                                                $images =explode(',',$item->images);
+                                                 //dd($photo);
+                                            @endphp
+                                            <div class="mark_div">
+                                                <img src="{{asset('assets/front/images/mark.png')}}" alt="special offer"
+                                                     width="100%">
+                                            </div>
+                                            <div class="success_div">
+                                                <img src="{{asset('assets/front/images/denied.png')}}"
+                                                     alt="special offer"
+                                                     width="100%">
+                                            </div>
+
+
+                                            <a href="{{route('client_ad.show', $item->slug)}}">
+                                                <div class="client_ad_cover">
+                                                    <img src="{{asset('organized/'. $item->cover)}}"
+                                                         alt="{{$item->slug}}">
+                                                </div>
+                                                <div class="location_card text-muted pt-2">
+                                                    <i class="fa fa-location-dot l_13" style="margin-left: 3px"></i>
+                                                    <small>{{$item->country->name}},</small>
+                                                    <small>{{$item->city->name}}</small>
+                                                    {{--                                            - <small>{{$item->state->name}}</small>--}}
+                                                </div>
+
+                                                <div class="titles bold">
+                                                    <h5 class="card-title mb-3 bold">{{$item->title}}</h5>
+                                                    <span style="font-weight: normal">السعر: </span>
+                                                    <span
+                                                        class="card-title  bold price colored">{{number_format($item->price, 0)}}</span>
+                                                    <span> ج.م</span>
+                                                </div>
+                                            </a>
+
+                                            <div class="footer_card">
+                                                <div class="text-muted position-relative">
+                                                    <small>عدد المشاهدات : {{$item->viewNum->count()}}</small>
+                                                    <small class="date_client_ad">
+                                                        <i class="fa-sharp fa-solid fa-clock-rotate-left l_11"
+                                                           style="margin-left: 3px"></i>
+                                                        <span>{{Carbon\Carbon::parse($item->created_at)->diffForHumans()}}</span>
+                                                    </small>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @endif {{-- Done --}}
+
+
+
+
+
+
+
+                            @if(isset($free_client_ads_published) && $free_client_ads_published->count() > 0)
+
+                                @foreach($free_client_ads_published as $key => $item)
+                                    <div class="col-lg-4 col-md-4 col-6 col-sm-6 post my-2">
+                                        {{--                            {{route('client_ad.show', $item->slug)}}--}}
+                                        <div class="card card-block pb-3">
+                                            @php
+                                                $images =explode(',',$item->images);
+                                                 //dd($photo);
+                                            @endphp
+                                            <div class="success_div">
+                                                <img src="{{asset('assets/front/images/success.png')}}"
+                                                     alt="special offer"
+                                                     width="100%">
+                                            </div>
+                                            <a href="{{route('client_ad.show', $item->slug)}}">
+                                                <div class="client_ad_cover">
+                                                    <img src="{{asset('organized/'. $item->cover)}}"
+                                                         alt="{{$item->slug}}">
+                                                </div>
+                                                <div class="location_card text-muted pt-2">
+                                                    <i class="fa fa-location-dot l_13" style="margin-left: 3px"></i>
+                                                    <small>{{$item->country->name}},</small>
+                                                    <small>{{$item->city->name}}</small>
+                                                    {{--                                            - <small>{{$item->state->name}}</small>--}}
+                                                </div>
+                                                <div class="titles bold">
+                                                    <h5 class="card-title mb-3 bold">{{$item->title}}</h5>
+                                                    <span style="font-weight: normal">السعر: </span>
+                                                    <span
+                                                        class="card-title  bold price colored">{{number_format($item->price, 0)}}</span>
+                                                    <span> ج.م</span>
+                                                </div>
+                                            </a>
+
+                                            <div class="footer_card">
+                                                <div class="text-muted position-relative">
+                                                    <small>عدد المشاهدات : {{$item->viewNum->count()}}</small>
+                                                    <small class="date_client_ad">
+                                                        <i class="fa-sharp fa-solid fa-clock-rotate-left l_11"
+                                                           style="margin-left: 3px"></i>
+                                                        <span>{{Carbon\Carbon::parse($item->created_at)->diffForHumans()}}</span>
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @endif
+
+
+                            @if(isset($free_client_ads_under_reviewed) && $free_client_ads_under_reviewed->count() > 0)
+
+                                @foreach($free_client_ads_under_reviewed as $key => $item)
+                                    <div class="col-lg-4 col-md-3 col-6 col-sm-6 post my-2">
+                                        {{--                            {{route('client_ad.show', $item->slug)}}--}}
+                                        <div class="card card-block pb-3">
+                                            @php
+                                                $images =explode(',',$item->images);
+                                                 //dd($photo);
+                                            @endphp
+                                            <div class="success_div">
+                                                <img src="{{asset('assets/front/images/under.png')}}"
+                                                     alt="special offer"
+                                                     width="100%">
+                                            </div>
+                                            <a href="{{route('client_ad.show', $item->slug)}}">
+                                                <div class="client_ad_cover">
+                                                    <img src="{{asset('organized/'. $item->cover)}}"
+                                                         alt="{{$item->slug}}">
+                                                </div>
+                                                <div class="location_card text-muted pt-2">
+                                                    <i class="fa fa-location-dot l_13" style="margin-left: 3px"></i>
+                                                    <small>{{$item->country->name}},</small>
+                                                    <small>{{$item->city->name}}</small>
+                                                    {{--                                            - <small>{{$item->state->name}}</small>--}}
+                                                </div>
+                                                <div class="titles bold">
+                                                    <h5 class="card-title mb-3 bold">{{$item->title}}</h5>
+                                                    <span style="font-weight: normal">السعر: </span>
+                                                    <span
+                                                        class="card-title  bold price colored">{{number_format($item->price, 0)}}</span>
+                                                    <span> ج.م</span>
+                                                </div>
+                                            </a>
+
+                                            <div class="footer_card">
+                                                <div class="text-muted position-relative">
+                                                    <small>عدد المشاهدات : {{$item->viewNum->count()}}</small>
+                                                    <small class="date_client_ad">
+                                                        <i class="fa-sharp fa-solid fa-clock-rotate-left l_11"
+                                                           style="margin-left: 3px"></i>
+                                                        <span>{{Carbon\Carbon::parse($item->created_at)->diffForHumans()}}</span>
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @endif
+                            @if(isset($free_client_ads_canceled) && $free_client_ads_canceled->count() > 0)
+
+                                @foreach($free_client_ads_canceled as $key => $item)
+                                    <div class="col-lg-4 col-md-3 col-6 col-sm-6 post my-2">
+                                        {{--                            {{route('client_ad.show', $item->slug)}}--}}
+                                        <div class="card card-block pb-3">
+                                            @php
+                                                $images =explode(',',$item->images);
+                                                 //dd($photo);
+                                            @endphp
+                                            <div class="success_div">
+                                                <img src="{{asset('assets/front/images/denied.png')}}"
+                                                     alt="special offer"
+                                                     width="100%">
+                                            </div>
+                                            <a href="{{route('client_ad.show', $item->slug)}}">
+                                                <div class="client_ad_cover">
+                                                    <img src="{{asset('organized/'. $item->cover)}}"
+                                                         alt="{{$item->slug}}">
+                                                </div>
+                                                <div class="location_card text-muted pt-2">
+                                                    <i class="fa fa-location-dot l_13" style="margin-left: 3px"></i>
+                                                    <small>{{$item->country->name}},</small>
+                                                    <small>{{$item->city->name}}</small>
+                                                    {{--                                            - <small>{{$item->state->name}}</small>--}}
+                                                </div>
+                                                <div class="titles bold">
+                                                    <h5 class="card-title mb-3 bold">{{$item->title}}</h5>
+                                                    <span style="font-weight: normal">السعر: </span>
+                                                    <span
+                                                        class="card-title  bold price colored">{{number_format($item->price, 0)}}</span>
+                                                    <span> ج.م</span>
+                                                </div>
+                                            </a>
+
+                                            <div class="footer_card">
+                                                <div class="text-muted position-relative">
+                                                    <small>عدد المشاهدات : {{$item->viewNum->count()}}</small>
+                                                    <small class="date_client_ad">
+                                                        <i class="fa-sharp fa-solid fa-clock-rotate-left l_11"
+                                                           style="margin-left: 3px"></i>
+                                                        <span>{{Carbon\Carbon::parse($item->created_at)->diffForHumans()}}</span>
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @endif
+
+                        </div>
+                        @if($count > 6)
+                            <div class="row mt-4">
+                                <div class="col-md-3 col-12 col-sm-12 m-auto mb-3">
+                                    <button class="btn" id="see_more">اظهر المزيد</button>
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        </section>
     @else
         <section class="client_ads_section text-center">
             <div class="container">
@@ -331,16 +568,21 @@
                         <div class="bordered" style="text-align: center">
                             <div class="user-side-bar">
                                 <ul class="list-group">
-                                    <li class="list-group-item {{Route::currentRouteName() == 'user.posts' ? 'active' : ''}}"><a href="{{route('user.posts')}}">الكل</a></li>
-                                    <li class="list-group-item {{Route::currentRouteName() == 'user.posts.published' ? 'active' : ''}}"><a href="{{route('user.posts.published')}}">الإعلانات المنشورة</a></li>
-                                    <li class="list-group-item {{Route::currentRouteName() == 'user.posts.under' ? 'active' : ''}}"><a href="{{route('user.posts.under')}}">الإعلانات تحت المراجعة</a></li>
-                                    <li class="list-group-item {{Route::currentRouteName() == 'user.posts.expired' ? 'active' : ''}}"><a href="{{route('user.posts.expired')}}">الإعلانات المنتهية</a></li>
-                                    <li class="list-group-item {{Route::currentRouteName() == 'user.posts.canceled' ? 'active' : ''}}"><a href="{{route('user.posts.canceled')}}">الإعلانات المرفوضة</a></li>
+                                    <li class="list-group-item {{Route::currentRouteName() == 'user.posts.all' ? 'active' : ''}}">
+                                        <a href="{{route('user.posts.all')}}">الكل</a></li>
+                                    <li class="list-group-item {{Route::currentRouteName() == 'user.posts.published' ? 'active' : ''}}">
+                                        <a href="{{route('user.posts.published')}}">الإعلانات المنشورة</a></li>
+                                    <li class="list-group-item {{Route::currentRouteName() == 'user.posts.under' ? 'active' : ''}}">
+                                        <a href="{{route('user.posts.under')}}">الإعلانات تحت المراجعة</a></li>
+                                    <li class="list-group-item {{Route::currentRouteName() == 'user.posts.expired' ? 'active' : ''}}">
+                                        <a href="{{route('user.posts.expired')}}">الإعلانات المنتهية</a></li>
+                                    <li class="list-group-item {{Route::currentRouteName() == 'user.posts.canceled' ? 'active' : ''}}">
+                                        <a href="{{route('user.posts.canceled')}}">الإعلانات المرفوضة</a></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-9 col-12 col-sm-12 mt-3">
+                    <div class="col-md-9 col-12 col-sm-12 mt-3 posts_collector">
                         <div class="row" id="client_ads_cont">
                             <h4>لا توجد إعلانات في هذا القسم </h4>
                         </div>
@@ -352,18 +594,6 @@
     @endif
     {{--    End Ads--}}
 
-
-
-
-
-
-
-
-
-
-
-
-
 @endsection
 
 
@@ -374,6 +604,16 @@
 
 
         $(document).ready(function () {
+
+            let client_ad_post = $('#client_ads_cont .card');
+
+            let maxHeight = Math.max.apply(null, client_ad_post.map(function () {
+                return $(this).height();
+            }).get());
+
+            // alert(maxHeight);
+            client_ad_post.height(maxHeight);
+
 
             let client_ads_cont = $('#client_ads_cont');
             let width_c = client_ads_cont.width();

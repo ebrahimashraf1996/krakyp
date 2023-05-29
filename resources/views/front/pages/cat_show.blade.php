@@ -30,7 +30,6 @@
 
 @section('content')
     {{--{{dd($_GET['attrs']['6-1'])}}--}}
-
     @php
         $_GET['new_sub_cat_id'] = $cat->id;
     @endphp
@@ -74,9 +73,10 @@
 
     <section class="search_container container">
         <div class="row">
-            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xm-12 col-12 py-0 text-center filter_section"
+            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xm-12 col-12 py-0 text-center filter_section"
                  style="background: #fff">
-                <form action="{{route('cat.show', $cat->slug)}}" class="pb-3">
+                <form action="{{route('cat.show', $cat->slug)}}" class="pb-3 position-relative">
+
                     <input type="hidden" name="new_main_cat_id"
                            value="{{isset($cat->mainCategory) ? $cat->mainCategory->id : ''}}">
                     <input type="hidden" name="new_sub_cat_id"
@@ -84,15 +84,19 @@
                     <input type="hidden" name="new_sort_by"
                            value="cr_desc">
                     <div class="row filter_header">
-                        <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xm-12 col-12 text-right">
+                        <div class="col-xxl-5 col-xl-5 col-lg-12 col-md-12 col-sm-12 col-xm-12 col-12 text-right">
+                            <i class="fa-solid fa-filter mx-2" style="color: #426ddd"></i>
                             <span style="color: #565b6e;font-weight: bold;">فلترة</span>
+                            <div class="close_mobile_filter d-md-none" style="position:absolute;top: 5px;left: -5px; width: 90px!important;">
+                                <span class="btn"
+                                        style="color: #ee7202; background: #f4f5fe!important;width: 100%;padding: 6px 0!important;">
+                                    <i class="fa-solid fa-xmark " style="font-size: 15px;padding: 0 6px!important; "></i>
+                                    <span>إغلاق</span>
+                                </span>
+                            </div>
                         </div>
-                        <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7 col-sm-7 col-xm-12 col-12 text-left">
-                            <button type="submit" style="color: #426ddd;font-weight: bold;" id="reset_adv" data-url="">
-                                <i class="fa fa-redo pl-2"></i>
-                                تحديث
-                            </button>
-                        </div>
+
+
                     </div>
                     <div class="row pt-5">
                         <div
@@ -841,19 +845,38 @@
                     {{--                            </div>--}}
                     {{--                        @endif--}}
                     {{--                    @endforeach--}}
+                    <div class="row new_filter_header">
+
+                        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xm-12 col-12 p-0 text-center">
+                            <button type="submit" style="" id="search_filter" data-url="">
+                                <i class="fa fa-redo pl-2"></i>
+                                تحديث
+                            </button>
+                        </div>
+                    </div>
                 </form>
             </div>
+            <div class="col-sm-12 col-12 d-md-none filter_mobile_btn_div" >
+                <div class="row">
+                    <div class="col-sm-6 col-12">
+                        <div class="mobile_filter_btn py-2">
+                            <i class="fa-solid fa-filter mx-2" style="color: #426ddd"></i>
+                            <span class="bold">فلترة</span>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="col-xxl-9 col-xl-9 col-lg-9 col-md-9 col-sm-9 col-xm-12 col-12 client_ads_cols ">
+            </div>
+            <div class="col-xxl-9 col-xl-9 col-lg-9 col-md-9 col-sm-12 col-xm-12 col-12 client_ads_cols px-0 ">
                 @if(isset($paid_client_ads_in_cat) && $paid_client_ads_in_cat->count() > 0 || isset($free_client_ads_in_cat) && $free_client_ads_in_cat->count() > 0 )
                     {{--    Start Ads--}}
                     <section class="client_ads_section mt-1 text-center">
                         <div class="container">
                             <div class="row client_ads_div">
-                                <div class="col-lg-12 col-md-12 m-auto">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-12 m-auto px-1">
                                     <div class="row" id="client_ads_cont">
                                         @foreach($paid_client_ads_in_cat as $key => $item)
-                                            <div class="col-lg-4 col-md-4 col-6 col-sm-6 post  my-2">
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-6  post  my-2">
                                                 {{--                            {{route('client_ad.show', $item->slug)}}--}}
                                                 <div class="card card-block pb-3"
                                                      style="border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;">
@@ -915,7 +938,7 @@
 
                                                     <div class="footer_card">
                                                         <div class="text-muted position-relative">
-                                                            <small>عدد المشاهدات : {{$item->viewNum->count()}}</small>
+                                                            <small><span class="d-sm-none">عدد</span> المشاهدات : {{$item->viewNum->count()}}</small>
                                                             <small class="date_client_ad">
                                                                 <i class="fa-sharp fa-solid fa-clock-rotate-left l_11"
                                                                    style="margin-left: 3px"></i>
@@ -928,7 +951,7 @@
                                             </div>
                                         @endforeach
                                         @foreach($free_client_ads_in_cat as $key => $item)
-                                            <div class="col-lg-4 col-md-4 col-6 col-sm-6 post my-2">
+                                            <div class="col-lg-4 col-md-4 col-sm-4  col-6 post my-2">
                                                 {{--                            {{route('client_ad.show', $item->slug)}}--}}
                                                 <div class="card card-block pb-3">
                                                     @if(backpack_auth()->check())
@@ -974,7 +997,7 @@
 
                                                     <div class="footer_card">
                                                         <div class="text-muted position-relative">
-                                                            <small>عدد المشاهدات : {{$item->viewNum->count()}}</small>
+                                                            <small><span class="mobile_hide">عدد</span> المشاهدات : {{$item->viewNum->count()}}</small>
                                                             <small class="date_client_ad">
                                                                 <i class="fa-sharp fa-solid fa-clock-rotate-left l_11"
                                                                    style="margin-left: 3px"></i>
@@ -1025,44 +1048,71 @@
     <script>
         $(document).ready(function () {
 
-            let filter_header = $(".filter_header");
+            // alert($(window).height());
+            // alert($('#test').height());
             let filter_section = $('.filter_section');
+            let filter_header = $(".filter_header");
             let header_nav = $('.header-nav');
             let client_ads_cols = $('.client_ads_cols');
             let serial_routes_row = $('.serial_routes_row');
+            let new_filter_header = $(".new_filter_header");
+            let mob_nav = $(".mob_nav");
+            let filter_mobile_btn_div = $(".filter_mobile_btn_div");
+            let close_mobile_filter = $('.close_mobile_filter');
+
+            if ($(window).width() > 767) {
+                filter_header.width(filter_section.width() + 19);
+                filter_section.css({'top' : header_nav.height() + serial_routes_row.height(),
+                    'height' : ($(window).height() - (header_nav.height() + serial_routes_row.height()))
+                });
+                client_ads_cols.css('margin-top', (header_nav.height() - 30));
+                serial_routes_row.css('top', header_nav.height());
+
+                let serial_top = parseInt(serial_routes_row.css('top'));
+                let filter_top = parseInt(filter_section.css('top'));
+
+
+                $(window).scroll(function () {
+                    if ($(window).scrollTop() > 50) {
+                        // alert(serial_top);
+                        header_nav.css('top', '-78px');
+                        filter_section.css({
+                            'top' : (filter_top - 78) + 'px',
+                            'height' : ($(window).height() - (header_nav.height() + serial_routes_row.height()  - 78)) + 'px'
+                        });
+                        // new_filter_header.
+                        serial_routes_row.css('top', (serial_top - 78) + 'px')
+                    } else {
+                        header_nav.css('top', '0');
+                        filter_section.css({
+                            'top' : filter_top,
+                            'height' : ($(window).height() - (header_nav.height() + serial_routes_row.height()) ) + 'px'
+                        });
+                        serial_routes_row.css('top', serial_top)
+
+                    }
+                });
+            } else {
+                filter_section.css({'top' : mob_nav.height() + serial_routes_row.height(),
+                    'height' : ($(window).height() - (mob_nav.height() + serial_routes_row.height()))
+                });
+                filter_mobile_btn_div.css('margin-top', (serial_routes_row.height() - 50));
+                serial_routes_row.css('top', mob_nav.height());
+
+                // let serial_top = parseInt(serial_routes_row.css('top'));
+                // let filter_top = parseInt(filter_section.css('top'));
+
+            }
 
 
 
-            filter_header.width(filter_section.width() + 19);
-            filter_section.css('top', header_nav.height() + serial_routes_row.height());
-            client_ads_cols.css('margin-top', (header_nav.height() - 30));
-            serial_routes_row.css('top', header_nav.height());
-
-            let serial_top = parseInt(serial_routes_row.css('top'));
-            let filter_top = parseInt(filter_section.css('top'));
-
-            $(window).scroll(function () {
-                if ($(window).scrollTop() > 50) {
-                    // alert(serial_top);
-                    header_nav.css('top', '-78px');
-                    filter_section.css({
-                        'top' : (filter_top - 78) + 'px',
-                        'height' : '87vh'
-                    });
-                    serial_routes_row.css('top', (serial_top - 78) + 'px')
-
-
-                } else {
-                    header_nav.css('top', '0');
-                    filter_section.css({
-                        'top' : filter_top,
-                        'height' : '78vh'
-                    });
-                    serial_routes_row.css('top', serial_top)
-
-                }
+            let mobile_filter_btn = $('.mobile_filter_btn');
+            mobile_filter_btn.on('click', function () {
+                filter_section.addClass('active');
             });
-
+            close_mobile_filter.on('click', function () {
+                filter_section.removeClass('active');
+            });
 
 
             let client_ad_post = $('section.client_ads_section .card');

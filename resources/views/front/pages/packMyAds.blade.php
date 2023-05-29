@@ -61,7 +61,7 @@
                         </i>
                     </div>
 
-                    <span>{{$pack->title}} ({{$pack->cat->title}})</span>
+                    <span class="bold">{{$pack->title}} ({{$pack->cat->title}})</span>
                 </div>
 
                 <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-3 py-2 text-left back">
@@ -79,17 +79,17 @@
 
     {{--    Start Ads--}}
     @if($count > 0)
-    <section class="client_ads_section text-center">
+    <section class=" client_ads_section my_ads_section text-center">
         <div class="container" style="max-width: 1044px">
-            <div class="row my-4">
-                <div class="col-md-12 col-sm-12 col-12 text-right">
+            <div class="row mt-3">
+                <div class="col-md-12 col-sm-12 col-12 text-right mt-1">
                     <h3 class="bold l_27">الإعلانات داخل ({{$pack->title}} - {{$pack->cat->title}}) </h3>
                 </div>
             </div>
 
-            <div class="row mt-2 pb-5">
+            <div class="row p-2 mt-3 pb-5">
                 <div class="col-md-12 col-12 col-sm-12 packages_div " style="min-height: 300px">
-                    <div class="row my-2" id="client_ads_cont">
+                    <div class="row p-2 my-2" id="client_ads_cont">
                         @if(isset($paid_client_ads_published) && $paid_client_ads_published->count() > 0)
 
                         @foreach($paid_client_ads_published as $key => $item)
@@ -151,7 +151,7 @@
 
                                     <div class="footer_card">
                                         <div class="text-muted position-relative">
-                                            <small>عدد المشاهدات : {{$item->viewNum->count()}}</small>
+                                            <small><span class="mobile_hide">عدد</span> المشاهدات : {{$item->viewNum->count()}}</small>
                                             <small class="date_client_ad">
                                                 <i class="fa-sharp fa-solid fa-clock-rotate-left l_11"
                                                    style="margin-left: 3px"></i>
@@ -227,7 +227,7 @@
 
                                             <div class="footer_card">
                                                 <div class="text-muted position-relative">
-                                                    <small>عدد المشاهدات : {{$item->viewNum->count()}}</small>
+                                                    <small><span class="mobile_hide">عدد</span> المشاهدات : {{$item->viewNum->count()}}</small>
                                                     <small class="date_client_ad">
                                                         <i class="fa-sharp fa-solid fa-clock-rotate-left l_11"
                                                            style="margin-left: 3px"></i>
@@ -303,7 +303,7 @@
 
                                             <div class="footer_card">
                                                 <div class="text-muted position-relative">
-                                                    <small>عدد المشاهدات : {{$item->viewNum->count()}}</small>
+                                                    <small><span class="mobile_hide">عدد</span> المشاهدات : {{$item->viewNum->count()}}</small>
                                                     <small class="date_client_ad">
                                                         <i class="fa-sharp fa-solid fa-clock-rotate-left l_11"
                                                            style="margin-left: 3px"></i>
@@ -369,7 +369,7 @@
 
         $(document).ready(function () {
 
-            let client_ad_post = $('section.client_ads_section .card');
+            let client_ad_post = $('section.my_ads_section .card');
 
             let maxHeight = Math.max.apply(null, client_ad_post.map(function () {
                 return $(this).height();
@@ -390,7 +390,7 @@
             let width_ = post.width();
             let count_in_row = Math.floor(width_c / width_);
             // alert(count_in_row);
-            client_ads_cont.height((8 / count_in_row * height_));
+            // client_ads_cont.height((8 / count_in_row * height_));
 
 
             let see_more = $('#see_more');

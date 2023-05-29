@@ -13,6 +13,12 @@ let option = {
 $(document).ready(function () {
 
 
+
+
+
+
+
+
     let wish_div = $('.wish_div');
     wish_div.hover(function () {
         $(this).removeClass('not_hovered_wish');

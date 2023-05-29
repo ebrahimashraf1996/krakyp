@@ -297,7 +297,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Front'], function () {
         Route::post('complete-order', 'OrdersController@completeOrder')->name('complete-order');
 
         Route::group(['prefix' => 'user-posts'], function () {
-            Route::get('/', 'OverAllController@userPosts')->name('user.posts');
+            Route::get('/', 'OverAllController@userPosts')->name('user.posts.all');
             Route::get('/published', 'OverAllController@userPostsPublished')->name('user.posts.published');
             Route::get('/under-review', 'OverAllController@userPostsUnder')->name('user.posts.under');
             Route::get('/expired', 'OverAllController@userPostsExpired')->name('user.posts.expired');

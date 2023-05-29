@@ -19,4 +19,9 @@ return [
     'token' => 'This password reset token is invalid.',
     'user' => "We can't find a user with that email address.",
 
+    'user.posts.all' => 'الكل',
+    'user.posts.published' => 'الإعلانات المنشورة',
+    'user.posts.under' => 'الإعلانات تحت المراجعة',
+    'user.posts.expired' => 'الإعلانات المنتهية',
+    'user.posts.canceled' => 'الإعلانات المرفوضة',
 ];

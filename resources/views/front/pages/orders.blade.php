@@ -63,7 +63,7 @@
                         </i>
                     </div>
 
-                    <span>باقاتي</span>
+                    <span class="bold">باقاتي</span>
                 </div>
 
                 <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-3 py-2 text-left back">
@@ -82,7 +82,7 @@
     {{--    Start Featured Cats--}}
     <section class="featured-section pb-5 text-right">
         <div class="container" style="max-width: 1044px">
-            <div class="row py-4">
+            <div class="row pt-0 pb-4">
                 <div class="col-md-12 col-sm-12">
                     <h3 class="bold">باقاتي ...</h3>
                 </div>

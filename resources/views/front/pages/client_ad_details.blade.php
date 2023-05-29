@@ -36,17 +36,31 @@
             width: auto !important;
             height: 426px !important;
         }
-        .client_ad_cover {max-height: 140px!important;}
+
+        .client_ad_cover {
+            max-height: 140px !important;
+        }
 
         .bordered {
             box-shadow: 1px 1px 5px #c5c1c1;
             border: none !important;
         }
-        #related_products.owl-carousel .owl-nav button.owl-prev {left: -5%;}
-        #related_products.owl-carousel .owl-nav button.owl-next {right: -2%;}
-        #related_products.owl-carousel .owl-nav button.owl-prev, #related_products.owl-carousel .owl-nav button.owl-next {top: 26%}
 
-        h5.card-title {font-size: 14px}
+        #related_products.owl-carousel .owl-nav button.owl-prev {
+            left: -5%;
+        }
+
+        #related_products.owl-carousel .owl-nav button.owl-next {
+            right: -2%;
+        }
+
+        #related_products.owl-carousel .owl-nav button.owl-prev, #related_products.owl-carousel .owl-nav button.owl-next {
+            top: 26%
+        }
+
+        h5.card-title {
+            font-size: 14px
+        }
 
     </style>
 @stop
@@ -176,7 +190,8 @@
                                                                 @endif
                                                                 {{$item->attr->title}} :
                                                             </div>
-                                                            <div class="bold col-lg-4 col-md-4 col-4 col-sm-6 px-0 text-left py-1">
+                                                            <div
+                                                                class="bold col-lg-4 col-md-4 col-4 col-sm-6 px-0 text-left py-1">
                                                                 متوفر
                                                             </div>
                                                         </div>
@@ -194,8 +209,11 @@
                                                             @endif
                                                             {{$item->attr->title}} :
                                                         </div>
-                                                        <div class="bold col-lg-6 col-md-6 col-12 col-sm-6 px-0 text-left py-1">
-                                                            {{number_format($item->answer_value, 0)}} &nbsp;<span style="font-weight: normal;" class=" colored"> {{$item->attr->unit}}</span>
+                                                        <div
+                                                            class="bold col-lg-6 col-md-6 col-12 col-sm-6 px-0 text-left py-1">
+                                                            {{number_format($item->answer_value, 0)}} &nbsp;<span
+                                                                style="font-weight: normal;"
+                                                                class=" colored"> {{$item->attr->unit}}</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -204,100 +222,118 @@
                                         <div class="see_other_attrs_div col-lg-12 col-md-12 mt-3 col-sm-12 col-12">
                                             <div class="row mx-0 px-2">
                                                 <div class="col-lg-5 col-md-5 col-sm-6 col-12 m-auto text-center">
-                                                    <button class="btn btn-primary w-100 other_details_btn" data-bs-target="#other_attrs_details" data-bs-toggle="modal">المواصفات تفصيلياً</button>
+                                                    <button class="btn btn-primary w-100 other_details_btn"
+                                                            data-bs-target="#other_attrs_details"
+                                                            data-bs-toggle="modal">المواصفات تفصيلياً
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <!-- Modal -->
-                                        <div class="modal fade" id="other_attrs_details" tabindex="-1" aria-labelledby="other_attrs_details" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-scrollable" style="max-width: 1044px!important;">
+                                        <div class="modal fade" id="other_attrs_details" tabindex="-1"
+                                             aria-labelledby="other_attrs_details" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-scrollable"
+                                                 style="max-width: 1044px!important;">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title bold" id="exampleModalLabel" style="color: #426ddd">المواصفات تفصيلياً</h5>
-                                                        <button type="button" data-bs-dismiss="modal" class="bold d-flex justify-content-center" style="background: #f4f5fe!important; color: rgb(255, 149, 0); padding: 10px 15px">
-                                                            <i class="fa-solid fa-xmark " style="font-size: 15px;padding: 0 6px!important; "></i>
+                                                        <h5 class="modal-title bold" id="exampleModalLabel"
+                                                            style="color: #426ddd">المواصفات تفصيلياً</h5>
+                                                        <button type="button" data-bs-dismiss="modal"
+                                                                class="bold d-flex justify-content-center"
+                                                                style="background: #f4f5fe!important; color: rgb(255, 149, 0); padding: 10px 15px">
+                                                            <i class="fa-solid fa-xmark "
+                                                               style="font-size: 15px;padding: 0 6px!important; "></i>
                                                             <span style="font-weight: normal">إغلاق</span>
                                                         </button>
                                                     </div>
                                                     <div class="modal-body pt-0">
                                                         <div class="row">
-                                                        @foreach($client_ad->clientAdAttrsAnswers->where('attr.type_of' , 'other') as $item)
+                                                            @foreach($client_ad->clientAdAttrsAnswers->where('attr.type_of' , 'other') as $item)
 
-                                                            @if($item->attr->type == 'with_options')
-                                                                <div class="col-md-6 col-lg-6 col-12 col-sm-6 px-2 py-1 attr_col"
-                                                                     style="border-bottom: 1px solid #ddd">
-                                                                    <div class="row mx-0 px-2">
-                                                                        <div
-                                                                            class="col-lg-6 col-md-6 col-12 col-sm-6 px-2 text-right py-1">
-                                                                            @if($item->attr->attr_icon != null)
-                                                                                <img src="{{asset($item->attr->attr_icon)}}" alt="icon"
-                                                                                     class="m-l-8 m-r-8">
-                                                                            @endif
-                                                                            {{$item->attr->title}} :
-                                                                        </div>
-                                                                        @php
-                                                                            $answer = \App\Models\Option::find($item->answer_value);
-                                                                        @endphp
-                                                                        <div
-                                                                            class="bold col-lg-6 col-md-6 col-12 col-sm-6 px-2 text-left py-1">
-                                                                            {{$answer->val}}
-                                                                            @if($answer->image !== null)
-                                                                                <img
-                                                                                    src="{{asset('uploads/options/' . $answer->image)}}"
-                                                                                    class="m-r-16" style="width: 41px" alt="image">
-                                                                            @endif
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            @elseif($item->attr->type == 'yes_no')
-                                                                @if($item->answer_value == '1')
-                                                                    <div class="col-md-6 col-lg-6 col-12 col-sm-6 px-2 py-1 attr_col"
-                                                                         style="border-bottom: 1px solid #ddd">
+                                                                @if($item->attr->type == 'with_options')
+                                                                    <div
+                                                                        class="col-md-6 col-lg-6 col-12 col-sm-6 px-2 py-1 attr_col"
+                                                                        style="border-bottom: 1px solid #ddd">
                                                                         <div class="row mx-0 px-2">
                                                                             <div
-                                                                                class="col-lg-8 col-md-8 col-8 col-sm-6 px-2 text-right py-1">
+                                                                                class="col-lg-6 col-md-6 col-12 col-sm-6 px-2 text-right py-1">
                                                                                 @if($item->attr->attr_icon != null)
-                                                                                    <img src="{{asset($item->attr->attr_icon)}}"
-                                                                                         alt="icon" class="m-l-8 m-r-8">
+                                                                                    <img
+                                                                                        src="{{asset($item->attr->attr_icon)}}"
+                                                                                        alt="icon"
+                                                                                        class="m-l-8 m-r-8">
                                                                                 @endif
                                                                                 {{$item->attr->title}} :
                                                                             </div>
-                                                                            <div class="bold col-lg-4 col-md-4 col-4 col-sm-6 px-2 text-left py-1">
-                                                                                متوفر
+                                                                            @php
+                                                                                $answer = \App\Models\Option::find($item->answer_value);
+                                                                            @endphp
+                                                                            <div
+                                                                                class="bold col-lg-6 col-md-6 col-12 col-sm-6 px-2 text-left py-1">
+                                                                                {{$answer->val}}
+                                                                                @if($answer->image !== null)
+                                                                                    <img
+                                                                                        src="{{asset('uploads/options/' . $answer->image)}}"
+                                                                                        class="m-r-16"
+                                                                                        style="width: 41px" alt="image">
+                                                                                @endif
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                @elseif($item->attr->type == 'yes_no')
+                                                                    @if($item->answer_value == '1')
+                                                                        <div
+                                                                            class="col-md-6 col-lg-6 col-12 col-sm-6 px-2 py-1 attr_col"
+                                                                            style="border-bottom: 1px solid #ddd">
+                                                                            <div class="row mx-0 px-2">
+                                                                                <div
+                                                                                    class="col-lg-8 col-md-8 col-8 col-sm-6 px-2 text-right py-1">
+                                                                                    @if($item->attr->attr_icon != null)
+                                                                                        <img
+                                                                                            src="{{asset($item->attr->attr_icon)}}"
+                                                                                            alt="icon"
+                                                                                            class="m-l-8 m-r-8">
+                                                                                    @endif
+                                                                                    {{$item->attr->title}} :
+                                                                                </div>
+                                                                                <div
+                                                                                    class="bold col-lg-4 col-md-4 col-4 col-sm-6 px-2 text-left py-1">
+                                                                                    متوفر
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    @endif
+                                                                @elseif($item->attr->type == 'with_no_answers')
+                                                                    <div
+                                                                        class="col-md-6 col-lg-6 col-12 col-sm-6 px-2 py-1 attr_col"
+                                                                        style="border-bottom: 1px solid #ddd">
+                                                                        <div class="row mx-0 px-2">
+                                                                            <div
+                                                                                class="col-lg-6 col-md-6 col-12 col-sm-6 px-2 text-right py-1">
+                                                                                @if($item->attr->attr_icon != null)
+                                                                                    <img
+                                                                                        src="{{asset($item->attr->attr_icon)}}"
+                                                                                        alt="icon" class="m-l-8 m-r-8">
+                                                                                @endif
+                                                                                {{$item->attr->title}} :
+                                                                            </div>
+                                                                            <div
+                                                                                class="bold col-lg-6 col-md-6 col-12 col-sm-6 px-2 text-left py-1">
+                                                                                {{number_format($item->answer_value, 0)}}
+                                                                                &nbsp;<span style="font-weight: normal;"
+                                                                                            class=" colored"> {{$item->attr->unit}}</span>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 @endif
-                                                            @elseif($item->attr->type == 'with_no_answers')
-                                                                <div class="col-md-6 col-lg-6 col-12 col-sm-6 px-2 py-1 attr_col"
-                                                                     style="border-bottom: 1px solid #ddd">
-                                                                    <div class="row mx-0 px-2">
-                                                                        <div
-                                                                            class="col-lg-6 col-md-6 col-12 col-sm-6 px-2 text-right py-1">
-                                                                            @if($item->attr->attr_icon != null)
-                                                                                <img src="{{asset($item->attr->attr_icon)}}"
-                                                                                     alt="icon" class="m-l-8 m-r-8">
-                                                                            @endif
-                                                                            {{$item->attr->title}} :
-                                                                        </div>
-                                                                        <div class="bold col-lg-6 col-md-6 col-12 col-sm-6 px-2 text-left py-1">
-                                                                            {{number_format($item->answer_value, 0)}} &nbsp;<span style="font-weight: normal;" class=" colored"> {{$item->attr->unit}}</span>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            @endif
-                                                        @endforeach
+                                                            @endforeach
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-
-
                                     @endif
-
-
                                 </div>
                             </div>
                             <div class="col-md-12 col-12 col-sm-12">
@@ -412,7 +448,7 @@
                         <div class="mt-1">
                             <div style="width: 49%;text-align: right" class="p-r-10 d-inline-block">
                                 <a href="{{route('contact.us').'?client_ad_serial='. $client_ad->serial_num}}"
-                                    class="bold text-muted l_14">أبلغ عن الإعلان</a></div>
+                                   class="bold text-muted l_14">أبلغ عن الإعلان</a></div>
                             <div style="width: 49%; text-align: left" class="p-l-10 d-inline-block"><a
                                     href="{{route('contact.us').'?seller_serial='. $client_ad->user->serial_num}}"
                                     class="bold text-muted l_14">أبلغ عن المعلن</a></div>
@@ -440,24 +476,30 @@
                                                              //dd($photo);
                                                         @endphp
                                                         <div class="mark_div">
-                                                            <img src="{{asset('assets/front/images/mark.png')}}" alt="special offer"
+                                                            <img src="{{asset('assets/front/images/mark.png')}}"
+                                                                 alt="special offer"
                                                                  width="100%">
                                                         </div>
                                                         @if(backpack_auth()->check())
-                                                            <div class="wish_div {{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}} not_hovered_wish" data-target="{{$item->id}} ">
+                                                            <div
+                                                                class="wish_div {{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}} not_hovered_wish"
+                                                                data-target="{{$item->id}} ">
                                                                 <a href="javascript:void(0)" class="wish-btn"
                                                                    data-bs-target="{{$item->slug}}">
                                                                     <img
                                                                         src="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? asset('assets/front/images/hearted.png') : asset('assets/front/images/heart.png')}}"
                                                                         alt="wish-icon">
-                                                                    <span class="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}}">{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'تم الإضافة' : 'أضف لقائمة الرغبات'}}</span>
+                                                                    <span
+                                                                        class="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}}">{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'تم الإضافة' : 'أضف لقائمة الرغبات'}}</span>
                                                                 </a>
                                                             </div>
                                                         @else
-                                                            <div class="wish_div not_hovered_wish" data-target="{{$item->id}} ">
+                                                            <div class="wish_div not_hovered_wish"
+                                                                 data-target="{{$item->id}} ">
                                                                 <a href="{{url('login')}}">
-                                                                    <img src="{{asset('assets/front/images/heart.png')}}"
-                                                                         alt="wish-icon">
+                                                                    <img
+                                                                        src="{{asset('assets/front/images/heart.png')}}"
+                                                                        alt="wish-icon">
                                                                     <span>أضف لقائمة الرغبات</span>
 
                                                                 </a>
@@ -470,7 +512,8 @@
                                                                      alt="{{$item->slug}}">
                                                             </div>
                                                             <div class="location_card text-muted pt-2">
-                                                                <i class="fa fa-location-dot l_13" style="margin-left: 3px"></i>
+                                                                <i class="fa fa-location-dot l_13"
+                                                                   style="margin-left: 3px"></i>
                                                                 <small>{{$item->country->name}},</small>
                                                                 <small>{{$item->city->name}}</small>
                                                                 {{--                                            - <small>{{$item->state->name}}</small>--}}
@@ -479,14 +522,16 @@
                                                             <div class="titles bold">
                                                                 <h5 class="card-title mb-3 bold">{{$item->title}}</h5>
                                                                 <span style="font-weight: normal">السعر: </span>
-                                                                <span class="card-title  bold price colored">{{number_format($item->price, 0)}}</span>
+                                                                <span
+                                                                    class="card-title  bold price colored">{{number_format($item->price, 0)}}</span>
                                                                 <span> ج.م</span>
                                                             </div>
                                                         </a>
 
                                                         <div class="footer_card">
                                                             <div class="text-muted position-relative">
-                                                                <small>عدد المشاهدات : {{$item->viewNum->count()}}</small>
+                                                                <small>عدد المشاهدات
+                                                                    : {{$item->viewNum->count()}}</small>
                                                                 <small class="date_client_ad">
                                                                     <i class="fa-sharp fa-solid fa-clock-rotate-left l_11"
                                                                        style="margin-left: 3px"></i>
@@ -511,20 +556,25 @@
                                                              //dd($photo);
                                                         @endphp
                                                         @if(backpack_auth()->check())
-                                                            <div class="wish_div {{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}} not_hovered_wish" data-target="{{$item->id}} ">
+                                                            <div
+                                                                class="wish_div {{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}} not_hovered_wish"
+                                                                data-target="{{$item->id}} ">
                                                                 <a href="javascript:void(0)" class="wish-btn"
                                                                    data-bs-target="{{$item->slug}}">
                                                                     <img
                                                                         src="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? asset('assets/front/images/hearted.png') : asset('assets/front/images/heart.png')}}"
                                                                         alt="wish-icon">
-                                                                    <span class="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}}">{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'تم الإضافة' : 'أضف لقائمة الرغبات'}}</span>
+                                                                    <span
+                                                                        class="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}}">{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'تم الإضافة' : 'أضف لقائمة الرغبات'}}</span>
                                                                 </a>
                                                             </div>
                                                         @else
-                                                            <div class="wish_div not_hovered_wish" data-target="{{$item->id}} ">
+                                                            <div class="wish_div not_hovered_wish"
+                                                                 data-target="{{$item->id}} ">
                                                                 <a href="{{url('login')}}">
-                                                                    <img src="{{asset('assets/front/images/heart.png')}}"
-                                                                         alt="wish-icon">
+                                                                    <img
+                                                                        src="{{asset('assets/front/images/heart.png')}}"
+                                                                        alt="wish-icon">
                                                                     <span>أضف لقائمة الرغبات</span>
 
                                                                 </a>
@@ -536,7 +586,8 @@
                                                                      alt="{{$item->slug}}">
                                                             </div>
                                                             <div class="location_card text-muted pt-2">
-                                                                <i class="fa fa-location-dot l_13" style="margin-left: 3px"></i>
+                                                                <i class="fa fa-location-dot l_13"
+                                                                   style="margin-left: 3px"></i>
                                                                 <small>{{$item->country->name}},</small>
                                                                 <small>{{$item->city->name}}</small>
                                                                 {{--                                            - <small>{{$item->state->name}}</small>--}}
@@ -544,14 +595,16 @@
                                                             <div class="titles bold">
                                                                 <h5 class="card-title mb-3 bold">{{$item->title}}</h5>
                                                                 <span style="font-weight: normal">السعر: </span>
-                                                                <span class="card-title  bold price colored">{{number_format($item->price, 0)}}</span>
+                                                                <span
+                                                                    class="card-title  bold price colored">{{number_format($item->price, 0)}}</span>
                                                                 <span> ج.م</span>
                                                             </div>
                                                         </a>
 
                                                         <div class="footer_card">
                                                             <div class="text-muted position-relative">
-                                                                <small>عدد المشاهدات : {{$item->viewNum->count()}}</small>
+                                                                <small>عدد المشاهدات
+                                                                    : {{$item->viewNum->count()}}</small>
                                                                 <small class="date_client_ad">
                                                                     <i class="fa-sharp fa-solid fa-clock-rotate-left l_11"
                                                                        style="margin-left: 3px"></i>
@@ -562,7 +615,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
 
                                         @endforeach
                                     </div>
@@ -629,16 +681,22 @@
                 autoplayHoverPause: true,
                 responsive: {
                     0: {
-                        items: 2,
-                        nav: false
+                        items: 1,
+                        nav: false,
+                        dots: false,
+
                     },
                     480: {
-                        items: 2,
-                        nav: false
+                        items: 1,
+                        nav: false,
+                        dots: false,
+
                     },
                     767: {
-                        items: 3,
-                        nav: false
+                        items: 1,
+                        nav: false,
+                        dots: false,
+
                     },
                     992: {
                         items: 4,

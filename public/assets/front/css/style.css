@@ -791,7 +791,6 @@ ul.size-list li a.unavailable{  cursor: not-allowed;opacity: 50%}
 .contact-us form {text-align: right;color: #061226; border: 1px #061226 solid;background: rgba(85, 85, 85, 0.13);}
 .contact-us div.nice-select {margin-bottom: 1rem}
 .contact-us h1 {font-weight: bold;}
-
 /********** End Contact us  ********/
 
 
@@ -817,10 +816,12 @@ ul.size-list li a.unavailable{  cursor: not-allowed;opacity: 50%}
 .main_item_filter:hover > .main_head {background-color: #e9ecef}
 .sub_menu .custom_select_btn {padding: 5px 0!important; font-size: 14px}
 .sub_menu .custom_select_btn_radio {padding: 5px 0!important; font-size: 14px}
-.filter_section {height: 78vh;overflow-y: scroll;direction: ltr; position: sticky!important; transition: 500ms all}
+.filter_section {transition:500ms all;height: 78vh;overflow-y: scroll;direction: ltr; position: sticky!important; transition: 500ms all}
 .filter_section .row {direction: rtl;margin-left: -7px;margin-right: -5px;}
 .filter_header {margin: 0 0 0 -12px!important;position: absolute;background: #fff;z-index: 1000;padding: 13px 0;border-bottom: 1px solid #dddddd94;}
 .client_ads_cols {margin-top: 102px;min-height: 100vh;}
+.new_filter_header {position: -webkit-sticky;position: sticky;bottom: 12px;z-index: 1001;}
+.new_filter_header #search_filter {color: #fff;font-weight: bold;width: 100%;background: #ee7202;padding: 10px;border-radius: 3px;}
 
 
 /* End New Filer */

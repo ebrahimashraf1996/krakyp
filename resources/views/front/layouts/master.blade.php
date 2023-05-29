@@ -197,6 +197,14 @@
 @endif
 <script>
     $(document).ready(function() {
+        if ($(window).width() < 767) {
+
+            let mob_nav = $('.mob_nav');
+            let new_main = $('main');
+
+            new_main.css('margin-top', mob_nav.height());
+
+        }
         $('select').niceSelect();
 
         let wish_div = $('.wish_div');

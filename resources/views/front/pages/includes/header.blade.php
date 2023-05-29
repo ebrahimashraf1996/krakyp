@@ -49,7 +49,7 @@
                                         الشخصي
                                     </a>
                                 </li>
-                                <li class="menu_item"><a href="{{route('user.posts')}}" class="dropdown-item"><i
+                                <li class="menu_item"><a href="{{route('user.posts.all')}}" class="dropdown-item"><i
                                             class="fa-solid fa-paste"></i>&nbsp;&nbsp; إعلاناتي</a></li>
                                 <li class="menu_item"><a href="{{route('packages.bills')}}" class="dropdown-item"><i
                                             class="fa-solid fa-money-check-dollar"></i>&nbsp;&nbsp; باقاتي
@@ -193,7 +193,7 @@
                                         <li><a href="{{route('personal.edit')}}" class="dropdown-item l_16"><i
                                                     class="fa-solid fa-square-pen"></i>&nbsp;&nbsp; تعديل الملف
                                                 الشخصي</a></li>
-                                        <li><a href="{{route('user.posts')}}" class="dropdown-item l_16"><i
+                                        <li><a href="{{route('user.posts.all')}}" class="dropdown-item l_16"><i
                                                     class="fa-solid fa-paste"></i>&nbsp;&nbsp; إعلاناتي</a></li>
                                         <li><a href="{{route('packages.bills')}}" class="dropdown-item l_16"><i
                                                     class="fa-solid fa-money-check-dollar"></i>&nbsp;&nbsp; باقاتي
@@ -349,7 +349,7 @@
             </div>
         </div>
     </nav>
-    <nav class="mob_nav">
+    <nav class="mob_nav fixed-top">
         <div class="row py-3 m-0">
             <div class="col-sm-4 col-4">
                 <a class="logo_mobile" href="{{route('site.home')}}">
@@ -478,7 +478,7 @@
                 <div class="col-sm-12 col-12 text-right" style="padding-right: 21px; padding-top: 10px;">
                     <div class="row mt-2 mb-2">
                         <div class="col-3 col-sm-3 text-center">
-                            <a href="{{route('user.posts')}}">
+                            <a href="{{route('user.posts.all')}}">
                                 <div class="user_icons m-auto">
                                     <img src="{{asset('assets/front/images/clipboard-text.svg')}}" alt="clip">
                                 </div>

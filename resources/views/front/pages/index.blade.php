@@ -346,7 +346,7 @@
 
                                         <div class="footer_card">
                                             <div class="text-muted position-relative">
-                                                <small>عدد المشاهدات : {{$item->viewNum->count()}}</small>
+                                                <small><span class="mobile_hide">عدد</span> المشاهدات : {{$item->viewNum->count()}}</small>
                                                 <small class="date_client_ad">
                                                     <i class="fa-sharp fa-solid fa-clock-rotate-left l_11"
                                                        style="margin-left: 3px"></i>
@@ -407,7 +407,7 @@
 
                                         <div class="footer_card">
                                             <div class="text-muted position-relative">
-                                                <small>عدد المشاهدات : {{$item->viewNum->count()}}</small>
+                                                <small><span class="mobile_hide">عدد</span> المشاهدات : {{$item->viewNum->count()}}</small>
                                                 <small class="date_client_ad">
                                                     <i class="fa-sharp fa-solid fa-clock-rotate-left l_11"
                                                        style="margin-left: 3px"></i>
@@ -559,6 +559,7 @@
 
 @section('script')
     <script>
+
 
 
         $(window).scroll(function () {

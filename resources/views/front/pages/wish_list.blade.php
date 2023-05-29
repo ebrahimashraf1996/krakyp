@@ -31,7 +31,7 @@
                         </i>
                     </div>
 
-                    <span>قائمة المفضلة</span>
+                    <span class="bold">قائمة المفضلة</span>
                 </div>
 
                 <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-3 py-2 text-left back">
