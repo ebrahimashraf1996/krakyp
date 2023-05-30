@@ -11,21 +11,20 @@
                 </div>
                 <div class="col-xxl-6 col-xl-6 col-md-6 col-sm-2 col-2" dir="ltr" style="margin-top: 13px">
                     <form action="{{route('quick.search')}}" method="get">
-                        @csrf
                         <div class="input-group search-input">
                             <button type="submit" class="input-group-text search_btn_icon">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </button>
-                            <input type="text" class="form-control" name="key_word"
+                            <input type="text" class="form-control" name="key_word" value="{{isset($_GET['key_word']) ? $_GET['key_word'] : old('key_word')}}"
                                    placeholder="مثال : اسم الماركة او نوع العقار" style="text-align: right">
                             @php
-                                $cats = App\Models\Category::select('id', 'title')->get();
+                                $cats = App\Models\Category::where('parent_id', '!=', null)->select('id', 'title')->get();
                             @endphp
                             <select class="form-control dropdown-toggle" id="quick_cat" name="quick_cat"
                                     style="width: 25%; text-align: right">
                                 <option value="">اختر الفئة</option>
                                 @foreach($cats as $item)
-                                    <option value="{{$item->id}}">{{$item->title}}</option>
+                                    <option value="{{$item->id}}" {{isset($_GET['quick_cat']) &&  $_GET['quick_cat'] == $item->id || old('quick_cat') == $item->id ? 'selected' : ''}}>{{$item->title}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -590,7 +589,7 @@
             </div>
             <div class="col-sm-12 col-12 text-right side_nav_item position-relative"
                  style="padding-right: 21px; padding-top: 10px;">
-                <a href="{{route('site.home')}}" class="d-inline-block w-100 side_nav_all_cats"
+                <a href="{{route('buy-package')}}" class="d-inline-block w-100 side_nav_all_cats"
                    style="padding: 4px 0 7px 0!important; ">
                     <img src="{{asset('assets/front/images/buy.svg')}}" class=" m-l-8 " alt="user-login">
                     <h3 style="color: #2a4ead; font-size: 15px!important;" class="bold d-inline-block">
@@ -600,7 +599,7 @@
             </div>
             <div class="col-sm-12 col-12 text-right side_nav_item position-relative"
                  style="padding-right: 21px; padding-top: 10px;">
-                <a href="{{route('site.home')}}" class="d-inline-block w-100 side_nav_all_cats"
+                <a href="{{route('articles.index')}}" class="d-inline-block w-100 side_nav_all_cats"
                    style="padding: 4px 0 7px 0!important; ">
                     <img src="{{asset('assets/front/images/blog.svg')}}" class=" m-l-8 " alt="user-login">
                     <h3 style="color: #2a4ead; font-size: 15px!important;" class="bold d-inline-block">
@@ -610,7 +609,7 @@
             </div>
             <div class="col-sm-12 col-12 text-right side_nav_item position-relative"
                  style="padding-right: 21px; padding-top: 10px;">
-                <a href="{{route('site.home')}}" class="d-inline-block w-100 side_nav_all_cats"
+                <a href="{{route('contact.us')}}" class="d-inline-block w-100 side_nav_all_cats"
                    style="padding: 4px 0 7px 0!important; ">
                     <img src="{{asset('assets/front/images/phone.svg')}}" class=" m-l-8 " alt="user-login">
                     <h3 style="color: #2a4ead; font-size: 15px!important;" class="bold d-inline-block">
@@ -620,7 +619,7 @@
             </div>
             <div class="col-sm-12 col-12 text-right side_nav_item position-relative"
                  style="padding-right: 21px; padding-top: 10px;">
-                <a href="{{route('site.home')}}" class="d-inline-block w-100 side_nav_all_cats"
+                <a href="{{route('about.us')}}" class="d-inline-block w-100 side_nav_all_cats"
                    style="padding: 4px 0 7px 0!important; ">
                     <img src="{{asset('assets/front/images/us.svg')}}" class=" m-l-8 " alt="user-login">
                     <h3 style="color: #2a4ead; font-size: 15px!important;" class="bold d-inline-block">

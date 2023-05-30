@@ -421,7 +421,7 @@
                         </div>
                         <div class="row mt-4">
                             <div class="col-md-3 col-12 col-sm-12 m-auto">
-                                <button class="btn" id="see_more">اظهر المزيد</button>
+                                <a href="{{route('getAllAds')}}" class="btn" id="see_more">رؤية الكل</a>
                             </div>
                         </div>
                     </div>

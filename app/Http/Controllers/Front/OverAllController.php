@@ -63,15 +63,55 @@ class OverAllController extends Controller
         $banners_mobile = \App\Models\MobileBanner::select('image_alt', 'image', 'url', 'status')->orderBy('lft', 'asc')->active()->get();
         $cats = \App\Models\Category::where('parent_id', null)->get();
         $locations = \App\Models\Location::where('parent_id', null)->get();
-        $paid_client_ads = \App\Models\Clientad::wiCountry()->wiCity()->wiState()->owner()->paid()->notEnd()->selection()->published()->get();
-        $free_client_ads = \App\Models\Clientad::wiCountry()->wiCity()->wiState()->owner()->free()->selection()->published()->get();
+        $paid_client_ads = \App\Models\Clientad::wiCountry()->wiCity()->wiState()->owner()->paid()->notEnd()->selection()->published()->orderBy('created_at', 'desc')->limit(11)->get();
+        $free_client_ads = \App\Models\Clientad::wiCountry()->wiCity()->wiState()->owner()->free()->selection()->published()->orderBy('created_at', 'desc')->limit(11)->get();
         $featured_cats = \App\Models\Category::where('is_featured', 'Featured')->select('id', 'title', 'slug', 'image', 'parent_id')->get();
         return view('front.pages.index', compact('cats', 'locations', 'paid_client_ads', 'free_client_ads', 'banners', 'banners_mobile', 'posts', 'featured_cats'));
     }
 
+    public function getAllAds()
+    {
+        SEOMeta::setTitle('جميع الإعلانات - ' . $this->settings->title);
+        OpenGraph::setTitle('جميع الإعلانات - ' . $this->settings->title);
+        JsonLd::setTitle('جميع الإعلانات - ' . $this->settings->title);
+
+        \General::seoCommon();
+        $paid_client_ads = \App\Models\Clientad::wiCountry()->wiCity()->wiState()->owner()->paid()->notEnd()->selection()->published()->orderBy('created_at', 'desc')->get();
+        $free_client_ads = \App\Models\Clientad::wiCountry()->wiCity()->wiState()->owner()->free()->selection()->published()->orderBy('created_at', 'desc')->get();
+        $featured_cats = \App\Models\Category::where('is_featured', 'Featured')->select('id', 'title', 'slug', 'image', 'parent_id')->get();
+        return view('front.pages.all_ads', compact('paid_client_ads', 'free_client_ads', 'featured_cats'));
+    }
+
+
+//    public function getAllAds() {
+//        SEOMeta::setTitle('نتائج البحث - ' . $this->settings->title);
+//        OpenGraph::setTitle( 'نتائج البحث - ' . $this->settings->title);
+//        JsonLd::setTitle( 'نتائج البحث - ' . $this->settings->title);
+//
+//        \General::seoCommon();
+//        $paid_client_ads = \App\Models\Clientad::wiCountry()->wiCity()->wiState()->owner()->paid()->notEnd()->selection()->published()->orderBy('created_at', 'desc')->get();
+//        $free_client_ads = \App\Models\Clientad::wiCountry()->wiCity()->wiState()->owner()->free()->selection()->published()->orderBy('created_at', 'desc')->get();
+//        $featured_cats = \App\Models\Category::where('is_featured', 'Featured')->select('id', 'title', 'slug', 'image', 'parent_id')->get();
+//        return view('front.pages.all_ads', compact('paid_client_ads', 'free_client_ads', 'featured_cats'));
+//    }
+
     public function quickSearch(Request $request)
     {
-        return $request;
+//        return $request;
+
+        SEOMeta::setTitle('نتائج البحث - ' . $this->settings->title);
+        OpenGraph::setTitle('نتائج البحث - ' . $this->settings->title);
+        JsonLd::setTitle('نتائج البحث - ' . $this->settings->title);
+
+        if ($request->has('key_word') && $request->key_word != null && $request->has('quick_cat') && $request->quick_cat != null) {
+            $paid_client_ads = \App\Models\Clientad::wiCountry()->wiCity()->wiState()->owner()->paid()->notEnd()->selection()->published()->where('cat_id', $request->quick_cat)->where('title', 'like', '%' . $request->key_word . '%')->orderBy('created_at', 'desc')->get();
+            $free_client_ads = \App\Models\Clientad::wiCountry()->wiCity()->wiState()->owner()->free()->selection()->published()->where('cat_id', $request->quick_cat)->where('title', 'like', '%' . $request->key_word . '%')->orderBy('created_at', 'desc')->get();
+            return view('front.pages.quick_search_result', compact('paid_client_ads', 'free_client_ads'));
+
+        } else {
+            return redirect(route('site.home'))->with(['error' => 'برجاء ادخال بيانات البحث']);
+        }
+
     }
 
     public function privacy()
@@ -344,10 +384,9 @@ class OverAllController extends Controller
         $city_id = $request->has('new_city_id') && $request->new_city_id != null ? $request->new_city_id : $request->request->remove('new_city_id');
         $new_from_ = $request->has('new_from_') && $request->new_from_ != null ? $request->new_from_ : $request->request->remove('new_from_');
         $new_to_ = $request->has('new_to_') && $request->new_to_ != null ? $request->new_to_ : $request->request->remove('new_to_');
-        $attrs =  $request->has('attrs') ? $request->attrs : null;
-        $attrs_yes_no =  $request->has('attrs_yes_no') ? $request->attrs_yes_no : null;
-        $from_to_attrs =  $request->has('from_to') ? $request->from_to : null;
-
+        $attrs = $request->has('attrs') ? $request->attrs : null;
+        $attrs_yes_no = $request->has('attrs_yes_no') ? $request->attrs_yes_no : null;
+        $from_to_attrs = $request->has('from_to') ? $request->from_to : null;
 
 
         $free_client_ads_in_cat = Clientad::query();
@@ -355,7 +394,6 @@ class OverAllController extends Controller
 
         $paid_client_ads_in_cat = Clientad::query();
         $paid_client_ads_in_cat->where('cat_id', 10);
-
 
 
         // Price Filter
@@ -397,7 +435,7 @@ class OverAllController extends Controller
         // Yes No Filter
         if ($attrs_yes_no != null && count($attrs_yes_no) > 0) {
             $attrs_yes_no = array_filter($attrs_yes_no);
-            $attrs_yes_no =array_keys($attrs_yes_no);
+            $attrs_yes_no = array_keys($attrs_yes_no);
 
             $free_client_ads_in_cat->whereHas('clientAdAttrsAnswers', function ($q) use ($attrs_yes_no) {
                 $q->select('id', 'client_ad_id', 'attr_id', 'answer_value')->whereIn('attr_id', $attrs_yes_no);
@@ -462,9 +500,6 @@ class OverAllController extends Controller
 //        return $request;
 
 
-
-
-
         $cat = Category::select('slug', 'id')->find($request->new_sub_cat_id);
         $cat = Category::where('slug', $cat->slug)->first();
         SEOMeta::setTitle('نتائج البحث' . ' - ' . $this->settings['title']);
@@ -496,16 +531,15 @@ class OverAllController extends Controller
         General::seoContacts();
 
 
-
         $main_cat_id = $request->has('new_main_cat_id') && $request->new_main_cat_id != null ? $request->new_main_cat_id : $request->request->remove('new_main_cat_id');
         $sub_cat_id = $request->has('new_sub_cat_id') && $request->new_sub_cat_id != null ? $request->new_sub_cat_id : $request->request->remove('new_sub_cat_id');
         $country_id = $request->has('new_country_id') && $request->new_country_id != null ? $request->new_country_id : $request->request->remove('new_country_id');
         $city_id = $request->has('new_city_id') && $request->new_city_id != null ? $request->new_city_id : $request->request->remove('new_city_id');
         $new_from_ = $request->has('new_from_') && $request->new_from_ != null ? $request->new_from_ : $request->request->remove('new_from_');
         $new_to_ = $request->has('new_to_') && $request->new_to_ != null ? $request->new_to_ : $request->request->remove('new_to_');
-        $attrs =  $request->has('attrs') ? $request->attrs : null;
-        $attrs_yes_no =  $request->has('attrs_yes_no') ? $request->attrs_yes_no : null;
-        $from_to_attrs =  $request->has('from_to') ? $request->from_to : null;
+        $attrs = $request->has('attrs') ? $request->attrs : null;
+        $attrs_yes_no = $request->has('attrs_yes_no') ? $request->attrs_yes_no : null;
+        $from_to_attrs = $request->has('from_to') ? $request->from_to : null;
 
 
         $free_client_ads_in_cat = Clientad::query();
@@ -513,7 +547,6 @@ class OverAllController extends Controller
 
         $paid_client_ads_in_cat = Clientad::query();
         $paid_client_ads_in_cat->where('cat_id', $sub_cat_id);
-
 
 
         // Price Filter
@@ -555,7 +588,7 @@ class OverAllController extends Controller
         // Yes No Filter
         if ($attrs_yes_no != null && count($attrs_yes_no) > 0) {
             $attrs_yes_no = array_filter($attrs_yes_no);
-            $attrs_yes_no =array_keys($attrs_yes_no);
+            $attrs_yes_no = array_keys($attrs_yes_no);
 
             $free_client_ads_in_cat->whereHas('clientAdAttrsAnswers', function ($q) use ($attrs_yes_no) {
                 $q->select('id', 'client_ad_id', 'attr_id', 'answer_value')->whereIn('attr_id', $attrs_yes_no);
@@ -609,10 +642,6 @@ class OverAllController extends Controller
 
         $free_client_ads_in_cat = $free_client_ads_in_cat->free()->selection()->published()->notCanceled()->get();
         $paid_client_ads_in_cat = $paid_client_ads_in_cat->paid()->notEnd()->published()->notCanceled()->selection()->get();
-
-
-
-
 
 
         $cat = Category::where('id', $request->new_sub_cat_id)->select('id', 'slug', 'title', 'parent_id')->first();

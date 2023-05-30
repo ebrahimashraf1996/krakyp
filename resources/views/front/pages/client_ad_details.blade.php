@@ -139,6 +139,49 @@
                                     </div>
                                 </section>
                             </div>
+                            <div class="col-md-3 col-lg-3 col-12 col-sm-12 side_part mobile_side_part d-none">
+                                <div class="bordered mt-3 p-3 bg-white contact_section ">
+                                    @if(backpack_auth()->check())
+                                        <div
+                                            class="wish_div {{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$client_ad->id)->first() ? 'done' : ''}} not_hovered_wish"
+                                            data-target="{{$client_ad->id}} ">
+                                            <a href="javascript:void(0)" class="wish-btn"
+                                               data-bs-target="{{$client_ad->slug}}">
+                                                <img
+                                                    src="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$client_ad->id)->first() ? asset('assets/front/images/hearted.png') : asset('assets/front/images/heart.png')}}"
+                                                    alt="wish-icon">
+                                                <span
+                                                    class="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$client_ad->id)->first() ? 'done' : ''}}">{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$client_ad->id)->first() ? 'تم الإضافة' : 'أضف لقائمة الرغبات'}}</span>
+                                            </a>
+                                        </div>
+                                    @else
+                                        <div class="wish_div not_hovered_wish" data-target="{{$client_ad->id}} ">
+                                            <a href="{{url('login')}}">
+                                                <img src="{{asset('assets/front/images/heart.png')}}"
+                                                     alt="wish-icon">
+                                                <span>أضف لقائمة الرغبات</span>
+
+                                            </a>
+                                        </div>
+                                    @endif
+                                    <div class="price">
+                                        <h4 class="bold l_22">{{number_format($client_ad->price, 0)}} <span
+                                                class="colored">ج.م</span></h4>
+                                    </div>
+                                    <div class=" mt-2">
+                                <span class="text-muted l_13"><span
+                                        class="bold">{{$client_ad->country->name}} - {{$client_ad->city->name}}</span>
+{{--                                    - {{$client_ad->state->name}}--}}
+                                </span>
+                                    </div>
+                                    <div class=" mt-2 text-left">
+                                        <i class="fa-sharp fa-solid fa-clock-rotate-left l_11"
+                                           style="margin-left: 3px"></i>
+                                        <span
+                                            class="text-muted l_12">{{Carbon\Carbon::parse($client_ad->created_at)->diffForHumans()}}</span>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="col-md-12 col-12 col-sm-12">
                                 <div class="mt-2 p-3 bordered row details"
                                      style="background: #fff;padding-bottom: 15px">
@@ -156,7 +199,7 @@
                                                      style="border-bottom: 1px solid #ddd">
                                                     <div class="row mx-0 px-2">
                                                         <div
-                                                            class="col-lg-6 col-md-6 col-12 col-sm-6 px-0 text-right py-1">
+                                                            class="col-lg-6 col-md-6 col-6 col-sm-6 px-0 text-right py-1">
                                                             @if($item->attr->attr_icon != null)
                                                                 <img src="{{asset($item->attr->attr_icon)}}" alt="icon"
                                                                      class="m-l-8 m-r-8">
@@ -167,7 +210,7 @@
                                                             $answer = \App\Models\Option::find($item->answer_value);
                                                         @endphp
                                                         <div
-                                                            class="bold col-lg-6 col-md-6 col-12 col-sm-6 px-0 text-left py-1">
+                                                            class="bold col-lg-6 col-md-6 col-6 col-sm-6 px-0 text-left py-1">
                                                             {{$answer->val}}
                                                             @if($answer->image !== null)
                                                                 <img
@@ -202,7 +245,7 @@
                                                      style="border-bottom: 1px solid #ddd">
                                                     <div class="row mx-0 px-2">
                                                         <div
-                                                            class="col-lg-6 col-md-6 col-12 col-sm-6 px-0 text-right py-1">
+                                                            class="col-lg-6 col-md-6 col-6 col-sm-6 px-0 text-right py-1">
                                                             @if($item->attr->attr_icon != null)
                                                                 <img src="{{asset($item->attr->attr_icon)}}"
                                                                      alt="icon" class="m-l-8 m-r-8">
@@ -210,7 +253,7 @@
                                                             {{$item->attr->title}} :
                                                         </div>
                                                         <div
-                                                            class="bold col-lg-6 col-md-6 col-12 col-sm-6 px-0 text-left py-1">
+                                                            class="bold col-lg-6 col-md-6 col-6 col-sm-6 px-0 text-left py-1">
                                                             {{number_format($item->answer_value, 0)}} &nbsp;<span
                                                                 style="font-weight: normal;"
                                                                 class=" colored"> {{$item->attr->unit}}</span>
@@ -253,11 +296,11 @@
 
                                                                 @if($item->attr->type == 'with_options')
                                                                     <div
-                                                                        class="col-md-6 col-lg-6 col-12 col-sm-6 px-2 py-1 attr_col"
+                                                                        class="col-md-6 col-lg-6 col-12 col-sm-6  py-1 attr_col"
                                                                         style="border-bottom: 1px solid #ddd">
-                                                                        <div class="row mx-0 px-2">
+                                                                        <div class="row mx-0 ">
                                                                             <div
-                                                                                class="col-lg-6 col-md-6 col-12 col-sm-6 px-2 text-right py-1">
+                                                                                class="col-lg-6 col-md-6 col-12 col-sm-6  text-right py-1">
                                                                                 @if($item->attr->attr_icon != null)
                                                                                     <img
                                                                                         src="{{asset($item->attr->attr_icon)}}"
@@ -270,7 +313,7 @@
                                                                                 $answer = \App\Models\Option::find($item->answer_value);
                                                                             @endphp
                                                                             <div
-                                                                                class="bold col-lg-6 col-md-6 col-12 col-sm-6 px-2 text-left py-1">
+                                                                                class="bold col-lg-6 col-md-6 col-12 col-sm-6  text-left py-1">
                                                                                 {{$answer->val}}
                                                                                 @if($answer->image !== null)
                                                                                     <img
@@ -284,11 +327,11 @@
                                                                 @elseif($item->attr->type == 'yes_no')
                                                                     @if($item->answer_value == '1')
                                                                         <div
-                                                                            class="col-md-6 col-lg-6 col-12 col-sm-6 px-2 py-1 attr_col"
+                                                                            class="col-md-6 col-lg-6 col-12 col-sm-6  py-1 attr_col"
                                                                             style="border-bottom: 1px solid #ddd">
-                                                                            <div class="row mx-0 px-2">
+                                                                            <div class="row mx-0 ">
                                                                                 <div
-                                                                                    class="col-lg-8 col-md-8 col-8 col-sm-6 px-2 text-right py-1">
+                                                                                    class="col-lg-8 col-md-8 col-10 col-sm-6  text-right py-1">
                                                                                     @if($item->attr->attr_icon != null)
                                                                                         <img
                                                                                             src="{{asset($item->attr->attr_icon)}}"
@@ -298,7 +341,7 @@
                                                                                     {{$item->attr->title}} :
                                                                                 </div>
                                                                                 <div
-                                                                                    class="bold col-lg-4 col-md-4 col-4 col-sm-6 px-2 text-left py-1">
+                                                                                    class="bold col-lg-4 col-md-4 col-2 col-sm-6  text-left py-1">
                                                                                     متوفر
                                                                                 </div>
                                                                             </div>
@@ -306,11 +349,11 @@
                                                                     @endif
                                                                 @elseif($item->attr->type == 'with_no_answers')
                                                                     <div
-                                                                        class="col-md-6 col-lg-6 col-12 col-sm-6 px-2 py-1 attr_col"
+                                                                        class="col-md-6 col-lg-6 col-12 col-sm-6  py-1 attr_col"
                                                                         style="border-bottom: 1px solid #ddd">
-                                                                        <div class="row mx-0 px-2">
+                                                                        <div class="row mx-0 ">
                                                                             <div
-                                                                                class="col-lg-6 col-md-6 col-12 col-sm-6 px-2 text-right py-1">
+                                                                                class="col-lg-6 col-md-6 col-12 col-sm-6  text-right py-1">
                                                                                 @if($item->attr->attr_icon != null)
                                                                                     <img
                                                                                         src="{{asset($item->attr->attr_icon)}}"
@@ -319,7 +362,7 @@
                                                                                 {{$item->attr->title}} :
                                                                             </div>
                                                                             <div
-                                                                                class="bold col-lg-6 col-md-6 col-12 col-sm-6 px-2 text-left py-1">
+                                                                                class="bold col-lg-6 col-md-6 col-12 col-sm-6  text-left py-1">
                                                                                 {{number_format($item->answer_value, 0)}}
                                                                                 &nbsp;<span style="font-weight: normal;"
                                                                                             class=" colored"> {{$item->attr->unit}}</span>
@@ -334,6 +377,45 @@
                                             </div>
                                         </div>
                                     @endif
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-lg-3 col-12 col-sm-12 side_part mobile_side_part d-none">
+                                <div class="bordered mt-3 bg-white pt-4 contact_section ">
+
+                                    <div class="seller px-3">
+                                        <div class="d-inline-block user_photo">
+                                            <img class="flag" src="{{asset($client_ad->user->image)}}" alt="user_photo"> &nbsp;&nbsp;&nbsp;
+                                        </div>
+                                        <div class="d-inline-block">
+                                            <h5 class="bold ">{{$client_ad->user->name}}</h5>
+                                            <a href="{{route('seller.ads', $client_ad->user->serial_num)}}" class="text-muted">
+                                                المزيد من الإعلانات
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class=" mt-4">
+                                        <div class="row">
+                                            <div class="col-md-6 col-6 col-sm-6" style="padding-left: 0;border-radius: 0">
+                                                <a class="btn whats_btn" target="_blank"
+                                                   href="{{$client_ad->user->whats_app != null ? 'https://wa.me/'. $client_ad->user->whats_app : ''}}">
+                                                    <span class="bold l_14">واتساب</span>&nbsp;
+                                                    <img src="{{asset('assets/front/images/whats.png')}}" alt="whats-icon"
+                                                         style="width: 17px"
+                                                         class="whats-icon">
+                                                </a>
+                                            </div>
+                                            <div class="col-md-6 col-6 col-sm-6" style="padding-right: 0;">
+                                                <a class="btn call_btn" href="tel:{{$client_ad->user->phone}}">
+                                                    <span class="bold l_14">اتصال</span> &nbsp;
+                                                    <img src="{{asset('assets/front/images/phone.png')}}" alt="tel-icon"
+                                                         style="width: 17px"
+                                                         class="tel-icon">
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-12 col-12 col-sm-12">
@@ -352,23 +434,23 @@
 
                         {{--{{dd($item->id)}}--}}
                     </div>
-                    <div class="col-md-3 col-lg-3 col-12 col-sm-12 side_part">
-                        <div class="bordered mt-3 p-3 contact_section">
+                    <div class="col-md-3 col-lg-3 col-12 col-sm-12 side_part ">
+                        <div class="bordered mt-3 p-3 bg-white contact_section mobile_hide">
                             @if(backpack_auth()->check())
                                 <div
-                                    class="wish_div {{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}} not_hovered_wish"
-                                    data-target="{{$item->id}} ">
+                                    class="wish_div {{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$client_ad->id)->first() ? 'done' : ''}} not_hovered_wish"
+                                    data-target="{{$client_ad->id}} ">
                                     <a href="javascript:void(0)" class="wish-btn"
-                                       data-bs-target="{{$item->slug}}">
+                                       data-bs-target="{{$client_ad->slug}}">
                                         <img
-                                            src="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? asset('assets/front/images/hearted.png') : asset('assets/front/images/heart.png')}}"
+                                            src="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$client_ad->id)->first() ? asset('assets/front/images/hearted.png') : asset('assets/front/images/heart.png')}}"
                                             alt="wish-icon">
                                         <span
-                                            class="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}}">{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'تم الإضافة' : 'أضف لقائمة الرغبات'}}</span>
+                                            class="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$client_ad->id)->first() ? 'done' : ''}}">{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$client_ad->id)->first() ? 'تم الإضافة' : 'أضف لقائمة الرغبات'}}</span>
                                     </a>
                                 </div>
                             @else
-                                <div class="wish_div not_hovered_wish" data-target="{{$item->id}} ">
+                                <div class="wish_div not_hovered_wish" data-target="{{$client_ad->id}} ">
                                     <a href="{{url('login')}}">
                                         <img src="{{asset('assets/front/images/heart.png')}}"
                                              alt="wish-icon">
@@ -394,7 +476,7 @@
                                     class="text-muted l_12">{{Carbon\Carbon::parse($client_ad->created_at)->diffForHumans()}}</span>
                             </div>
                         </div>
-                        <div class="bordered mt-3  pt-4 contact_section">
+                        <div class="bordered mt-3 bg-white pt-4 contact_section mobile_hide">
 
                             <div class="seller px-3">
                                 <div class="d-inline-block user_photo">
@@ -430,7 +512,7 @@
 
                             </div>
                         </div>
-                        <div class="bordered p-3 mt-3 instructions_section">
+                        <div class="bordered p-3 mt-3 bg-white instructions_section">
 
                             <div class="instructions_head">
                                 <span class="bold">ارشادات التعامل مع البائع </span>

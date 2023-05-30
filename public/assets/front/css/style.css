@@ -822,8 +822,8 @@ ul.size-list li a.unavailable{  cursor: not-allowed;opacity: 50%}
 .client_ads_cols {margin-top: 102px;min-height: 100vh;}
 .new_filter_header {position: -webkit-sticky;position: sticky;bottom: 12px;z-index: 1001;}
 .new_filter_header #search_filter {color: #fff;font-weight: bold;width: 100%;background: #ee7202;padding: 10px;border-radius: 3px;}
-
-
+.mobile_side_part {display: none}
+.select2-container {z-index: 1500}
 /* End New Filer */
 
 /* Start New Home */

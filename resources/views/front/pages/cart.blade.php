@@ -52,7 +52,7 @@
     {{--    Start Featured Cats--}}
     <section class="featured-section text-center">
         <div class="container">
-            <div class="row py-4">
+            <div class="row head_title py-4">
                 <div class="col-md-12 col-sm-12 ">
                     <h3 class="bold">سلة الشراء</h3>
                 </div>
@@ -142,22 +142,22 @@
                         <h3 class="bold">اختر وسيلة الدفع</h3>
                     </div>
                 </div>
-                <div class="row mt-4 pay_method ">
-                    <div class="col-md-8 col-lg-8 col-12 m-auto card payments">
-                        <div class="row">
-                            <div class="col-md-3 col-lg-3 col-6 payment_method">
+                <div class="row mt-4 pay_method pb-4">
+                    <div class="col-md-8 col-lg-8 col-12 m-auto card payments ">
+                        <div class="row mx-0">
+                            <div class="col-md-3 col-lg-3 col-4 payment_method">
                                 <a href="{{route('checkout', encrypt('vcash'))}}">
                                     <img src="{{asset('assets/front/images/v-cash.png')}}" alt="payment-image"
                                          style="width: 100%">
                                 </a>
                             </div>
-                            <div class="col-md-3 col-lg-3 col-6 payment_method">
+                            <div class="col-md-3 col-lg-3 col-4 payment_method">
                                 <a href="{{route('checkout', encrypt('paypal'))}}">
                                     <img src="{{asset('assets/front/images/paypal.png')}}" alt="payment-image"
                                          style="width: 100%">
                                 </a>
                             </div>
-                            <div class="col-md-3 col-lg-3 col-6 payment_method">
+                            <div class="col-md-3 col-lg-3 col-4 payment_method">
                                 <a href="{{route('checkout', encrypt('visa'))}}">
                                     <img src="{{asset('assets/front/images/v-m.png')}}" alt="payment-image"
                                          style="width: 100%">

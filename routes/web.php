@@ -207,6 +207,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Front'], function () {
     Route::get('contact-us', 'OverAllController@contactUs')->name('contact.us');
     Route::post('contact-us', 'OverAllController@sendContact')->name('send.contact.us');
     Route::post('show-packages', 'OverAllController@packagesShow')->name('packages.show');
+    Route::get('all-clients-ads', 'OverAllController@getAllAds')->name('getAllAds');
 
     Route::get('search-results', 'OverAllController@search')->name('search.results');
     Route::get('get-search-results', 'OverAllController@newSearchResult')->name('new.search.get');
@@ -268,7 +269,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Front'], function () {
         Route::post('upload-try', 'PostsController@uploadTry')->name('uploadTry');
         Route::post('delete-organized', 'PostsController@deleteOrganize')->name('deleteOrganize');
 
-        Route::get('new-post-add', 'PostsController@newAddPost')->name('new.post.add');
+        Route::post('new-post-add', 'PostsController@newAddPost')->name('new.post.add');
 
 
         Route::get('add-post-one', 'PostsController@addPostStepOne')->name('add.post.one');

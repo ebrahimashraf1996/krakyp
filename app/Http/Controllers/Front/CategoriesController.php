@@ -24,6 +24,7 @@ class CategoriesController extends Controller
 
     public function show($slug, Request $request)
     {
+
         $cat = Category::where('slug', $slug)->first();
         SEOMeta::setTitle($cat->title . ' - ' . $this->settings['title']);
         SEOMeta::setDescription($cat->description);
@@ -308,7 +309,7 @@ class CategoriesController extends Controller
         } else {
             $cat = Category::find($request->new_sub_cat_id);
             if ($cat) {
-                return redirect(url('cat/' . $cat->id . '?new_main_cat_id=' . $request->new_main_cat_id . '&new_sub_cat_id=' . $request->new_sub_cat_id . '&new_sort_by=cr_desc&new_country_id=' . $request->new_country_id . '&new_city_id=' . $request->new_city_id . '&new_from_=' . $request->new_from_ . '&new_to_=' . $request->new_to_));
+                return redirect(url('cat/' . $cat->slug . '?new_main_cat_id=' . $request->new_main_cat_id . '&new_sub_cat_id=' . $request->new_sub_cat_id . '&new_sort_by=cr_desc&new_country_id=' . $request->new_country_id . '&new_city_id=' . $request->new_city_id . '&new_from_=' . $request->new_from_ . '&new_to_=' . $request->new_to_));
             } else {
                 return redirect(route('site.home'))->with(['error' => 'حدث خطأ ما .. برجاء المحاولة فيما بعد']);
             }

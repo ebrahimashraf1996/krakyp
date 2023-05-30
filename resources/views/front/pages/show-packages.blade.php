@@ -52,14 +52,14 @@
     <section class="featured-section pb-5 text-center">
         <div class="container">
             <div class="row my-4">
-                <div class="col-md-12 col-sm-12">
+                <div class="col-md-12 col-sm-12 col-12">
                     <h3 class="bold">اختيار باقة</h3>
                 </div>
             </div>
             @if(isset($packs) && $packs->count() > 0)
 
                 <div class="row ">
-                    <div class="col-md-12 col-11 col-sm-12 packages_div m-auto" style="max-width: 1000px">
+                    <div class="col-md-12 col-11 col-sm-11 packages_div m-auto" style="max-width: 1000px">
                         @foreach($packs as $item)
                             <div class="col-md-4 col-sm-12 col-12 package">
                                 <div class="card mb-3" style="width: 100%;">
@@ -111,7 +111,7 @@
                     <div class="row pb-5 complete_order {{$count == 0 ? 'd-none' : ''}}">
                         <div class="col-md-12 col-11 col-sm-11 m-auto" style="max-width: 1000px; text-align: left">
                             <div class="row" dir="ltr">
-                                <div class="col-md-3 col-11 col-sm-11">
+                                <div class="col-md-3 col-12 col-sm-12">
 
                                     <a href="{{route('cart.index')}}" class="btn view_cart mt-3">
                                         إتمام الطلب

@@ -67,10 +67,10 @@
             @csrf
             <div class="container step_con step_1" id="step_one_con" style="">
                 <div class="row">
-                    <div class="col-xxl-6 col-xl-6 col-md-6 col-sm-12 col-12 card m-auto text-center"
+                    <div class="col-xxl-6 col-xl-6 col-md-6 col-sm-12 col-12 single_step card m-auto text-center"
                          style="height: 200px; border-top: 0;max-width: 530px;">
-                        <div class="row py-4">
-                            <div class="col-xxl-6 col-xl-6 col-md-8 col-sm-12 col-sm-10 m-auto">
+                        <div class="row serial_header py-4">
+                            <div class="col-xxl-6 col-xl-6 col-md-8 col-sm-12 col-12 m-auto">
                                 <div class="steps_title_div">
                                 <span class="steps_title hovered">
                                     انشر اعلانك في دقائق بخطوات بسيطة وسهلة
@@ -79,9 +79,9 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xxl-9 col-xl-9 col-md-9 col-sm-10 col-10 m-auto">
-                                <div class="row ">
-                                    <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-sm-2 m-auto">
+                            <div class="col-xxl-9 col-xl-9 col-md-9 col-sm-12 col-12 m-auto">
+                                <div class="row " style="justify-content: center;">
+                                    <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-2 step-div m-auto">
                                         <div>
                                             <img src="{{asset('assets/front/images/marked-radio.png')}}" class="px-2"
                                                  alt="marked-radio">
@@ -92,11 +92,11 @@
                                         </span>
                                         </div>
                                     </div>
-                                    <div class="col-xxl-1 col-xl-1 col-md-1 col-sm-1 col-1">
+                                    <div class="col-xxl-1 col-xl-1 col-md-1 col-sm-1 col-1 step-div">
                                         <img src="{{asset('assets/front/images/arrow-solid-gray.svg')}}"
                                              alt="arrow-solid-gray">
                                     </div>
-                                    <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-sm-2 m-auto px-0">
+                                    <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-2 step-div m-auto px-0">
                                         <div>
                                             <img src="{{asset('assets/front/images/un_marked.png')}}" class="px-2"
                                                  alt="marked-radio">
@@ -107,11 +107,11 @@
                                         </span>
                                         </div>
                                     </div>
-                                    <div class="col-xxl-1 col-xl-1 col-md-1 col-sm-1 col-1">
+                                    <div class="col-xxl-1 col-xl-1 col-md-1 col-sm-1 col-1 step-div">
                                         <img src="{{asset('assets/front/images/arrow-solid-gray.svg')}}"
                                              alt="arrow-solid-gray">
                                     </div>
-                                    <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-sm-2 m-auto  px-0">
+                                    <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-2 step-div m-auto  px-0">
                                         <div>
                                             <img src="{{asset('assets/front/images/un_marked.png')}}" class="px-2"
                                                  alt="marked-radio">
@@ -122,11 +122,11 @@
                                         </span>
                                         </div>
                                     </div>
-                                    <div class="col-xxl-1 col-xl-1 col-md-1 col-sm-1 col-1">
+                                    <div class="col-xxl-1 col-xl-1 col-md-1 col-sm-1 col-1 step-div">
                                         <img src="{{asset('assets/front/images/arrow-solid-gray.svg')}}"
                                              alt="arrow-solid-gray">
                                     </div>
-                                    <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-sm-2 m-auto  px-0">
+                                    <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-2 step-div m-auto  px-0">
                                         <div>
                                             <img src="{{asset('assets/front/images/un_marked.png')}}" class="px-2"
                                                  alt="marked-radio">
@@ -219,10 +219,10 @@
             </div>
             <div class="container step_con step_2" id="step_two_con" style="display: none">
                 <div class="row">
-                    <div class="col-xxl-6 col-xl-6 col-md-6 col-sm-12 col-12 card m-auto text-center"
+                    <div class="col-xxl-6 col-xl-6 col-md-6 col-sm-12 col-12 single_step card m-auto text-center"
                          style="height: 200px; border-top: 0;max-width: 530px;">
-                        <div class="row py-4">
-                            <div class="col-xxl-6 col-xl-6 col-md-8 col-sm-12 col-sm-10 m-auto">
+                        <div class="row py-4 serial_header">
+                            <div class="col-xxl-6 col-xl-6 col-md-8 col-sm-12 col-12 m-auto">
                                 <div class="steps_title_div">
                                 <span class="steps_title hovered">
                                     انشر اعلانك في دقائق بخطوات بسيطة وسهلة
@@ -231,9 +231,9 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xxl-9 col-xl-9 col-md-9 col-sm-10 col-10 m-auto">
-                                <div class="row ">
-                                    <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-sm-2 m-auto">
+                            <div class="col-xxl-9 col-xl-9 col-md-9 col-sm-12 col-12 m-auto">
+                                <div class="row " style="justify-content: center">
+                                    <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-2  step-div  m-auto">
                                         <div>
                                             <img src="{{asset('assets/front/images/marked-radio.png')}}" class="px-2"
                                                  alt="marked-radio">
@@ -244,11 +244,11 @@
                                         </span>
                                         </div>
                                     </div>
-                                    <div class="col-xxl-1 col-xl-1 col-md-1 col-sm-1 col-1">
+                                    <div class="col-xxl-1 col-xl-1 col-md-1 col-sm-1 col-1 step-div  ">
                                         <img src="{{asset('assets/front/images/arrow-solid-gray.svg')}}"
                                              alt="arrow-solid-gray">
                                     </div>
-                                    <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-sm-2 m-auto px-0">
+                                    <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-2 step-div   m-auto px-0">
                                         <div>
                                             <img src="{{asset('assets/front/images/marked-radio.png')}}" class="px-2"
                                                  alt="marked-radio">
@@ -259,11 +259,11 @@
                                         </span>
                                         </div>
                                     </div>
-                                    <div class="col-xxl-1 col-xl-1 col-md-1 col-sm-1 col-1">
+                                    <div class="col-xxl-1 col-xl-1 col-md-1 col-sm-1 col-1 step-div  ">
                                         <img src="{{asset('assets/front/images/arrow-solid-gray.svg')}}"
                                              alt="arrow-solid-gray">
                                     </div>
-                                    <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-sm-2 m-auto  px-0">
+                                    <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-2 step-div   m-auto  px-0">
                                         <div>
                                             <img src="{{asset('assets/front/images/un_marked.png')}}" class="px-2"
                                                  alt="marked-radio">
@@ -274,11 +274,11 @@
                                         </span>
                                         </div>
                                     </div>
-                                    <div class="col-xxl-1 col-xl-1 col-md-1 col-sm-1 col-1">
+                                    <div class="col-xxl-1 col-xl-1 col-md-1 col-sm-1 col-1 step-div  ">
                                         <img src="{{asset('assets/front/images/arrow-solid-gray.svg')}}"
                                              alt="arrow-solid-gray">
                                     </div>
-                                    <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-sm-2 m-auto  px-0">
+                                    <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-2 step-div   m-auto  px-0">
                                         <div>
                                             <img src="{{asset('assets/front/images/un_marked.png')}}" class="px-2"
                                                  alt="marked-radio">
@@ -787,11 +787,11 @@
 
 
                         <div class="row">
-                            <div class="col-xxl-3 col-xl-3 col-md-3 col-sm-4 col-12 py-2 m-auto text-center">
+                            <div class="col-xxl-3 col-xl-3 col-md-3 col-sm-4 col-6 py-2 m-auto text-center">
                                 <span class="btn back_btn return_back" data-pre-con="1"><i
                                         class="fa fa-arrow-right"></i> &nbsp;&nbsp;عودة للوراء</span>
                             </div>
-                            <div class="col-xxl-3 col-xl-3 col-md-3 col-sm-4 col-12 py-2 m-auto text-center">
+                            <div class="col-xxl-3 col-xl-3 col-md-3 col-sm-4 col-6 py-2 m-auto text-center">
                                 <span class="btn continue_btn" id="finish_step_two">متابعة &nbsp;&nbsp;<i
                                         class="fa fa-arrow-left"></i></span>
                             </div>
@@ -802,10 +802,10 @@
             </div>
             <div class="container step_con step_3" id="step_three_con" style="display:none">
                 <div class="row">
-                    <div class="col-xxl-6 col-xl-6 col-md-6 col-sm-12 col-12 card m-auto text-center"
+                    <div class="col-xxl-6 col-xl-6 col-md-6 col-sm-12 col-12 single_step card m-auto text-center"
                          style="height: 200px; border-top: 0;max-width: 530px;">
-                        <div class="row py-4">
-                            <div class="col-xxl-6 col-xl-6 col-md-8 col-sm-12 col-sm-10 m-auto">
+                        <div class="row py-4 serial_header">
+                            <div class="col-xxl-6 col-xl-6 col-md-8 col-sm-12 col-12 m-auto">
                                 <div class="steps_title_div">
                                 <span class="steps_title hovered">
                                     انشر اعلانك في دقائق بخطوات بسيطة وسهلة
@@ -814,9 +814,9 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xxl-9 col-xl-9 col-md-9 col-sm-10 col-10 m-auto">
-                                <div class="row ">
-                                    <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-sm-2 m-auto">
+                            <div class="col-xxl-9 col-xl-9 col-md-9 col-sm-12 col-12 m-auto">
+                                <div class="row " style="justify-content: center">
+                                    <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-2 step-div   m-auto">
                                         <div>
                                             <img src="{{asset('assets/front/images/marked-radio.png')}}" class="px-2"
                                                  alt="marked-radio">
@@ -827,11 +827,11 @@
                                         </span>
                                         </div>
                                     </div>
-                                    <div class="col-xxl-1 col-xl-1 col-md-1 col-sm-1 col-1">
+                                    <div class="col-xxl-1 col-xl-1 col-md-1 col-sm-1 col-1 step-div  ">
                                         <img src="{{asset('assets/front/images/arrow-solid-gray.svg')}}"
                                              alt="arrow-solid-gray">
                                     </div>
-                                    <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-sm-2 m-auto px-0">
+                                    <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-2 step-div   m-auto px-0">
                                         <div>
                                             <img src="{{asset('assets/front/images/marked-radio.png')}}" class="px-2"
                                                  alt="marked-radio">
@@ -842,11 +842,11 @@
                                         </span>
                                         </div>
                                     </div>
-                                    <div class="col-xxl-1 col-xl-1 col-md-1 col-sm-1 col-1">
+                                    <div class="col-xxl-1 col-xl-1 col-md-1 col-sm-1 col-1 step-div  ">
                                         <img src="{{asset('assets/front/images/arrow-solid-gray.svg')}}"
                                              alt="arrow-solid-gray">
                                     </div>
-                                    <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-sm-2 m-auto  px-0">
+                                    <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-2 step-div   m-auto  px-0">
                                         <div>
                                             <img src="{{asset('assets/front/images/marked-radio.png')}}" class="px-2"
                                                  alt="marked-radio">
@@ -857,11 +857,11 @@
                                         </span>
                                         </div>
                                     </div>
-                                    <div class="col-xxl-1 col-xl-1 col-md-1 col-sm-1 col-1">
+                                    <div class="col-xxl-1 col-xl-1 col-md-1 col-sm-1 col-1 step-div  ">
                                         <img src="{{asset('assets/front/images/arrow-solid-gray.svg')}}"
                                              alt="arrow-solid-gray">
                                     </div>
-                                    <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-sm-2 m-auto  px-0">
+                                    <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-2 step-div   m-auto  px-0">
                                         <div>
                                             <img src="{{asset('assets/front/images/un_marked.png')}}" class="px-2"
                                                  alt="marked-radio">
@@ -880,10 +880,10 @@
                 </div>
                 <div class="row new_add-post-form-row m-auto">
                     <div class="col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 add-post-form m-auto  py-3">
-                        <div class="row px-4">
+                        <div class="row row_sm px-4">
 
                             <div class="form-group col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 my-2 ">
-                                <div class="row px-4">
+                                <div class="row row_sm_5 px-4">
                                     <div class="row images_drop bordered my-4">
                                         <div class="col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 py-3">
                                             <span class="bold" style="color: #426ddd">قم تحميل صورة واحدة علي الأقل بحد أقصي 10 صور</span>
@@ -923,11 +923,11 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-xxl-3 col-xl-3 col-md-3 col-sm-4 col-12 py-2 m-auto text-center">
+                            <div class="col-xxl-3 col-xl-3 col-md-3 col-sm-4 col-6 py-2 m-auto text-center">
                                 <span class="btn back_btn return_back" data-pre-con="2"><i
                                         class="fa fa-arrow-right"></i> &nbsp;&nbsp;عودة للوراء</span>
                             </div>
-                            <div class="col-xxl-3 col-xl-3 col-md-3 col-sm-4 col-12 py-2 m-auto text-center">
+                            <div class="col-xxl-3 col-xl-3 col-md-3 col-sm-4 col-6 py-2 m-auto text-center">
                                 <span class="btn continue_btn" id="finish_step_three">متابعة &nbsp;&nbsp;<i
                                         class="fa fa-arrow-left"></i></span>
                             </div>
@@ -938,10 +938,10 @@
             </div>
             <div class="container step_con step_4" id="step_four_con" style="display: none">
                 <div class="row">
-                    <div class="col-xxl-6 col-xl-6 col-md-6 col-sm-12 col-12 card m-auto text-center"
+                    <div class="col-xxl-6 col-xl-6 col-md-6 col-sm-12 col-12 single_step card m-auto text-center"
                          style="height: 200px; border-top: 0;max-width: 530px;">
-                        <div class="row py-4">
-                            <div class="col-xxl-6 col-xl-6 col-md-8 col-sm-12 col-sm-10 m-auto">
+                        <div class="row py-4 serial_header">
+                            <div class="col-xxl-6 col-xl-6 col-md-8 col-sm-12 col-12 m-auto">
                                 <div class="steps_title_div">
                                 <span class="steps_title hovered">
                                     انشر اعلانك في دقائق بخطوات بسيطة وسهلة
@@ -950,9 +950,9 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xxl-9 col-xl-9 col-md-9 col-sm-10 col-10 m-auto">
-                                <div class="row ">
-                                    <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-sm-2 m-auto">
+                            <div class="col-xxl-9 col-xl-9 col-md-9 col-sm-12 col-12 m-auto">
+                                <div class="row " style="justify-content: center">
+                                    <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-2 step-div   m-auto">
                                         <div>
                                             <img src="{{asset('assets/front/images/marked-radio.png')}}" class="px-2"
                                                  alt="marked-radio">
@@ -963,11 +963,11 @@
                                         </span>
                                         </div>
                                     </div>
-                                    <div class="col-xxl-1 col-xl-1 col-md-1 col-sm-1 col-1">
+                                    <div class="col-xxl-1 col-xl-1 col-md-1 col-sm-1 col-1 step-div  ">
                                         <img src="{{asset('assets/front/images/arrow-solid-gray.svg')}}"
                                              alt="arrow-solid-gray">
                                     </div>
-                                    <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-sm-2 m-auto px-0">
+                                    <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-2 step-div   m-auto px-0">
                                         <div>
                                             <img src="{{asset('assets/front/images/marked-radio.png')}}" class="px-2"
                                                  alt="marked-radio">
@@ -978,11 +978,11 @@
                                         </span>
                                         </div>
                                     </div>
-                                    <div class="col-xxl-1 col-xl-1 col-md-1 col-sm-1 col-1">
+                                    <div class="col-xxl-1 col-xl-1 col-md-1 col-sm-1 col-1 step-div  ">
                                         <img src="{{asset('assets/front/images/arrow-solid-gray.svg')}}"
                                              alt="arrow-solid-gray">
                                     </div>
-                                    <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-sm-2 m-auto  px-0">
+                                    <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-2  step-div  m-auto  px-0">
                                         <div>
                                             <img src="{{asset('assets/front/images/marked-radio.png')}}" class="px-2"
                                                  alt="marked-radio">
@@ -993,11 +993,11 @@
                                         </span>
                                         </div>
                                     </div>
-                                    <div class="col-xxl-1 col-xl-1 col-md-1 col-sm-1 col-1">
+                                    <div class="col-xxl-1 col-xl-1 col-md-1 col-sm-1 col-1 step-div  ">
                                         <img src="{{asset('assets/front/images/arrow-solid-gray.svg')}}"
                                              alt="arrow-solid-gray">
                                     </div>
-                                    <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-sm-2 m-auto  px-0">
+                                    <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-2  step-div  m-auto  px-0">
                                         <div>
                                             <img src="{{asset('assets/front/images/marked-radio.png')}}" class="px-2"
                                                  alt="marked-radio">
@@ -1070,11 +1070,11 @@
                         <!-- Modal -->
 
                         <div class="row">
-                            <div class="col-xxl-3 col-xl-3 col-md-3 col-sm-4 col-12 py-2 m-auto text-center">
+                            <div class="col-xxl-3 col-xl-3 col-md-3 col-sm-4 col-6 py-2 m-auto text-center">
                                 <span class="btn back_btn return_back" data-pre-con="3"><i
                                         class="fa fa-arrow-right"></i> &nbsp;&nbsp;عودة للوراء</span>
                             </div>
-                            <div class="col-xxl-3 col-xl-3 col-md-3 col-sm-4 col-12 py-2 m-auto text-center">
+                            <div class="col-xxl-3 col-xl-3 col-md-3 col-sm-4 col-6 py-2 m-auto text-center">
                                 <button type="submit" class="btn" id="post_form_submit">نشر الإعلان &nbsp;&nbsp;
                                     <i class="fa-solid fa-share-from-square"></i>
                                 </button>
@@ -2514,9 +2514,120 @@
 
                             overlay.addClass('active');
                             lds_roller.addClass('active');
+                            $.ajax({
+                                url: "{{route('new.post.add')}}",
+                                data: {
+                                    _token: "{{csrf_token()}}",
+                                    main_cat_id: data['main_cat_id'],
+                                    sub_cat_id: data['sub_cat_id'],
+                                    country_id: data['country_id'],
+                                    city_id: data['city_id'],
+                                    state_id: data['state_id'],
+                                    status: data['status'],
+                                    pack_id: data['pack_id'],
+                                    title: data['title'],
+                                    price: data['price'],
+                                    description: data['description'],
+                                    main_attributes: data['main_attributes'],
+                                    other_attributes: data['other_attributes'],
+                                    images: data['images'],
+                                    cover: data['cover'],
+                                    phone: data['phone'],
+                                    whats_app: data['whats_app'],
+                                },
+                                type: "POST",
+                                success: function (response) {
+                                    // console.log(response);
 
-                            let result = saveThePost(data);
-                            if(result === '') {
+                                    if (typeof (response) != 'object') {
+                                        response = $.parseJSON(response)
+                                    }
+                                    // console.log(response.data);
+                                    // return response;
+                                    if (response === '') {
+                                        Swal.fire({
+                                            icon: 'error',
+                                            text: 'حدث خطأ ما برجاء المحاولة مرة أخري',
+                                            dangerMode: true,
+                                            confirmButtonColor: '#d33',
+                                            confirmButtonText: 'حسنا',
+                                            showCloseButton: true,
+                                        });
+                                        window.setTimeout(function () {
+                                            window.location.href = "{{route('site.home')}}";
+                                        }, 1500);
+                                    } else {
+                                        if (response.status === 1) {
+                                            Swal.fire({
+                                                icon: 'success',
+                                                text: response.msg,
+                                                dangerMode: false,
+                                                confirmButtonColor: '#3085d6',
+                                                confirmButtonText: 'حسنا',
+                                                showCloseButton: true,
+                                            });
+                                            window.setTimeout(function () {
+                                                window.location.href = "{{route('site.home')}}";
+                                            }, 1500);
+                                        } else {
+                                            Swal.fire({
+                                                icon: 'error',
+                                                text: 'حدث خطأ ما برجاء المحاولة مرة أخري',
+                                                dangerMode: true,
+                                                confirmButtonColor: '#d33',
+                                                confirmButtonText: 'حسنا',
+                                                showCloseButton: true,
+                                            });
+                                            window.setTimeout(function () {
+                                                window.location.href = "{{route('site.home')}}";
+                                            }, 1500);
+                                        }
+                                    }
+                                }
+                            });
+
+                        }
+                    })
+
+                } else if (phone.val() === '{{backpack_auth()->user()->phone}}' &&
+                    whatsapp.val() === '{{backpack_auth()->user()->whats_app}}') {
+                    data['phone'] = 'original';
+                    data['whats_app'] = 'original';
+
+                    overlay.addClass('active');
+                    lds_roller.addClass('active');
+
+                    $.ajax({
+                        url: "{{route('new.post.add')}}",
+                        data: {
+                            _token: "{{csrf_token()}}",
+                            main_cat_id: data['main_cat_id'],
+                            sub_cat_id: data['sub_cat_id'],
+                            country_id: data['country_id'],
+                            city_id: data['city_id'],
+                            state_id: data['state_id'],
+                            status: data['status'],
+                            pack_id: data['pack_id'],
+                            title: data['title'],
+                            price: data['price'],
+                            description: data['description'],
+                            main_attributes: data['main_attributes'],
+                            other_attributes: data['other_attributes'],
+                            images: data['images'],
+                            cover: data['cover'],
+                            phone: data['phone'],
+                            whats_app: data['whats_app'],
+                        },
+                        type: "POST",
+                        success: function (response) {
+                            // console.log(response);
+
+                            if (typeof (response) != 'object') {
+                                response = $.parseJSON(response)
+                            }
+                            // console.log(response.data);
+                            // return response;
+                            if (response === '') {
                                 Swal.fire({
                                     icon: 'error',
                                     text: 'حدث خطأ ما برجاء المحاولة مرة أخري',
@@ -2532,7 +2643,7 @@
                                 if (response.status === 1) {
                                     Swal.fire({
                                         icon: 'success',
-                                        text: result.msg,
+                                        text: response.msg,
                                         dangerMode: false,
                                         confirmButtonColor: '#3085d6',
                                         confirmButtonText: 'حسنا',
@@ -2555,62 +2666,10 @@
                                     }, 1500);
                                 }
                             }
-
                         }
-                    })
-
-                } else if (phone.val() === '{{backpack_auth()->user()->phone}}' &&
-                    whatsapp.val() === '{{backpack_auth()->user()->whats_app}}') {
-                    data['phone'] = 'original';
-                    data['whats_app'] = 'original';
-
-                    overlay.addClass('active');
-                    lds_roller.addClass('active');
-
-
-                    let result = saveThePost(data);
-
-                    if(result === '') {
-                        Swal.fire({
-                            icon: 'error',
-                            text: 'حدث خطأ ما برجاء المحاولة مرة أخري',
-                            dangerMode: true,
-                            confirmButtonColor: '#d33',
-                            confirmButtonText: 'حسنا',
-                            showCloseButton: true,
-                        });
-                        window.setTimeout(function () {
-                            window.location.href = "{{route('site.home')}}";
-                        }, 1500);
-                    } else {
-                        if (response.status === 1) {
-                            Swal.fire({
-                                icon: 'success',
-                                text: result.msg,
-                                dangerMode: false,
-                                confirmButtonColor: '#3085d6',
-                                confirmButtonText: 'حسنا',
-                                showCloseButton: true,
-                            });
-                            window.setTimeout(function () {
-                                window.location.href = "{{route('site.home')}}";
-                            }, 1500);
-                        } else {
-                            Swal.fire({
-                                icon: 'error',
-                                text: 'حدث خطأ ما برجاء المحاولة مرة أخري',
-                                dangerMode: true,
-                                confirmButtonColor: '#d33',
-                                confirmButtonText: 'حسنا',
-                                showCloseButton: true,
-                            });
-                            window.setTimeout(function () {
-                                window.location.href = "{{route('site.home')}}";
-                            }, 1500);
-                        }
-                    }
-                    // console.log(data['phone']);
-                    // console.log(data['whats_app']);
+                    });
+                {{--    // console.log(data['phone']);--}}
+                {{--    // console.log(data['whats_app']);--}}
                 } else {
                     data['phone'] = phone.val();
                     data['whats_app'] = whatsapp.val();
@@ -2618,46 +2677,79 @@
                     overlay.addClass('active');
                     lds_roller.addClass('active');
 
-                    let result = saveThePost(data);
-                    if(result === '') {
-                        Swal.fire({
-                            icon: 'error',
-                            text: 'حدث خطأ ما برجاء المحاولة مرة أخري',
-                            dangerMode: true,
-                            confirmButtonColor: '#d33',
-                            confirmButtonText: 'حسنا',
-                            showCloseButton: true,
-                        });
-                        window.setTimeout(function () {
-                            window.location.href = "{{route('site.home')}}";
-                        }, 1500);
-                    } else {
-                        if (response.status === 1) {
-                            Swal.fire({
-                                icon: 'success',
-                                text: result.msg,
-                                dangerMode: false,
-                                confirmButtonColor: '#3085d6',
-                                confirmButtonText: 'حسنا',
-                                showCloseButton: true,
-                            });
-                            window.setTimeout(function () {
-                                window.location.href = "{{route('site.home')}}";
-                            }, 1500);
-                        } else {
-                            Swal.fire({
-                                icon: 'error',
-                                text: 'حدث خطأ ما برجاء المحاولة مرة أخري',
-                                dangerMode: true,
-                                confirmButtonColor: '#d33',
-                                confirmButtonText: 'حسنا',
-                                showCloseButton: true,
-                            });
-                            window.setTimeout(function () {
-                                window.location.href = "{{route('site.home')}}";
-                            }, 1500);
+                    $.ajax({
+                        url: "{{route('new.post.add')}}",
+                        data: {
+                            _token: "{{csrf_token()}}",
+                            main_cat_id: data['main_cat_id'],
+                            sub_cat_id: data['sub_cat_id'],
+                            country_id: data['country_id'],
+                            city_id: data['city_id'],
+                            state_id: data['state_id'],
+                            status: data['status'],
+                            pack_id: data['pack_id'],
+                            title: data['title'],
+                            price: data['price'],
+                            description: data['description'],
+                            main_attributes: data['main_attributes'],
+                            other_attributes: data['other_attributes'],
+                            images: data['images'],
+                            cover: data['cover'],
+                            phone: data['phone'],
+                            whats_app: data['whats_app'],
+                        },
+                        type: "POST",
+                        success: function (response) {
+                            // console.log(response);
+
+                            if (typeof (response) != 'object') {
+                                response = $.parseJSON(response)
+                            }
+                            // console.log(response.data);
+                            // return response;
+                            if (response === '') {
+                                Swal.fire({
+                                    icon: 'error',
+                                    text: 'حدث خطأ ما برجاء المحاولة مرة أخري',
+                                    dangerMode: true,
+                                    confirmButtonColor: '#d33',
+                                    confirmButtonText: 'حسنا',
+                                    showCloseButton: true,
+                                });
+                                window.setTimeout(function () {
+                                    window.location.href = "{{route('site.home')}}";
+                                }, 1500);
+                            } else {
+                                if (response.status === 1) {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        text: response.msg,
+                                        dangerMode: false,
+                                        confirmButtonColor: '#3085d6',
+                                        confirmButtonText: 'حسنا',
+                                        showCloseButton: true,
+                                    });
+                                    window.setTimeout(function () {
+                                        window.location.href = "{{route('site.home')}}";
+                                    }, 1500);
+                                } else {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        text: 'حدث خطأ ما برجاء المحاولة مرة أخري',
+                                        dangerMode: true,
+                                        confirmButtonColor: '#d33',
+                                        confirmButtonText: 'حسنا',
+                                        showCloseButton: true,
+                                    });
+                                    window.setTimeout(function () {
+                                        window.location.href = "{{route('site.home')}}";
+                                    }, 1500);
+                                }
+                            }
                         }
-                    }
+                    });
+
+
 
                 }
                 // let form_data_input = $('#form_data_input');
@@ -2699,22 +2791,18 @@
                     },
                     type: "POST",
                     success: function (response) {
-                        console.log(response);
+                        // console.log(response);
 
                         if (typeof (response) != 'object') {
                             response = $.parseJSON(response)
                         }
-                        console.log(response.data);
-                        return response;
-                        // if (response.status === 1) {
-                        //     // let slug = response.data['slug'];
-                        //     // let msg = response.msg;
-                        //     // console.log(data);
-                        //
-                        //     return 1;
-                        // } else {
-                        //
-                        // }
+                        // console.log(response.data);
+                        // return response;
+                        if (response.status === 1) {
+                            return 1;
+                        } else {
+                            return 0;
+                        }
                     }
                 });
 

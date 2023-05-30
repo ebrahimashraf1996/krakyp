@@ -2,6 +2,14 @@
 
 @section('styles')
     <style>
+        @media (max-width: 767px) {
+
+            #client_ads_cont  {
+                margin: 0 !important;
+            }
+           .client_ads_section .container  .row_with_no_margin {margin: 0!important;}
+        }
+
         .nice-select {
             line-height: 28px !important;
         }
@@ -90,7 +98,7 @@
     @if($count > 0)
         <section class="client_ads_section text-center">
             <div class="container" style="max-width: 1044px">
-                <div class="row pt-1">
+                <div class="row row_with_no_margin pt-1">
                     <div class="col-md-3 mt-1 p-3">
                         <div class="bordered" style="text-align: center">
                             <div class="user-side-bar">
@@ -563,7 +571,7 @@
     @else
         <section class="client_ads_section text-center">
             <div class="container">
-                <div class="row mt-5 text-center">
+                <div class="row row_with_no_margin mt-5 text-center">
                     <div class="col-md-3 mt-1 p-3">
                         <div class="bordered" style="text-align: center">
                             <div class="user-side-bar">
