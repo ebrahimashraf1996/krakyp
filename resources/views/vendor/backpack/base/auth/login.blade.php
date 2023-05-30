@@ -6,13 +6,42 @@
 @endsection
 
 @section('content')
+    <div class="row mb-3 px-0 mx-0 serial_routes_row" style="background:#f0f1f7;">
+        <div class="container" dir="rtl" style="max-width: 1044px;">
+            <div class="row">
+                <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-10 col-12 pl-3 py-2 serial_route">
+                    <a href="{{route('site.home')}}" class="bold">الصفحة الرئيسية</a>
+                    <div class="d-inline-block position-relative" style="width: 25px">
+                        <i style="position: absolute;top: -15px;right: 3px;"
+                           class="fa-solid fa-chevron-left mt-1  px-1 ">
+                        </i>
+                    </div>
+
+
+                    <span class="bold">تسجيل الدخول</span>
+
+
+                </div>
+
+                <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-2 col-12 py-2 text-left back">
+                    <a href="{{ url()->previous() }}"
+                       class="bold">العودة</a>
+                    <div class="d-inline-block position-relative" style="width: 25px"><i
+                            style="position: absolute;top: -15px;right: 3px;"
+                            class="fa-solid fa-chevron-left mt-1  px-1 "></i></div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
     <div class="container">
     <div class="row justify-content-center login-form">
-        <div class="col-12 col-md-8 col-lg-6 login-cont">
+        <div class="col-12 col-md-8 col-lg-6 login-cont mt-1 pb-5">
             @php
                 $settings = \App\Models\Setting::first();
             @endphp
-            <div class="logo text-center my-4">
+            <div class="logo text-center my-4" style="width: auto!important;">
                 <img src="{{asset($settings->logo)}}" alt="logo" style="width: 150px;">
             </div>
 
