@@ -211,6 +211,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Front'], function () {
 
     Route::get('search-results', 'OverAllController@search')->name('search.results');
     Route::get('get-search-results', 'OverAllController@newSearchResult')->name('new.search.get');
+    Route::get('get-adv-search-results', 'OverAllController@newAdvSearchResult')->name('new.adv.search.get');
     Route::get('get-test-results', 'OverAllController@newTestResult')->name('new.test.get');
 
 

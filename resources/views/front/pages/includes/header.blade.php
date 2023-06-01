@@ -411,12 +411,12 @@
                                 <div class="form-group col-xxl-6 col-xl-6 col-md-6 col-6 col-sm-6 py-1"
                                      id="new_from_div_mob">
                                     <input type="number" class="form-control" id="new_from__mob" name="new_from_"
-                                           value="" placeholder="أقل سعر ج.م" required>
+                                           value="" placeholder="أقل سعر ج.م" >
                                 </div>
                                 <div class="form-group col-xxl-6 col-xl-6 col-md-6 col-6 col-sm-6 py-1"
                                      id="new_to_div_mob">
                                     <input type="number" class="form-control" id="new_to__mob" name="new_to_"
-                                           value="" placeholder="أعلي سعر ج.م" required>
+                                           value="" placeholder="أعلي سعر ج.م" >
                                 </div>
                                 <div class="form-group col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 py-1"
                                      id="new_sort_div_mob">

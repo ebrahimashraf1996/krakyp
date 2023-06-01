@@ -550,9 +550,12 @@ class OverAllController extends Controller
 
 
         // Price Filter
-        if ($new_from_ != '' && $new_to_ != '') {
-            $free_client_ads_in_cat->whereBetween('price', [$new_from_, $new_to_]);
-            $paid_client_ads_in_cat->whereBetween('price', [$new_from_, $new_to_]);
+        if ($new_from_ != '') {
+            $free_client_ads_in_cat->where('price', '>', $new_from_);
+        }
+        // Price Filter
+        if ($new_to_ != '') {
+            $free_client_ads_in_cat->where('price', '<', $new_to_);
         }
 
 
@@ -685,6 +688,71 @@ class OverAllController extends Controller
             'paid_client_ads_in_cat', 'main_attributes', 'cat', 'min', 'max', 'countries'));
 
     }
+
+    public function newAdvSearchResult(Request $request)
+    {
+//        return $request;
+
+
+        $cat = Category::select('slug', 'id')->find($request->new_sub_cat_id);
+        $cat = Category::where('slug', $cat->slug)->first();
+        SEOMeta::setTitle('البحث المتقدم' . ' - ' . $this->settings['title']);
+        SEOMeta::setDescription($cat->description);
+        SEOMeta::addMeta('offer:published_time', $cat->created_at->toW3CString(), 'property');
+
+
+        SEOMeta::addMeta('offer:section-title', 'نتائج البحث', 'property');
+        SEOMeta::addMeta('offer:section-description', $cat->description, 'property');
+
+
+//        $cat->tags;
+        foreach ($cat->tags as $tag) {
+            SEOMeta::addKeyword($tag->title);
+        }
+
+        OpenGraph::setTitle('البحث المتقدم' . ' - ' . $this->settings['title']);
+        OpenGraph::setDescription($cat->description);
+        OpenGraph::addProperty('type', $cat->title);
+        OpenGraph::addProperty('locale', 'ar-AE');
+        OpenGraph::addProperty('locale:alternate', ['ar-AE']);
+        OpenGraph::setUrl(route('cat.show', $cat->slug));
+        OpenGraph::addImage(asset($cat->image));
+
+        JsonLd::setTitle($cat->title . ' - ' . $this->settings['title']);
+        JsonLd::setDescription($cat->description);
+        JsonLd::setType($cat->title);
+        JsonLd::addImage(asset($cat->image));
+        General::seoContacts();
+
+
+
+
+        $cat = Category::where('id', $request->new_sub_cat_id)->select('id', 'slug', 'title', 'parent_id')->first();
+
+        $main_attributes = AttributeChild::with([
+            'attribute' => function ($q) {
+                $q->with(['options' => function ($q) {
+                    $q->orderBy('lft', 'asc');
+                }])
+                    ->select('id', 'title', 'appearance', 'unit');
+            },
+        ])
+            ->where('cat_id', $cat->id)
+            ->where('main_other', 'main')
+            ->where('parent_id', null)
+            ->orderBy('lft', 'asc')
+            ->get();
+//
+        $countries = \App\Models\Location::with(['cities' => function ($q) {
+            $q->with('cities');
+        }])->where('parent_id', null)->get();
+
+
+        return view('front.pages.adv_search', compact( 'main_attributes', 'cat', 'countries'));
+
+    }
+
+
 
     public function search(Request $request)
     {

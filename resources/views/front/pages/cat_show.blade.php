@@ -905,8 +905,8 @@
                                                             </a>
                                                         </div>
                                                     @else
-                                                        <div id="wish_div not_hovered_wish"
-                                                             class="wish_div product_{{$item->id}}">
+                                                        <div id="wish_div"
+                                                             class="wish_div not_hovered_wish product_{{$item->id}}">
                                                             <a href="{{url('login')}}">
                                                                 <img src="{{asset('assets/front/images/heart.png')}}"
                                                                      alt="wish-icon">

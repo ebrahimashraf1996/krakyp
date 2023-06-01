@@ -80,11 +80,11 @@
                         </div>
                         <div class="form-group col-xxl-6 col-xl-6 col-md-6 col-6 col-sm-6 py-1" id="new_from_div">
                             <input type="number" class="form-control" id="new_from_" name="new_from_"
-                                   value="" placeholder="أقل سعر ج.م" required>
+                                   value="" placeholder="أقل سعر ج.م" >
                         </div>
                         <div class="form-group col-xxl-6 col-xl-6 col-md-6 col-6 col-sm-6 py-1" id="new_to_div">
                             <input type="number" class="form-control" id="new_to_" name="new_to_"
-                                   value="" placeholder="أعلي سعر ج.م" required>
+                                   value="" placeholder="أعلي سعر ج.م" >
                         </div>
                         <div class="form-group col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 py-1" id="new_sort_div">
                             <select class="form-control" id="new_sort_by" name="new_sort_by">
@@ -581,6 +581,43 @@
         $(document).ready(function () {
 
 
+
+            let new_adv_search = $('#new_adv_search');
+            new_adv_search.on('click', function () {
+                let new_main_cat_id = $('#new_main_cat_id');
+                let new_sub_cat_id = $('#new_sub_cat_id');
+                let new_from_ = $('#new_from_');
+                let new_to_ = $('#new_to_');
+                let new_sort_by = $('#new_sort_by');
+
+                if (new_main_cat_id.length && new_main_cat_id.val() === '' ||
+                    new_sub_cat_id.length && new_sub_cat_id.val() === '' ||
+                    // new_from_.length && new_from_.val() === '' ||
+                    // new_to_.length && new_to_.val() === '' ||
+                    new_sort_by.length && new_sort_by.val() === ''
+                ) {
+                    // e.preventDefault();
+                    Swal.fire({
+                        icon: 'error',
+                        text: "برجاء ملء البيانات الخاصة بالبحث",
+                        dangerMode: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'حسنا',
+                        showCloseButton: true,
+                    });
+                } else {
+                    window.location.href = "{{url('get-adv-search-results/')}}"+
+                        "?new_main_cat_id=" + new_main_cat_id.val() +
+                        '&new_sub_cat_id=' + new_sub_cat_id.val() +
+                        '&new_sort_by=' + new_sort_by.val() +
+                        '&new_from_=' + new_from_.val() +
+                        '&new_to_=' + new_to_.val();
+                }
+
+            });
+
+
             /* Start New js */
 
             const lang = $('#lang').val();
@@ -654,8 +691,8 @@
 
                 if (new_main_cat_id.length && new_main_cat_id.val() === '' ||
                     new_sub_cat_id.length && new_sub_cat_id.val() === '' ||
-                    new_from_.length && new_from_.val() === '' ||
-                    new_to_.length && new_to_.val() === '' ||
+                    // new_from_.length && new_from_.val() === '' ||
+                    // new_to_.length && new_to_.val() === '' ||
                     new_sort_by.length && new_sort_by.val() === ''
                 ) {
                     e.preventDefault();

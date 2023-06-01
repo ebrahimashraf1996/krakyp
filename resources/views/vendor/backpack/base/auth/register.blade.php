@@ -1,31 +1,68 @@
 @extends('front.layouts.master')
 
 @section('content')
+    <div class="row mb-3 px-0 mx-0 serial_routes_row" style="background:#f0f1f7;">
+        <div class="container" dir="rtl" style="max-width: 1044px;">
+            <div class="row">
+                <div class="col-xxl-10 col-xl-10 col-lg-10 col-md-10 col-sm-10 col-8 pl-3 py-2 serial_route">
+                    <a href="{{route('site.home')}}" class="bold">الصفحة الرئيسية</a>
+                    <div class="d-inline-block position-relative" style="width: 25px">
+                        <i style="position: absolute;top: -15px;right: 3px;"
+                           class="fa-solid fa-chevron-left mt-1  px-1 ">
+                        </i>
+                    </div>
+
+
+                    <span class="bold"> حساب جديد</span>
+
+
+                </div>
+
+                <div class="col-xxl-2 col-xl-2 col-lg-2 col-md-2 col-sm-2 col-4 py-2 text-left back">
+                    <a href="{{ url()->previous() }}"
+                       class="bold">العودة</a>
+                    <div class="d-inline-block position-relative" style="width: 25px"><i
+                            style="position: absolute;top: -15px;right: 3px;"
+                            class="fa-solid fa-chevron-left mt-1  px-1 "></i></div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
     <div class="row justify-content-center m-r-0 m-l-0">
         <div class="col-12 col-md-8 col-lg-4 login-cont">
             @php
                 $settings = \App\Models\Setting::first();
             @endphp
-            <div class="logo text-center my-4">
+            <div class="logo text-center my-4" style="width: auto!important;">
                 <img src="{{asset($settings->logo)}}" alt="logo" style="width: 150px;">
             </div>
+
 
             <h3 class="text-center mb-4 bold">تسجيل حساب جديد</h3>
             <div class="provider_login text-center">
                 <div class="row">
                     <div class="col-md-1"></div>
-                    <div class="col-md-5 col-6 col-sm-6 m-auto">
-                        <a href="{{route('google.login')}}" class="btn  google_btn l_18 ">Google <i class="fa-brands fa-google-plus-g fa-xl"></i></a>
+                    <div class="col-md-5 col-6 m-auto">
+                        <a href="{{route('google.login')}}" class="btn  google_btn l_18 ">Google <i
+                                class="fa-brands fa-google-plus-g fa-xl"></i></a>
                     </div>
-                    <div class="col-md-5 col-6 col-sm-6 m-auto">
-                        <a href="{{route('facebook.login')}}" class="btn  fb_btn l_18 ">Facebook <i class="fa-brands fa-facebook-f fa-l"></i></a>
+                    <div class="col-md-5 col-6 m-auto">
+                        <a href="{{route('facebook.login')}}" class="btn  fb_btn l_18 ">Facebook <i
+                                class="fa-brands fa-facebook-f fa-l"></i></a>
                     </div>
                     <div class="col-md-1"></div>
 
                 </div>
             </div>
             <div class="text-center or">
-                <p class="bold"><span class="l_29">_________________</span><span>&nbsp;&nbsp; أو &nbsp;&nbsp;</span><span class="l_29">_________________</span></p>
+                <div class="bold w-100 py-3">
+                    <div class="l_29  d-inline-block" style="width: 40%; height: 3px; background: #000"></div>
+                    <div class=" d-inline-block" style="width: 10%">أو</div>
+                    <div style="width: 40%;height: 3px; background: #000" class=" d-inline-block l_29"></div>
+                </div>
             </div>
             <div class="card">
                 <div class="card-body">
@@ -111,15 +148,15 @@
 
                         </div>
                         <div class="row mt-3">
-                            <div class="col-md-6 col-sm-6 col-6" style="text-align: right">
+                            <div class="col-md-6 col-sm-6 col-7" style="text-align: right">
                                 @if (backpack_users_have_email() && config('backpack.base.setup_password_recovery_routes', true))
                                     <div class=""><a class="bold" href="{{ route('backpack.auth.password.reset') }}">{{ trans('backpack::base.forgot_your_password') }}</a></div>
                                 @endif
 
                             </div>
-                            <div class="col-md-6 col-sm-6 col-6" style="text-align: left">
+                            <div class="col-md-6 col-sm-6 col-5" style="text-align: left">
                                 @if (config('backpack.base.registration_open'))
-                                    <div class=""><a class="bold"  href="{{ route('backpack.auth.login') }}">لديك حساب بالفعل ؟</a></div>
+                                    <div class=""><a class="bold"  href="{{ route('backpack.auth.login') }}">لديك حساب؟</a></div>
                                 @endif
                             </div>
 

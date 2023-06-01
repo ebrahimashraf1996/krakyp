@@ -101,8 +101,8 @@ body{ background: #fdfdfd}
 
 
 /* Start btns */
-.google_btn {width: 80%; background: #dd4c40;color: #fff; padding: 8px 20px;}
-.fb_btn {width: 80%; background: #4267b2;color: #fff; padding: 8px 20px;}
+.google_btn {width: 80%; background: #dd4c40;color: #fff; padding: 8px 2px;}
+.fb_btn {width: 80%; background: #4267b2;color: #fff; padding: 8px 2px;}
 .continue_btn {width: 80%; background: #062964;color: #fff; padding: 8px 20px;}
 .back_btn {width: 80%; background: #ef6619;color: #fff; padding: 8px 20px;}
 .back_btn:hover, .fb_btn:hover, .google_btn:hover, .btn_submit:hover, .view_cart:hover, .login_btn:hover, .search_btn:hover, .add_some_packages:hover, .filter_btn:hover, .continue_btn:hover, .add_to_cart_btn:hover, .order_btn:hover, .whats_btn:hover{color: #fff;}

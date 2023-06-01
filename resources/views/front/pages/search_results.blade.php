@@ -304,15 +304,19 @@
                     <input type="hidden" name="new_sort_by"
                            value="{{!empty($_GET['new_sort_by']) ? $_GET['new_sort_by'] : ''}}">
                     <div class="row filter_header">
-                        <div class="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-5 col-xm-12 col-12 text-right">
-                            <span style="color: #565b6e;font-weight: bold;">بحث مفصل</span>
+                        <div class="col-xxl-5 col-xl-5 col-lg-12 col-md-12 col-sm-12 col-xm-12 col-12 text-right">
+                            <i class="fa-solid fa-filter mx-2" style="color: #426ddd"></i>
+                            <span style="color: #565b6e;font-weight: bold;">فلترة</span>
+                            <div class="close_mobile_filter d-md-none" style="position:absolute;top: 5px;left: -5px; width: 90px!important;">
+                                <span class="btn"
+                                      style="color: #ee7202; background: #f4f5fe!important;width: 100%;padding: 6px 0!important;">
+                                    <i class="fa-solid fa-xmark " style="font-size: 15px;padding: 0 6px!important; "></i>
+                                    <span>إغلاق</span>
+                                </span>
+                            </div>
                         </div>
-                        <div class="col-xxl-7 col-xl-7 col-lg-7 col-md-7 col-sm-7 col-xm-12 col-12 text-left">
-                            <button type="submit" style="color: #426ddd;font-weight: bold;" id="reset_adv" data-url="">
-                                <i class="fa fa-redo pl-2"></i>
-                                تحديث
-                            </button>
-                        </div>
+
+
                     </div>
                     <div class="row pt-5">
                         <div
@@ -1061,7 +1065,27 @@
                     {{--                            </div>--}}
                     {{--                        @endif--}}
                     {{--                    @endforeach--}}
+                    <div class="row new_filter_header">
+
+                        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xm-12 col-12 p-0 text-center">
+                            <button type="submit" style="" id="search_filter" data-url="">
+                                <i class="fa fa-redo pl-2"></i>
+                                تحديث
+                            </button>
+                        </div>
+                    </div>
                 </form>
+            </div>
+            <div class="col-sm-12 col-12 d-md-none filter_mobile_btn_div" >
+                <div class="row">
+                    <div class="col-sm-6 col-12">
+                        <div class="mobile_filter_btn py-2">
+                            <i class="fa-solid fa-filter mx-2" style="color: #426ddd"></i>
+                            <span class="bold">فلترة</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <div class="col-xxl-9 col-xl-9 col-lg-9 col-md-9 col-sm-9 col-xm-12 col-12 client_ads_cols ">
                 @if(isset($paid_client_ads_in_cat) && $paid_client_ads_in_cat->count() > 0 || isset($free_client_ads_in_cat) && $free_client_ads_in_cat->count() > 0 )
@@ -1101,8 +1125,8 @@
                                                             </a>
                                                         </div>
                                                     @else
-                                                        <div id="wish_div not_hovered_wish"
-                                                             class="wish_div product_{{$item->id}}">
+                                                        <div id="wish_div"
+                                                             class="wish_div not_hovered_wish product_{{$item->id}}">
                                                             <a href="{{url('login')}}">
                                                                 <img src="{{asset('assets/front/images/heart.png')}}"
                                                                      alt="wish-icon">
