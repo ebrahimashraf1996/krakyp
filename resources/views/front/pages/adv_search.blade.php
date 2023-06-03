@@ -3,6 +3,12 @@
 @section('styles')
     <style>
 
+        /*.pretty .state label:after, .pretty .state label:before {right: 0}*/
+        /*.pretty.p-svg .state .svg {right: 0}*/
+        .sub_menu {
+            display: none
+        }
+        .custom_check_filter {    padding: 10px 18px;}
     </style>
 @stop
 
@@ -48,16 +54,20 @@
                 </div>
             </div>
 
-            <form action="{{route('new.adv.search.get')}}" class="pb-3">
+            <form action="{{route('new.search.get')}}" class="pb-3">
                 <input type="hidden" name="new_main_cat_id"
                        value="{{!empty($_GET['new_main_cat_id']) ? $_GET['new_main_cat_id'] : ''}}">
                 <input type="hidden" name="new_sub_cat_id"
                        value="{{!empty($_GET['new_sub_cat_id']) ? $_GET['new_sub_cat_id'] : ''}}">
                 <div class="row ">
-                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xm-12 col-12 text-right p-0 main_item_filter position-relative "
+                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xm-12 col-12 text-right p-0  main_item_filter position-relative "
                         id="client_ad_place">
                         <div class="main_head py-3 pe-3" data-target="subs_for_location">
                             <h4 class="bold l_17 d-inline-block">مكان تواجد الإعلان</h4>
+                            <span class="toggle_icons">
+                                <i class="fa fa-chevron-left d-none"></i>
+                                <i class="fa fa-chevron-down "></i>
+                             </span>
                         </div>
                         <div class="sub_menu subs_for_location pl-2 mt-1" style="display: block;">
                             @php
@@ -65,7 +75,7 @@
                             @endphp
 
                             <div class="row px-3">
-                                <div class="form-group col-xxl-6 col-xl-6 col-md-6 col-sm-6 col-12 px-2">
+                                <div class="form-group col-xxl-6 col-xl-6 col-md-6 col-sm-6 col-12 mt-2 px-2">
                                     <select class="form-control" id="new_country_id" name="new_country_id"
                                             style="width: 100%">
                                         <option value="">اختر المكان</option>
@@ -76,7 +86,7 @@
                                     </select>
                                 </div>
 
-                                <div class="form-group col-xxl-6 col-xl-6 col-md-6 col-sm-6 col-12 px-2"
+                                <div class="form-group col-xxl-6 col-xl-6 col-md-6 col-sm-6 mt-2 col-12 px-2"
                                      id="new_city_id_div"
                                      disabled="">
                                     <select class="form-control" id="new_city_id" name="new_city_id"
@@ -104,11 +114,15 @@
                         id="price_filter">
                         <div class="main_head py-3 pe-3" data-target="subs_for_price">
                             <h4 class="bold l_17 d-inline-block">السعر (جنيه)</h4>
+                            <span class="toggle_icons">
+                                <i class="fa fa-chevron-left d-none"></i>
+                                <i class="fa fa-chevron-down "></i>
+                             </span>
                         </div>
                         <div class="sub_menu subs_for_price pl-2 mt-1" style="display: block;">
                             <div class="row px-3">
                                 <div
-                                    class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 text-right new_from_ px-2">
+                                    class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 mt-2 text-right new_from_ px-2">
                                     <div class="input-group mb-3" dir="ltr">
                                         <span class="input-group-text bound " id="new_from_label">جنيه</span>
                                         <input type="number" class="form-control text-right" name="new_from_"
@@ -118,7 +132,7 @@
                                                aria-describedby="new_from_label">
                                     </div>
                                 </div>
-                                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 text-right new_to_ px-2">
+                                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 mt-2 text-right new_to_ px-2">
                                     <div class="input-group mb-3" dir="ltr">
                                         <span class="input-group-text bound " id="new_to_label">جنيه</span>
                                         <input type="number" class="form-control text-right" name="new_to_"
@@ -133,7 +147,6 @@
                         </div>
                     </div>
 
-                </div>
                 @if(isset($main_attributes) && $main_attributes->count() > 0)
                     @foreach($main_attributes as $main_item)
                         @if($main_item->attribute->appearance == 'select')
@@ -153,16 +166,15 @@
                                             <ul class="row"
                                                 style="padding-left: 0!important;max-height: 200px; overflow-y: scroll">
                                                 @foreach($main_item->attribute->options as $option)
-                                                    <li class=" col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 custom_check_filter mx-0 pl-2 position-relative">
+                                                    <li class=" col-xxl-4 col-xl-4 col-md-4 col-sm-6 col-12 custom_check_filter mx-0 pl-2 pr-2 position-relative">
                                                         {{--                                                                    {{dd($children_attributes)}}--}}
                                                         <div class='pretty p-rotate p-svg p-curve main_toggle_item'
-                                                             style='text-align:right; padding-right:20px;'>
+                                                             style='text-align:right; padding-right:20px;width: 100%'>
                                                             <input type='checkbox'
                                                                    name="attrs[{{$main_item->attribute->id}}][]"
                                                                    class='inp_check'
                                                                    value="{{$option->id}}"
-                                                                {{!empty($_GET['attrs'][$main_item->attribute->id]) && in_array($option->id, $_GET['attrs'][$main_item->attribute->id]) ? 'checked' : ''}}
-                                                            >
+                                                                {{!empty($_GET['attrs'][$main_item->attribute->id]) && in_array($option->id, $_GET['attrs'][$main_item->attribute->id]) ? 'checked' : ''}}>
                                                             <div class='state p-warning'>
                                                                 <!-- svg path -->
                                                                 <svg class='svg svg-icon'
@@ -196,10 +208,10 @@
                                             <ul class="row"
                                                 style="padding-left: 0!important;max-height: 200px; overflow-y: scroll">
 
-                                                <li class=" col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 custom_check_filter mx-0 pl-2 position-relative">
+                                                <li class=" col-xxl-6 col-xl-6 col-md-6 col-sm-6 col-12 custom_check_filter mx-0 pl-2 position-relative">
                                                     {{--                                                                    {{dd($children_attributes)}}--}}
                                                     <div class='pretty p-rotate p-svg p-curve main_toggle_item'
-                                                         style='text-align:right; padding-right:20px;'>
+                                                         style='text-align:right; padding-right:20px;width: 100%'>
                                                         <input type='radio' id="{{$main_item->attribute->id}}_1"
                                                                name="attrs_yes_no[{{$main_item->attribute->id}}]"
                                                                class='inp_check'
@@ -220,10 +232,10 @@
                                                         </div>
                                                     </div>
                                                 </li>
-                                                <li class=" col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 custom_check_filter mx-0 pl-2 position-relative">
+                                                <li class=" col-xxl-6 col-xl-6 col-md-6 col-sm-6 col-12 custom_check_filter mx-0 pl-2 position-relative">
                                                     {{--                                                                    {{dd($children_attributes)}}--}}
                                                     <div class='pretty p-rotate p-svg p-curve main_toggle_item'
-                                                         style='text-align:right; padding-right:20px;'>
+                                                         style='text-align:right; padding-right:20px;width: 100%'>
                                                         <input type='radio' id="{{$main_item->attribute->id}}_0"
                                                                name="attrs_yes_no[{{$main_item->attribute->id}}]"
                                                                class='inp_check'
@@ -357,7 +369,7 @@
                                                 <li class="locations col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 custom_check_filter mx-0 pl-2 position-relative">
                                                     {{--                                                                    {{dd($children_attributes)}}--}}
                                                     <div class='pretty p-rotate p-svg p-curve main_toggle_item'
-                                                         style='text-align:right; padding-right:20px;'>
+                                                         style='text-align:right; padding-right:20px;width: 100%'>
                                                         <input type='checkbox'
                                                                name="attrs_yes_no[{{$child_attr->attribute->id}}]"
                                                                class='inp_check'
@@ -431,7 +443,16 @@
                     @endforeach
                     {{--            {{dd($other_attributes)}}--}}
                 @endif
+                    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xm-12 col-12 mt-3 text-right p-0  position-relative">
+                        <div class="row">
+                            <div class="col-xxl-4 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12 m-auto text-center">
+                                <button class="btn new_adv_search px-5 w-100" type="submit">بحث</button>
 
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </form>
         </div>
     </section>
