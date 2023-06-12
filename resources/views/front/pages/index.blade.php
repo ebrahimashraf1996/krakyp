@@ -59,7 +59,7 @@
 
 
         <div class="row">
-            <div class="col-xxl-3 col-xl-3 col-md-3 col-sm-3 col-3 new_search_box"
+            <div class="col-xxl-3 col-xl-3 col-md-4 col-sm-3 col-3 new_search_box"
                  style="height: 300px;background: #fff">
                 <form action="{{route('new.search.get')}}" method="get" id="new_search_form">
                     <div class="row" dir="rtl">
@@ -99,7 +99,7 @@
                                     class="fa-solid fa-magnifying-glass"></i> &nbsp;اظهر النتائج
                             </button>
                         </div>
-                        <div class="form-group col-xxl-6 col-xl-6 col-md-6 col-6 col-sm-6 py-1" id="get_result_btn_div">
+                        <div class="form-group col-xxl-6 col-xl-6 col-md-6 col-6 col-sm-6 py-1" id="get_adv_result_btn_div">
                             <a class="btn w-100 new_adv_search" href="javascript:void(0);" id="new_adv_search"><i
                                     class="fa-solid fa-gears"></i> &nbsp;بحث متقدم</a>
                         </div>
@@ -288,10 +288,10 @@
                     </div>
                 </div>
                 <div class="row client_ads_div">
-                    <div class="col-md-12 m-auto">
+                    <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 m-auto">
                         <div class="row" id="client_ads_cont">
                             @foreach($paid_client_ads as $key => $item)
-                                <div class="col-md-3 col-6 col-sm-6 post  my-2">
+                                <div class="col-lg-3 col-md-4 col-6 col-sm-6 post  my-2">
                                     {{--                            {{route('client_ad.show', $item->slug)}}--}}
                                     <div class="card card-block pb-3"
                                          style="border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;">
@@ -359,7 +359,7 @@
                                 </div>
                             @endforeach
                             @foreach($free_client_ads as $key => $item)
-                                <div class="col-md-3 col-6 col-sm-6 post my-2">
+                                <div class="col-lg-3 col-md-4 col-6 col-sm-6 post my-2">
                                     {{--                            {{route('client_ad.show', $item->slug)}}--}}
                                     <div class="card card-block pb-3">
                                         @php

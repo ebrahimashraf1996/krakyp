@@ -30,7 +30,7 @@ class MobilebannerCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\Mobilebanner::class);
+        CRUD::setModel(\App\Models\MobileBanner::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/mobilebanner');
         CRUD::setEntityNameStrings('صورة', 'صور بانر الموبايل');
         $this->crud->orderBy('lft', 'ASC');

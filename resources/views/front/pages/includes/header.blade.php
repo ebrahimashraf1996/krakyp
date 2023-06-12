@@ -9,7 +9,7 @@
                         <img src="{{asset($settings->logo)}}" alt="logo">
                     </a>
                 </div>
-                <div class="col-xxl-6 col-xl-6 col-md-6 col-sm-2 col-2" dir="ltr" style="margin-top: 13px">
+                <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-2 col-2" dir="ltr" style="margin-top: 13px">
                     <form action="{{route('quick.search')}}" method="get">
                         <div class="input-group search-input">
                             <button type="submit" class="input-group-text search_btn_icon">
@@ -21,7 +21,7 @@
                                 $cats = App\Models\Category::where('parent_id', '!=', null)->select('id', 'title')->get();
                             @endphp
                             <select class="form-control dropdown-toggle" id="quick_cat" name="quick_cat"
-                                    style="width: 25%; text-align: right">
+                                    style="width: 30%; text-align: right">
                                 <option value="">اختر الفئة</option>
                                 @foreach($cats as $item)
                                     <option value="{{$item->id}}" {{isset($_GET['quick_cat']) &&  $_GET['quick_cat'] == $item->id || old('quick_cat') == $item->id ? 'selected' : ''}}>{{$item->title}}</option>
@@ -30,7 +30,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-2 text-right" style="margin-top: 13px">
+                <div class="col-xxl-2 col-xl-2 col-md-2 col-lg-2 col-sm-2 col-2 text-right login_div" style="margin-top: 13px">
                     @if(backpack_auth()->check())
                         <div class="pt-2 logged_menu_btn">
                             <img src="{{asset('assets/front/images/profile_1.svg')}}" alt="profile-icon">
@@ -79,7 +79,7 @@
                     @endif
 
                 </div>
-                <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-2" style="margin-top: 13px">
+                <div class="col-xxl-2 col-xl-2 col-md-2 col-sm-2 col-2 post_now" style="margin-top: 13px">
                     <a href="{{route('add.post')}}" class="btn bold add_post_btn">
                         <span class="plus_new">
                             <i class="fa-solid fa-plus" style="font-size: 27px"></i>
@@ -142,8 +142,8 @@
                     @endphp
                     <div class="row">
                         @foreach($cats as $item)
-                            <div class="col-xxl-4 col-xl-4 col-md-4 col-sm-4 col-4 single_cat_div">
-                                <div class="row p-b-10 p-t-10">
+                            <div class="col-xxl-4 col-xl-4 col-md-6 col-sm-6 col-4 single_cat_div">
+                                <div class="row p-b-10 p-t-10 main_cat_title_row">
                                     <span class="main_cat_title bold">
                                         {{$item->title}}
                                     </span>

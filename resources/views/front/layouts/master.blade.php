@@ -37,10 +37,10 @@
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&amp;display=swapps://github.com/produle/MockFlowFont/blob/master/MockFlowFont1/dist/MockFlowFont1.woff">
 
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.min.css" rel="stylesheet">
+    <link href="{{asset('assets/front/css/select2.min.css')}}" rel="stylesheet" />
+    <link href="{{asset('assets/front/css/sweetalert2.min.css')}}" rel="stylesheet" />
+    <link href="{{asset('assets/front/css/pretty-checkbox.min.css')}}" rel="stylesheet" />
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css">
 
 
 
@@ -112,9 +112,9 @@
 
 <script src="{{asset('assets/front/js/jquery.waypoints.min.js')}}"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="{{asset('assets/front/js/select2.min.js')}}"></script>
+<script src="{{asset('assets/front/js/sweetalert2.all.min.js')}}"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.1/dist/sweetalert2.all.min.js"></script>
 
 <script src="{{asset('assets/front/js/dropzone-min.js')}}"></script>
 
@@ -256,6 +256,33 @@
             })
         });
 
+
+
+        // Make All images in carousel Same Width
+        let client_ad_image = $('.owl-item .item.client_ad_image');
+        let current_width = client_ad_image.width();
+        client_ad_image.css('height', (current_width/1.5));
+
+
+        // Make All Ad Cover in Cards Same Width
+        let client_ad_cover = $('.client_ad_cover');
+        let client_ad_cover_width = client_ad_cover.width();
+        client_ad_cover.css('height', (client_ad_cover_width/1.5));
+
+
+        // Make All Ad Cards Same Height
+        let client_ad_post = $('div.client_ads_section .card');
+        let maxHeight = Math.max.apply(null, client_ad_post.map(function () {
+            return $(this).height();
+        }).get());
+        client_ad_post.height(maxHeight);
+
+        // Make All Ad Cards Same Height
+        let client_ads_div_card = $('div.client_ads_div .card');
+        let cardMaxHeight = Math.max.apply(null, client_ads_div_card.map(function () {
+            return $(this).height();
+        }).get());
+        client_ads_div_card.height(cardMaxHeight);
     });
 </script>
 

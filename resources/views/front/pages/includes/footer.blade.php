@@ -6,13 +6,13 @@
         @endphp
         <div class="row pt-4">
             <div class="col-md-9 col-10 col-sm-10  m-auto">
-                <div class="col-md-1 col-sm-6 col-6 m-auto py-4 text-center">
+                <div class="col-xl-1 col-lg-1 col-md-2 col-sm-6 col-6 m-auto py-4 text-center">
                     <img src="{{asset('assets/front/images/footer-logo.png')}}" alt="logo"  class="m-auto footer_logo">
                 </div>
             </div>
         </div>
         <div class="row pt-4">
-            <div class="col-md-7 col-10 col-sm-10 t-bordered-white m-auto">
+            <div class="col-lg-7 col-md-9 col-12 col-sm-10 t-bordered-white m-auto">
                 <ul class="footer_list">
                     <li class="footer_list_item">
                         <a href="{{route('site.home')}}">الصفحة الرئيسية</a>
@@ -41,8 +41,8 @@
             </div>
         </div>
         <div class="row pt-4">
-            <div class="col-md-4"></div>
-            <div class="col-md-4 col-10 col-sm-10 m-auto">
+            <div class="col-md-3"></div>
+            <div class="col-lg-6 col-md-6 col-10 col-sm-10 m-auto">
                 <ul class="footer_contacts_list">
                     @if($settings->twitter != null)
                     <li class="footer_contacts_list_item">
@@ -125,7 +125,7 @@
                     @endif
                 </ul>
             </div>
-            <div class="col-md-4"></div>
+            <div class="col-md-3"></div>
 
         </div>
         <div class="last_part text-center">

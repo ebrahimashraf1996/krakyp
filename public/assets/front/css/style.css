@@ -191,7 +191,7 @@ body{ background: #fdfdfd}
 .sub_menu_item {position: relative;}
 .cat_icon {font-size:27px; color:#426dddb8;position: absolute;top: -11px;}
 .sub_cat_title {padding: 20px 39px 20px 0;}
-.single_cat_div {border-left: 1px solid #82848857;min-height: 100px;}
+.single_cat_div {border-left: 1px solid #82848857;min-height: 100px;border-bottom: 1px solid #ddd;}
 .sub_menu_item:hover >  .sub_cat_title {color: #426ddd;font-weight: bold}
 
 /* End New Header */
@@ -424,7 +424,7 @@ a.cat_link {}
 /* Start Ads Home Section */
 .client_ads_section .wish_div img {width: 100%;}
 .client_ads_section .mark_div img {width: 100%;}
-.client_ad_cover {width: 100%;max-height:200px;text-align: center;background: #ef681d21;overflow: hidden;border-top-right-radius: 5px;border-top-left-radius: 5px;}
+.client_ad_cover {width: 100%;text-align: center;background: #ef681d21;overflow: hidden;border-top-right-radius: 5px;border-top-left-radius: 5px;}
 .client_ad_cover img {width: 100%}
 .post a {text-decoration: none}
 .post a:hover {text-decoration: none;color: #000;}

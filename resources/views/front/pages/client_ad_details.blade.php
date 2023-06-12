@@ -32,14 +32,14 @@
             border-radius: 5px;
         }
 
-        .client_ad_image_item {
-            width: auto !important;
-            height: 426px !important;
-        }
+        /*.client_ad_image_item {*/
+        /*    width: auto !important;*/
+        /*    height: 426px !important;*/
+        /*}*/
 
-        .client_ad_cover {
-            max-height: 140px !important;
-        }
+        /*.client_ad_cover {*/
+        /*    max-height: 140px !important;*/
+        /*}*/
 
         .bordered {
             box-shadow: 1px 1px 5px #c5c1c1;
@@ -119,7 +119,7 @@
                     @endphp
 
 
-                    <div class="col-md-9 col-lg-9 col-12 col-sm-12 product-gallery-pc ">
+                    <div class="col-md-8 col-lg-9 col-12 col-sm-12 product-gallery-pc ">
                         <div class="row">
 
                             <div class="col-sm-12 col-12 client_ad_title col-sm-12">
@@ -197,12 +197,12 @@
                                             @if($item->attr->type == 'with_options')
                                                 <div class="col-md-6 col-lg-6 col-12 col-sm-6 px-0 py-1 attr_col"
                                                      style="border-bottom: 1px solid #ddd">
-                                                    <div class="row mx-0 px-2">
+                                                    <div class="row mx-0 px-2 single_details_row">
                                                         <div
                                                             class="col-lg-6 col-md-6 col-6 col-sm-6 px-0 text-right py-1">
                                                             @if($item->attr->attr_icon != null)
                                                                 <img src="{{asset($item->attr->attr_icon)}}" alt="icon"
-                                                                     class="m-l-8 m-r-8">
+                                                                     class="m-l-8 m-r-8 attr_icon">
                                                             @endif
                                                             {{$item->attr->title}} :
                                                         </div>
@@ -210,7 +210,7 @@
                                                             $answer = \App\Models\Option::find($item->answer_value);
                                                         @endphp
                                                         <div
-                                                            class="bold col-lg-6 col-md-6 col-6 col-sm-6 px-0 text-left py-1">
+                                                            class="bold col-lg-6 col-md-6 col-6 col-sm-6 px-0 text-right pb-1" style="padding-top: 7px">
                                                             {{$answer->val}}
                                                             @if($answer->image !== null)
                                                                 <img
@@ -224,17 +224,17 @@
                                                 @if($item->answer_value == '1')
                                                     <div class="col-md-6 col-lg-6 col-12 col-sm-6 px-0 py-1 attr_col"
                                                          style="border-bottom: 1px solid #ddd">
-                                                        <div class="row mx-0 px-2">
+                                                        <div class="row mx-0 px-2 single_details_row">
                                                             <div
                                                                 class="col-lg-8 col-md-8 col-8 col-sm-6 px-0 text-right py-1">
                                                                 @if($item->attr->attr_icon != null)
                                                                     <img src="{{asset($item->attr->attr_icon)}}"
-                                                                         alt="icon" class="m-l-8 m-r-8">
+                                                                         alt="icon" class="m-l-8 m-r-8 attr_icon">
                                                                 @endif
                                                                 {{$item->attr->title}} :
                                                             </div>
                                                             <div
-                                                                class="bold col-lg-4 col-md-4 col-4 col-sm-6 px-0 text-left py-1">
+                                                                class="bold col-lg-4 col-md-4 col-4 col-sm-6 px-0 text-right pb-1" style="padding-top: 7px">
                                                                 متوفر
                                                             </div>
                                                         </div>
@@ -243,17 +243,17 @@
                                             @elseif($item->attr->type == 'with_no_answers')
                                                 <div class="col-md-6 col-lg-6 col-12 col-sm-6 px-0 py-1 attr_col"
                                                      style="border-bottom: 1px solid #ddd">
-                                                    <div class="row mx-0 px-2">
+                                                    <div class="row mx-0 px-2 single_details_row">
                                                         <div
                                                             class="col-lg-6 col-md-6 col-6 col-sm-6 px-0 text-right py-1">
                                                             @if($item->attr->attr_icon != null)
                                                                 <img src="{{asset($item->attr->attr_icon)}}"
-                                                                     alt="icon" class="m-l-8 m-r-8">
+                                                                     alt="icon" class="m-l-8 m-r-8 attr_icon">
                                                             @endif
                                                             {{$item->attr->title}} :
                                                         </div>
                                                         <div
-                                                            class="bold col-lg-6 col-md-6 col-6 col-sm-6 px-0 text-left py-1">
+                                                            class="bold col-lg-6 col-md-6 col-6 col-sm-6 px-0 text-right pb-1" style="padding-top: 7px">
                                                             {{number_format($item->answer_value, 0)}} &nbsp;<span
                                                                 style="font-weight: normal;"
                                                                 class=" colored"> {{$item->attr->unit}}</span>
@@ -264,7 +264,7 @@
                                         @endforeach
                                         <div class="see_other_attrs_div col-lg-12 col-md-12 mt-3 col-sm-12 col-12">
                                             <div class="row mx-0 px-2">
-                                                <div class="col-lg-5 col-md-5 col-sm-6 col-12 m-auto text-center">
+                                                <div class="col-lg-5 col-md-6 col-sm-6 col-12 m-auto text-center">
                                                     <button class="btn btn-primary w-100 other_details_btn"
                                                             data-bs-target="#other_attrs_details"
                                                             data-bs-toggle="modal">المواصفات تفصيلياً
@@ -300,7 +300,7 @@
                                                                         style="border-bottom: 1px solid #ddd">
                                                                         <div class="row mx-0 ">
                                                                             <div
-                                                                                class="col-lg-6 col-md-6 col-12 col-sm-6  text-right py-1">
+                                                                                class="col-lg-6 col-md-8 col-12 col-sm-6  text-right py-1">
                                                                                 @if($item->attr->attr_icon != null)
                                                                                     <img
                                                                                         src="{{asset($item->attr->attr_icon)}}"
@@ -313,7 +313,7 @@
                                                                                 $answer = \App\Models\Option::find($item->answer_value);
                                                                             @endphp
                                                                             <div
-                                                                                class="bold col-lg-6 col-md-6 col-12 col-sm-6  text-left py-1">
+                                                                                class="bold col-lg-6 col-md-4 col-12 col-sm-6  text-right pb-1" style="padding-top: 7px">
                                                                                 {{$answer->val}}
                                                                                 @if($answer->image !== null)
                                                                                     <img
@@ -341,7 +341,7 @@
                                                                                     {{$item->attr->title}} :
                                                                                 </div>
                                                                                 <div
-                                                                                    class="bold col-lg-4 col-md-4 col-2 col-sm-6  text-left py-1">
+                                                                                    class="bold col-lg-4 col-md-4 col-2 col-sm-6  text-right pb-1" style="padding-top: 7px">
                                                                                     متوفر
                                                                                 </div>
                                                                             </div>
@@ -353,7 +353,7 @@
                                                                         style="border-bottom: 1px solid #ddd">
                                                                         <div class="row mx-0 ">
                                                                             <div
-                                                                                class="col-lg-6 col-md-6 col-12 col-sm-6  text-right py-1">
+                                                                                class="col-lg-6 col-md-8 col-12 col-sm-6  text-right py-1">
                                                                                 @if($item->attr->attr_icon != null)
                                                                                     <img
                                                                                         src="{{asset($item->attr->attr_icon)}}"
@@ -362,7 +362,7 @@
                                                                                 {{$item->attr->title}} :
                                                                             </div>
                                                                             <div
-                                                                                class="bold col-lg-6 col-md-6 col-12 col-sm-6  text-left py-1">
+                                                                                class="bold col-lg-6 col-md-4 col-12 col-sm-6  text-right pb-1" style="padding-top: 7px">
                                                                                 {{number_format($item->answer_value, 0)}}
                                                                                 &nbsp;<span style="font-weight: normal;"
                                                                                             class=" colored"> {{$item->attr->unit}}</span>
@@ -434,7 +434,7 @@
 
                         {{--{{dd($item->id)}}--}}
                     </div>
-                    <div class="col-md-3 col-lg-3 col-12 col-sm-12 side_part ">
+                    <div class="col-md-4 col-lg-3 col-12 col-sm-12 side_part ">
                         <div class="bordered mt-3 p-3 bg-white contact_section mobile_hide">
                             @if(backpack_auth()->check())
                                 <div
@@ -775,7 +775,7 @@
 
                     },
                     767: {
-                        items: 1,
+                        items: 3,
                         nav: false,
                         dots: false,
 
@@ -792,13 +792,9 @@
 
             });
 
-            let client_ad_post = $('div.client_ads_section .card');
-            let maxHeight = Math.max.apply(null, client_ad_post.map(function () {
-                return $(this).height();
-            }).get());
 
-            // alert(maxHeight);
-            client_ad_post.height(maxHeight);
+
+
 
         });
 

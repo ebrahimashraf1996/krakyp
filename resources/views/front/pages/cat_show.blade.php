@@ -73,7 +73,7 @@
 
     <section class="search_container container">
         <div class="row">
-            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-12 col-xm-12 col-12 py-0 text-center filter_section"
+            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-12 col-xm-12 col-12 py-0 text-center filter_section"
                  style="background: #fff">
                 <form action="{{route('cat.show', $cat->slug)}}" class="pb-3 position-relative">
 
@@ -867,7 +867,7 @@
                 </div>
 
             </div>
-            <div class="col-xxl-9 col-xl-9 col-lg-9 col-md-9 col-sm-12 col-xm-12 col-12 client_ads_cols px-0 ">
+            <div class="col-xxl-9 col-xl-9 col-lg-9 col-md-8 col-sm-12 col-xm-12 col-12 client_ads_cols px-0 ">
                 @if(isset($paid_client_ads_in_cat) && $paid_client_ads_in_cat->count() > 0 || isset($free_client_ads_in_cat) && $free_client_ads_in_cat->count() > 0 )
                     {{--    Start Ads--}}
                     <section class="client_ads_section mt-1 text-center">
@@ -876,7 +876,7 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-12 m-auto px-1">
                                     <div class="row" id="client_ads_cont">
                                         @foreach($paid_client_ads_in_cat as $key => $item)
-                                            <div class="col-lg-4 col-md-4 col-sm-4 col-6  post  my-2">
+                                            <div class="col-lg-4 col-md-6 col-sm-4 col-6  post  my-2">
                                                 {{--                            {{route('client_ad.show', $item->slug)}}--}}
                                                 <div class="card card-block pb-3"
                                                      style="border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;">
@@ -951,7 +951,7 @@
                                             </div>
                                         @endforeach
                                         @foreach($free_client_ads_in_cat as $key => $item)
-                                            <div class="col-lg-4 col-md-4 col-sm-4  col-6 post my-2">
+                                            <div class="col-lg-4 col-md-6 col-sm-4  col-6 post my-2">
                                                 {{--                            {{route('client_ad.show', $item->slug)}}--}}
                                                 <div class="card card-block pb-3">
                                                     @if(backpack_auth()->check())
@@ -1114,15 +1114,15 @@
                 filter_section.removeClass('active');
             });
 
-
-            let client_ad_post = $('section.client_ads_section .card');
-
-            let maxHeight = Math.max.apply(null, client_ad_post.map(function () {
-                return $(this).height();
-            }).get());
-
-            // alert(maxHeight);
-            client_ad_post.height(maxHeight);
+            //
+            // let client_ad_post = $('section.client_ads_section .card');
+            //
+            // let maxHeight = Math.max.apply(null, client_ad_post.map(function () {
+            //     return $(this).height();
+            // }).get());
+            //
+            // // alert(maxHeight);
+            // client_ad_post.height(maxHeight);
 
 
             let new_country_id = $('#new_country_id');
