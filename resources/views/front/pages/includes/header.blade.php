@@ -30,7 +30,7 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-xxl-2 col-xl-2 col-md-2 col-lg-2 col-sm-2 col-2 text-right login_div" style="margin-top: 13px">
+                <div class="col-xxl-2 col-xl-2 col-md-2 col-lg-2 col-sm-2 col-2 text-right login_div" style="">
                     @if(backpack_auth()->check())
                         <div class="pt-2 logged_menu_btn">
                             <img src="{{asset('assets/front/images/profile_1.svg')}}" alt="profile-icon">
@@ -650,103 +650,103 @@
 
         </div>
     </nav>
-    <nav class="sidebar2">
-        <div class="side_bar_2_contact_div_dismiss">
-            <div class="side_bar_2_contact_cover_btn_dismiss">
-                <div class="spans_container_dismiss">
-                    <img src="{{asset('assets/front/images/dismiss.png')}}" alt="dismiss" style="width: 25px">
-                </div>
-            </div>
-        </div>
-        <div class=" side_bar_touch" style="margin: 3rem 13px 3rem 0!important;">
-            <ul class="list-unstyled menu-elements side_bar_2_menu"
-                style="text-align: center; width: 100%;margin-top: 114px">
-                <li class="{{Route::currentRouteName() == 'site.home' ? 'active' : ''}}">
-                    <a class="scroll-link {{Route::currentRouteName() == 'site.home' ? 'active' : ''}}"
-                       href="{{route('site.home')}}" style="padding: 10px 30px;">
-                        <i class="fas fa-home"></i> &nbsp;&nbsp;{{__('messages.home')}}
-                    </a>
-                </li>
-                <li style="padding: 0">
-                    <div class="services_sidebar_2_btn {{Route::currentRouteName() == 'site.service' ? 'active' : ''}}"
-                         style="    padding: 10px 0;border-radius: 5px">
-                        <a href="javascript:void(0)"
-                           class="{{Route::currentRouteName() == 'site.service' ? 'active' : ''}}">
-                            <img
-                                src="{{Route::currentRouteName() == 'site.service' ? asset('assets/front/images/tri_w.png') : asset('assets/front/images/tri.png')}}"
-                                alt="icon" style="width: 12px;position: relative;right: -10px;top: -1px;">
-                            <i class="fa-solid fa-boxes-stacked"></i> &nbsp;&nbsp;الأقسام
-                        </a>
-                    </div>
+{{--    <nav class="sidebar2">--}}
+{{--        <div class="side_bar_2_contact_div_dismiss">--}}
+{{--            <div class="side_bar_2_contact_cover_btn_dismiss">--}}
+{{--                <div class="spans_container_dismiss">--}}
+{{--                    <img src="{{asset('assets/front/images/dismiss.png')}}" alt="dismiss" style="width: 25px">--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class=" side_bar_touch" style="margin: 3rem 13px 3rem 0!important;">--}}
+{{--            <ul class="list-unstyled menu-elements side_bar_2_menu"--}}
+{{--                style="text-align: center; width: 100%;margin-top: 114px">--}}
+{{--                <li class="{{Route::currentRouteName() == 'site.home' ? 'active' : ''}}">--}}
+{{--                    <a class="scroll-link {{Route::currentRouteName() == 'site.home' ? 'active' : ''}}"--}}
+{{--                       href="{{route('site.home')}}" style="padding: 10px 30px;">--}}
+{{--                        <i class="fas fa-home"></i> &nbsp;&nbsp;{{__('messages.home')}}--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+{{--                <li style="padding: 0">--}}
+{{--                    <div class="services_sidebar_2_btn {{Route::currentRouteName() == 'site.service' ? 'active' : ''}}"--}}
+{{--                         style="    padding: 10px 0;border-radius: 5px">--}}
+{{--                        <a href="javascript:void(0)"--}}
+{{--                           class="{{Route::currentRouteName() == 'site.service' ? 'active' : ''}}">--}}
+{{--                            <img--}}
+{{--                                src="{{Route::currentRouteName() == 'site.service' ? asset('assets/front/images/tri_w.png') : asset('assets/front/images/tri.png')}}"--}}
+{{--                                alt="icon" style="width: 12px;position: relative;right: -10px;top: -1px;">--}}
+{{--                            <i class="fa-solid fa-boxes-stacked"></i> &nbsp;&nbsp;الأقسام--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
 
 
-                    <ul id="otherServices">
+{{--                    <ul id="otherServices">--}}
 
-                        @foreach($cats as $cat)
-                            <li class="{{Route::currentRouteName() == 'site.service' && Route::current()->parameters()["slug"] === $item->slug   ? 'active' : ''}} main_cat">
-                                <a href="javascript:void(0)"
-                                   class="{{Route::currentRouteName() == 'site.service' ? 'active' : ''}}">
-                                    <img
-                                        src="{{Route::currentRouteName() == 'site.service' ? asset('assets/front/images/tri_w.png') : asset('assets/front/images/tri.png')}}"
-                                        alt="icon" style="width: 12px;position: relative;right: -10px;top: -1px;">
-                                    &nbsp;&nbsp;{{$cat->title}}
-                                </a>
-                                <ul class="sub_cats_menu">
-                                    @foreach($cat->subCategories as $item)
-                                        {{--                                        <li class="menu-item">--}}
-                                        {{--                                            <a class="menu-button"--}}
-                                        {{--                                               href="{{route('cat.show', $item->slug)}}">{{$item->title}}</a>--}}
-                                        {{--                                        </li>--}}
-                                        <li class="{{Route::currentRouteName() == 'site.service' && Route::current()->parameters()["slug"] === $item->slug   ? 'active' : ''}}">
-                                            <a class="scroll-link {{Route::currentRouteName() == 'site.service' && Route::current()->parameters()["slug"] === $item->slug   ? 'active' : ''}}"
-                                               href="{{route('cat.show', $item->slug)}}">{{$item->title}}</a>
-                                        </li>
-                                    @endforeach
+{{--                        @foreach($cats as $cat)--}}
+{{--                            <li class="{{Route::currentRouteName() == 'site.service' && Route::current()->parameters()["slug"] === $item->slug   ? 'active' : ''}} main_cat">--}}
+{{--                                <a href="javascript:void(0)"--}}
+{{--                                   class="{{Route::currentRouteName() == 'site.service' ? 'active' : ''}}">--}}
+{{--                                    <img--}}
+{{--                                        src="{{Route::currentRouteName() == 'site.service' ? asset('assets/front/images/tri_w.png') : asset('assets/front/images/tri.png')}}"--}}
+{{--                                        alt="icon" style="width: 12px;position: relative;right: -10px;top: -1px;">--}}
+{{--                                    &nbsp;&nbsp;{{$cat->title}}--}}
+{{--                                </a>--}}
+{{--                                <ul class="sub_cats_menu">--}}
+{{--                                    @foreach($cat->subCategories as $item)--}}
+{{--                                        --}}{{--                                        <li class="menu-item">--}}
+{{--                                        --}}{{--                                            <a class="menu-button"--}}
+{{--                                        --}}{{--                                               href="{{route('cat.show', $item->slug)}}">{{$item->title}}</a>--}}
+{{--                                        --}}{{--                                        </li>--}}
+{{--                                        <li class="{{Route::currentRouteName() == 'site.service' && Route::current()->parameters()["slug"] === $item->slug   ? 'active' : ''}}">--}}
+{{--                                            <a class="scroll-link {{Route::currentRouteName() == 'site.service' && Route::current()->parameters()["slug"] === $item->slug   ? 'active' : ''}}"--}}
+{{--                                               href="{{route('cat.show', $item->slug)}}">{{$item->title}}</a>--}}
+{{--                                        </li>--}}
+{{--                                    @endforeach--}}
 
-                                </ul>
-                            </li>
-                        @endforeach
+{{--                                </ul>--}}
+{{--                            </li>--}}
+{{--                        @endforeach--}}
 
-                    </ul>
-                </li>
+{{--                    </ul>--}}
+{{--                </li>--}}
 
-                <li class="{{Route::currentRouteName() == 'buy-package' || Route::currentRouteName() == 'packages.show'  ? 'active' : ''}}">
-                    <a class="scroll-link {{Route::currentRouteName() == 'buy-package' || Route::currentRouteName() == 'packages.show'  ? 'active' : ''}}"
-                       href="{{route('buy-package')}}">
-                        <i class="fa-solid fa-bolt"></i> &nbsp;&nbsp;شراء باقات</a>
-                </li>
+{{--                <li class="{{Route::currentRouteName() == 'buy-package' || Route::currentRouteName() == 'packages.show'  ? 'active' : ''}}">--}}
+{{--                    <a class="scroll-link {{Route::currentRouteName() == 'buy-package' || Route::currentRouteName() == 'packages.show'  ? 'active' : ''}}"--}}
+{{--                       href="{{route('buy-package')}}">--}}
+{{--                        <i class="fa-solid fa-bolt"></i> &nbsp;&nbsp;شراء باقات</a>--}}
+{{--                </li>--}}
 
-                <li>
-                    <a class="scroll-link internal" href="{{ route('add.post')}}">
-                        <i class="fa-solid fa-address-card"></i>&nbsp;&nbsp; أعلن الآن</a>
-                </li>
+{{--                <li>--}}
+{{--                    <a class="scroll-link internal" href="{{ route('add.post')}}">--}}
+{{--                        <i class="fa-solid fa-address-card"></i>&nbsp;&nbsp; أعلن الآن</a>--}}
+{{--                </li>--}}
 
-                <li class="{{Route::currentRouteName() == 'articles.index' || Route::currentRouteName() === 'articles.show' ? 'active' : ''}}">
-                    <a class="scroll-link {{Route::currentRouteName() == 'articles.index' || Route::currentRouteName() === 'articles.show' ? 'active' : ''}}"
-                       href="{{route('articles.index')}}">
-                        <i class="fa-solid fa-blog"></i> &nbsp;&nbsp;آخر الأخبار</a>
-                </li>
-
-
-                <li class="{{Route::currentRouteName() == 'contact.us'  ? 'active' : ''}}">
-                    <a class="scroll-link {{Route::currentRouteName() == 'contact.us' ? 'active' : ''}}"
-                       href="{{route('contact.us')}}">
-                        <i class="fa-solid fa-phone"></i> &nbsp;&nbsp;تواصل معنا</a>
-                </li>
+{{--                <li class="{{Route::currentRouteName() == 'articles.index' || Route::currentRouteName() === 'articles.show' ? 'active' : ''}}">--}}
+{{--                    <a class="scroll-link {{Route::currentRouteName() == 'articles.index' || Route::currentRouteName() === 'articles.show' ? 'active' : ''}}"--}}
+{{--                       href="{{route('articles.index')}}">--}}
+{{--                        <i class="fa-solid fa-blog"></i> &nbsp;&nbsp;آخر الأخبار</a>--}}
+{{--                </li>--}}
 
 
-                <li class="{{Route::currentRouteName() == 'about.us' ? 'active' : ''}}">
-                    <a class="scroll-link {{Route::currentRouteName() == 'about.us' ? 'active' : ''}}"
-                       href="{{route('about.us')}}"><i
-                            class="fa-solid fa-magnifying-glass"></i> &nbsp;&nbsp;{{__('messages.about-us')}}</a>
-                </li>
+{{--                <li class="{{Route::currentRouteName() == 'contact.us'  ? 'active' : ''}}">--}}
+{{--                    <a class="scroll-link {{Route::currentRouteName() == 'contact.us' ? 'active' : ''}}"--}}
+{{--                       href="{{route('contact.us')}}">--}}
+{{--                        <i class="fa-solid fa-phone"></i> &nbsp;&nbsp;تواصل معنا</a>--}}
+{{--                </li>--}}
 
 
-            </ul>
+{{--                <li class="{{Route::currentRouteName() == 'about.us' ? 'active' : ''}}">--}}
+{{--                    <a class="scroll-link {{Route::currentRouteName() == 'about.us' ? 'active' : ''}}"--}}
+{{--                       href="{{route('about.us')}}"><i--}}
+{{--                            class="fa-solid fa-magnifying-glass"></i> &nbsp;&nbsp;{{__('messages.about-us')}}</a>--}}
+{{--                </li>--}}
 
 
-        </div>
-    </nav>
+{{--            </ul>--}}
+
+
+{{--        </div>--}}
+{{--    </nav>--}}
 </header>
 
 <!-- Search Modal -->

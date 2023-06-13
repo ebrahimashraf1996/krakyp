@@ -890,26 +890,22 @@
                                                              width="100%">
                                                     </div>
                                                     @if(backpack_auth()->check())
-                                                        <div
-                                                            class="wish_div not_hovered_wish {{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}}"
-                                                            data-target="{{$item->id}} " dir="ltr">
+                                                        <div class="wish_div {{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}} not_hovered_wish" data-target="{{$item->id}} ">
                                                             <a href="javascript:void(0)" class="wish-btn"
                                                                data-bs-target="{{$item->slug}}">
                                                                 <img
                                                                     src="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? asset('assets/front/images/hearted.png') : asset('assets/front/images/heart.png')}}"
                                                                     alt="wish-icon">
-                                                                <span
-                                                                    class="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}}">
-                                                        {{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'تم الإضافة' : 'أضف لقائمة الرغبات'}}</span>
-
+                                                                <span class="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}}">{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'تم الإضافة' : 'أضف لقائمة الرغبات'}}</span>
                                                             </a>
                                                         </div>
                                                     @else
-                                                        <div id="wish_div"
-                                                             class="wish_div not_hovered_wish product_{{$item->id}}">
+                                                        <div class="wish_div not_hovered_wish" data-target="{{$item->id}} ">
                                                             <a href="{{url('login')}}">
                                                                 <img src="{{asset('assets/front/images/heart.png')}}"
                                                                      alt="wish-icon">
+                                                                <span>أضف لقائمة الرغبات</span>
+
                                                             </a>
                                                         </div>
                                                     @endif
@@ -955,22 +951,22 @@
                                                 {{--                            {{route('client_ad.show', $item->slug)}}--}}
                                                 <div class="card card-block pb-3">
                                                     @if(backpack_auth()->check())
-                                                        <div class="wish_div not_hovered_wish"
-                                                             data-target="{{$item->id}} ">
+                                                        <div class="wish_div {{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}} not_hovered_wish" data-target="{{$item->id}} ">
                                                             <a href="javascript:void(0)" class="wish-btn"
                                                                data-bs-target="{{$item->slug}}">
                                                                 <img
                                                                     src="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? asset('assets/front/images/hearted.png') : asset('assets/front/images/heart.png')}}"
                                                                     alt="wish-icon">
-                                                                <span>أضف لقائمة الرغبات</span>
+                                                                <span class="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}}">{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'تم الإضافة' : 'أضف لقائمة الرغبات'}}</span>
                                                             </a>
                                                         </div>
                                                     @else
-                                                        <div class="wish_div not_hovered_wish"
-                                                             data-target="{{$item->id}} ">
+                                                        <div class="wish_div not_hovered_wish" data-target="{{$item->id}} ">
                                                             <a href="{{url('login')}}">
                                                                 <img src="{{asset('assets/front/images/heart.png')}}"
                                                                      alt="wish-icon">
+                                                                <span>أضف لقائمة الرغبات</span>
+
                                                             </a>
                                                         </div>
                                                     @endif

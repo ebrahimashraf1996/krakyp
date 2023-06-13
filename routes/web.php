@@ -200,6 +200,7 @@ Route::group(['namespace' => 'App\Http\Controllers\Front'], function () {
     Route::get('cat/{slug}', 'CategoriesController@show')->name('cat.show');
     Route::get('mainCat/{slug}', 'CategoriesController@mainShow')->name('mainCat.show');
     Route::get('from-main-to-sub', 'CategoriesController@fromMainToSub')->name('from.main.to.sub');
+    Route::get('from-all-to-cat', 'OverAllController@fromAllToCat')->name('from.all.to.cat');
     Route::get('articles', 'BlogController@index')->name('articles.index');
     Route::get('articles/{slug}', 'BlogController@show')->name('articles.show');
     Route::get('/', 'OverAllController@index')->name('site.home');

@@ -40,7 +40,7 @@
                            class="fa-solid fa-chevron-left mt-1  px-1 ">
                         </i>
                     </div>
-                    <span>{{$maincat->title}}</span>
+                    <span class="bold">{{$maincat->title}}</span>
                 </div>
 
                 <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-3 py-2 text-left back">
@@ -59,7 +59,7 @@
 
     <section class="search_container container">
         <div class="row">
-            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xm-12 col-12 py-0 text-center filter_section"
+            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-3 col-xm-12 col-12 py-0 text-center filter_section"
                  style="background: #fff">
                 <form action="{{route('from.main.to.sub')}}" class="pb-3">
                     <input type="hidden" name="new_main_cat_id"
@@ -227,16 +227,16 @@
                 </div>
 
             </div>
-            <div class="col-xxl-9 col-xl-9 col-lg-9 col-md-9 col-sm-9 col-xm-12 col-12 client_ads_cols ">
+            <div class="col-xxl-9 col-xl-9 col-lg-9 col-md-8 col-sm-9 col-xm-12 col-12 client_ads_cols  px-0">
                 @if(isset($paid_client_ads_in_cat) && $paid_client_ads_in_cat->count() > 0 || isset($free_client_ads_in_cat) && $free_client_ads_in_cat->count() > 0 )
                     {{--    Start Ads--}}
                     <section class="client_ads_section mt-1 text-center">
                         <div class="container">
                             <div class="row client_ads_div">
-                                <div class="col-lg-12 col-md-12 m-auto">
+                                <div class="col-lg-12 col-md-12 m-auto  px-1">
                                     <div class="row" id="client_ads_cont">
                                         @foreach($paid_client_ads_in_cat as $key => $item)
-                                            <div class="col-lg-4 col-md-4 col-6 col-sm-6 post  my-2">
+                                            <div class="col-lg-4 col-md-6 col-6 col-sm-6 post  my-2">
                                                 {{--                            {{route('client_ad.show', $item->slug)}}--}}
                                                 <div class="card card-block pb-3"
                                                      style="border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;">
@@ -250,26 +250,22 @@
                                                              width="100%">
                                                     </div>
                                                     @if(backpack_auth()->check())
-                                                        <div
-                                                            class="wish_div not_hovered_wish {{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}}"
-                                                            data-target="{{$item->id}} " dir="ltr">
+                                                        <div class="wish_div {{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}} not_hovered_wish" data-target="{{$item->id}} ">
                                                             <a href="javascript:void(0)" class="wish-btn"
                                                                data-bs-target="{{$item->slug}}">
                                                                 <img
                                                                     src="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? asset('assets/front/images/hearted.png') : asset('assets/front/images/heart.png')}}"
                                                                     alt="wish-icon">
-                                                                <span
-                                                                    class="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}}">
-                                                        {{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'تم الإضافة' : 'أضف لقائمة الرغبات'}}</span>
-
+                                                                <span class="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}}">{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'تم الإضافة' : 'أضف لقائمة الرغبات'}}</span>
                                                             </a>
                                                         </div>
                                                     @else
-                                                        <div id="wish_div not_hovered_wish"
-                                                             class="wish_div product_{{$item->id}}">
+                                                        <div class="wish_div not_hovered_wish" data-target="{{$item->id}} ">
                                                             <a href="{{url('login')}}">
                                                                 <img src="{{asset('assets/front/images/heart.png')}}"
                                                                      alt="wish-icon">
+                                                                <span>أضف لقائمة الرغبات</span>
+
                                                             </a>
                                                         </div>
                                                     @endif
@@ -311,26 +307,26 @@
                                             </div>
                                         @endforeach
                                         @foreach($free_client_ads_in_cat as $key => $item)
-                                            <div class="col-lg-4 col-md-4 col-6 col-sm-6 post my-2">
+                                            <div class="col-lg-4 col-md-6 col-6 col-sm-6 post my-2">
                                                 {{--                            {{route('client_ad.show', $item->slug)}}--}}
                                                 <div class="card card-block pb-3">
                                                     @if(backpack_auth()->check())
-                                                        <div class="wish_div not_hovered_wish"
-                                                             data-target="{{$item->id}} ">
+                                                        <div class="wish_div {{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}} not_hovered_wish" data-target="{{$item->id}} ">
                                                             <a href="javascript:void(0)" class="wish-btn"
                                                                data-bs-target="{{$item->slug}}">
                                                                 <img
                                                                     src="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? asset('assets/front/images/hearted.png') : asset('assets/front/images/heart.png')}}"
                                                                     alt="wish-icon">
-                                                                <span>أضف لقائمة الرغبات</span>
+                                                                <span class="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}}">{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'تم الإضافة' : 'أضف لقائمة الرغبات'}}</span>
                                                             </a>
                                                         </div>
                                                     @else
-                                                        <div class="wish_div not_hovered_wish"
-                                                             data-target="{{$item->id}} ">
+                                                        <div class="wish_div not_hovered_wish" data-target="{{$item->id}} ">
                                                             <a href="{{url('login')}}">
                                                                 <img src="{{asset('assets/front/images/heart.png')}}"
                                                                      alt="wish-icon">
+                                                                <span>أضف لقائمة الرغبات</span>
+
                                                             </a>
                                                         </div>
                                                     @endif
@@ -491,15 +487,15 @@
             });
 
 
-
-            let client_ad_post = $('section.client_ads_section .card');
-
-            let maxHeight = Math.max.apply(null, client_ad_post.map(function () {
-                return $(this).height();
-            }).get());
-
-            // alert(maxHeight);
-            client_ad_post.height(maxHeight);
+            //
+            // let client_ad_post = $('section.client_ads_section .card');
+            //
+            // let maxHeight = Math.max.apply(null, client_ad_post.map(function () {
+            //     return $(this).height();
+            // }).get());
+            //
+            // // alert(maxHeight);
+            // client_ad_post.height(maxHeight);
 
 
             let new_country_id = $('#new_country_id');

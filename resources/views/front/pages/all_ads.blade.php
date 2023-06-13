@@ -5,8 +5,7 @@
         .nice-select {
             line-height: 28px !important;
         }
-        main {    background-size: 100% !important;
-            background-repeat: repeat!important;}
+
         #adv_opts_cont .nice-select {
             width: 100%;
         }
@@ -60,16 +59,214 @@
 
     <section class="search_container container">
         <div class="row">
-            <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xm-12 col-12 client_ads_cols ">
-                @if(isset($paid_client_ads) && $paid_client_ads->count() > 0 || isset($free_client_ads) && $free_client_ads->count() > 0 )
+            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-3 col-xm-12 col-12 py-0 text-center filter_section"
+                 style="background: #fff">
+                <form action="{{route('from.all.to.cat')}}" class="pb-3">
+
+                    <input type="hidden" name="new_sort_by"
+                           value="cr_desc">
+                    <div class="row filter_header">
+                        <div class="col-xxl-5 col-xl-5 col-lg-12 col-md-12 col-sm-12 col-xm-12 col-12 text-right">
+                            <i class="fa-solid fa-filter mx-2" style="color: #426ddd"></i>
+                            <span style="color: #565b6e;font-weight: bold;">فلترة</span>
+                            <div class="close_mobile_filter d-md-none" style="position:absolute;top: 5px;left: -5px; width: 90px!important;">
+                                <span class="btn"
+                                      style="color: #ee7202; background: #f4f5fe!important;width: 100%;padding: 6px 0!important;">
+                                    <i class="fa-solid fa-xmark " style="font-size: 15px;padding: 0 6px!important; "></i>
+                                    <span>إغلاق</span>
+                                </span>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="row pt-5">
+                        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xm-12 col-12 text-right p-0 main_item_filter position-relative "
+                             id="new_main_cat_col">
+                            <div class="main_head py-3 pe-3" data-target="new_main_cats">
+                                <h4 class="bold l_17 d-inline-block">الفئة الرئيسية</h4>
+                                <span class="client_ad_place_main toggle_icons">
+                                    <i class="fa fa-chevron-left d-none"></i>
+                                    <i class="fa fa-chevron-down "></i>
+                                </span>
+                            </div>
+                            <div class="sub_menu new_main_cats pl-2 mt-0" style="display: block;">
+{{--                                @php--}}
+{{--                                    $subs = \App\Models\Category::where('parent_id', $maincat->id)->get();--}}
+{{--                                @endphp--}}
+
+                                <div class="row">
+                                    <div class="form-group col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 py-2">
+                                        <select class="form-control" id="new_main_cat_id" name="new_main_cat_id"
+                                                style="width: 100%">
+                                            <option value="all">الكل</option>
+                                            @foreach($maincats as $maincat)
+                                                <option
+                                                    value="{{$maincat->id}}" >{{$maincat->title}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xm-12 col-12 text-right p-0 main_item_filter position-relative "
+                             id="new_sub_cat_col">
+                            <div class="main_head py-3 pe-3" data-target="new_sub_cats">
+                                <h4 class="bold l_17 d-inline-block">الفئة الفرعية</h4>
+                                <span class="client_ad_place_main toggle_icons">
+                                    <i class="fa fa-chevron-left d-none"></i>
+                                    <i class="fa fa-chevron-down "></i>
+                                </span>
+                            </div>
+                            <div class="sub_menu new_sub_cats pl-2 mt-0" style="display: block;">
+{{--                                @php--}}
+{{--                                    $subs = \App\Models\Category::where('parent_id', $maincat->id)->get();--}}
+{{--                                @endphp--}}
+
+                                <div class="row">
+                                    <div class="form-group col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 py-2">
+                                        <select class="form-control" id="new_sub_cat_id" name="new_sub_cat_id" disabled=""
+                                                style="width: 100%">
+                                            <option value="all">الكل</option>
+{{--                                            @foreach($subs as $item)--}}
+{{--                                                <option--}}
+{{--                                                    value="{{$item->id}}" {{isset($_GET['new_sub_cat_id']) &&  $_GET['new_sub_cat_id'] == $item->id ? 'selected' : ''}}>{{$item->title}}</option>--}}
+{{--                                            @endforeach--}}
+                                        </select>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xm-12 col-12 text-right p-0 main_item_filter position-relative "
+                             id="client_ad_place">
+                            <div class="main_head py-3 pe-3" data-target="subs_for_location">
+                                <h4 class="bold l_17 d-inline-block">مكان تواجد الإعلان</h4>
+                                <span class="client_ad_place_main toggle_icons">
+                                    <i class="fa fa-chevron-left d-none"></i>
+                                    <i class="fa fa-chevron-down "></i>
+                                </span>
+                            </div>
+                            <div class="sub_menu subs_for_location pl-2 mt-0" style="display: block;">
+                                @php
+                                    $locations = \App\Models\Location::where('parent_id', null)->get();
+                                @endphp
+
+                                <div class="row">
+                                    <div class="form-group col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 py-2">
+                                        <select class="form-control" id="new_country_id" name="new_country_id"
+                                                style="width: 100%">
+                                            <option value="">اختر المكان</option>
+                                            @foreach($locations as $item)
+                                                <option
+                                                    value="{{$item->id}}" {{isset($_GET['new_country_id']) &&  $_GET['new_country_id'] == $item->id ? 'selected' : ''}}>{{$item->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 py-2"
+                                         id="new_city_id_div"
+                                         disabled="">
+                                        <select class="form-control" id="new_city_id" name="new_city_id"
+                                                {{!empty($_GET['new_country_id']) ? '' : 'disabled'}}
+                                                style="width: 100%">
+                                            @if(!empty($_GET['new_country_id']))
+                                                @php
+                                                    $cities = \App\Models\Location::select('id', 'name', 'parent_id')->where('parent_id', $_GET['new_country_id'])->get();
+                                                @endphp
+                                                <option value="all">الكل</option>
+                                                @foreach($cities as $city)
+                                                    <option
+                                                        value="{{$city->id}}" {{!empty($_GET['new_city_id']) &&  $_GET['new_city_id'] == $city->id ? 'selected' : ''}}>{{$city->name}}</option>
+                                                @endforeach
+                                            @else
+                                                <option value="all">الكل</option>
+                                            @endif
+                                        </select>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div
+                            class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xm-12 col-12 text-right p-0  main_item_filter position-relative"
+                            id="price_filter">
+                            <div class="main_head py-3 pe-3" data-target="subs_for_price">
+                                <h4 class="bold l_17 d-inline-block">السعر (جنيه)</h4>
+                                <span class="price_filter toggle_icons">
+                                    <i class="fa fa-chevron-left d-none"></i>
+                                    <i class="fa fa-chevron-down "></i>
+                                </span>
+                            </div>
+                            <div class="sub_menu subs_for_price pl-2 mt-3" style="display: block;">
+                                <div class="row">
+                                    <div
+                                        class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 text-right new_from_">
+                                        <div class="input-group mb-3" dir="ltr">
+                                            <span class="input-group-text bound " id="new_from_label">جنيه</span>
+                                            <input type="number" class="form-control text-right" name="new_from_"
+                                                   style="border-left: none"
+                                                   value="{{isset($_GET['new_from_']) && $_GET['new_from_'] != null ? $_GET['new_from_'] : ''}}"
+                                                   placeholder="السعر من" aria-label="السعر من"
+                                                   aria-describedby="new_from_label">
+                                        </div>
+                                    </div>
+                                    <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6 col-6 text-right new_to_">
+                                        <div class="input-group mb-3" dir="ltr">
+                                            <span class="input-group-text bound " id="new_to_label">جنيه</span>
+                                            <input type="number" class="form-control text-right" name="new_to_"
+                                                   style="border-left: none"
+                                                   value="{{isset($_GET['new_to_']) && $_GET['new_to_'] != null ? $_GET['new_to_'] : ''}}"
+                                                   placeholder="السعر إلي" aria-label="السعر إلي"
+                                                   aria-describedby="new_to_label">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row new_filter_header">
+
+                        <div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xm-12 col-12 p-0 text-center">
+                            <button type="submit" style="" id="search_filter" data-url="">
+                                <i class="fa fa-redo pl-2"></i>
+                                تحديث
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-12 col-12 d-md-none filter_mobile_btn_div" >
+                <div class="row">
+                    <div class="col-sm-6 col-12">
+                        <div class="mobile_filter_btn py-2">
+                            <i class="fa-solid fa-filter mx-2" style="color: #426ddd"></i>
+                            <span class="bold">فلترة</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-xxl-9 col-xl-9 col-lg-9 col-md-8 col-sm-12 col-xm-12 col-12 client_ads_cols px-0 ">
+                @if(isset($paid_client_ads_in_cat) && $paid_client_ads_in_cat->count() > 0 || isset($free_client_ads_in_cat) && $free_client_ads_in_cat->count() > 0 )
                     {{--    Start Ads--}}
                     <section class="client_ads_section mt-1 text-center">
                         <div class="container">
                             <div class="row client_ads_div">
-                                <div class="col-lg-12 col-md-12 m-auto">
+                                <div class="col-lg-12 col-md-12 m-auto  px-1 ">
                                     <div class="row" id="client_ads_cont">
-                                        @foreach($paid_client_ads as $key => $item)
-                                            <div class="col-lg-3 col-md-3 col-6 col-sm-6 post  my-2">
+                                        @foreach($paid_client_ads_in_cat as $key => $item)
+                                            <div class="col-lg-4 col-md-6 col-6 col-sm-6 post  my-2">
                                                 {{--                            {{route('client_ad.show', $item->slug)}}--}}
                                                 <div class="card card-block pb-3"
                                                      style="border-bottom-right-radius: 5px;border-bottom-left-radius: 5px;">
@@ -83,26 +280,22 @@
                                                              width="100%">
                                                     </div>
                                                     @if(backpack_auth()->check())
-                                                        <div
-                                                            class="wish_div not_hovered_wish {{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}}"
-                                                            data-target="{{$item->id}} " dir="ltr">
+                                                        <div class="wish_div {{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}} not_hovered_wish" data-target="{{$item->id}} ">
                                                             <a href="javascript:void(0)" class="wish-btn"
                                                                data-bs-target="{{$item->slug}}">
                                                                 <img
                                                                     src="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? asset('assets/front/images/hearted.png') : asset('assets/front/images/heart.png')}}"
                                                                     alt="wish-icon">
-                                                                <span
-                                                                    class="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}}">
-                                                        {{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'تم الإضافة' : 'أضف لقائمة الرغبات'}}</span>
-
+                                                                <span class="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}}">{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'تم الإضافة' : 'أضف لقائمة الرغبات'}}</span>
                                                             </a>
                                                         </div>
                                                     @else
-                                                        <div id="wish_div not_hovered_wish"
-                                                             class="wish_div product_{{$item->id}}">
+                                                        <div class="wish_div not_hovered_wish" data-target="{{$item->id}} ">
                                                             <a href="{{url('login')}}">
                                                                 <img src="{{asset('assets/front/images/heart.png')}}"
                                                                      alt="wish-icon">
+                                                                <span>أضف لقائمة الرغبات</span>
+
                                                             </a>
                                                         </div>
                                                     @endif
@@ -143,27 +336,27 @@
                                                 </div>
                                             </div>
                                         @endforeach
-                                        @foreach($free_client_ads as $key => $item)
-                                            <div class="col-lg-3 col-md-3 col-6 col-sm-6 post my-2">
+                                        @foreach($free_client_ads_in_cat as $key => $item)
+                                            <div class="col-lg-4 col-md-6 col-6 col-sm-6 post my-2">
                                                 {{--                            {{route('client_ad.show', $item->slug)}}--}}
                                                 <div class="card card-block pb-3">
                                                     @if(backpack_auth()->check())
-                                                        <div class="wish_div not_hovered_wish"
-                                                             data-target="{{$item->id}} ">
+                                                        <div class="wish_div {{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}} not_hovered_wish" data-target="{{$item->id}} ">
                                                             <a href="javascript:void(0)" class="wish-btn"
                                                                data-bs-target="{{$item->slug}}">
                                                                 <img
                                                                     src="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? asset('assets/front/images/hearted.png') : asset('assets/front/images/heart.png')}}"
                                                                     alt="wish-icon">
-                                                                <span>أضف لقائمة الرغبات</span>
+                                                                <span class="{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'done' : ''}}">{{\App\Models\Wish::where('user_id', backpack_auth()->user()->id)->where('client_ad_id',$item->id)->first() ? 'تم الإضافة' : 'أضف لقائمة الرغبات'}}</span>
                                                             </a>
                                                         </div>
                                                     @else
-                                                        <div class="wish_div not_hovered_wish"
-                                                             data-target="{{$item->id}} ">
+                                                        <div class="wish_div not_hovered_wish" data-target="{{$item->id}} ">
                                                             <a href="{{url('login')}}">
                                                                 <img src="{{asset('assets/front/images/heart.png')}}"
                                                                      alt="wish-icon">
+                                                                <span>أضف لقائمة الرغبات</span>
+
                                                             </a>
                                                         </div>
                                                     @endif
@@ -232,7 +425,6 @@
     </section>
 
 
-
 @endsection
 
 
@@ -241,23 +433,10 @@
 @section('script')
     <script>
 
-        //        $(window).scroll(function () {
-        //            if ($(document).scrollTop() > 40) {
-        //                $('nav.lower-nav').css({
-        //                    'transition': '300ms',
-        //                    'height': '82px',
-        //                    'background': 'rgb(242 247 255)',
-        //                });
-        //            } else {
-        //                $('nav.lower-nav').css({
-        //                    'transition': '300ms',
-        //                    'height': '100px',
-        //                    'background' : ' #ffffffa6'
-        //                });
-        //            }
-        //        });
+
 
         $(document).ready(function () {
+            const lang = $('#lang').val();
 
             let filter_section = $('.filter_section');
             let filter_header = $(".filter_header");
@@ -325,23 +504,77 @@
 
 
 
-            let client_ad_post = $('section.client_ads_section .card');
-
-            let maxHeight = Math.max.apply(null, client_ad_post.map(function () {
-                return $(this).height();
-            }).get());
-
-            // alert(maxHeight);
-            client_ad_post.height(maxHeight);
-
 
             let new_country_id = $('#new_country_id');
             let new_city_id = $('#new_city_id');
 
             new_country_id.select2();
             new_city_id.select2();
+            let new_main_cat_id = $('#new_main_cat_id');
             let new_sub_cat_id = $('#new_sub_cat_id');
             new_sub_cat_id.select2();
+            new_main_cat_id.select2();
+
+
+            new_main_cat_id.change(function () {
+                let main_cat_id = $(this).val();
+                if (main_cat_id !== "") {
+                    $.ajax({
+                        url: "/get-child-cat/" + main_cat_id,
+                        data: {
+                            _token: "{{csrf_token()}}",
+                            id: main_cat_id,
+                        },
+                        type: "POST",
+                        success: function (response) {
+                            if (typeof (response) != 'object') {
+                                response = $.parseJSON(response)
+                            }
+                            // console.log(response.data);
+                            new_sub_cat_id.removeAttr('disabled');
+                            new_sub_cat_id.find('option').remove();
+                            if (response.status === 1) {
+                                let data = response.data;
+                                console.log(data);
+                                let html_option = '';
+                                let new_data = [];
+                                new_data[0] = {
+                                    id: 'all',
+                                    text: "<div class='' style='display: inline-block'> <span class='sub_cat_title_custom'>الكل</span> </div>",
+                                    html: "<div class='' style='display: inline-block'> <span class='sub_cat_title_custom'>الكل</span> </div>",
+                                    title: 'الكل'
+                                };
+
+
+
+                                $.each(data, function (i, item) {
+                                    new_data[i+1] = {
+                                        id: item.id,
+                                        text: "<div class='div_sub_cat_icon_custom' style='display: inline-block'><span class='sub_cat_icon_custom mdi " + item.cat_icon + "'" + "</span></div><div class='div_sub_cat_title_custom' style='display: inline-block'> <span class='sub_cat_title_custom'>" + item.title[lang] + "</span> </div>",
+                                        html: "<div class='div_sub_cat_icon_custom' style='display: inline-block'><span class='sub_cat_icon_custom mdi " + item.cat_icon + "'" + "</span></div><div class='div_sub_cat_title_custom' style='display: inline-block'> <span class='sub_cat_title_custom'>" + item.title[lang] + "</span> </div>",
+                                        title: item.title[lang]
+                                    };
+                                });
+                                console.log(new_data);
+                                new_sub_cat_id.select2({
+                                    data: new_data,
+                                    escapeMarkup: function (markup) {
+                                        return markup;
+                                    },
+                                    templateResult: function (data) {
+                                        return data.html;
+                                    },
+                                    templateSelection: function (data) {
+                                        return data.text;
+                                    }
+                                });
+                            }
+                        }
+                    });
+                } else {
+                }
+            });
+
 
             new_country_id.change(function () {
                 let new_country_id = $(this).val();

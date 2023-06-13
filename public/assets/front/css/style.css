@@ -862,3 +862,4 @@ ul.size-list li a.unavailable{  cursor: not-allowed;opacity: 50%}
 .attr_col {font-size: 13px}
 .other_details_btn {background: #fff;color: #426ddd;font-weight: bold;border: 2px solid;}
 .other_details_btn:focus {box-shadow: none!important;}
+.login_div {margin-top: 18px}

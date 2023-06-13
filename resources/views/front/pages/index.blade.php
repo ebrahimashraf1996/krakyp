@@ -59,7 +59,7 @@
 
 
         <div class="row">
-            <div class="col-xxl-3 col-xl-3 col-md-4 col-sm-3 col-3 new_search_box"
+            <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-3 col-3 new_search_box"
                  style="height: 300px;background: #fff">
                 <form action="{{route('new.search.get')}}" method="get" id="new_search_form">
                     <div class="row" dir="rtl">
@@ -485,7 +485,7 @@
 
     {{--Start Posts Section--}}
     @if(isset($posts) && $posts->count() > 0)
-        <section class="blog_section container my-5" style="">
+        <section class="blog_section container py-5" style="">
             <div class="headline_div mb-3">
                 <h3 class="bold mb-4 ts-0">آخر الأخبار</h3>
             </div>
@@ -789,8 +789,8 @@
 
                 if (new_main_cat_id_mob.length && new_main_cat_id_mob.val() === '' ||
                     new_sub_cat_id_mob.length && new_sub_cat_id_mob.val() === '' ||
-                    new_from__mob.length && new_from__mob.val() === '' ||
-                    new_to__mob.length && new_to__mob.val() === '' ||
+                    // new_from__mob.length && new_from__mob.val() === '' ||
+                    // new_to__mob.length && new_to__mob.val() === '' ||
                     new_sort_by_mob.length && new_sort_by_mob.val() === ''
                 ) {
                     e.preventDefault();
@@ -811,14 +811,14 @@
 
 
 
-            let client_ad_post = $('section.client_ads_section .card');
-
-            let maxHeight = Math.max.apply(null, client_ad_post.map(function () {
-                return $(this).height();
-            }).get());
-
-            // alert(maxHeight);
-            client_ad_post.height(maxHeight);
+            // let client_ad_post = $('section.client_ads_section .card');
+            //
+            // let maxHeight = Math.max.apply(null, client_ad_post.map(function () {
+            //     return $(this).height();
+            // }).get());
+            //
+            // // alert(maxHeight);
+            // client_ad_post.height(maxHeight);
 
             /* End New Js */
 
