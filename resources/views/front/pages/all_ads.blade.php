@@ -61,7 +61,7 @@
         <div class="row">
             <div class="col-xxl-3 col-xl-3 col-lg-3 col-md-4 col-sm-3 col-xm-12 col-12 py-0 text-center filter_section"
                  style="background: #fff">
-                <form action="{{route('from.all.to.cat')}}" class="pb-3">
+                <form action="{{route('from.all.to.cat')}}" class="pb-0">
 
                     <input type="hidden" name="new_sort_by"
                            value="cr_desc">

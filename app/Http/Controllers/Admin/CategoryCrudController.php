@@ -78,17 +78,17 @@ class CategoryCrudController extends CrudController
             ],
             [
                 'name' => 'image',
-                'label' => 'الغلاف',
+                'label' => 'الصورة',
                 'type' => 'image',
                 'width' => '60px',
                 'height' => '60px'
 
             ],
-            [
-                'name'     => 'cat_icon',
-                'label'    => 'الأيقونة',
-                'type'     => 'custom_icon',
-            ],
+//            [
+//                'name'     => 'cat_icon',
+//                'label'    => 'الأيقونة',
+//                'type'     => 'custom_icon',
+//            ],
             [   // Enum Status
                 'name' => 'free_or_paid',
                 'label' => 'مجانية أم مدفوعة',
@@ -136,7 +136,7 @@ class CategoryCrudController extends CrudController
             ],
             [
                 'name' => 'image',
-                'label' => 'الغلاف',
+                'label' => 'الصورة',
                 'type' => 'image',
                 'width' => '60px'
             ],
@@ -145,11 +145,11 @@ class CategoryCrudController extends CrudController
 //                'label' => '',
 //                'type' => 'image',
 //            ],
-            [
-                'name'     => 'cat_icon',
-                'label'    => 'الأيقونة',
-                'type'     => 'custom_icon',
-            ],
+//            [
+//                'name'     => 'cat_icon',
+//                'label'    => 'الأيقونة',
+//                'type'     => 'custom_icon',
+//            ],
 
             [   // Enum Status
                 'name' => 'free_or_paid',
@@ -254,17 +254,17 @@ class CategoryCrudController extends CrudController
                 'label' => 'الوصف البسيط - SEO',
                 'type' => 'textarea',
             ],
-
-            [   // icon_picker
-                'label'   => "الأيقونة",
-                'name'    => 'cat_icon',
-                'type'    => 'text',
-                'hint' => "<a href='". route('show.icons') ."' target='_blank'>ابحث عن الأيقونة</a>"
-
-            ],
+//
+//            [   // icon_picker
+//                'label'   => "الأيقونة",
+//                'name'    => 'cat_icon',
+//                'type'    => 'text',
+//                'hint' => "<a href='". route('show.icons') ."' target='_blank'>ابحث عن الأيقونة</a>"
+//
+//            ],
             [   // Enum Status
                 'name' => 'image',
-                'label' => 'الغلاف',
+                'label' => 'الصورة',
                 'type' => 'browse'
             ],
             [   // Enum Status
@@ -401,16 +401,16 @@ class CategoryCrudController extends CrudController
 //            ],
             [   // Enum Status
                 'name' => 'image',
-                'label' => 'الغلاف',
+                'label' => 'الصورة',
                 'type' => 'browse'
             ],
-            [   // icon_picker
-                'label'   => "الأيقونة",
-                'name'    => 'cat_icon',
-                'type'    => 'text',
-                'hint' => "<a href='". route('show.icons') ."' target='_blank'>ابحث عن الأيقونة</a>"
-
-            ],
+//            [   // icon_picker
+//                'label'   => "الأيقونة",
+//                'name'    => 'cat_icon',
+//                'type'    => 'text',
+//                'hint' => "<a href='". route('show.icons') ."' target='_blank'>ابحث عن الأيقونة</a>"
+//
+//            ],
             [   // Enum Status
                 'name' => 'free_or_paid',
                 'label' => 'مجانية أم مدفوعة',
@@ -492,7 +492,7 @@ class CategoryCrudController extends CrudController
         $this->crud->hasAccessOrFail('create');
 
         // execute the FormRequest authorization and validation, if one is required
-         $request = $this->crud->validateRequest();
+        $request = $this->crud->validateRequest();
 
         $new_tags = [];
         foreach ($request->tags as $tag) {
@@ -512,7 +512,7 @@ class CategoryCrudController extends CrudController
             'title' => $this->crud->getStrippedSaveRequest()['title'],
             'slug_keyword' => $this->crud->getStrippedSaveRequest()['slug_keyword'],
             'description' => $this->crud->getStrippedSaveRequest()['description'],
-            'cat_icon' => $this->crud->getStrippedSaveRequest()['cat_icon'],
+//            'cat_icon' => $this->crud->getStrippedSaveRequest()['cat_icon'],
             'image' => $this->crud->getStrippedSaveRequest()['image'],
             'free_or_paid' => $this->crud->getStrippedSaveRequest()['free_or_paid'],
             'user_id' => $this->crud->getStrippedSaveRequest()['user_id'],
@@ -520,14 +520,16 @@ class CategoryCrudController extends CrudController
             'is_featured' => $this->crud->getStrippedSaveRequest()['is_featured'],
             'status' => $this->crud->getStrippedSaveRequest()['status'],
         ]);
-        foreach ($this->crud->getStrippedSaveRequest()['attributes'] as $attr_id) {
-            $attr = Attribute::find($attr_id);
-            DB::table('attr_cat')->insert([
-                'cat_id' => $item->id,
-                'attr_id' => $attr->id,
-                'type_of' => $attr->type,
-                'main_other' => $attr->type_of,
-            ]);
+        if($request->has('attributes')) {
+            foreach ($this->crud->getStrippedSaveRequest()['attributes'] as $attr_id) {
+                $attr = Attribute::find($attr_id);
+                DB::table('attr_cat')->insert([
+                    'cat_id' => $item->id,
+                    'attr_id' => $attr->id,
+                    'type_of' => $attr->type,
+                    'main_other' => $attr->type_of,
+                ]);
+            }
         }
 
         $item->tags()->sync($new_tags);

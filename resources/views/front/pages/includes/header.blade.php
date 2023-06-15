@@ -142,7 +142,7 @@
                     @endphp
                     <div class="row">
                         @foreach($cats as $item)
-                            <div class="col-xxl-4 col-xl-4 col-md-6 col-sm-6 col-4 single_cat_div">
+                            <div class="col-xxl-6 col-xl-6 col-md-6 col-sm-6 col-6 single_cat_div">
                                 <div class="row p-b-10 p-t-10 main_cat_title_row">
                                     <span class="main_cat_title bold">
                                         {{$item->title}}
@@ -150,9 +150,9 @@
                                 </div>
                                 <div class="row">
                                     @foreach($item->subCategories as $item)
-                                        <div class="col-xxl-6 col-xl-6 col-md-6 col-sm-6 col-6">
+                                        <div class="col-xxl-6 col-xl-6 col-md-6 col-sm-6 col-6 mb-1">
                                             <a class="sub_menu_item" href="{{route('cat.show', $item->slug)}}">
-                                                <span class="cat_icon mdi {{$item->cat_icon}}"></span>
+                                                <img src="{{asset($item->image)}}" alt="cat-image" style="width: 30px;height: 30px">
                                                 <span class="sub_cat_title">{{$item->title}}</span>
                                             </a>
                                         </div>
