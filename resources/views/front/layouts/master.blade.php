@@ -28,12 +28,12 @@
     <link rel="stylesheet" href="{{asset('assets/front/css/nice-select.css')}}">
     <!-- Animate CSS -->
     <link rel="stylesheet" href="{{asset('assets/front/css/animate.css')}}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.2.96/css/materialdesignicons.min.css">
+{{--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@7.2.96/css/materialdesignicons.min.css">--}}
     <!-- Owl Carousel -->
     <link rel="stylesheet" href="{{asset('assets/front/css/owl.carousel.css')}}">
     <link rel="stylesheet" href="{{asset('assets/front/css/owl.theme.default.min.css')}}">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="{{asset('assets/front/css/normalize.min.css')}}">
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&amp;display=swapps://github.com/produle/MockFlowFont/blob/master/MockFlowFont1/dist/MockFlowFont1.woff">
 
@@ -99,7 +99,7 @@
 {{-- JQuery --}}
 <script src="{{asset('assets/front/js/jquery-3.6.0.min.js')}}"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="{{asset('assets/front/js/popper.min.js')}}" ></script>
 <!-- Bootstrap JS -->
 <script src="{{asset('assets/front/js/bootstrap.min.js')}}"></script>
 
