@@ -489,7 +489,7 @@
             <div class="headline_div mb-3">
                 <h3 class="bold mb-4 ts-0">آخر الأخبار</h3>
             </div>
-            <div class="news_paper">
+            <div class="news_paper row">
                 @foreach($posts as $key => $item)
                     <div class="card">
                         <a href="{{route('articles.show', $item->slug)}}">

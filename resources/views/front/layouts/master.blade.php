@@ -14,7 +14,7 @@
     @php
         $settings = \App\Models\Setting::first();
     @endphp
-    <link rel="icon" type="image/png" href="{{asset($settings->logo)}}">    <!-- Web Font -->
+    <link rel="icon" type="image/png" href="{{asset('assets/front/images/karakeeb-icon.png')}}">    <!-- Web Font -->
     <link href="https://fonts.googleapis.com/css?family=Almarai"/>
     <!-- Bootstrap -->
     <link rel="stylesheet" href="{{asset('assets/front/css/bootstrap.css')}}">
@@ -69,7 +69,8 @@
 @include('front.pages.includes.header')
 
 <!-- Content -->
-<main  style="background-image: url('{{asset($settings->general_bg)}}'); background-size: cover">
+{{--<main  style="background-image: url('{{asset($settings->general_bg)}}'); background-size: cover">--}}
+<main style="background: #f9f9f9">
 
 
     {{--@include('front.pages.includes.alerts.ajax-notify')--}}
