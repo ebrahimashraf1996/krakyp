@@ -571,7 +571,6 @@ class CategoryCrudController extends CrudController
             'title' => $this->crud->getStrippedSaveRequest()['title'],
             'slug' => $this->crud->getStrippedSaveRequest()['slug'],
             'description' => $this->crud->getStrippedSaveRequest()['description'],
-            'cat_icon' => $this->crud->getStrippedSaveRequest()['cat_icon'],
             'image' => $this->crud->getStrippedSaveRequest()['image'],
             'free_or_paid' => $this->crud->getStrippedSaveRequest()['free_or_paid'],
             'user_id' => $this->crud->getStrippedSaveRequest()['user_id'],
@@ -582,59 +581,62 @@ class CategoryCrudController extends CrudController
 
 
         $new_attrs = [];
-        foreach ($this->crud->getStrippedSaveRequest()['attributes'] as $attr_id) {
-            $attr = Attribute::find($attr_id);
+        if($request->has('attributes')) {
 
-            $already = DB::table('attr_cat')->where('cat_id', $category->id)->where('attr_id', $attr->id)->first();
-            if ($already) {
-                $new_attr = [
-                    'cat_id' => $already->cat_id,
-                    'attr_id' => $already->attr_id,
-                    'parent_id' => $already->parent_id,
-                    'lft' => $already->lft,
-                    'rgt' => $already->rgt,
-                    'depth' => $already->depth,
-                    'type_of' => $attr->type,
-                    'main_other' => $attr->type_of,
-                ];
+            foreach ($this->crud->getStrippedSaveRequest()['attributes'] as $attr_id) {
+                $attr = Attribute::find($attr_id);
+
+                $already = DB::table('attr_cat')->where('cat_id', $category->id)->where('attr_id', $attr->id)->first();
+                if ($already) {
+                    $new_attr = [
+                        'cat_id' => $already->cat_id,
+                        'attr_id' => $already->attr_id,
+                        'parent_id' => $already->parent_id,
+                        'lft' => $already->lft,
+                        'rgt' => $already->rgt,
+                        'depth' => $already->depth,
+                        'type_of' => $attr->type,
+                        'main_other' => $attr->type_of,
+                    ];
 //                return $already;
 //                return $new_attr;
 
-                array_push($new_attrs, $new_attr);
-            } else {
+                    array_push($new_attrs, $new_attr);
+                } else {
 //                return $attr;
-                $new_attr = [
-                    'cat_id' => $category->id,
-                    'attr_id' => $attr->id,
-                    'parent_id' => null,
-                    'lft' => 0,
-                    'rgt' => 0,
-                    'depth' => 0,
-                    'type_of' => $attr->type,
-                    'main_other' => $attr->type_of,
-                ];
-                array_push($new_attrs, $new_attr);
+                    $new_attr = [
+                        'cat_id' => $category->id,
+                        'attr_id' => $attr->id,
+                        'parent_id' => null,
+                        'lft' => 0,
+                        'rgt' => 0,
+                        'depth' => 0,
+                        'type_of' => $attr->type,
+                        'main_other' => $attr->type_of,
+                    ];
+                    array_push($new_attrs, $new_attr);
 
+                }
             }
-        }
 //        return $new_attrs;
 
-        $related_attrs = DB::table('attr_cat')->where('cat_id', $cat_id);
-        $related_attrs->delete();
+            $related_attrs = DB::table('attr_cat')->where('cat_id', $cat_id);
+            $related_attrs->delete();
 
 //        return 'test';
-        foreach ($new_attrs as $new_insert) {
-            DB::table('attr_cat')->insert([
-                'cat_id' => $new_insert['cat_id'],
-                'attr_id' => $new_insert['attr_id'],
-                'parent_id' => $new_insert['parent_id'],
-                'lft' => $new_insert['lft'],
-                'rgt' => $new_insert['rgt'],
-                'depth' => $new_insert['depth'],
-                'type_of' => $new_insert['type_of'],
-                'main_other' => $new_insert['main_other'],
-            ]);
+            foreach ($new_attrs as $new_insert) {
+                DB::table('attr_cat')->insert([
+                    'cat_id' => $new_insert['cat_id'],
+                    'attr_id' => $new_insert['attr_id'],
+                    'parent_id' => $new_insert['parent_id'],
+                    'lft' => $new_insert['lft'],
+                    'rgt' => $new_insert['rgt'],
+                    'depth' => $new_insert['depth'],
+                    'type_of' => $new_insert['type_of'],
+                    'main_other' => $new_insert['main_other'],
+                ]);
 
+            }
         }
         // update the row in the db
         $category->tags()->sync($new_tags);
