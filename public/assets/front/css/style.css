@@ -694,7 +694,7 @@ footer.pc_footer h5 {font-size: 20px; color: #fff; font-weight: bold}
 footer.pc_footer h1 {font-size: 2.2rem; color: #fff;}
 /*footer h1 {font-size: 20px; color: #fff; font-weight: bold}*/
 footer.pc_footer .row{margin-right: 0;margin-left: 0;}
-footer.pc_footer i {font-size: 18px;}
+footer.pc_footer i {font-size: 36px; color: #dadfe8e0}
 footer.pc_footer button  {margin:10px 0 0 0;width: 100%}
 footer.pc_footer button:hover  {background-color: #2761ab}
 .pc_footer .last_part {background:rgba(0,0,0,.5); }

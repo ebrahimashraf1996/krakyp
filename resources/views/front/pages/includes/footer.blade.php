@@ -47,7 +47,7 @@
                     @if($settings->twitter != null)
                     <li class="footer_contacts_list_item">
                         <a href="{{$settings->twitter}}">
-                            <img src="{{asset('assets/front/images/twitter.png')}}" alt="">
+                            <i class="fa-brands fa-twitter"></i>
                         </a>
                     </li>
                     @endif
@@ -55,7 +55,7 @@
 
                         <li class="footer_contacts_list_item">
                         <a href="{{$settings->linkedin}}">
-                            <img src="{{asset('assets/front/images/in.png')}}" alt="">
+                            <i class="fa-brands fa-linkedin-in"></i>
                         </a>
                     </li>
                         @endif
@@ -63,63 +63,63 @@
                         @if($settings->whatsapp != null)
                     <li class="footer_contacts_list_item">
                         <a href="{{$settings->whatsapp}}">
-                            <img src="{{asset('assets/front/images/whats.png')}}" alt="">
+                            <i class="fa-brands fa-whatsapp"></i>
                         </a>
                     </li>
                         @endif
                         @if($settings->instagram != null)
                     <li class="footer_contacts_list_item">
                         <a href="{{$settings->instagram}}">
-                            <img src="{{asset('assets/front/images/insta.png')}}" alt="">
+                            <i class="fa-brands fa-instagram"></i>
                         </a>
                     </li>
                         @endif
                         @if($settings->email != null)
                     <li class="footer_contacts_list_item">
                         <a href="mailto:{{$settings->email}}">
-                            <img src="{{asset('assets/front/images/g-plus.png')}}" alt="">
+                            <i class="fa-solid fa-envelope"></i>
                         </a>
                     </li>
                     @endif
                     @if($settings->snap_chat != null)
                     <li class="footer_contacts_list_item">
                         <a href="{{$settings->snap_chat}}">
-                            <img src="{{asset('assets/front/images/snap.png')}}" alt="">
-                        </a>
-                    </li>
-                    @endif
-                    @if($settings->twitter != null)
-                    <li class="footer_contacts_list_item">
-                        <a href="{{$settings->linkedin}}">
-                            <img src="{{asset('assets/front/images/fb.png')}}" alt="">
+                            <i class="fa-brands fa-snapchat"></i>
                         </a>
                     </li>
                     @endif
                     @if($settings->facebook != null)
                     <li class="footer_contacts_list_item">
                         <a href="{{$settings->facebook}}">
-                            <img src="{{asset('assets/front/images/behance.png')}}" alt="">
+                            <i class="fa-brands fa-facebook"></i>
+                        </a>
+                    </li>
+                    @endif
+                    @if($settings->behance != null)
+                    <li class="footer_contacts_list_item">
+                        <a href="{{$settings->facebook}}">
+                            <i class="fa-brands fa-behance"></i>
                         </a>
                     </li>
                     @endif
                     @if($settings->youtube != null)
                     <li class="footer_contacts_list_item">
                         <a href="{{$settings->youtube}}">
-                            <img src="{{asset('assets/front/images/youtube.png')}}" alt="">
+                            <i class="fa-brands fa-youtube"></i>
                         </a>
                     </li>
                     @endif
                     @if($settings->phone != null)
                     <li class="footer_contacts_list_item">
                         <a href="tel:{{$settings->phone}}">
-                            <img src="{{asset('assets/front/images/phone.png')}}" alt="">
+                            <i class="fa-solid fa-phone" style="font-size: 30px!important;"></i>
                         </a>
                     </li>
                     @endif
                     @if($settings->skype != null)
                     <li class="footer_contacts_list_item">
                         <a href="{{$settings->skype}}">
-                            <img src="{{asset('assets/front/images/skype.png')}}" alt="">
+                            <i class="fa-brands fa-skype"></i>
                         </a>
                     </li>
                     @endif
