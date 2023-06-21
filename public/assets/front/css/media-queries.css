@@ -87,7 +87,7 @@
     /* Start Featured */
     .cat_img img {width: 55%}
     /*div.cats_section {overflow: auto;white-space: nowrap;height: 230px;}*/
-    .cat_div {display: inline-block;text-align: center;}
+    .cat_div {display: inline-block;text-align: center;width: 97%}
     .cat_arrow div.i_bg {height: 44px;width: 44px}
     .cat_title {margin-top: -26px}
     .cat_arrow div i {font-size: 18px;margin-top: 12px;}

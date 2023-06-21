@@ -233,7 +233,8 @@ $(document).ready(function () {
         responsive: {
             0: {
                 items: 1,
-                nav: true
+                nav: true,
+                dots:false
             },
             480: {
                 items: 1,
@@ -270,7 +271,8 @@ $(document).ready(function () {
         responsive: {
             0: {
                 items: 2,
-                nav: false
+                nav: false,
+                dots:false
             },
             480: {
                 items: 2,
