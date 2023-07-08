@@ -283,7 +283,12 @@ class AttributeCrudController extends CrudController
         $item = $this->crud->create($this->crud->getStrippedSaveRequest());
 
         foreach ($titles as $key => $val) {
-            $file_name = uploadImage('options', $images[$key]);
+            $file_name = "";
+            if(isset($images[$key])) {
+                $file_name = uploadImage('options', $images[$key]);
+            } else {
+                $file_name = "";
+            }
             Option::create([
                 'val' => $val,
                 'attr_id' => $item->id,
