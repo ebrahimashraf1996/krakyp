@@ -138,7 +138,9 @@
                 </div>
                 <div class="col-xxl-12 col-xl-12 col-md-12 col-sm-12 col-12 d-none" id="cat_new_menu">
                     @php
-                        $cats = \App\Models\Category::active()->main()->select('id', 'title', 'slug','cat_icon', 'parent_id')->orderBy('lft', 'asc')->get();
+                        $cats = \App\Models\Category::with(['subCategories' => function($q) {
+    $q->orderBy('lft', 'asc');
+}])->active()->main()->select('id', 'title', 'slug','cat_icon', 'parent_id')->orderBy('lft', 'asc')->get();
                     @endphp
                     <div class="row">
                         @foreach($cats as $item)
