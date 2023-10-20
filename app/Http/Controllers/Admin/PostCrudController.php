@@ -33,7 +33,6 @@ class PostCrudController extends CrudController
         CRUD::setRoute(config('backpack.base.route_prefix') . '/post');
         CRUD::setEntityNameStrings('مقال', 'المقالات');
         $this->crud->orderBy('lft', 'ASC');
-
     }
 
     public function setupReorderOperation() {
